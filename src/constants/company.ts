@@ -33,9 +33,9 @@ export const COMPANY_INFO: CompanyInfo = {
   displayPhone: "+91 70101 05831",
   whatsapp: "917010105831",
   whatsappMessage: "Hello Ariviya, I would like to inquire about your natural animal health formulations.",
-  email: "contact@ariviya.org",
+  email: "ariviyalabs@gmail.com",
   address: {
-    line1: "Ariviya Bio-Innovations Hub",
+    line1: "Unit 204, Periyar TBI, Vallam, Vallam North, Tamil Nadu 613403",
     line2: "TBI Facility, Science & Technology Park",
     city: "Chennai",
     state: "Tamil Nadu",
