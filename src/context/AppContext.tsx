@@ -60,15 +60,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [selectedProduct, setSelectedProduct] = useState<ProductItem | null>(null);
   const [activeCategory, setActiveCategory] = useState<string>("all");
 
-  // Initial demo cart with MammaryO (Client priority #1!)
-  const [cart, setCart] = useState<CartItem[]>([
-    {
-      product: PRODUCTS.find((p) => p.id === "prod-8") || PRODUCTS[0],
-      quantity: 1,
-    },
-  ]);
-
-  const [wishlist, setWishlist] = useState<string[]>(["prod-8", "prod-2"]);
+  // Initial cart and wishlist start empty (0)
+  const [cart, setCart] = useState<CartItem[]>([]);
+  const [wishlist, setWishlist] = useState<string[]>([]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {

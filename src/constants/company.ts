@@ -56,8 +56,8 @@ export const COMPANY_INFO: CompanyInfo = {
   ],
   socials: {
     linkedin: "https://linkedin.com/company/ariviya",
-    twitter: "https://twitter.com/ariviya_health",
-    instagram: "https://instagram.com/ariviya_health",
+    twitter: "https://twitter.com/ariviya_deeptech",
+    instagram: "https://instagram.com/ariviya_deeptech/",
   },
 };
 

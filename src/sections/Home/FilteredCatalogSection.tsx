@@ -162,10 +162,6 @@ export function FilteredCatalogSection() {
                     {tab.icon}
                   </div>
 
-                  {/* Text Column:
-                      - Hidden on mobile ("mobile view la icons mattum irukkattum")
-                      - If tab.iconOnly is true ("all product kku icons mattum both kku irukkattum"), hidden on both desktop & mobile!
-                  */}
                   {!tab.iconOnly && (
                     <span
                       className={`hidden sm:inline text-xs font-bold tracking-wider leading-tight ${
@@ -181,7 +177,7 @@ export function FilteredCatalogSection() {
           </div>
 
           {/* Search within Category */}
-          <div className="relative w-full sm:w-62">
+          <div className="relative w-full sm:w-62 hidden md:block">
             <input
               type="text"
               value={searchTerm}

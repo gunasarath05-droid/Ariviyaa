@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { COMPANY_INFO } from "@/constants";
 import {
   Phone,
@@ -191,16 +192,16 @@ export function Footer() {
           </p>
 
           {/* Legal Links */}
-          <div className="flex items-center justify-center gap-5 text-slate-600">
-            <span className="hover:text-slate-900 transition-colors cursor-pointer">
+          <div className="flex items-center justify-center gap-5 text-slate-600 text-xs sm:text-sm">
+            <Link href="/privacy-policy" className="hover:text-slate-900 hover:underline transition-colors">
               Privacy Policy
-            </span>
-            <span className="hover:text-slate-900 transition-colors cursor-pointer">
+            </Link>
+            <Link href="/terms-and-conditions" className="hover:text-slate-900 hover:underline transition-colors">
               Terms &amp; Conditions
-            </span>
-            <span className="hover:text-slate-900 transition-colors cursor-pointer">
+            </Link>
+            <Link href="/disclaimer" className="hover:text-slate-900 hover:underline transition-colors">
               Disclaimer
-            </span>
+            </Link>
           </div>
         </div>
       </div>
