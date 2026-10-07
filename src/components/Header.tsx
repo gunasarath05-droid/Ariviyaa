@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { useApp } from "@/context/AppContext";
 import { Search, Heart, ShoppingBag, User, X } from "lucide-react";
 
@@ -30,7 +31,7 @@ export function Header() {
           {/* ========================================================================= */}
           {/* 1. BRAND LOGO */}
           {/* ========================================================================= */}
-          <a href="#hero" className="flex items-center shrink-0 py-1 group">
+          <Link href="/" className="flex items-center shrink-0 py-1 group">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/assets/logo/ariviya.png"
@@ -39,7 +40,7 @@ export function Header() {
               height={48}
               className="h-8 sm:h-10 md:h-12 w-auto object-contain transition-transform group-hover:scale-102"
             />
-          </a>
+          </Link>
 
           {/* ========================================================================= */}
           {/* 2. RECTANGULAR SEARCH BAR (Centered with Search Icon on Right) */}
@@ -84,7 +85,11 @@ export function Header() {
             <button
               onClick={() => {
                 const el = document.getElementById("contact-section");
-                if (el) el.scrollIntoView({ behavior: "smooth" });
+                if (el) {
+                  el.scrollIntoView({ behavior: "smooth" });
+                } else {
+                  window.location.href = "/#contact-section";
+                }
               }}
               className="flex flex-col items-center justify-center text-slate-800 hover:text-[#5160a3] transition-colors cursor-pointer group"
               title="Account / Contact"

@@ -24,7 +24,7 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-16 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
           <div className="lg:col-span-5 space-y-2">
-            <a href="#hero" className="inline-block group">
+            <Link href="/" className="inline-block group">
               <img
                 src="/assets/logo/ariviya.png"
                 alt="Ariviya Animal Health Logo"
@@ -32,7 +32,7 @@ export function Footer() {
                 height={48}
                 className="h-10 sm:h-12 md:h-16 w-auto object-contain"
               />
-            </a>
+            </Link>
 
             <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal max-w-sm">
               Ariviya is a deep-tech animal healthcare pioneer engineering sustainable, chemical-free
