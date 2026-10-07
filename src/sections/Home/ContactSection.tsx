@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { COMPANY_INFO } from "@/constants";
-import { Phone, Mail, PawPrint } from "lucide-react";
+import { Phone, Mail, PawPrint, CheckCircle2 } from "lucide-react";
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
@@ -13,6 +13,7 @@ export function ContactSection() {
     phone: "",
     message: "",
   });
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,6 +24,20 @@ export function ContactSection() {
 
     const url = `https://wa.me/${COMPANY_INFO.whatsapp}?text=${encodeURIComponent(message)}`;
     window.open(url, "_blank");
+
+    // Reset form inputs so when the user returns, the form is cleanly refreshed
+    setFormData({
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      message: "",
+    });
+
+    setIsSubmitted(true);
+    setTimeout(() => {
+      setIsSubmitted(false);
+    }, 8000);
   };
 
   return (
@@ -199,12 +214,25 @@ export function ContactSection() {
                 />
               </div>
 
+              {/* Submission Feedback */}
+              {isSubmitted && (
+                <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 flex items-start gap-3 animate-in fade-in slide-in-from-top-2 duration-300">
+                  <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
+                  <div className="text-xs sm:text-sm">
+                    <p className="font-bold">Inquiry Sent to WhatsApp!</p>
+                    <p className="text-emerald-700 font-normal mt-0.5">
+                      Your message was opened on WhatsApp. The form has been cleared for you.
+                    </p>
+                  </div>
+                </div>
+              )}
+
               {/* Row 4: Submit Button */}
               <button
                 type="submit"
                 className="w-full py-4 px-6 rounded-xl bg-[#5160a3] hover:bg-[#434f8a] active:scale-[0.99] text-white font-bold text-sm tracking-wide shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer text-center"
               >
-                Send Message
+                {isSubmitted ? "Message Sent ✓" : "Send Message"}
               </button>
             </form>
           </div>
