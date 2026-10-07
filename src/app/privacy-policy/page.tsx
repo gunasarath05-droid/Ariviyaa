@@ -5,9 +5,12 @@ import { ArrowLeft, ShieldCheck, FileText, AlertCircle, Mail, Phone, MapPin } fr
 import { COMPANY_INFO } from "@/constants/company";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Ariviya Animal Health Care",
+  title: "Privacy Policy",
   description:
     "Learn how Ariviya protects your personal information, inquiry records, and communications in accordance with applicable data privacy laws.",
+  alternates: {
+    canonical: "https://www.ariviyaa.com/privacy-policy",
+  },
 };
 
 export default function PrivacyPolicyPage() {

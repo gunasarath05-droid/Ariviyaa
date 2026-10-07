@@ -5,9 +5,12 @@ import { ArrowLeft, FileText, CheckCircle2, Mail, Phone, MapPin } from "lucide-r
 import { COMPANY_INFO } from "@/constants/company";
 
 export const metadata: Metadata = {
-  title: "Terms & Conditions | Ariviya Animal Health Care",
+  title: "Terms & Conditions",
   description:
     "Review the terms, order inquiry guidelines, and conditions of use for Ariviya veterinary products and digital platforms.",
+  alternates: {
+    canonical: "https://www.ariviyaa.com/terms-and-conditions",
+  },
 };
 
 export default function TermsAndConditionsPage() {

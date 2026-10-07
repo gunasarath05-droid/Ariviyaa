@@ -7,7 +7,7 @@ export function JsonLd() {
     "@type": "Organization",
     name: COMPANY_INFO.name,
     description: COMPANY_INFO.subTagline,
-    url: "https://ariviya.org",
+    url: "https://www.ariviyaa.com",
     telephone: COMPANY_INFO.phone,
     email: COMPANY_INFO.email,
     address: {

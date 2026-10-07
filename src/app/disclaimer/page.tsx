@@ -5,9 +5,12 @@ import { ArrowLeft, AlertCircle, ShieldAlert, Mail, Phone, MapPin } from "lucide
 import { COMPANY_INFO } from "@/constants/company";
 
 export const metadata: Metadata = {
-  title: "Disclaimer | Ariviya Animal Health Care",
+  title: "Disclaimer",
   description:
     "Important veterinary guidance and scientific disclaimer regarding Ariviya nanobio-polymer veterinary formulations.",
+  alternates: {
+    canonical: "https://www.ariviyaa.com/disclaimer",
+  },
 };
 
 export default function DisclaimerPage() {

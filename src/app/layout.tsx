@@ -28,12 +28,19 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://ariviya.org"),
-  title: "Ariviya - Animal Health Care | Natural Bio-Polymer & Nanotechnology Essentials",
+  metadataBase: new URL("https://www.ariviyaa.com"),
+  alternates: {
+    canonical: "https://www.ariviyaa.com",
+  },
+  title: {
+    default: "Ariviya - Animal Health Care | Natural Bio-Polymer & Nanotechnology Essentials",
+    template: "%s | Ariviya Animal Health Care",
+  },
   description:
-    "Ariviya is a deep-tech startup developing sustainable, chemical-free nanobio-polymer health care essentials for dairy cattle, livestock, poultry, and pets. Supported by StartupTN.",
+    "Sustainable, chemical-free nanobio-polymer health care essentials for dairy cattle, livestock, poultry, and pets. Supported by StartupTN.",
   keywords: [
     "Ariviya",
+    "Ariviyaa",
     "Animal Health Care",
     "Bovine Mastitis Prevention",
     "TANUVAS",
@@ -42,6 +49,7 @@ export const metadata: Metadata = {
     "StartupTN",
     "Chemical-Free",
     "Teat Dip",
+    "Veterinary Formulations",
   ],
   icons: {
     icon: "/icon.png",
@@ -49,11 +57,27 @@ export const metadata: Metadata = {
     apple: "/icon.png",
   },
   openGraph: {
+    title: "Ariviya - Animal Health Care | Natural Bio-Polymer & Nanotechnology Essentials",
+    description:
+      "Sustainable, chemical-free nanobio-polymer health care essentials for dairy cattle, livestock, poultry, and pets. Supported by StartupTN.",
+    url: "https://www.ariviyaa.com",
+    siteName: "Ariviya Animal Health",
+    images: [
+      {
+        url: "/assets/farm_landscape_banner.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Ariviya Animal Health Care",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
     title: "Ariviya - Animal Health Care",
     description:
-      "Innovative Chemical-Free Solutions for Pet & Farm Animal Health! Powered by Green Synthesis Naxpoly® Technology.",
+      "Sustainable, chemical-free nanobio-polymer health care essentials for dairy cattle, livestock, poultry, and pets. Supported by StartupTN.",
     images: ["/assets/farm_landscape_banner.jpg"],
-    type: "website",
   },
 };
 
