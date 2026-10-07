@@ -12,7 +12,7 @@ export function JsonLd() {
     email: COMPANY_INFO.email,
     address: {
       "@type": "PostalAddress",
-      streetAddress: `${COMPANY_INFO.address.line1}, ${COMPANY_INFO.address.line2}`,
+      streetAddress: COMPANY_INFO.address.line1,
       addressLocality: COMPANY_INFO.address.city,
       addressRegion: COMPANY_INFO.address.state,
       postalCode: COMPANY_INFO.address.pincode,
@@ -20,7 +20,8 @@ export function JsonLd() {
     },
     sameAs: [
       COMPANY_INFO.socials.linkedin,
-      COMPANY_INFO.socials.twitter,
+      COMPANY_INFO.socials.youtube,
+      COMPANY_INFO.socials.facebook,
       COMPANY_INFO.socials.instagram,
     ].filter(Boolean),
   };

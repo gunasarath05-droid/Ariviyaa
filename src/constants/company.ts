@@ -9,7 +9,6 @@ export interface CompanyInfo {
   email: string;
   address: {
     line1: string;
-    line2: string;
     city: string;
     state: string;
     country: string;
@@ -19,7 +18,7 @@ export interface CompanyInfo {
   certifications: string[];
   socials: {
     facebook?: string;
-    twitter?: string;
+    youtube?: string;
     linkedin?: string;
     instagram?: string;
   };
@@ -35,12 +34,11 @@ export const COMPANY_INFO: CompanyInfo = {
   whatsappMessage: "Hello Ariviya, I would like to inquire about your natural animal health formulations.",
   email: "ariviyalabs@gmail.com",
   address: {
-    line1: "Unit 204, Periyar TBI, Vallam, Vallam North, Tamil Nadu 613403",
-    line2: "TBI Facility, Science & Technology Park",
-    city: "Chennai",
+    line1: "Unit 204, Periyar TBI, Vallam, Vallam North,",
+    city: "Tanjavur",
     state: "Tamil Nadu",
     country: "India",
-    pincode: "600025",
+    pincode: "613403",
   },
   supportedBy: [
     "StartupTN (Government of Tamil Nadu)",
@@ -56,8 +54,10 @@ export const COMPANY_INFO: CompanyInfo = {
   ],
   socials: {
     linkedin: "https://linkedin.com/company/ariviya",
-    twitter: "https://twitter.com/ariviya_deeptech",
+    facebook: "https://facebook.com/AriviyaDeepTechTNJ",
     instagram: "https://instagram.com/ariviya_deeptech/",
+    youtube: "https://youtube.com/channel/UC1JBvNCI1FB1CPECWL2qx0A",
+
   },
 };
 
