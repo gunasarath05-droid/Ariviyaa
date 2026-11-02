@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { IMAGES } from "@/constants/images";
+import Link from "next/link";
 import { AriviyaIcon } from "@/components/AriviyaIcon";
 import {
   CheckCircle2,
@@ -134,13 +135,13 @@ export function FlagshipSection() {
 
             {/* CTA Action Button */}
             <div className="pt-2">
-              <a
+              <Link
                 href="/#contact-section"
                 className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-2xl bg-[#5160a3] hover:bg-[#434f8a] text-white text-xs sm:text-sm font-bold uppercase tracking-wider transition-all shadow-md hover:shadow-lg active:scale-95 cursor-pointer"
               >
                 <span>Inquire About MammaryO</span>
                 <ArrowRight className="w-4 h-4" />
-              </a>
+              </Link>
             </div>
           </div>
 

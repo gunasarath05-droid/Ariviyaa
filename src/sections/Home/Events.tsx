@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { IMAGES } from "@/constants/images";
+import Link from "next/link";
 import { AriviyaIcon } from "@/components/AriviyaIcon";
 import {
   Trophy,
@@ -163,13 +164,13 @@ export function WhereOurScienceRecognisedSection() {
           </div>
 
           <div>
-            <a
+            <Link
               href="/#contact-section"
               className="inline-flex items-center gap-2.5 px-7 py-3 rounded-full bg-[#5160a3] hover:bg-[#434f8a] text-white text-xs sm:text-sm font-bold tracking-wide uppercase shadow-sm hover:shadow-md transition-all active:scale-95 cursor-pointer"
             >
               <span>Meet Us At An Event</span>
               <ArrowRight className="w-4 h-4" />
-            </a>
+            </Link>
           </div>
         </div>
 
