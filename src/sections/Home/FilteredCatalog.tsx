@@ -12,7 +12,6 @@ import {
 import {
   ShoppingBag,
   Heart,
-  Eye,
   MessageCircle,
   Search,
   ChevronDown,
@@ -36,6 +35,7 @@ export function FilteredCatalogSection() {
 
   const [searchTerm, setSearchTerm] = useState("");
   const [showAll, setShowAll] = useState(false);
+  const [sortBy, setSortBy] = useState<"featured" | "price-asc" | "price-desc" | "name">("featured");
 
   const INITIAL_DISPLAY_COUNT = 8; // 2 rows in 4-column layout
 
@@ -112,6 +112,11 @@ export function FilteredCatalogSection() {
 
     return matchesCategory && matchesSearch;
   });
+
+  // "featured" keeps the catalogue order from constants/products.ts
+  if (sortBy === "price-asc") filteredProducts.sort((a, b) => a.price - b.price);
+  if (sortBy === "price-desc") filteredProducts.sort((a, b) => b.price - a.price);
+  if (sortBy === "name") filteredProducts.sort((a, b) => a.name.localeCompare(b.name));
 
   const activeTabDetails =
     categoryTabs.find((t) => t.id === activeCategory) || categoryTabs[0];
@@ -204,130 +209,119 @@ export function FilteredCatalogSection() {
             : filteredProducts.slice(0, INITIAL_DISPLAY_COUNT);
 
           return (
-            <>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8">
+            <div>
+              {/* Results bar: count + sort */}
+              {filteredProducts.length > 0 && (
+                <div className="mb-5 sm:mb-6 flex items-center justify-between gap-3">
+                  <p className="text-sm text-slate-500">
+                    Showing <strong className="text-slate-900">{filteredProducts.length}</strong>{" "}
+                    {filteredProducts.length === 1 ? "product" : "products"}
+                    {activeCategory !== "all" && (
+                      <>
+                        {" "}in <span className="capitalize">{activeTabDetails.title.toLowerCase()}</span>
+                      </>
+                    )}
+                  </p>
+                  <label className="flex items-center gap-2 text-sm text-slate-500">
+                    <span className="hidden sm:inline">Sort by</span>
+                    <select
+                      aria-label="Sort products"
+                      value={sortBy}
+                      onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
+                      className="px-3 py-2 rounded-[10px] border border-[#D9DFF0] bg-white text-sm font-semibold text-slate-800 focus:outline-none focus:border-[#5160a3] cursor-pointer"
+                    >
+                      <option value="featured">Featured</option>
+                      <option value="price-asc">Price: Low to High</option>
+                      <option value="price-desc">Price: High to Low</option>
+                      <option value="name">Name: A to Z</option>
+                    </select>
+                  </label>
+                </div>
+              )}
+
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
                 {displayedProducts.map((product) => {
                   const isSaved = wishlist.includes(product.id);
 
                   return (
                     <div
                       key={product.id}
-                      className="bg-white rounded-3xl p-4 sm:p-5 border border-slate-100/90 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between group cursor-pointer relative"
+                      className="bg-[#F5F7FC] rounded-[20px] p-2.5 sm:p-3 flex flex-col group"
                     >
-                      {/* Product Image Container with Light Grey Backdrop */}
-                      <div
-                        onClick={() => setSelectedProduct(product)}
-                        className="relative w-full aspect-square rounded-2xl overflow-hidden bg-[#F4F4F6] p-5 flex items-center justify-center group/img"
-                      >
-                        <Image
-                          src={product.image}
-                          alt={product.name}
-                          width={220}
-                          height={220}
-                          style={{ width: "auto", height: "auto" }}
-                          className="max-h-full max-w-full object-contain drop-shadow-md select-none group-hover:scale-105 transition-transform duration-300"
-                        />
+                      {/* Product image — click opens quick view */}
+                      <div className="relative">
+                        <button
+                          type="button"
+                          onClick={() => setSelectedProduct(product)}
+                          aria-label={`View details of ${product.name}`}
+                          className="relative w-full aspect-square rounded-2xl overflow-hidden bg-white p-4 sm:p-5 flex items-center justify-center cursor-pointer"
+                        >
+                          <Image
+                            src={product.image}
+                            alt={product.name}
+                            width={220}
+                            height={220}
+                            style={{ width: "auto", height: "auto" }}
+                            className="max-h-full max-w-full object-contain select-none group-hover:scale-105 transition-transform duration-300"
+                          />
+                        </button>
 
-                        {/* Floating Action Buttons Appearing on Hover */}
-                        <div className="absolute inset-0 bg-black/15 rounded-2xl flex items-center justify-center gap-2.5 opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-[2px]">
-                          {/* Add to Cart */}
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              addToCart(product, 1);
-                            }}
-                            className="w-10 h-10 rounded-full bg-white shadow-lg hover:shadow-md flex items-center justify-center text-slate-700 hover:text-[#5160a3] hover:scale-110 active:scale-90 transition-all duration-200 cursor-pointer"
-                            title="Add to Cart"
-                          >
-                            <ShoppingBag className="w-4 h-4" />
-                          </button>
+                        {discountPercent(product) > 0 && (
+                          <span className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md bg-[#5160a3] text-white text-[11px] font-semibold">
+                            {discountPercent(product)}% off
+                          </span>
+                        )}
 
-                          {/* Quick View */}
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setSelectedProduct(product);
-                            }}
-                            className="w-10 h-10 rounded-full bg-white shadow-lg hover:shadow-md flex items-center justify-center text-slate-700 hover:text-[#5160a3] hover:scale-110 active:scale-90 transition-all duration-200 cursor-pointer"
-                            title="Quick View"
-                          >
-                            <Eye className="w-4 h-4" />
-                          </button>
-
-                          {/* Wishlist */}
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              toggleWishlist(product.id);
-                            }}
-                            className={`w-10 h-10 rounded-full bg-white shadow-lg hover:shadow-md flex items-center justify-center hover:scale-110 active:scale-90 transition-all duration-200 cursor-pointer ${
-                              isSaved
-                                ? "text-rose-500"
-                                : "text-slate-700 hover:text-rose-500"
-                            }`}
-                            title={
-                              isSaved ? "Remove from Wishlist" : "Add to Wishlist"
-                            }
-                          >
-                            <Heart
-                              className={`w-4 h-4 ${
-                                isSaved ? "fill-rose-500 text-rose-500" : ""
-                              }`}
-                            />
-                          </button>
-                        </div>
+                        {/* Wishlist */}
+                        <button
+                          type="button"
+                          onClick={() => toggleWishlist(product.id)}
+                          className={`absolute top-2 right-2 w-8 h-8 rounded-full bg-white border border-[#D9DFF0] flex items-center justify-center transition-colors cursor-pointer ${
+                            isSaved ? "text-rose-500" : "text-slate-500 hover:text-rose-500"
+                          }`}
+                          title={isSaved ? "Remove from Wishlist" : "Add to Wishlist"}
+                          aria-label={isSaved ? "Remove from Wishlist" : "Add to Wishlist"}
+                        >
+                          <Heart className={`w-4 h-4 ${isSaved ? "fill-rose-500" : ""}`} />
+                        </button>
                       </div>
 
-                      {/* Card Info Below Image: Category + Name + Price */}
-                      <div className="pt-4 pb-2 text-center space-y-1.5 flex flex-col items-center">
-                        {/* Category Label */}
-                        <span className="text-[11px] font-extrabold uppercase tracking-wider text-slate-400 block pt-0.5">
+                      {/* Name, category, price */}
+                      <div className="px-1.5 pt-3 pb-1 flex-1 flex flex-col text-center">
+                        <span className="text-[11px] font-semibold text-slate-400 line-clamp-1">
                           {product.categoryLabel}
                         </span>
-
-                        {/* Product Name */}
                         <h3
                           onClick={() => setSelectedProduct(product)}
-                          className="text-sm sm:text-base font-bold text-slate-900 group-hover:text-[#5160a3] transition-colors cursor-pointer line-clamp-2 leading-snug min-h-[2.5rem] sm:min-h-[2.75rem]"
+                          className="mt-1 text-sm sm:text-base font-bold text-slate-900 group-hover:text-[#5160a3] transition-colors cursor-pointer line-clamp-2 leading-snug min-h-[2.5rem] sm:min-h-[2.75rem]"
                         >
                           {product.name}
                         </h3>
-
-                        {/* Price */}
-                        <div className="flex items-baseline justify-center gap-2 pt-1">
-                          <span className="text-lg font-black text-slate-900">
+                        <div className="mt-1.5 flex items-baseline justify-center gap-2">
+                          <span className="text-base sm:text-lg font-bold text-slate-900">
                             {formatPrice(product.price)}
                           </span>
                           {discountPercent(product) > 0 && (
-                            <>
-                              <span className="text-xs text-slate-400 line-through">
-                                {formatPrice(product.originalPrice)}
-                              </span>
-                              <span className="text-xs font-bold text-emerald-600">
-                                {discountPercent(product)}% off
-                              </span>
-                            </>
+                            <span className="text-xs text-slate-400 line-through">
+                              {formatPrice(product.originalPrice)}
+                            </span>
                           )}
                         </div>
 
-                        {/* Purchase Actions */}
-                        <div className="w-full mt-3 flex items-center gap-2">
+                        {/* Purchase actions */}
+                        <div className="mt-3 flex items-center gap-2">
                           <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              addToCart(product, 1);
-                            }}
-                            className="flex-1 min-w-0 py-2.5 px-3 rounded-[10px] bg-[#5160a3] hover:bg-[#434f8a] active:scale-95 text-white text-sm font-semibold whitespace-nowrap transition-all duration-200 cursor-pointer shadow-xs hover:shadow-md flex items-center justify-center gap-1.5"
+                            type="button"
+                            onClick={() => addToCart(product, 1)}
+                            className="flex-1 min-w-0 py-2.5 px-3 rounded-[10px] bg-[#5160a3] hover:bg-[#434f8a] active:scale-95 text-white text-sm font-semibold whitespace-nowrap transition-colors cursor-pointer flex items-center justify-center gap-1.5"
                           >
-                            <ShoppingBag className="w-3.5 h-3.5" />
+                            <ShoppingBag className="w-3.5 h-3.5 shrink-0" />
                             <span>Add to Cart</span>
                           </button>
                           <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              openWhatsAppInquiry(product.name);
-                            }}
-                            className="p-2.5 rounded-xl border border-slate-200 text-emerald-600 hover:bg-emerald-50 transition-colors cursor-pointer shrink-0"
+                            type="button"
+                            onClick={() => openWhatsAppInquiry(product.name)}
+                            className="hidden sm:flex p-2.5 rounded-[10px] bg-white border border-[#D9DFF0] text-emerald-600 hover:bg-emerald-50 transition-colors cursor-pointer shrink-0"
                             title="Ask on WhatsApp"
                             aria-label={`Ask about ${product.name} on WhatsApp`}
                           >
@@ -360,7 +354,7 @@ export function FilteredCatalogSection() {
                   </button>
                 </div>
               )}
-            </>
+            </div>
           );
         })()}
 
