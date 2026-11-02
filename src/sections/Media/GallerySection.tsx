@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { IMAGES } from "@/constants/images";
-import { Maximize2, X, ChevronLeft, ChevronRight, Calendar } from "lucide-react";
+import { Maximize2, X, ChevronLeft, ChevronRight } from "lucide-react";
 
 type GalleryCategory = "Awards & Certificates" | "Events & Pitches" | "Products & Research";
 
@@ -230,21 +230,17 @@ export function GallerySection() {
                     <Maximize2 className="w-5 h-5" />
                   </span>
                 </div>
-                <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-white/95 border border-[#D9DFF0] text-[#5160a3] text-[10px] font-bold shadow-2xs">
-                  {item.category}
-                </span>
               </div>
 
-              <div className="p-4 sm:p-5 flex-1 flex flex-col gap-1.5 border-t border-[#D9DFF0]">
+              {/* Title only — category, organiser, date and description open in the lightbox */}
+              <div className="p-4 sm:p-5 flex-1 flex items-start justify-between gap-3 border-t border-[#D9DFF0]">
                 <h3 className="text-sm sm:text-base font-black text-slate-900 group-hover:text-[#5160a3] transition-colors leading-snug">
                   {item.title}
                 </h3>
-                <p className="text-xs text-slate-500">{item.subtitle}</p>
                 {item.date && (
-                  <p className="mt-auto pt-2 flex items-center gap-1.5 text-[11px] font-semibold text-slate-400">
-                    <Calendar className="w-3.5 h-3.5" />
+                  <span className="shrink-0 px-2 py-0.5 rounded-md bg-slate-100 text-slate-600 font-bold text-[11px]">
                     {item.date}
-                  </p>
+                  </span>
                 )}
               </div>
             </button>
