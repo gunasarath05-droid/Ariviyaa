@@ -62,8 +62,8 @@ export const IMAGES = {
     dog: "/assets/categories/avatar_dog.jpg",
     cat: "/assets/categories/avatar_cat.jpg",
     poultry: "/assets/categories/avatar_poultry.jpg",
-    floor: "/assets/categories/avatar_floor.jpg",
-    general: "/assets/categories/avatar_general.jpg",
+    floor: "/assets/products/cleanida_square.jpg",
+    general: "/assets/products/petenviron.jpg",
     goat: "/assets/categories/avatar_cow.jpg",
   },
 
@@ -103,7 +103,7 @@ export const IMAGES = {
     tiksha: "/assets/products/tiksha.jpg",
     tikshaLabel: "/assets/products/tiksha_label.png",
     tikifence: "/assets/products/tiksha.jpg",
-    cleanida: "/assets/products/cleanida.jpg",
+    cleanida: "/assets/products/cleanida_square.jpg",
 
     // Catalog aliases
     pe3: "/assets/products/petenviron.jpg",
