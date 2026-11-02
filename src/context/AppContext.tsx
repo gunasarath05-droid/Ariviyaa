@@ -1,7 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from "react";
-import { ProductItem, PRODUCTS } from "@/constants/products";
+import { ProductItem, PRODUCTS, formatPrice } from "@/constants/products";
 import { COMPANY_INFO } from "@/constants/company";
 
 export interface CartItem {
@@ -52,6 +52,9 @@ interface AppContextType {
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
+const CART_STORAGE_KEY = "ariviya-cart";
+const WISHLIST_STORAGE_KEY = "ariviya-wishlist";
+
 export function AppProvider({ children }: { children: ReactNode }) {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -60,9 +63,48 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [selectedProduct, setSelectedProduct] = useState<ProductItem | null>(null);
   const [activeCategory, setActiveCategory] = useState<string>("all");
 
-  // Initial cart and wishlist start empty (0)
+  // Initial cart and wishlist start empty (0), then restore from the browser after mount
   const [cart, setCart] = useState<CartItem[]>([]);
   const [wishlist, setWishlist] = useState<string[]>([]);
+  const [isStorageLoaded, setIsStorageLoaded] = useState(false);
+
+  // Restoring after mount (not in the useState initializer) keeps server and client
+  // markup identical, so the cart badge doesn't cause a hydration mismatch.
+  /* eslint-disable react-hooks/set-state-in-effect */
+  useEffect(() => {
+    try {
+      const savedCart: { id: string; quantity: number }[] = JSON.parse(
+        localStorage.getItem(CART_STORAGE_KEY) || "[]"
+      );
+      const savedWishlist: string[] = JSON.parse(
+        localStorage.getItem(WISHLIST_STORAGE_KEY) || "[]"
+      );
+      setCart(
+        savedCart.flatMap(({ id, quantity }) => {
+          const product = PRODUCTS.find((p) => p.id === id);
+          return product && quantity > 0 ? [{ product, quantity }] : [];
+        })
+      );
+      setWishlist(savedWishlist.filter((id) => PRODUCTS.some((p) => p.id === id)));
+    } catch {
+      // Storage unavailable or corrupted — keep the empty defaults
+    }
+    setIsStorageLoaded(true);
+  }, []);
+  /* eslint-enable react-hooks/set-state-in-effect */
+
+  useEffect(() => {
+    if (!isStorageLoaded) return;
+    try {
+      localStorage.setItem(
+        CART_STORAGE_KEY,
+        JSON.stringify(cart.map((item) => ({ id: item.product.id, quantity: item.quantity })))
+      );
+      localStorage.setItem(WISHLIST_STORAGE_KEY, JSON.stringify(wishlist));
+    } catch {
+      // Ignore storage failures (private mode, quota)
+    }
+  }, [cart, wishlist, isStorageLoaded]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -138,9 +180,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
     let message = `*Hello Ariviya! I would like to place an order / inquiry:*\n\n`;
     cart.forEach((item, index) => {
-      message += `${index + 1}. *${item.product.name}* (Qty: ${item.quantity})\n`;
+      message += `${index + 1}. *${item.product.name}* — ${item.quantity} × ${formatPrice(item.product.price)} = ${formatPrice(item.product.price * item.quantity)}\n`;
     });
-    message += `\nPlease confirm availability, quotation, and dispatch details.`;
+    message += `\n*Subtotal:* ${formatPrice(cartSubtotal)}\n`;
+    message += `\nPlease confirm availability, delivery charges and dispatch details.`;
 
     const url = `https://wa.me/${COMPANY_INFO.whatsapp}?text=${encodeURIComponent(message)}`;
     window.open(url, "_blank");

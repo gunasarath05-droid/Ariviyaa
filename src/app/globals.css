@@ -3,6 +3,14 @@
 @import "swiper/css/navigation";
 @import "swiper/css/pagination";
 
+@theme {
+  --color-primary: #5160a3;
+  --color-brand-primary: #5160a3;
+  --color-border: #D9DFF0;
+  --color-brand-border: #D9DFF0;
+  --color-bg: #F5F7FC;
+}
+
 :root {
   /* Font Family Definitions */
   --font-sans: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -10,10 +18,10 @@
   --font-body: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
   /* Brand Core Colors */
-  --brand-primary: #495384;
-  --brand-primary-dark: #363E63;
-  --brand-primary-light: #6A75A8;
-  --brand-primary-surface: #F0F3F9;
+  --brand-primary: #5160a3;
+  --brand-primary-dark: #434f8a;
+  --brand-primary-light: #6e7cb8;
+  --brand-primary-surface: #EFF3FC;
   
   --brand-green: #0D5C46;
   --brand-green-dark: #073B2C;
@@ -21,11 +29,16 @@
   --brand-teal-deep: #0A343D;
   
   --brand-amber: #F59E0B;
-  --brand-offwhite: #FAF7F2;
+  --brand-offwhite: #F5F7FC;
   --brand-warm-sand: #F4ECE1;
 
-  --background: #FAF7F2;
+  /* Canvas & Border Colors */
+  --bg: #F5F7FC;
+  --background: #F5F7FC;
   --foreground: #1E293B;
+
+  --border: #D9DFF0;
+  --brand-border: #D9DFF0;
 }
 
 /* Swiper Custom Accents */
@@ -114,6 +127,15 @@ nav,
   background-color: var(--brand-warm-sand);
 }
 
+.bg-brand-bg {
+  background-color: var(--background);
+}
+
+.border-brand,
+.border-brand-border {
+  border-color: var(--brand-border);
+}
+
 /* Glassmorphism effects */
 .glass-panel {
   background: rgba(255, 255, 255, 0.85);
@@ -145,7 +167,7 @@ nav,
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #495384;
+  background: var(--brand-primary);
 }
 
 /* Animated Shimmer / Pulse */

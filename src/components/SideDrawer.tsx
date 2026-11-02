@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { useApp } from "@/context/AppContext";
-import { PRODUCTS } from "@/constants/products";
+import { PRODUCTS, formatPrice } from "@/constants/products";
 import {
   X,
   ShoppingBag,
@@ -153,8 +153,8 @@ export function SideDrawer() {
                         </p>
 
                         <div className="flex items-center justify-between mt-2 pt-1">
-                          <span className="text-xs font-semibold text-slate-500">
-                            Quantity:
+                          <span className="text-sm font-black text-slate-900">
+                            {formatPrice(item.product.price * item.quantity)}
                           </span>
 
                           {/* Stepper (+ / -) */}
@@ -260,9 +260,15 @@ export function SideDrawer() {
               <div className="flex items-center justify-between">
                 <div>
                   <span className="text-xs font-bold text-slate-700 uppercase tracking-wider block">
-                    Selected Items ({cartCount})
+                    Subtotal ({cartCount} {cartCount === 1 ? "item" : "items"})
+                  </span>
+                  <span className="text-[10px] text-slate-400 font-medium">
+                    Delivery charges confirmed on WhatsApp
                   </span>
                 </div>
+                <span className="text-xl font-black text-slate-900">
+                  {formatPrice(cartSubtotal)}
+                </span>
               </div>
 
               {/* Big Checkout Button -> Directly to WhatsApp */}
