@@ -6,7 +6,7 @@ import { AriviyaIcon } from "@/components/AriviyaIcon";
 
 export function CtaSection() {
   return (
-    <section className="w-full py-16 font-sans border-b border-[#D9DFF0] bg-gradient-to-br from-[#5160a3] via-[#434f8a] to-[#2c345b]" id="partner">
+    <section className="w-full py-16 font-sans overflow-hidden border-b border-[#D9DFF0] bg-gradient-to-br from-[#5160a3] via-[#434f8a] to-[#2c345b]" id="partner">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> 
         <div className="relative text-white">
         

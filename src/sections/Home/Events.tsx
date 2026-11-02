@@ -20,6 +20,7 @@ import {
   ExternalLink,
   Sparkles,
   FileCheck,
+  ChevronRight,
 } from "lucide-react";
 
 const events = [
@@ -131,6 +132,19 @@ const certificates = [
     highlight: "Selected from 20,000+ Pan-India Nominees",
     description:
       "Officially recognized among India's Top 500 promising deep-tech startups by marquee venture leaders and AWS.",
+  },
+  {
+    id: "iitb-pitch-perfect",
+    title: "Pitch Perfect 2021-22",
+    badge: "WINNER",
+    badgeColor: "bg-sky-600 text-white",
+    awardTitle: "Certificate of Achievement",
+    authority: "E-Club SJMSOM & SINE · IIT Bombay",
+    year: "2021-22",
+    image: IMAGES.awards.iitbPitchPerfect,
+    highlight: "Awarded to Dr. Sivakumar & Team Ariviya",
+    description:
+      "Winners of Pitch Perfect 2021-22, organised by E-Club SJMSOM in collaboration with SINE business incubator, IIT Bombay.",
   },
 ];
 
@@ -270,15 +284,19 @@ export function AchievementsAwardsSection() {
         {/* ========================================================================= */}
         {/* HERO SECTION: CERTIFICATES FRONT AND CENTER (PRIMARY FOCUS)               */}
         {/* ========================================================================= */}
-        <div className="space-y-6">
+        <div className="space-y-3">
+          <p className="lg:hidden flex items-center justify-end gap-1 text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+            <span>Swipe to see all {certificates.length}</span>
+            <ChevronRight className="w-3.5 h-3.5" />
+          </p>
 
-          {/* 3 Prominent Certificate Display Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
+          {/* Certificate cards: swipeable row on mobile/tablet, 4-column grid on desktop */}
+          <div className="flex lg:grid lg:grid-cols-4 gap-5 lg:gap-6 items-stretch overflow-x-auto lg:overflow-visible snap-x snap-mandatory no-scrollbar -mx-4 px-4 sm:-mx-6 sm:px-6 lg:mx-0 lg:px-0 pt-2 pb-4">
             {certificates.map((cert) => (
               <article
                 key={cert.id}
                 onClick={() => setSelectedCert(cert)}
-                className="group bg-[#F8FAFC] hover:bg-white rounded-3xl border-2 border-[#D9DFF0] hover:border-[#5160a3] p-4 sm:p-5 shadow-xs hover:shadow-2xl transition-all duration-300 flex flex-col justify-between cursor-pointer hover:-translate-y-2 relative overflow-hidden"
+                className="group shrink-0 w-[82%] sm:w-[46%] md:w-[40%] lg:w-auto snap-start bg-[#F8FAFC] hover:bg-white rounded-3xl border-2 border-[#D9DFF0] hover:border-[#5160a3] p-4 sm:p-5 shadow-xs hover:shadow-2xl transition-all duration-300 flex flex-col justify-between cursor-pointer lg:hover:-translate-y-2 relative overflow-hidden"
               >
                 {/* Glowing top ribbon accent */}
                 <div className="space-y-4">
