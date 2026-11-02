@@ -10,11 +10,11 @@ import { ProductModal } from "@/components/ProductModal";
 import { SideDrawer } from "@/components/SideDrawer";
 import { SearchModal } from "@/components/SearchModal";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { IMAGES } from "@/constants/images";
 
 // Headings, hero titles, section titles, buttons
 const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  weight: ["500", "600", "700", "800"],
   variable: "--font-plus-jakarta",
   display: "swap",
 });
@@ -22,7 +22,6 @@ const plusJakarta = Plus_Jakarta_Sans({
 // Descriptions, product details, navigation, forms
 const inter = Inter({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
   variable: "--font-inter",
   display: "swap",
 });
@@ -64,7 +63,7 @@ export const metadata: Metadata = {
     siteName: "Ariviya Animal Health",
     images: [
       {
-        url: "/assets/farm_landscape_banner.jpg",
+        url: IMAGES.farmLandscape,
         width: 1200,
         height: 630,
         alt: "Ariviya Animal Health Care",
@@ -77,7 +76,7 @@ export const metadata: Metadata = {
     title: "Ariviya - Animal Health Care",
     description:
       "Sustainable, chemical-free nanobio-polymer health care essentials for dairy cattle, livestock, poultry, and pets. Supported by StartupTN.",
-    images: ["/assets/farm_landscape_banner.jpg"],
+    images: [IMAGES.farmLandscape],
   },
 };
 
@@ -97,7 +96,7 @@ export default function RootLayout({
       </head>
       <body
         suppressHydrationWarning
-        className="font-body antialiased bg-[#FAF7F2] text-slate-800 min-h-screen flex flex-col selection:bg-emerald-200 selection:text-emerald-900"
+        className="font-body antialiased bg-[#F5F7FC] text-slate-800 min-h-screen flex flex-col selection:bg-emerald-200 selection:text-emerald-900"
       >
         <AppProvider>
          

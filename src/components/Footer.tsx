@@ -3,12 +3,14 @@
 import React from "react";
 import Link from "next/link";
 import { COMPANY_INFO } from "@/constants";
+import { IMAGES } from "@/constants/images";
 import {
   Phone,
   Mail,
   MapPin,
   Sparkles,
   Leaf,
+  ChevronRight,
 } from "lucide-react";
 import {
   FaLinkedinIn,
@@ -20,36 +22,85 @@ import {
 
 export function Footer() {
   return (
-    <footer className="bg-[#F8F5F0] text-slate-700 font-sans border-t border-[#EAE3D6] relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-16 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
-          <div className="lg:col-span-5 space-y-2">
+    <footer className="bg-[#F5F7FC] text-slate-700 font-sans border-t border-[#D9DFF0] relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-14 sm:py-16 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+          
+          {/* Col 1: Brand & Bio (4 cols) */}
+          <div className="lg:col-span-4 space-y-3">
             <Link href="/" className="inline-block group">
               <img
-                src="/assets/logo/ariviya.png"
+                src={IMAGES.logoPng}
                 alt="Ariviya Animal Health Logo"
                 width={160}
                 height={48}
-                className="h-10 sm:h-12 md:h-16 w-auto object-contain"
+                className="h-10 sm:h-12 w-auto object-contain"
               />
             </Link>
 
             <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal max-w-sm">
-              Ariviya is a deep-tech animal healthcare pioneer engineering sustainable, chemical-free
-              nanobio-polymer essentials for bovine mastitis prevention, companion pet recovery, and poultry biosecurity.
+              Ariviya Deep Tech Pvt. Ltd. — A deep-tech veterinary biotechnology startup founded in Thanjavur, supported by StartupTN TANSEED 3.0, developing patented chemical-free bio-polymer healthcare essentials.
             </p>
+
+            <div className="pt-2 text-[11px] font-bold text-[#5160a3] uppercase tracking-wider">
+              Govt. of Tamil Nadu • StartupTN Grantee
+            </div>
           </div>
 
-
-          <div className="lg:col-span-4 space-y-4">
+          {/* Col 2: Quick Links (2.5 cols) */}
+          <div className="lg:col-span-2 space-y-3">
             <h4 className="text-xs font-black uppercase tracking-wider text-[#5160a3] border-l-2 border-[#5160a3] pl-2.5">
-              Contact Info
+              Quick Links
+            </h4>
+            <ul className="space-y-2 text-xs sm:text-sm text-slate-600 font-medium">
+              <li>
+                <Link href="/" className="hover:text-[#5160a3] transition-colors flex items-center gap-1">
+                  <ChevronRight className="w-3 h-3 text-[#5160a3]" />
+                  <span>Home</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/about" className="hover:text-[#5160a3] transition-colors flex items-center gap-1">
+                  <ChevronRight className="w-3 h-3 text-[#5160a3]" />
+                  <span>About Us</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/shop" className="hover:text-[#5160a3] transition-colors flex items-center gap-1">
+                  <ChevronRight className="w-3 h-3 text-[#5160a3]" />
+                  <span>Shop Catalog</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/blog" className="hover:text-[#5160a3] transition-colors flex items-center gap-1">
+                  <ChevronRight className="w-3 h-3 text-[#5160a3]" />
+                  <span>Blog</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/gallery" className="hover:text-[#5160a3] transition-colors flex items-center gap-1">
+                  <ChevronRight className="w-3 h-3 text-[#5160a3]" />
+                  <span>Gallery</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="hover:text-[#5160a3] transition-colors flex items-center gap-1">
+                  <ChevronRight className="w-3 h-3 text-[#5160a3]" />
+                  <span>Contact</span>
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Col 3: Contact Info (3.5 cols) */}
+          <div className="lg:col-span-3 space-y-3">
+            <h4 className="text-xs font-black uppercase tracking-wider text-[#5160a3] border-l-2 border-[#5160a3] pl-2.5">
+              Contact Desk
             </h4>
 
-            {/* Direct Contact List - No Separate Boxes */}
-            <div className="space-y-4 text-xs sm:text-sm text-slate-700 font-medium pt-1">
+            <div className="space-y-3 text-xs sm:text-sm text-slate-700 font-medium pt-1">
               {/* Address */}
-              <div className="flex items-start gap-3">  
+              <div className="flex items-start gap-2.5">  
                 <MapPin className="w-4 h-4 text-[#5160a3] shrink-0 mt-0.5" />
                 <span className="leading-relaxed">
                   {COMPANY_INFO.address.line1}, {COMPANY_INFO.address.city},{" "}
@@ -58,22 +109,22 @@ export function Footer() {
               </div>
 
               {/* Phone */}
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2.5">
                 <Phone className="w-4 h-4 text-[#5160a3] shrink-0" />
                 <a
                   href={`tel:${COMPANY_INFO.phone}`}
-                  className="hover:text-[#5160a3] transition-colors"
+                  className="hover:text-[#5160a3] transition-colors font-bold"
                 >
                   {COMPANY_INFO.displayPhone}
                 </a>
               </div>
 
               {/* Email */}
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2.5">
                 <Mail className="w-4 h-4 text-[#5160a3] shrink-0" />
                 <a
                   href={`mailto:${COMPANY_INFO.email}`}
-                  className="hover:text-[#5160a3] transition-colors"
+                  className="hover:text-[#5160a3] transition-colors font-bold"
                 >
                   {COMPANY_INFO.email}
                 </a>
@@ -81,91 +132,83 @@ export function Footer() {
             </div>
           </div>
 
-          {/* ======================================================================= */}
-          {/* Column 3: Connect With Us & WhatsApp Desk (3 Cols) */}
-          {/* ======================================================================= */}
-          <div className="lg:col-span-3 space-y-4">
+          {/* Col 4: Connect & Socials (2.5 cols) */}
+          <div className="lg:col-span-3 space-y-3">
             <h4 className="text-xs font-black uppercase tracking-wider text-[#5160a3] border-l-2 border-[#5160a3] pl-2.5">
               Connect With Us
             </h4>
 
             {/* Social Media Horizontal Buttons */}
-            <div className="flex items-center gap-2.5 flex-wrap">
-              {/* LinkedIn */}
+            <div className="flex items-center gap-2 flex-wrap pt-1">
               <a
                 href={COMPANY_INFO.socials.linkedin}
                 target="_blank"
                 rel="noreferrer"
-                className="w-10 h-10 rounded-xl bg-white border border-[#E5DDD0] text-slate-600 hover:bg-[#0A66C2] hover:text-white hover:border-[#0A66C2] flex items-center justify-center transition-all duration-200 shadow-2xs hover:scale-105 active:scale-95"
+                className="w-9 h-9 rounded-xl bg-white border border-[#D9DFF0] text-slate-600 hover:bg-[#0A66C2] hover:text-white hover:border-[#0A66C2] flex items-center justify-center transition-all shadow-2xs hover:scale-105"
                 title="LinkedIn"
                 aria-label="LinkedIn"
               >
-                <FaLinkedinIn className="w-4 h-4" />
+                <FaLinkedinIn className="w-3.5 h-3.5" />
               </a>
 
-              {/* YouTube */}
               <a
                 href={COMPANY_INFO.socials.youtube}
                 target="_blank"
                 rel="noreferrer"
-                className="w-10 h-10 rounded-xl bg-white border border-[#E5DDD0] text-slate-600 hover:bg-[#FF0000] hover:text-white hover:border-[#FF0000] flex items-center justify-center transition-all duration-200 shadow-2xs hover:scale-105 active:scale-95"
+                className="w-9 h-9 rounded-xl bg-white border border-[#D9DFF0] text-slate-600 hover:bg-[#FF0000] hover:text-white hover:border-[#FF0000] flex items-center justify-center transition-all shadow-2xs hover:scale-105"
                 title="YouTube"
                 aria-label="YouTube"
               >
-                <FaYoutube className="w-4.5 h-4.5" />
+                <FaYoutube className="w-4 h-4" />
               </a>
 
-              {/* Instagram */}
               <a
                 href={COMPANY_INFO.socials.instagram}
                 target="_blank"
                 rel="noreferrer"
-                className="w-10 h-10 rounded-xl bg-white border border-[#E5DDD0] text-slate-600 hover:bg-gradient-to-tr hover:from-amber-500 hover:via-rose-500 hover:to-purple-600 hover:text-white hover:border-transparent flex items-center justify-center transition-all duration-200 shadow-2xs hover:scale-105 active:scale-95"
+                className="w-9 h-9 rounded-xl bg-white border border-[#D9DFF0] text-slate-600 hover:bg-gradient-to-tr hover:from-amber-500 hover:via-rose-500 hover:to-purple-600 hover:text-white hover:border-transparent flex items-center justify-center transition-all shadow-2xs hover:scale-105"
                 title="Instagram"
                 aria-label="Instagram"
               >
-                <FaInstagram className="w-4 h-4" />
+                <FaInstagram className="w-3.5 h-3.5" />
               </a>
 
-              {/* Facebook */}
               <a
                 href={COMPANY_INFO.socials.facebook}
                 target="_blank"
                 rel="noreferrer"
-                className="w-10 h-10 rounded-xl bg-white border border-[#E5DDD0] text-slate-600 hover:bg-[#1877F2] hover:text-white hover:border-[#1877F2] flex items-center justify-center transition-all duration-200 shadow-2xs hover:scale-105 active:scale-95"
+                className="w-9 h-9 rounded-xl bg-white border border-[#D9DFF0] text-slate-600 hover:bg-[#1877F2] hover:text-white hover:border-[#1877F2] flex items-center justify-center transition-all shadow-2xs hover:scale-105"
                 title="Facebook"
                 aria-label="Facebook"
               >
-                <FaFacebookF className="w-4 h-4" />
+                <FaFacebookF className="w-3.5 h-3.5" />
               </a>
 
-              {/* WhatsApp Direct */}
               <a
                 href={`https://wa.me/${COMPANY_INFO.whatsapp}?text=${encodeURIComponent(COMPANY_INFO.whatsappMessage)}`}
                 target="_blank"
                 rel="noreferrer"
-                className="w-10 h-10 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white flex items-center justify-center transition-all duration-200 shadow-2xs hover:scale-105 active:scale-95"
+                className="w-9 h-9 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white flex items-center justify-center transition-all shadow-2xs hover:scale-105"
                 title="Direct WhatsApp"
                 aria-label="WhatsApp"
               >
-                <FaWhatsapp className="w-4.5 h-4.5" />
+                <FaWhatsapp className="w-4 h-4" />
               </a>
             </div>
+
+
           </div>
+
         </div>
       </div>
 
-      {/* ========================================================================= */}
-      {/* 3. BOTTOM BAR: Copyright & Attribution */}
-      {/* ========================================================================= */}
-      <div className="border-t border-[#EAE3D6] bg-[#F2EDE4] py-5 px-4 sm:px-6 lg:px-8 text-xs text-slate-600 font-medium relative z-10">
+      {/* BOTTOM BAR: Copyright & Legal */}
+      <div className="border-t border-[#D9DFF0] bg-[#F5F7FC] py-5 px-4 sm:px-6 lg:px-8 text-xs text-slate-600 font-medium relative z-10">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
-          {/* Copyright */}
           <p>
             &copy; {new Date().getFullYear()} Ariviya Animal Health. All rights reserved.
           </p>
 
-          {/* Designed & Developed By */}
           <p className="text-slate-600">
             Designed &amp; Developed by{" "}
             <a
@@ -178,7 +221,6 @@ export function Footer() {
             </a>
           </p>
 
-          {/* Legal Links */}
           <div className="flex items-center justify-center gap-5 text-slate-600 text-xs sm:text-sm">
             <Link href="/privacy-policy" className="hover:text-slate-900 hover:underline transition-colors">
               Privacy Policy

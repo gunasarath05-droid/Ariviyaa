@@ -9,9 +9,11 @@ import {
   Heart,
   MessageSquare,
   Shield,
-  PawPrint,
   Share2,
+  ShoppingBag,
 } from "lucide-react";
+import { AriviyaIcon } from "@/components/AriviyaIcon";
+import { formatPrice, discountPercent } from "@/constants/products";
 
 export function ProductModal() {
   const {
@@ -20,11 +22,13 @@ export function ProductModal() {
     wishlist,
     toggleWishlist,
     openWhatsAppInquiry,
+    addToCart,
   } = useApp();
 
   if (!selectedProduct) return null;
 
   const isSaved = wishlist.includes(selectedProduct.id);
+  const discount = discountPercent(selectedProduct);
 
   const handleShare = () => {
     if (typeof navigator !== "undefined" && navigator.share) {
@@ -87,7 +91,7 @@ export function ProductModal() {
 
             <div className="w-full max-w-[260px] sm:max-w-[300px] md:max-w-[320px] bg-white/90 backdrop-blur-sm rounded-xl py-2 px-3 border border-slate-200/60 text-center shadow-2xs">
               <p className="text-[10px] sm:text-[11px] font-bold text-slate-600 flex items-center justify-center gap-1.5">
-                <PawPrint className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                <AriviyaIcon className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
                 <span>Target: {selectedProduct.targetAnimals}</span>
               </p>
             </div>
@@ -104,6 +108,21 @@ export function ProductModal() {
                 <p className="text-xs sm:text-sm font-semibold text-[#10B981] mt-1">
                   {selectedProduct.subtitle}
                 </p>
+              </div>
+
+              {/* Price */}
+              <div className="flex items-baseline gap-2.5">
+                <span className="text-2xl sm:text-3xl font-black text-slate-900">
+                  {formatPrice(selectedProduct.price)}
+                </span>
+                {discount > 0 && (
+                  <>
+                    <span className="text-sm text-slate-400 line-through">
+                      MRP {formatPrice(selectedProduct.originalPrice)}
+                    </span>
+                    <span className="text-sm font-bold text-emerald-600">{discount}% off</span>
+                  </>
+                )}
               </div>
 
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
@@ -140,11 +159,23 @@ export function ProductModal() {
             {/* CTAs */}
             <div className="pt-4 sm:pt-6 mt-4 sm:mt-6 border-t border-slate-100 flex items-center gap-2.5 sm:gap-3">
               <button
-                onClick={() => openWhatsAppInquiry(selectedProduct.name)}
-                className="flex-1 py-3 px-4 sm:px-6 rounded-full bg-[#10B981] hover:bg-[#0D9488] text-white text-xs sm:text-sm font-extrabold tracking-wider uppercase flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/25 transition-all active:scale-95 cursor-pointer"
+                onClick={() => {
+                  addToCart(selectedProduct, 1);
+                  setSelectedProduct(null);
+                }}
+                className="flex-1 py-3 px-4 sm:px-6 rounded-full bg-[#5160a3] hover:bg-[#434f8a] text-white text-xs sm:text-sm font-extrabold tracking-wider uppercase flex items-center justify-center gap-2 shadow-lg shadow-[#5160a3]/25 transition-all active:scale-95 cursor-pointer"
               >
-                <MessageSquare className="w-4 h-4 shrink-0" />
-                <span className="truncate">Inquire on WhatsApp</span>
+                <ShoppingBag className="w-4 h-4 shrink-0" />
+                <span className="truncate">Add to Cart</span>
+              </button>
+
+              <button
+                onClick={() => openWhatsAppInquiry(selectedProduct.name)}
+                className="p-3 rounded-full border border-emerald-200 text-emerald-600 hover:bg-emerald-50 transition flex items-center justify-center shrink-0 cursor-pointer active:scale-95"
+                title="Ask on WhatsApp"
+                aria-label="Ask on WhatsApp"
+              >
+                <MessageSquare className="w-4 h-4" />
               </button>
 
               <button
