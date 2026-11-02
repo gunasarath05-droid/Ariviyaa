@@ -1,9 +1,8 @@
 import React from "react";
 import type { Metadata } from "next";
 import { CommonHero } from "@/components/CommonHero";
-import { ShopCatalogSection, B2BBanner } from "@/sections/Shop";
+import { ShopCatalogSection, HowToOrderSection } from "@/sections/Shop";
 import { CategoriesSection } from "@/sections/Home/Categories";
-import { WhyChooseUsSection } from "@/sections/Home/WhyChooseUs";
 
 export const metadata: Metadata = {
   title: "Shop Formulations | Safe Bio-Polymer Pet & Livestock Care",
@@ -21,7 +20,7 @@ export const metadata: Metadata = {
 };
 
 // Shop page is the B2C storefront: browse by animal, see prices, add to cart.
-// Bulk / institutional buyers are routed to the B2B banner below the catalog.
+// Company story and B2B content live on Home and About; bulk buyers get a one-line link.
 export default function ShopPage() {
   return (
     <>
@@ -32,8 +31,7 @@ export default function ShopPage() {
       />
       <CategoriesSection />
       <ShopCatalogSection />
-      <B2BBanner />
-      <WhyChooseUsSection />
+      <HowToOrderSection />
     </>
   );
 }

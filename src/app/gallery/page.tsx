@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { CommonHero } from "@/components/CommonHero";
 import { IMAGES } from "@/constants/images";
 import { GallerySection } from "@/sections/Media";
-import { AchievementsAwardsSection } from "@/sections/Home/Events";
 import { CtaSection } from "@/sections/Home/Cta";
 
 export const metadata: Metadata = {
@@ -30,7 +29,6 @@ export default function GalleryPage() {
         subtitle="Visual documentation of our lab breakthroughs, awards, and field demonstrations"
       />
       <GallerySection />
-      <AchievementsAwardsSection />
       <CtaSection />
     </>
   );

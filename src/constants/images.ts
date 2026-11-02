@@ -27,6 +27,7 @@ export const IMAGES = {
   // Awards & Recognition (/assets/awards)
   awards: {
     ariviyaDoc: "/assets/awards/Ariviya 1_page-0001.jpg",
+    iitbPitchPerfect: "/assets/awards/Ariviya 1_page-0001.jpg",
     tanseed: "/assets/awards/award-tanseed.jpg",
     dettolWinner: "/assets/awards/cert-dettol-winner.jpg",
     kuberansHouse: "/assets/awards/cert-kuberans-house.jpg",
