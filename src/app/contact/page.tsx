@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import type { Metadata } from "next";
-import { ContactHero, ContactFormSection } from "@/sections/Contact";
+import { ContactHero, ContactFormSection, OfficeLocations } from "@/sections/Contact";
 
 export const metadata: Metadata = {
   title: "Contact Us | Customer Care, Dealership & Investor Desk",
@@ -19,12 +19,13 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
-      {/* Contact uses its own dark hero with an overlapping contact-info card */}
+      {/* Contact uses its own centred hero with an overlapping contact-info card */}
       <ContactHero />
       {/* Suspense is required because the form reads ?type= / ?role= from the URL */}
       <Suspense fallback={<div className="min-h-[600px]" />}>
         <ContactFormSection />
       </Suspense>
+      <OfficeLocations />
     </>
   );
 }
