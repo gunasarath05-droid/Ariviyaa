@@ -120,11 +120,9 @@ export function WhyChooseUsSection() {
       id="why-ariviyaa"
       className="w-full py-16 sm:py-20 lg:py-24 bg-[#F5F7FC] font-sans border-b border-[#D9DFF0] scroll-mt-20"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4 sm:space-y-6">
-        
-        {/* ========================================================================= */}
-        {/* 1. SECTION HEADER (Centered matching layout diagram)                      */}
-        {/* ========================================================================= */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
+
+        {/* 1. Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#5160a3]/10 text-xs sm:text-sm font-black uppercase tracking-wider text-[#5160a3]">
             <AriviyaIcon className="w-4 h-4 text-[#5160a3] shrink-0" />
@@ -141,30 +139,67 @@ export function WhyChooseUsSection() {
           </p>
         </div>
 
-        {/* ========================================================================= */}
-        {/* 2. 6 CORE REASONS GRID (3 COLS X 2 ROWS)                                  */}
-        {/* ========================================================================= */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {reasons.map(({ title, tag, description, Icon }) => (
+        {/* 2. Recognitions & Standards — compact trust strip */}
+        <div className="bg-white rounded-3xl border border-[#D9DFF0] shadow-2xs p-5 sm:p-6 lg:p-7">
+          <div className="flex flex-col lg:flex-row lg:items-center gap-5 lg:gap-8">
+            <div className="lg:w-56 shrink-0 text-center lg:text-left space-y-1">
+              <h3 className="text-base sm:text-lg font-black text-slate-900 leading-tight">
+                Recognitions &amp; <span className="text-[#5160a3]">Standards</span>
+              </h3>
+              <p className="text-xs text-slate-500 leading-relaxed">
+                Audited and validated by statutory bodies and veterinary universities.
+              </p>
+            </div>
+
+            <div className="flex-1 flex flex-wrap justify-center gap-y-4 sm:grid sm:grid-cols-5 sm:gap-3 lg:border-l lg:border-[#D9DFF0] lg:pl-8">
+              {recognitions.map(({ id, title, authority, image }) => (
+                <div key={id} className="w-1/3 sm:w-auto flex flex-col items-center text-center gap-2 group">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white border border-[#D9DFF0] group-hover:border-[#5160a3] p-2.5 shadow-2xs group-hover:shadow-md transition-all duration-300 flex items-center justify-center">
+                    <img
+                      src={image}
+                      alt={title}
+                      className="w-full h-full object-contain mix-blend-multiply select-none"
+                    />
+                  </div>
+                  <div>
+                    <h4 className="text-[11px] sm:text-xs font-bold text-slate-900 leading-tight">
+                      {title}
+                    </h4>
+                    <p className="hidden sm:block text-[10px] text-slate-500 font-medium leading-tight mt-0.5">
+                      {authority}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* 3. Six core reasons — numbered cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+          {reasons.map(({ title, tag, description, Icon }, index) => (
             <article
               key={title}
-              className="bg-white rounded-2xl border border-[#D9DFF0] p-6 sm:p-7 shadow-xs hover:shadow-xl hover:border-[#5160a3]/50 transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1.5 relative overflow-hidden"
+              className="relative bg-white rounded-2xl border border-[#D9DFF0] p-6 sm:p-7 shadow-2xs hover:shadow-xl hover:border-[#5160a3]/50 transition-all duration-300 group hover:-translate-y-1 overflow-hidden"
             >
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <div className="w-12 h-12 rounded-2xl bg-[#5160a3]/10 text-[#5160a3] group-hover:bg-[#5160a3] group-hover:text-white transition-all duration-300 flex items-center justify-center shrink-0 shadow-xs">
-                    <Icon className="w-6 h-6 stroke-[2]" />
-                  </div>
-                  <span className="text-[11px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 group-hover:bg-[#5160a3]/10 group-hover:text-[#5160a3] transition-colors">
-                    {tag}
-                  </span>
+              {/* Large faint index number */}
+              <span className="absolute top-3 right-5 text-5xl font-black text-[#5160a3]/[0.07] group-hover:text-[#5160a3]/15 transition-colors select-none leading-none">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+
+              <div className="relative space-y-4">
+                <div className="w-12 h-12 rounded-2xl bg-[#5160a3]/10 text-[#5160a3] group-hover:bg-[#5160a3] group-hover:text-white transition-all duration-300 flex items-center justify-center">
+                  <Icon className="w-6 h-6 stroke-[2]" />
                 </div>
 
-                <div>
-                  <h3 className="text-base sm:text-lg font-black text-slate-900 group-hover:text-[#5160a3] transition-colors leading-snug">
+                <div className="space-y-2">
+                  <span className="block text-[11px] font-black uppercase tracking-wider text-[#5160a3]">
+                    {tag}
+                  </span>
+                  <h3 className="text-base sm:text-lg font-black text-slate-900 leading-snug">
                     {title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mt-2 font-normal">
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
                     {description}
                   </p>
                 </div>
@@ -173,78 +208,37 @@ export function WhyChooseUsSection() {
           ))}
         </div>
 
-        {/* ========================================================================= */}
-        {/* 3. WHY PARTNERS & CUSTOMERS TRUST US (Vertical Checkmark List)            */}
-        {/* ========================================================================= */}
-        <div className="space-y-6 pt-4">
-          <div className="space-y-1.5">
-            <h3 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
-              Why Partners &amp; Customers <span className="text-[#5160a3]">Trust Us</span>
-            </h3>
-            <p className="text-sm text-slate-600 font-normal">
-              Field-tested biosecurity delivering measurable health and financial benefits.
-            </p>
-          </div>
+        {/* 4. Why partners trust us — branded panel */}
+        <div className="relative rounded-3xl bg-gradient-to-br from-[#2B2D42] via-[#363b5e] to-[#5160a3] text-white p-6 sm:p-10 lg:p-12 overflow-hidden">
+          <div className="absolute -right-16 -bottom-16 w-72 h-72 rounded-full bg-white/5 blur-2xl pointer-events-none" />
+          <AriviyaIcon className="absolute right-8 top-8 w-24 h-24 text-white/5 pointer-events-none hidden md:block" />
 
-          {/* List matching mockup layout with green checkmark circles */}
-          <div className="space-y-3.5 bg-white/70 rounded-3xl border border-[#D9DFF0] p-6 sm:p-8">
-            {trustPoints.map(({ title, description }) => (
-              <div key={title} className="flex items-start gap-3.5 group">
-                <span className="w-6 h-6 rounded-full bg-emerald-500 text-white flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">
-                  <Check className="w-3.5 h-3.5 stroke-[3]" />
-                </span>
-                <div className="text-sm leading-relaxed text-slate-700">
-                  <strong className="font-bold text-slate-900">{title} : </strong>
-                  <span className="text-slate-600">{description}</span>
+          <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+            <div className="lg:col-span-4 space-y-3">
+              <h3 className="text-2xl sm:text-3xl font-black tracking-tight leading-tight">
+                Why Partners &amp; Customers <span className="text-emerald-300">Trust Us</span>
+              </h3>
+              <p className="text-sm text-slate-300 leading-relaxed">
+                Field-tested biosecurity delivering measurable health and financial benefits.
+              </p>
+            </div>
+
+            <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+              {trustPoints.map(({ title, description }) => (
+                <div
+                  key={title}
+                  className="flex items-start gap-3.5 bg-white/[0.07] border border-white/10 rounded-2xl p-4 sm:p-5"
+                >
+                  <span className="w-7 h-7 rounded-full bg-emerald-400 text-[#2B2D42] flex items-center justify-center shrink-0">
+                    <Check className="w-4 h-4 stroke-[3]" />
+                  </span>
+                  <div className="space-y-1">
+                    <h4 className="text-sm sm:text-base font-bold leading-snug">{title}</h4>
+                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">{description}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* ========================================================================= */}
-        {/* 4. RECOGNITIONS & STANDARDS (4 Large Clean Circles)                       */}
-        {/* ========================================================================= */}
-        <div className="space-y-6 pt-4">
-          <div className="space-y-1.5">
-            <h3 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
-              Recognitions &amp; <span className="text-[#5160a3]">Standards</span>
-            </h3>
-            <p className="text-sm text-slate-600 font-normal">
-              Audited and validated by statutory bodies and veterinary universities.
-            </p>
-          </div>
-
-          {/* 4 Large Clean Circular Cards */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 sm:gap-8 pt-2">
-            {recognitions.map(({ id, title, authority, image }) => (
-              <div
-                key={id}
-                className="flex flex-col items-center text-center space-y-3 group"
-              >
-                {/* Large Circle Frame */}
-                <div className="relative w-36 h-36 sm:w-44 sm:h-44 md:w-48 md:h-48 rounded-full bg-white border-2 border-[#D9DFF0] group-hover:border-[#5160a3] p-6 shadow-sm group-hover:shadow-xl transition-all duration-300 flex items-center justify-center group-hover:scale-105">
-                  <img
-                    src={image}
-                    alt={title}
-                    className="w-full h-full object-contain mix-blend-multiply select-none"
-                    onError={(e) => {
-                      (e.currentTarget as HTMLElement).style.display = "none";
-                    }}
-                  />
-                </div>
-
-                {/* Authority & Title Labels under the circle */}
-                <div className="space-y-0.5">
-                  <h4 className="text-sm sm:text-base font-bold text-slate-900 group-hover:text-[#5160a3] transition-colors">
-                    {title}
-                  </h4>
-                  <p className="text-xs text-slate-500 font-medium">
-                    {authority}
-                  </p>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
 
