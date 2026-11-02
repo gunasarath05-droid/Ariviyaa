@@ -47,7 +47,7 @@ export function ContactSection() {
   return (
     <section
       id="contact-section"
-      className="w-full bg-white py-16 sm:py-24 px-4 sm:px-6 lg:px-8 border-b border-slate-100 scroll-mt-20 font-sans"
+      className="w-full section-y bg-white px-4 sm:px-6 lg:px-8 border-b border-slate-100 scroll-mt-20 font-sans"
     >
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
@@ -62,7 +62,7 @@ export function ContactSection() {
             </div>
 
             {/* Main Heading */}
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight leading-tight">
               Bulk Orders, Distribution &amp; Partnerships
             </h2>
 
@@ -79,7 +79,7 @@ export function ContactSection() {
                 alt="Ariviya product range with MammaryO teat dip"
                 width={650}
                 height={350}
-                className="w-full h-auto object-contain drop-shadow-sm select-none rounded-xl "
+                className="w-full h-auto object-contain drop-shadow-sm select-none rounded-xl"
                 priority
               />
             </div>
@@ -259,7 +259,7 @@ export function ContactSection() {
               {/* Row 4: Submit Button */}
               <button
                 type="submit"
-                className="w-full py-4 px-6 rounded-xl bg-[#5160a3] hover:bg-[#434f8a] active:scale-[0.99] text-white font-bold text-sm tracking-wide shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer text-center"
+                className="w-full py-4 px-6 rounded-[10px] bg-[#5160a3] hover:bg-[#434f8a] active:scale-[0.99] text-white font-semibold text-sm shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer text-center"
               >
                 {isSubmitted ? "Message Sent ✓" : "Send Message"}
               </button>

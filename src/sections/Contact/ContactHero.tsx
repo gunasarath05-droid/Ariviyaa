@@ -72,7 +72,7 @@ export function ContactHero() {
             </ol>
           </nav>
 
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 leading-[1.1]">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 leading-[1.1]">
             Let&apos;s Build Healthier Herds{" "}
             <span className="text-[#5160a3]">&amp; Cleaner Milk Together.</span>
           </h1>

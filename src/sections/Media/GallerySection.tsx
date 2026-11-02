@@ -164,7 +164,7 @@ export function GallerySection() {
   });
 
   return (
-    <section className="w-full py-12 sm:py-16 lg:py-20 bg-[#F5F7FC] font-sans border-b border-[#D9DFF0]">
+    <section className="w-full section-y bg-[#F5F7FC] font-sans border-b border-[#D9DFF0]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
         {/* Toolbar: Category filter + result count */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
@@ -234,7 +234,7 @@ export function GallerySection() {
 
               {/* Title only — category, organiser, date and description open in the lightbox */}
               <div className="p-4 sm:p-5 flex-1 flex items-start justify-between gap-3 border-t border-[#D9DFF0]">
-                <h3 className="text-sm sm:text-base font-black text-slate-900 group-hover:text-[#5160a3] transition-colors leading-snug">
+                <h3 className="text-sm sm:text-base font-bold text-slate-900 group-hover:text-[#5160a3] transition-colors leading-snug">
                   {item.title}
                 </h3>
                 {item.date && (
@@ -309,9 +309,9 @@ export function GallerySection() {
                   </>
                 )}
               </div>
-              <h3 className="text-lg sm:text-2xl font-black text-slate-900">{activeItem.title}</h3>
+              <h3 className="text-lg sm:text-2xl font-bold text-slate-900">{activeItem.title}</h3>
               <p className="text-sm font-semibold text-slate-700">{activeItem.subtitle}</p>
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed pt-2 border-t border-slate-100">
+              <p className="text-sm sm:text-[15px] text-slate-600 leading-relaxed pt-2 border-t border-slate-100">
                 {activeItem.description}
               </p>
             </div>

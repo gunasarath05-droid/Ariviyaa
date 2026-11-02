@@ -33,17 +33,17 @@ const segments = [
 export function WhoWeServeSection() {
   return (
     <section
-      className="w-full py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 font-sans scroll-mt-20 bg-[#F5F7FC] border-b border-[#D9DFF0]"
+      className="w-full section-y px-4 sm:px-6 lg:px-8 font-sans scroll-mt-20 bg-[#F5F7FC] border-b border-[#D9DFF0]"
       id="who-we-serve"
     >
       <div className="max-w-7xl mx-auto space-y-10 sm:space-y-12">
         <div className="text-center max-w-3xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2 text-xs sm:text-sm font-black uppercase tracking-wider text-[#5160a3]">
+          <div className="eyebrow">
             <AriviyaIcon className="w-4 h-4 text-[#5160a3] shrink-0" />
             <span>Who We Work With</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight leading-tight">
             MammaryO For <span className="text-[#5160a3]">Every Link In The Dairy Chain</span>
           </h2>
 
@@ -63,8 +63,8 @@ export function WhoWeServeSection() {
                 <div className="w-12 h-12 rounded-xl bg-[#5160a3]/10 text-[#5160a3] flex items-center justify-center">
                   <Icon className="w-6 h-6" />
                 </div>
-                <h3 className="text-lg font-black text-slate-900 leading-snug">{title}</h3>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">{desc}</p>
+                <h3 className="text-lg font-bold text-slate-900 leading-snug">{title}</h3>
+                <p className="text-sm sm:text-[15px] text-slate-600 leading-relaxed">{desc}</p>
               </div>
 
               <div className="pt-4 mt-4 border-t border-slate-200/80 space-y-3">

@@ -20,13 +20,13 @@ export function HeroSection() {
           {/* LEFT COLUMN: Reference-styled Headline, Subtitle & CTAs (7 cols) */}
           <div className="lg:col-span-7 space-y-6 text-left">
             {/* Top Badge */}
-            <div className="inline-flex items-center gap-2 text-xs sm:text-sm font-black uppercase tracking-wider text-[#5160a3]">
+            <div className="eyebrow">
               <AriviyaIcon className="w-4 h-4 text-[#5160a3] shrink-0" />
               <span>Bovine Udder Care &amp; Mastitis Control</span>
             </div>
 
             {/* Main Headline */}
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-[1.14]">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight leading-[1.14]">
               Bovine Udder Care for <br className="hidden sm:inline" />
               <span className="text-[#5160a3]">Clean Milk Production (CMP)</span>
             </h1>
@@ -42,7 +42,7 @@ export function HeroSection() {
               {/* Primary CTA Button */}
               <a
                 href="#contact-section"
-                className="px-7 sm:px-8 py-3.5 sm:py-4 rounded-2xl bg-[#5160a3] hover:bg-[#434f8a] text-white text-xs sm:text-sm font-black tracking-wide shadow-md hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer group text-center uppercase"
+                className="px-7 sm:px-8 py-3.5 sm:py-4 rounded-[10px] bg-[#5160a3] hover:bg-[#434f8a] text-white text-sm font-semibold shadow-md hover:shadow-md active:translate-y-0 transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer group text-center"
               >
                 <span>Bulk &amp; Distributor Enquiry</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -51,7 +51,7 @@ export function HeroSection() {
               {/* Ghost / Product Button */}
               <a
                 href="#flagship-products"
-                className="px-6 sm:px-7 py-3.5 sm:py-4 rounded-2xl bg-white hover:bg-slate-50 text-slate-800 text-xs sm:text-sm font-bold border border-[#D9DFF0] shadow-xs hover:shadow transition-all duration-200 cursor-pointer text-center uppercase tracking-wider"
+                className="px-6 sm:px-7 py-3.5 sm:py-4 rounded-[10px] bg-white hover:bg-slate-50 text-slate-800 text-sm font-semibold border border-[#D9DFF0] shadow-xs hover:shadow transition-all duration-200 cursor-pointer text-center"
               >
                 Discover MammaryO
               </a>

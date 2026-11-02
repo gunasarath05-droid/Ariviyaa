@@ -119,16 +119,16 @@ export function FilteredCatalogSection() {
   return (
     <section
       id="catalog-section"
-      className="w-full py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-white font-sans scroll-mt-20 border-b border-slate-100"
+      className="w-full section-y px-4 sm:px-6 lg:px-8 bg-white font-sans scroll-mt-20 border-b border-slate-100"
     >
       <div className="max-w-7xl mx-auto space-y-12 sm:space-y-16">
         <div className="text-center space-y-2">
-          <div className="inline-flex items-center gap-2 text-xs sm:text-sm font-black uppercase tracking-wider text-[#5160a3]">
+          <div className="eyebrow">
             <AriviyaIcon className="w-4 h-4 text-[#5160a3] shrink-0" />
             <span>Shop Online</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight font-serif sm:font-sans">
+          <h2 className="text-3xl sm:text-5xl font-bold text-slate-900 tracking-tight font-serif sm:font-sans">
             Shop Pet &amp; Farm Care
           </h2>
           <p className="text-xs sm:text-sm text-slate-500 max-w-2xl mx-auto font-normal">
@@ -212,7 +212,7 @@ export function FilteredCatalogSection() {
                   return (
                     <div
                       key={product.id}
-                      className="bg-white rounded-3xl p-4 sm:p-5 border border-slate-100/90 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group cursor-pointer relative"
+                      className="bg-white rounded-3xl p-4 sm:p-5 border border-slate-100/90 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between group cursor-pointer relative"
                     >
                       {/* Product Image Container with Light Grey Backdrop */}
                       <div
@@ -236,7 +236,7 @@ export function FilteredCatalogSection() {
                               e.stopPropagation();
                               addToCart(product, 1);
                             }}
-                            className="w-10 h-10 rounded-full bg-white shadow-lg hover:shadow-2xl flex items-center justify-center text-slate-700 hover:text-[#5160a3] hover:scale-110 active:scale-90 transition-all duration-200 cursor-pointer"
+                            className="w-10 h-10 rounded-full bg-white shadow-lg hover:shadow-md flex items-center justify-center text-slate-700 hover:text-[#5160a3] hover:scale-110 active:scale-90 transition-all duration-200 cursor-pointer"
                             title="Add to Cart"
                           >
                             <ShoppingBag className="w-4 h-4" />
@@ -248,7 +248,7 @@ export function FilteredCatalogSection() {
                               e.stopPropagation();
                               setSelectedProduct(product);
                             }}
-                            className="w-10 h-10 rounded-full bg-white shadow-lg hover:shadow-2xl flex items-center justify-center text-slate-700 hover:text-[#5160a3] hover:scale-110 active:scale-90 transition-all duration-200 cursor-pointer"
+                            className="w-10 h-10 rounded-full bg-white shadow-lg hover:shadow-md flex items-center justify-center text-slate-700 hover:text-[#5160a3] hover:scale-110 active:scale-90 transition-all duration-200 cursor-pointer"
                             title="Quick View"
                           >
                             <Eye className="w-4 h-4" />
@@ -260,7 +260,7 @@ export function FilteredCatalogSection() {
                               e.stopPropagation();
                               toggleWishlist(product.id);
                             }}
-                            className={`w-10 h-10 rounded-full bg-white shadow-lg hover:shadow-2xl flex items-center justify-center hover:scale-110 active:scale-90 transition-all duration-200 cursor-pointer ${
+                            className={`w-10 h-10 rounded-full bg-white shadow-lg hover:shadow-md flex items-center justify-center hover:scale-110 active:scale-90 transition-all duration-200 cursor-pointer ${
                               isSaved
                                 ? "text-rose-500"
                                 : "text-slate-700 hover:text-rose-500"
@@ -288,7 +288,7 @@ export function FilteredCatalogSection() {
                         {/* Product Name */}
                         <h3
                           onClick={() => setSelectedProduct(product)}
-                          className="text-sm sm:text-base font-black text-slate-900 group-hover:text-[#5160a3] transition-colors cursor-pointer line-clamp-2 leading-snug min-h-[2.5rem] sm:min-h-[2.75rem]"
+                          className="text-sm sm:text-base font-bold text-slate-900 group-hover:text-[#5160a3] transition-colors cursor-pointer line-clamp-2 leading-snug min-h-[2.5rem] sm:min-h-[2.75rem]"
                         >
                           {product.name}
                         </h3>
@@ -317,7 +317,7 @@ export function FilteredCatalogSection() {
                               e.stopPropagation();
                               addToCart(product, 1);
                             }}
-                            className="flex-1 min-w-0 py-2.5 px-3 rounded-xl bg-[#5160a3] hover:bg-[#434f8a] active:scale-95 text-white text-xs font-black whitespace-nowrap transition-all duration-200 cursor-pointer shadow-xs hover:shadow-md flex items-center justify-center gap-1.5"
+                            className="flex-1 min-w-0 py-2.5 px-3 rounded-[10px] bg-[#5160a3] hover:bg-[#434f8a] active:scale-95 text-white text-sm font-semibold whitespace-nowrap transition-all duration-200 cursor-pointer shadow-xs hover:shadow-md flex items-center justify-center gap-1.5"
                           >
                             <ShoppingBag className="w-3.5 h-3.5" />
                             <span>Add to Cart</span>
@@ -345,7 +345,7 @@ export function FilteredCatalogSection() {
                 <div className="flex justify-center pt-4 sm:pt-6">
                   <button
                     onClick={() => setShowAll((prev) => !prev)}
-                    className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full bg-[#5160a3] hover:bg-[#434f8a] text-white font-bold text-xs sm:text-sm tracking-wider uppercase shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 active:scale-95 cursor-pointer"
+                    className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-[10px] bg-[#5160a3] hover:bg-[#434f8a] text-white font-semibold text-sm shadow-md hover:shadow-md transition-all duration-300 transform active:scale-95 cursor-pointer"
                   >
                     <span>
                       {showAll
@@ -370,16 +370,16 @@ export function FilteredCatalogSection() {
             <div className="w-14 h-14 mx-auto rounded-2xl bg-[#5160a3]/10 text-[#5160a3] flex items-center justify-center">
               <GiRooster className="w-7 h-7" />
             </div>
-            <h3 className="text-lg sm:text-xl font-black text-slate-900">
+            <h3 className="text-lg sm:text-xl font-bold text-slate-900">
               Poultry Care Products — Coming Soon
             </h3>
-            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            <p className="text-sm sm:text-[15px] text-slate-600 leading-relaxed">
               We are developing NaxPoly® biosecurity solutions for poultry farms. Message us to
               get notified at launch or to discuss requirements for your farm.
             </p>
             <button
               onClick={() => openWhatsAppInquiry("your upcoming poultry care products")}
-              className="inline-flex items-center gap-2 mt-2 px-5 py-2.5 bg-[#5160a3] hover:bg-[#434f8a] text-white text-xs sm:text-sm font-bold rounded-full cursor-pointer transition-colors"
+              className="inline-flex items-center gap-2 mt-2 px-5 py-2.5 bg-[#5160a3] hover:bg-[#434f8a] text-white text-sm font-semibold rounded-[10px] cursor-pointer transition-colors"
             >
               <MessageCircle className="w-4 h-4" />
               <span>Notify Me on WhatsApp</span>
@@ -398,7 +398,7 @@ export function FilteredCatalogSection() {
                 setActiveCategory("all");
                 setSearchTerm("");
               }}
-              className="mt-3 px-5 py-2.5 bg-[#5160a3] hover:bg-[#434f8a] text-white text-xs font-bold rounded-full cursor-pointer transition-colors"
+              className="mt-3 px-5 py-2.5 bg-[#5160a3] hover:bg-[#434f8a] text-white text-sm font-semibold rounded-[10px] cursor-pointer transition-colors"
             >
               Reset Filters
             </button>

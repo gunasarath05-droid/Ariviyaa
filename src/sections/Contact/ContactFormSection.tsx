@@ -101,12 +101,12 @@ export function ContactFormSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
           {/* Left: intro & what we help with */}
           <div className="lg:col-span-5 space-y-6 lg:sticky lg:top-40">
-            <div className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.15em] text-[#5160a3]">
+            <div className="eyebrow">
               <AriviyaIcon className="w-4 h-4 text-[#5160a3]" />
               <span>Get In Touch</span>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight leading-tight">
+            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight leading-tight">
               Send Us Your <span className="text-[#5160a3]">Enquiry</span>
             </h2>
 
@@ -123,7 +123,7 @@ export function ContactFormSection() {
                   </span>
                   <div>
                     <h3 className="text-sm font-bold text-slate-900">{title}</h3>
-                    <p className="text-xs sm:text-sm text-slate-500 leading-relaxed">{desc}</p>
+                    <p className="text-sm sm:text-[15px] text-slate-500 leading-relaxed">{desc}</p>
                   </div>
                 </li>
               ))}
@@ -242,7 +242,7 @@ export function ContactFormSection() {
                   </p>
                   <button
                     type="submit"
-                    className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-[#5160a3] hover:bg-[#43518a] text-white font-bold text-sm shadow-md hover:shadow-lg transition-all cursor-pointer shrink-0"
+                    className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-[10px] bg-[#5160a3] hover:bg-[#43518a] text-white font-semibold text-sm shadow-md hover:shadow-lg transition-all cursor-pointer shrink-0"
                   >
                     <Send className="w-4 h-4" />
                     <span>Send Enquiry</span>

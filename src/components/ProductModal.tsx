@@ -102,7 +102,7 @@ export function ProductModal() {
             <div className="space-y-3.5 sm:space-y-4">
               {/* Product Header with safe right-padding so title never overlaps close button */}
               <div className="pr-16 sm:pr-20 md:pr-12">
-                <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-[#0A343D] tracking-tight leading-snug">
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#0A343D] tracking-tight leading-snug">
                   {selectedProduct.name}
                 </h3>
                 <p className="text-xs sm:text-sm font-semibold text-[#10B981] mt-1">
@@ -125,7 +125,7 @@ export function ProductModal() {
                 )}
               </div>
 
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+              <p className="text-sm sm:text-[15px] text-slate-600 leading-relaxed font-normal">
                 {selectedProduct.description}
               </p>
 
@@ -142,7 +142,7 @@ export function ProductModal() {
 
               {/* Features List */}
               <div>
-                <h4 className="text-[11px] sm:text-xs font-black uppercase tracking-wider text-slate-400 mb-2">
+                <h4 className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
                   Key Formulation Features
                 </h4>
                 <ul className="space-y-1.5 sm:space-y-2">
@@ -163,7 +163,7 @@ export function ProductModal() {
                   addToCart(selectedProduct, 1);
                   setSelectedProduct(null);
                 }}
-                className="flex-1 py-3 px-4 sm:px-6 rounded-full bg-[#5160a3] hover:bg-[#434f8a] text-white text-xs sm:text-sm font-extrabold tracking-wider uppercase flex items-center justify-center gap-2 shadow-lg shadow-[#5160a3]/25 transition-all active:scale-95 cursor-pointer"
+                className="flex-1 py-3 px-4 sm:px-6 rounded-[10px] bg-[#5160a3] hover:bg-[#434f8a] text-white text-sm font-semibold flex items-center justify-center gap-2 shadow-lg shadow-[#5160a3]/25 transition-all active:scale-95 cursor-pointer"
               >
                 <ShoppingBag className="w-4 h-4 shrink-0" />
                 <span className="truncate">Add to Cart</span>

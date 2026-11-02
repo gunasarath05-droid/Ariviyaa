@@ -61,7 +61,7 @@ export function FaqSection() {
   };
 
   return (
-    <section id="faq-section" className="w-full py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-white font-sans border-b border-slate-100 scroll-mt-20">
+    <section id="faq-section" className="w-full section-y px-4 sm:px-6 lg:px-8 bg-white font-sans border-b border-slate-100 scroll-mt-20">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
           {/* ========================================================= */}
@@ -69,18 +69,18 @@ export function FaqSection() {
           {/* ========================================================= */}
           <div className="lg:col-span-5 space-y-5">
             {/* Paw Icon Badge */}
-            <div className="inline-flex items-center gap-2 text-xs sm:text-sm font-black uppercase tracking-wider text-[#5160a3]">
+            <div className="eyebrow">
               <AriviyaIcon className="w-4 h-4 text-[#5160a3] shrink-0" />
               <span>Frequently Asked Questions</span>
             </div>
 
             {/* Bold Headline matching reference */}
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-[1.15]">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight leading-[1.15]">
               MammaryO Answers For Dairy Businesses &amp; Partners
             </h2>
 
             {/* Subtitle / Description */}
-            <p className="text-xs sm:text-sm text-slate-500 leading-relaxed max-w-md font-normal">
+            <p className="text-sm sm:text-[15px] text-slate-500 leading-relaxed max-w-md font-normal">
               Common questions from dairy cooperatives, farms, veterinarians and distributors about how MammaryO works, how it is used and how to buy in bulk.
             </p>
 

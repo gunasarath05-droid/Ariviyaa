@@ -81,7 +81,7 @@ export function CommonHero({
             </nav>
           )}
 
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 leading-[1.1]">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 leading-[1.1]">
             {title}
           </h1>
 

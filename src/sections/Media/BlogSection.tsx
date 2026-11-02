@@ -108,16 +108,16 @@ export function BlogSection() {
   });
 
   return (
-    <section className="w-full py-12 sm:py-16 lg:py-20 bg-[#F5F7FC] font-sans border-b border-[#D9DFF0]">
+    <section className="w-full section-y bg-[#F5F7FC] font-sans border-b border-[#D9DFF0]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#5160a3]/10 text-[#5160a3] text-xs font-bold uppercase tracking-wider">
+          <div className="eyebrow">
             <BookOpen className="w-4 h-4" />
             <span>Ariviya Science & Field Knowledge</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-[1.15]">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight leading-[1.15]">
             Veterinary Insights, Field Guides & <br />
             <span className="text-[#5160a3]">Biotech Breakthroughs</span>
           </h2>
@@ -184,10 +184,10 @@ export function BlogSection() {
                     {filteredPosts[0].date}
                   </span>
                 </div>
-                <h2 className="text-xl sm:text-2xl font-black text-slate-900 leading-snug">
+                <h2 className="text-xl sm:text-2xl font-bold text-slate-900 leading-snug">
                   {filteredPosts[0].title}
                 </h2>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                <p className="text-sm sm:text-[15px] text-slate-600 leading-relaxed font-normal">
                   {filteredPosts[0].excerpt}
                 </p>
               </div>
@@ -243,11 +243,11 @@ export function BlogSection() {
                     <span>{post.date}</span>
                   </div>
 
-                  <h3 className="text-base sm:text-lg font-black text-slate-900 group-hover:text-[#5160a3] transition-colors line-clamp-2 leading-snug">
+                  <h3 className="text-base sm:text-lg font-bold text-slate-900 group-hover:text-[#5160a3] transition-colors line-clamp-2 leading-snug">
                     {post.title}
                   </h3>
 
-                  <p className="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed font-normal">
+                  <p className="text-sm sm:text-[15px] text-slate-600 line-clamp-3 leading-relaxed font-normal">
                     {post.excerpt}
                   </p>
                 </div>

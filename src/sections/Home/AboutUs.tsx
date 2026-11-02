@@ -78,7 +78,7 @@ export function ScienceFromThanjavurSection() {
   };
 
   return (
-    <section className="w-full py-16 sm:py-20 lg:py-24 bg-white font-sans border-b border-[#D9DFF0]" id="science-from-thanjavur">
+    <section className="w-full section-y bg-white font-sans border-b border-[#D9DFF0]" id="science-from-thanjavur">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
@@ -86,13 +86,13 @@ export function ScienceFromThanjavurSection() {
           <div className="lg:col-span-7 space-y-6 sm:space-y-8">
             <div className="space-y-3">
               {/* Eyebrow */}
-              <div className="inline-flex items-center gap-2 text-xs sm:text-sm font-black uppercase tracking-wider text-[#5160a3]">
+              <div className="eyebrow">
                 <AriviyaIcon className="w-4 h-4 text-[#5160a3] shrink-0" />
                 <span>Science From Thanjavur</span>
               </div>
 
               {/* Main Heading */}
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-[1.15]">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight leading-[1.15]">
                 Science From Thanjavur. <br className="hidden sm:inline" />
                 <span className="text-[#5160a3]">Care For Every Farm.</span>
               </h2>
@@ -170,7 +170,7 @@ export function ScienceFromThanjavurSection() {
                     <strong className="block text-sm sm:text-base font-black text-slate-900">
                       Our Mission
                     </strong>
-                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                    <p className="text-sm sm:text-[15px] text-slate-600 leading-relaxed font-normal">
                       Protect animals, improve farmers&apos; livelihoods and support clean milk production
                       through <span className="font-bold text-[#5160a3]">NaxPoly®</span> green nanotechnology.
                     </p>
@@ -196,15 +196,15 @@ export function TeamBehindAriviyaaSection() {
   };
 
   return (
-    <section className="w-full py-16 sm:py-20 lg:py-24 bg-[#F5F7FC] font-sans border-b border-[#D9DFF0]" id="team">
+    <section className="w-full section-y bg-[#F5F7FC] font-sans border-b border-[#D9DFF0]" id="team">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
         {/* Team Section Title */}
         <div className="text-center max-w-2xl mx-auto space-y-2">
-          <div className="inline-flex items-center gap-2 text-xs sm:text-sm font-black uppercase tracking-wider text-[#5160a3]">
+          <div className="eyebrow">
             <AriviyaIcon className="w-4 h-4 text-[#5160a3] shrink-0" />
             <span>Leadership</span>
           </div>
-          <h3 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 tracking-tight">
+          <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">
             The Team Behind Ariviyaa
           </h3>
           <p className="text-xs sm:text-sm text-slate-500 font-medium">
@@ -242,14 +242,14 @@ export function TeamBehindAriviyaaSection() {
               {/* Member Details */}
               <div className="space-y-1.5 flex-1 flex flex-col justify-between">
                 <div>
-                  <h4 className="text-base sm:text-lg font-black text-slate-900 group-hover:text-[#5160a3] transition-colors">
+                  <h4 className="text-base sm:text-lg font-bold text-slate-900 group-hover:text-[#5160a3] transition-colors">
                     {member.name}
                   </h4>
                   <p className="text-xs font-bold text-[#5160a3] mt-0.5">
                     {member.role}
                   </p>
                 </div>
-                <p className="text-xs sm:text-[13px] text-slate-600 leading-relaxed my-2 font-normal">
+                <p className="text-sm sm:text-[13px] text-slate-600 leading-relaxed my-2 font-normal">
                   {member.bio}
                 </p>
               </div>

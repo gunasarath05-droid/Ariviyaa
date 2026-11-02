@@ -6,7 +6,7 @@ import { AriviyaIcon } from "@/components/AriviyaIcon";
 
 export function CtaSection() {
   return (
-    <section className="w-full py-16 font-sans overflow-hidden border-b border-[#D9DFF0] bg-gradient-to-br from-[#5160a3] via-[#434f8a] to-[#2c345b]" id="partner">
+    <section className="w-full section-y font-sans overflow-hidden border-b border-[#D9DFF0] bg-gradient-to-br from-[#5160a3] via-[#434f8a] to-[#2c345b]" id="partner">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> 
         <div className="relative text-white">
         
@@ -21,7 +21,7 @@ export function CtaSection() {
             </div>
 
             {/* Title */}
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
               Prevention Is Better Than Cure
             </h2>
 
@@ -35,7 +35,7 @@ export function CtaSection() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
               <Link
                 href="/#contact-section"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full bg-white text-[#5160a3] hover:bg-slate-50 text-xs sm:text-sm font-black uppercase tracking-wider shadow-lg hover:shadow-2xl transition-all duration-200 transform hover:-translate-y-0.5 active:scale-95 cursor-pointer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-[10px] bg-white text-[#5160a3] hover:bg-slate-50 text-sm font-semibold shadow-lg hover:shadow-md transition-all duration-200 transform active:scale-95 cursor-pointer"
               >
                 <span>Become A Partner</span>
                 <ArrowRight className="w-4 h-4" />

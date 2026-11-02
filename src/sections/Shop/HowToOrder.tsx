@@ -24,9 +24,9 @@ const steps = [
 
 export function HowToOrderSection() {
   return (
-    <section className="w-full py-12 sm:py-16 bg-[#F5F7FC] border-t border-[#D9DFF0] font-sans" id="how-to-order">
+    <section className="w-full section-y bg-[#F5F7FC] border-t border-[#D9DFF0] font-sans" id="how-to-order">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        <h2 className="text-center text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+        <h2 className="text-center text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
           How Ordering Works
         </h2>
 
@@ -43,8 +43,8 @@ export function HowToOrderSection() {
                 </span>
               </div>
               <div>
-                <h3 className="text-sm sm:text-base font-black text-slate-900">{title}</h3>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mt-1">{desc}</p>
+                <h3 className="text-sm sm:text-base font-bold text-slate-900">{title}</h3>
+                <p className="text-sm sm:text-[15px] text-slate-600 leading-relaxed mt-1">{desc}</p>
               </div>
             </li>
           ))}

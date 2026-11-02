@@ -118,18 +118,18 @@ export function WhyChooseUsSection() {
   return (
     <section
       id="why-ariviyaa"
-      className="w-full py-16 sm:py-20 lg:py-24 bg-[#F5F7FC] font-sans border-b border-[#D9DFF0] scroll-mt-20"
+      className="w-full section-y bg-[#F5F7FC] font-sans border-b border-[#D9DFF0] scroll-mt-20"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
 
         {/* 1. Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#5160a3]/10 text-xs sm:text-sm font-black uppercase tracking-wider text-[#5160a3]">
+          <div className="eyebrow">
             <AriviyaIcon className="w-4 h-4 text-[#5160a3] shrink-0" />
             <span>Why Choose Ariviyaa</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight leading-tight">
             Built on Deep Science,{" "}
             <span className="text-[#5160a3]">Trusted Across Farms &amp; Pets</span>
           </h2>
@@ -143,10 +143,10 @@ export function WhyChooseUsSection() {
         <div className="bg-white rounded-3xl border border-[#D9DFF0] shadow-2xs p-5 sm:p-6 lg:p-7">
           <div className="flex flex-col lg:flex-row lg:items-center gap-5 lg:gap-8">
             <div className="lg:w-56 shrink-0 text-center lg:text-left space-y-1">
-              <h3 className="text-base sm:text-lg font-black text-slate-900 leading-tight">
+              <h3 className="text-base sm:text-lg font-bold text-slate-900 leading-tight">
                 Recognitions &amp; <span className="text-[#5160a3]">Standards</span>
               </h3>
-              <p className="text-xs text-slate-500 leading-relaxed">
+              <p className="text-sm text-slate-500 leading-relaxed">
                 Audited and validated by statutory bodies and veterinary universities.
               </p>
             </div>
@@ -180,7 +180,7 @@ export function WhyChooseUsSection() {
           {reasons.map(({ title, tag, description, Icon }, index) => (
             <article
               key={title}
-              className="relative bg-white rounded-2xl border border-[#D9DFF0] p-6 sm:p-7 shadow-2xs hover:shadow-xl hover:border-[#5160a3]/50 transition-all duration-300 group hover:-translate-y-1 overflow-hidden"
+              className="relative bg-white rounded-2xl border border-[#D9DFF0] p-6 sm:p-7 shadow-2xs hover:shadow-md hover:border-[#5160a3]/50 transition-all duration-300 group overflow-hidden"
             >
               {/* Large faint index number */}
               <span className="absolute top-3 right-5 text-5xl font-black text-[#5160a3]/[0.07] group-hover:text-[#5160a3]/15 transition-colors select-none leading-none">
@@ -196,10 +196,10 @@ export function WhyChooseUsSection() {
                   <span className="block text-[11px] font-black uppercase tracking-wider text-[#5160a3]">
                     {tag}
                   </span>
-                  <h3 className="text-base sm:text-lg font-black text-slate-900 leading-snug">
+                  <h3 className="text-base sm:text-lg font-bold text-slate-900 leading-snug">
                     {title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                  <p className="text-sm sm:text-[15px] text-slate-600 leading-relaxed font-normal">
                     {description}
                   </p>
                 </div>
@@ -215,7 +215,7 @@ export function WhyChooseUsSection() {
 
           <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
             <div className="lg:col-span-4 space-y-3">
-              <h3 className="text-2xl sm:text-3xl font-black tracking-tight leading-tight">
+              <h3 className="text-2xl sm:text-3xl font-bold tracking-tight leading-tight">
                 Why Partners &amp; Customers <span className="text-emerald-300">Trust Us</span>
               </h3>
               <p className="text-sm text-slate-300 leading-relaxed">
@@ -234,7 +234,7 @@ export function WhyChooseUsSection() {
                   </span>
                   <div className="space-y-1">
                     <h4 className="text-sm sm:text-base font-bold leading-snug">{title}</h4>
-                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">{description}</p>
+                    <p className="text-sm sm:text-[15px] text-slate-300 leading-relaxed">{description}</p>
                   </div>
                 </div>
               ))}

@@ -11,6 +11,31 @@
   --color-bg: #F5F7FC;
 }
 
+/* Section label above headings: brand icon + short label, normal case (no pill) */
+@utility eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+  color: #5160a3;
+}
+
+/* Standard vertical rhythm for page sections */
+@utility section-y {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  @media (width >= 40rem) {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+  @media (width >= 64rem) {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+}
+
 /* Hide scrollbars on horizontal swipe rows while keeping them scrollable */
 @utility no-scrollbar {
   scrollbar-width: none;
