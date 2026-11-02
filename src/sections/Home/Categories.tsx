@@ -46,6 +46,16 @@ export function CategoriesSection() {
       tag: "Lick-Safe",
     },
     {
+      id: "birds",
+      filterId: "poultry",
+      title: "Birds",
+      subLabel: "Coming Soon",
+      image: IMAGES.categories.poultry,
+      bgTint: "bg-[#F3F4F6]",
+      division: "Animal Healthcare",
+      tag: "Coming Soon",
+    },
+    {
       id: "floor",
       filterId: "floor",
       title: "Floor Cleaner",

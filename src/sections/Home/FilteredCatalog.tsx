@@ -20,7 +20,7 @@ import {
 } from "lucide-react";
 import { AriviyaIcon } from "@/components/AriviyaIcon";
 import { BiGridAlt } from "react-icons/bi";
-import { GiCow } from "react-icons/gi";
+import { GiCow, GiRooster } from "react-icons/gi";
 import { FaPaw, FaSprayCan, FaFlask } from "react-icons/fa";
 
 export function FilteredCatalogSection() {
@@ -62,6 +62,12 @@ export function FilteredCatalogSection() {
       iconOnly: false,
     },
     {
+      id: "poultry",
+      title: "POULTRY CARE",
+      icon: <GiRooster className="w-5 h-5 shrink-0" />,
+      iconOnly: false,
+    },
+    {
       id: "floor",
       title: "FLOOR CLEANER",
       icon: <FaSprayCan className="w-4.5 h-4.5 shrink-0" />,
@@ -84,6 +90,8 @@ export function FilteredCatalogSection() {
       matchesCategory = item.categoryGroup === "farm";
     } else if (activeCategory === "pet") {
       matchesCategory = item.categoryGroup === "pet";
+    } else if (activeCategory === "poultry") {
+      matchesCategory = item.categoryGroup === "poultry";
     } else if (activeCategory === "floor") {
       matchesCategory = item.categoryGroup === "floor";
     } else if (activeCategory === "general") {
@@ -356,8 +364,31 @@ export function FilteredCatalogSection() {
           );
         })()}
 
+        {/* Poultry range is under development: show a coming-soon note instead of "no results" */}
+        {filteredProducts.length === 0 && activeCategory === "poultry" && !searchTerm.trim() && (
+          <div className="text-center py-14 px-6 bg-[#F5F7FC] rounded-3xl border border-[#D9DFF0] max-w-2xl mx-auto space-y-3">
+            <div className="w-14 h-14 mx-auto rounded-2xl bg-[#5160a3]/10 text-[#5160a3] flex items-center justify-center">
+              <GiRooster className="w-7 h-7" />
+            </div>
+            <h3 className="text-lg sm:text-xl font-black text-slate-900">
+              Poultry Care Products — Coming Soon
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              We are developing NaxPoly® biosecurity solutions for poultry farms. Message us to
+              get notified at launch or to discuss requirements for your farm.
+            </p>
+            <button
+              onClick={() => openWhatsAppInquiry("your upcoming poultry care products")}
+              className="inline-flex items-center gap-2 mt-2 px-5 py-2.5 bg-[#5160a3] hover:bg-[#434f8a] text-white text-xs sm:text-sm font-bold rounded-full cursor-pointer transition-colors"
+            >
+              <MessageCircle className="w-4 h-4" />
+              <span>Notify Me on WhatsApp</span>
+            </button>
+          </div>
+        )}
+
         {/* Empty State */}
-        {filteredProducts.length === 0 && (
+        {filteredProducts.length === 0 && !(activeCategory === "poultry" && !searchTerm.trim()) && (
           <div className="text-center py-16 bg-slate-50 rounded-3xl border border-slate-200/80">
             <p className="text-slate-500 text-sm">
               No formulations match your search criteria.
