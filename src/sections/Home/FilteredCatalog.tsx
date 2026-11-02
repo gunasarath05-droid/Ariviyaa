@@ -20,7 +20,7 @@ import {
 } from "lucide-react";
 import { AriviyaIcon } from "@/components/AriviyaIcon";
 import { BiGridAlt } from "react-icons/bi";
-import { GiCow, GiRooster } from "react-icons/gi";
+import { GiCow } from "react-icons/gi";
 import { FaPaw, FaSprayCan, FaFlask } from "react-icons/fa";
 
 export function FilteredCatalogSection() {
@@ -62,12 +62,6 @@ export function FilteredCatalogSection() {
       iconOnly: false,
     },
     {
-      id: "poultry",
-      title: "POULTRY CARE",
-      icon: <GiRooster className="w-5 h-5 shrink-0" />,
-      iconOnly: false,
-    },
-    {
       id: "floor",
       title: "FLOOR CLEANER",
       icon: <FaSprayCan className="w-4.5 h-4.5 shrink-0" />,
@@ -90,8 +84,6 @@ export function FilteredCatalogSection() {
       matchesCategory = item.categoryGroup === "farm";
     } else if (activeCategory === "pet") {
       matchesCategory = item.categoryGroup === "pet";
-    } else if (activeCategory === "poultry") {
-      matchesCategory = item.categoryGroup === "poultry";
     } else if (activeCategory === "floor") {
       matchesCategory = item.categoryGroup === "floor";
     } else if (activeCategory === "general") {

@@ -103,7 +103,7 @@ export const IMAGES = {
     tiksha: "/assets/products/tiksha.jpg",
     tikshaLabel: "/assets/products/tiksha_label.png",
     tikifence: "/assets/products/tiksha.jpg",
-    cleanida: "/assets/products/tiksha.jpg",
+    cleanida: "/assets/products/cleanida.jpg",
 
     // Catalog aliases
     pe3: "/assets/products/petenviron.jpg",
