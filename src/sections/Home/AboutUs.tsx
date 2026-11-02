@@ -14,6 +14,7 @@ import {
   User,
   CheckCircle2,
   Sparkles,
+  Eye,
 } from "lucide-react";
 
 interface TeamMember {
@@ -111,6 +112,35 @@ export function ScienceFromThanjavurSection() {
               wound management, and antimicrobial protection.
             </p>
 
+            {/* Mission & Vision */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-8">
+              <div className="space-y-2">
+                <div className="flex items-center gap-2.5">
+                  <span className="w-9 h-9 rounded-xl bg-[#5160a3] text-white flex items-center justify-center shrink-0">
+                    <Target className="w-4.5 h-4.5" />
+                  </span>
+                  <h3 className="text-base sm:text-lg font-bold text-slate-900">Our Mission</h3>
+                </div>
+                <p className="text-sm sm:text-[15px] text-slate-600 leading-relaxed">
+                  Protect animals, improve farmers&apos; livelihoods and support clean milk production
+                  through <span className="font-semibold text-[#5160a3]">NaxPoly®</span> green
+                  nanotechnology.
+                </p>
+              </div>
+              <div className="space-y-2">
+                <div className="flex items-center gap-2.5">
+                  <span className="w-9 h-9 rounded-xl bg-[#5160a3] text-white flex items-center justify-center shrink-0">
+                    <Eye className="w-4.5 h-4.5" />
+                  </span>
+                  <h3 className="text-base sm:text-lg font-bold text-slate-900">Our Vision</h3>
+                </div>
+                <p className="text-sm sm:text-[15px] text-slate-600 leading-relaxed">
+                  Make antibiotic-free, eco-friendly animal healthcare the everyday standard for
+                  India&apos;s dairy farms, veterinarians and pet parents.
+                </p>
+              </div>
+            </div>
+
             {/* Facts Row / Grid */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 pt-2">
               {aboutFacts.map(({ label, value, Icon }) => (
@@ -134,10 +164,10 @@ export function ScienceFromThanjavurSection() {
             </div>
           </div>
 
-          {/* Right Column: Hero Visual & Mission Card */}
+          {/* Right Column: Product Range Visual */}
           <div className="lg:col-span-5 relative">
-            <div className="relative rounded-3xl overflow-hidden bg-white border border-[#D9DFF0] shadow-lg">
-              
+            <div className="relative rounded-[20px] overflow-hidden bg-white border border-[#D9DFF0]">
+
               {/* Product Range Image Container */}
               <div className="relative aspect-4/3 w-full bg-slate-100 overflow-hidden flex items-center justify-center">
                 {!imgError["product-range"] ? (
@@ -158,24 +188,6 @@ export function ScienceFromThanjavurSection() {
                     <span className="text-xs text-slate-500 mt-1">NaxPoly® Chemical-Free Formulations</span>
                   </div>
                 )}
-              </div>
-
-              {/* Mission Card Embedded at Bottom */}
-              <div className="p-6 bg-white border-t border-[#D9DFF0] space-y-3">
-                <div className="flex items-start gap-3.5">
-                  <div className="w-10 h-10 rounded-2xl bg-[#5160a3] text-white flex items-center justify-center shrink-0 shadow-xs">
-                    <Target className="w-5 h-5" />
-                  </div>
-                  <div className="space-y-1">
-                    <strong className="block text-sm sm:text-base font-black text-slate-900">
-                      Our Mission
-                    </strong>
-                    <p className="text-sm sm:text-[15px] text-slate-600 leading-relaxed font-normal">
-                      Protect animals, improve farmers&apos; livelihoods and support clean milk production
-                      through <span className="font-bold text-[#5160a3]">NaxPoly®</span> green nanotechnology.
-                    </p>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -217,42 +229,33 @@ export function TeamBehindAriviyaaSection() {
           {team.map((member, index) => (
             <article
               key={member.name}
-              className="bg-white rounded-2xl border border-[#D9DFF0] p-4 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col text-center items-center group"
+              className="bg-white rounded-[20px] border border-[#D9DFF0] p-6 sm:p-7 flex flex-col items-center text-center"
             >
-              {/* Member Avatar / Image */}
-              <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden bg-slate-100 p-1 border-2 border-[#D9DFF0] group-hover:border-[#5160a3] transition-colors mb-4">
-                <div className="relative w-full h-full rounded-full overflow-hidden bg-slate-50 flex items-center justify-center">
-                  {!imgError[`team-${index}`] ? (
-                    <Image
-                      src={member.image}
-                      alt={member.name}
-                      fill
-                      className="object-cover object-center group-hover:scale-105 transition-transform duration-300"
-                      onError={() => handleImageError(`team-${index}`)}
-                      sizes="120px"
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-slate-100 to-[#EFF3FC] text-[#5160a3]">
-                      <User className="w-10 h-10 opacity-70" />
-                    </div>
-                  )}
-                </div>
+              {/* Photo — source files are ~120px, so keep it at a size that stays sharp */}
+              <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-2xl overflow-hidden bg-[#F5F7FC] border border-[#D9DFF0]">
+                {!imgError[`team-${index}`] ? (
+                  <Image
+                    src={member.image}
+                    alt={member.name}
+                    fill
+                    className="object-cover object-top"
+                    onError={() => handleImageError(`team-${index}`)}
+                    sizes="128px"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center text-[#5160a3]">
+                    <User className="w-10 h-10 opacity-70" />
+                  </div>
+                )}
               </div>
 
-              {/* Member Details */}
-              <div className="space-y-1.5 flex-1 flex flex-col justify-between">
-                <div>
-                  <h4 className="text-base sm:text-lg font-bold text-slate-900 group-hover:text-[#5160a3] transition-colors">
-                    {member.name}
-                  </h4>
-                  <p className="text-xs font-bold text-[#5160a3] mt-0.5">
-                    {member.role}
-                  </p>
-                </div>
-                <p className="text-sm sm:text-[13px] text-slate-600 leading-relaxed my-2 font-normal">
-                  {member.bio}
-                </p>
-              </div>
+              <h4 className="mt-5 text-lg font-bold text-slate-900">{member.name}</h4>
+              <span className="mt-1.5 inline-block px-2.5 py-1 rounded-md bg-[#5160a3]/10 text-[#5160a3] text-xs font-semibold">
+                {member.role}
+              </span>
+              <p className="mt-4 pt-4 border-t border-[#D9DFF0] w-full text-sm sm:text-[15px] text-slate-600 leading-relaxed">
+                {member.bio}
+              </p>
             </article>
           ))}
         </div>
