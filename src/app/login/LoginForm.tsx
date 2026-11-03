@@ -28,13 +28,6 @@ const TRUST_POINTS = [
   { Icon: ShieldCheck, text: "Secure payments powered by Razorpay" },
 ];
 
-const BADGES = [
-  { src: IMAGES.badges.tanuvas, alt: "TANUVAS tested" },
-  { src: IMAGES.badges.patented, alt: "Patented technology" },
-  { src: IMAGES.badges.gmp, alt: "GMP certified" },
-  { src: IMAGES.badges.nabl, alt: "NABL lab tested" },
-];
-
 export function LoginForm() {
   const router = useRouter();
   const [mode, setMode] = useState<Mode>("signin");
@@ -116,28 +109,6 @@ export function LoginForm() {
                   </li>
                 ))}
               </ul>
-            </div>
-
-            <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden mt-8">
-              <Image
-                src={IMAGES.productHeroBanner}
-                alt="Ariviya product range"
-                fill
-                sizes="480px"
-                className="object-contain object-bottom"
-              />
-            </div>
-
-            <div className="pt-6 border-t border-[#D9DFF0] flex items-center gap-3">
-              {BADGES.map((badge) => (
-                <div
-                  key={badge.alt}
-                  className="relative w-12 h-12 rounded-full bg-white border border-[#D9DFF0] overflow-hidden"
-                >
-                  <Image src={badge.src} alt={badge.alt} fill sizes="48px" className="object-contain p-1" />
-                </div>
-              ))}
-              <span className="text-xs font-semibold text-slate-500">Tested &amp; certified formulations</span>
             </div>
           </div>
 
