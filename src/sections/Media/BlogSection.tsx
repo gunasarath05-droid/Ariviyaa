@@ -3,100 +3,14 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { IMAGES } from "@/constants/images";
-import { AriviyaIcon } from "@/components/AriviyaIcon";
-import {
-  BookOpen,
-  Calendar,
-  Clock,
-  User,
-  ArrowRight,
-  Tag,
-  Search,
-  Sparkles,
-} from "lucide-react";
-
-interface BlogPost {
-  id: string;
-  title: string;
-  slug: string;
-  excerpt: string;
-  category: "Dairy & Cattle" | "Pet Health" | "Biotech Science" | "Poultry Care";
-  author: string;
-  authorRole: string;
-  date: string;
-  readTime: string;
-  image: string;
-}
-
-const BLOG_POSTS: BlogPost[] = [
-  {
-    id: "post-1",
-    title: "Understanding Bovine Mastitis: Why Antibiotics Fail & How Natural Bio-Polymers Protect the Teat",
-    slug: "bovine-mastitis-prevention-natural-biopolymers",
-    excerpt: "Mastitis costs Indian dairy farmers over ₹7,000 crores annually. Discover how non-antibiotic polymer barrier technology stops environmental pathogens without milk withholding penalties.",
-    category: "Dairy & Cattle",
-    author: "Dr. Chinnadurai",
-    authorRole: "B.V.Sc, VP Animal Health",
-    date: "October 12, 2026",
-    readTime: "5 min read",
-    image: IMAGES.site.mammaryoInvented,
-  },
-  {
-    id: "post-2",
-    title: "Green Synthesis in Animal Health: Inside Ariviya's Patented NaxPoly® Technology",
-    slug: "green-synthesis-naxpoly-nanotechnology",
-    excerpt: "A deep dive into how biodegradable carbohydrate-based polymers are synthesized using eco-friendly green chemistry to create robust antimicrobial matrices with zero toxic residues.",
-    category: "Biotech Science",
-    author: "Dr. M. Sivakumar",
-    authorRole: "Ph.D, Director & CTO",
-    date: "October 04, 2026",
-    readTime: "7 min read",
-    image: IMAGES.site.productsRange,
-  },
-  {
-    id: "post-3",
-    title: "Gentle Care for Sensitive Paws: Why Pets Suffer from Chemical Floor Cleaner Residues",
-    slug: "pet-safe-natural-cleaners-allergy-prevention",
-    excerpt: "Commercial bleach and pine floor cleaners leave corrosive residues that pets ingest while licking paws. Learn how bio-polymer plant sanitizers keep floors sterile and dogs allergy-free.",
-    category: "Pet Health",
-    author: "Dr. Chinnadurai",
-    authorRole: "B.V.Sc, VP Animal Health",
-    date: "September 28, 2026",
-    readTime: "4 min read",
-    image: IMAGES.friendlyPetsRow,
-  },
-  {
-    id: "post-4",
-    title: "The Clean Milk Revolution: Standard Operating Procedure for Post-Milking Teat Dips",
-    slug: "clean-milk-standard-operating-procedure-teat-dip",
-    excerpt: "Step-by-step veterinary guidelines on timing, dipping cups, coverage, and barrier drying that protect commercial crossbred cows against Streptococcus and E. coli infections.",
-    category: "Dairy & Cattle",
-    author: "Dr. M. Sivakumar",
-    authorRole: "Ph.D, Director & CTO",
-    date: "September 19, 2026",
-    readTime: "6 min read",
-    image: IMAGES.farmLandscape,
-  },
-  {
-    id: "post-5",
-    title: "Poultry Shed Biosecurity: Combating Ammonia & Viral Loads Without Harsh Chemicals",
-    slug: "poultry-biosecurity-natural-disinfection",
-    excerpt: "How natural antimicrobial formulations reduce flock mortality, eliminate foul odors, and prevent secondary respiratory infections in broiler and layer setups.",
-    category: "Poultry Care",
-    author: "Ariviya Research Desk",
-    authorRole: "Biotech Advisory",
-    date: "September 10, 2026",
-    readTime: "5 min read",
-    image: IMAGES.site.sproutHands,
-  },
-];
+import { BLOG_POSTS, BLOG_CATEGORIES } from "@/constants/blog";
+import { Calendar, Clock, ArrowRight, Search } from "lucide-react";
 
 export function BlogSection() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
 
-  const categories = ["All", "Dairy & Cattle", "Pet Health", "Biotech Science", "Poultry Care"];
+  const categories = BLOG_CATEGORIES;
 
   const filteredPosts = BLOG_POSTS.filter((post) => {
     const matchesCategory =
@@ -168,8 +82,8 @@ export function BlogSection() {
                     {filteredPosts[0].date}
                   </span>
                 </div>
-                <h2 className="text-xl sm:text-2xl font-bold text-slate-900 leading-snug">
-                  {filteredPosts[0].title}
+                <h2 className="text-xl sm:text-2xl font-bold text-slate-900 leading-snug hover:text-[#5160a3] transition-colors">
+                  <Link href={`/blog/${filteredPosts[0].slug}`}>{filteredPosts[0].title}</Link>
                 </h2>
                 <p className="text-sm sm:text-[15px] text-slate-600 leading-relaxed font-normal">
                   {filteredPosts[0].excerpt}
@@ -181,15 +95,13 @@ export function BlogSection() {
                   <div className="text-xs font-bold text-slate-900">{filteredPosts[0].author}</div>
                   <div className="text-[11px] text-slate-500">{filteredPosts[0].authorRole}</div>
                 </div>
-                <button
-                  onClick={() => {
-                    alert(`Article: "${filteredPosts[0].title}"\n\nFull technical guide available soon. For clinical inquiries, contact ariviyalabs@gmail.com.`);
-                  }}
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#5160a3] hover:text-[#43518a] cursor-pointer"
+                <Link
+                  href={`/blog/${filteredPosts[0].slug}`}
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#5160a3] hover:text-[#43518a]"
                 >
                   <span>Read Article</span>
                   <ArrowRight className="w-3.5 h-3.5" />
-                </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -228,7 +140,7 @@ export function BlogSection() {
                   </div>
 
                   <h3 className="text-base sm:text-lg font-bold text-slate-900 group-hover:text-[#5160a3] transition-colors line-clamp-2 leading-snug">
-                    {post.title}
+                    <Link href={`/blog/${post.slug}`}>{post.title}</Link>
                   </h3>
 
                   <p className="text-sm sm:text-[15px] text-slate-600 line-clamp-3 leading-relaxed font-normal">
@@ -241,15 +153,13 @@ export function BlogSection() {
                     <span className="font-bold text-slate-800 block">{post.author}</span>
                     <span className="text-[10px] text-slate-500 block">{post.authorRole}</span>
                   </div>
-                  <button
-                    onClick={() => {
-                      alert(`Article: "${post.title}"\n\nFull technical guide available soon. For clinical inquiries, contact ariviyalabs@gmail.com.`);
-                    }}
-                    className="p-2 rounded-lg bg-slate-50 group-hover:bg-[#5160a3] group-hover:text-white text-slate-700 transition-colors cursor-pointer"
-                    title="Read article"
+                  <Link
+                    href={`/blog/${post.slug}`}
+                    className="p-2 rounded-lg bg-slate-50 group-hover:bg-[#5160a3] group-hover:text-white text-slate-700 transition-colors"
+                    aria-label={`Read ${post.title}`}
                   >
                     <ArrowRight className="w-4 h-4" />
-                  </button>
+                  </Link>
                 </div>
               </div>
             </article>

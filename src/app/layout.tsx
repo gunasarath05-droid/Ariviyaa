@@ -9,6 +9,7 @@ import { FloatingContact } from "@/components/FloatingContact";
 import { ProductModal } from "@/components/ProductModal";
 import { SideDrawer } from "@/components/SideDrawer";
 import { SearchModal } from "@/components/SearchModal";
+import { PublicChrome } from "@/components/PublicChrome";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { IMAGES } from "@/constants/images";
 
@@ -101,24 +102,30 @@ export default function RootLayout({
         <AppProvider>
          
 
-          {/* Top navigation header */}
+          {/* Top navigation header (hidden on /admin) */}
           <Suspense fallback={<div className="h-20 bg-white border-b border-slate-100" />}>
-            <Header />
+            <PublicChrome>
+              <Header />
+            </PublicChrome>
           </Suspense>
 
           {/* Main Content */}
           <main className="flex-grow">{children}</main>
 
-          {/* Floating Right-Side WhatsApp & Call Widget */}
-          <FloatingContact />
+          <Suspense fallback={null}>
+            <PublicChrome>
+              {/* Floating Right-Side WhatsApp & Call Widget */}
+              <FloatingContact />
 
-          {/* Interactive Modals & Slide-over Drawers */}
-          <ProductModal />
-          <SideDrawer />
-          <SearchModal />
+              {/* Interactive Modals & Slide-over Drawers */}
+              <ProductModal />
+              <SideDrawer />
+              <SearchModal />
 
-          {/* Footer Component */}
-          <Footer />
+              {/* Footer Component */}
+              <Footer />
+            </PublicChrome>
+          </Suspense>
         </AppProvider>
       </body>
     </html>

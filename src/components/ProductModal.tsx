@@ -3,6 +3,7 @@
 import React from "react";
 import { useApp } from "@/context/AppContext";
 import Image from "next/image";
+import Link from "next/link";
 import {
   X,
   CheckCircle2,
@@ -11,6 +12,7 @@ import {
   Shield,
   Share2,
   ShoppingBag,
+  ArrowRight,
 } from "lucide-react";
 import { AriviyaIcon } from "@/components/AriviyaIcon";
 import { formatPrice, discountPercent } from "@/constants/products";
@@ -186,6 +188,15 @@ export function ProductModal() {
                 <Share2 className="w-4 h-4" />
               </button>
             </div>
+
+            <Link
+              href={`/shop/${selectedProduct.slug}`}
+              onClick={() => setSelectedProduct(null)}
+              className="mt-3 inline-flex items-center gap-1.5 text-sm font-bold text-[#5160a3] hover:underline"
+            >
+              View full details
+              <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
         </div>
       </div>

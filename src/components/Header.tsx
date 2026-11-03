@@ -149,9 +149,9 @@ export function Header() {
           <div className="flex items-center gap-4 sm:gap-8 shrink-0">
             {/* Account Button */}
             <Link
-              href="/contact"
+              href="/login"
               className="flex flex-col items-center justify-center text-slate-800 hover:text-[#5160a3] transition-colors cursor-pointer group"
-              title="Account & Investor Desk"
+              title="Sign in / My Account"
             >
               <User
                 className="w-5 h-5 text-slate-800 group-hover:text-[#5160a3] transition-colors"

@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { useApp } from "@/context/AppContext";
 import { PRODUCTS, formatPrice } from "@/constants/products";
 import {
@@ -249,6 +250,13 @@ export function SideDrawer() {
                       </div>
                     </div>
                   ))}
+                  <Link
+                    href="/wishlist"
+                    onClick={() => setIsSideDrawerOpen(false)}
+                    className="block pt-2 text-center text-xs font-bold text-[#5160a3] hover:underline"
+                  >
+                    View full wishlist
+                  </Link>
                 </div>
               )
             )}
@@ -263,7 +271,7 @@ export function SideDrawer() {
                     Subtotal ({cartCount} {cartCount === 1 ? "item" : "items"})
                   </span>
                   <span className="text-[10px] text-slate-400 font-medium">
-                    Delivery charges confirmed on WhatsApp
+                    Shipping &amp; GST shown at checkout
                   </span>
                 </div>
                 <span className="text-xl font-black text-slate-900">
@@ -271,13 +279,32 @@ export function SideDrawer() {
                 </span>
               </div>
 
-              {/* Big Checkout Button -> Directly to WhatsApp */}
+              {/* Primary actions: full cart page or straight to checkout */}
+              <div className="grid grid-cols-2 gap-2.5">
+                <Link
+                  href="/cart"
+                  onClick={() => setIsSideDrawerOpen(false)}
+                  className="py-3 px-4 rounded-xl bg-white border border-[#D9DFF0] hover:border-[#5160a3] text-slate-800 hover:text-[#5160a3] text-xs sm:text-sm font-bold flex items-center justify-center transition"
+                >
+                  View cart
+                </Link>
+                <Link
+                  href="/checkout"
+                  onClick={() => setIsSideDrawerOpen(false)}
+                  className="py-3 px-4 rounded-xl bg-[#5160a3] hover:bg-[#434f8a] text-white text-xs sm:text-sm font-bold flex items-center justify-center gap-1.5 transition"
+                >
+                  Checkout
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+
+              {/* Secondary: send the cart on WhatsApp */}
               <button
                 onClick={checkoutViaWhatsApp}
-                className="w-full py-3.5 px-6 rounded-xl bg-[#25D366] hover:bg-[#20BD5A] text-white font-extrabold text-xs sm:text-sm tracking-wider uppercase flex items-center justify-center gap-2.5 shadow-lg shadow-emerald-500/25 transition active:scale-98 cursor-pointer"
+                className="w-full py-2.5 px-4 rounded-xl bg-white border border-[#D9DFF0] hover:bg-emerald-50 text-emerald-700 text-xs font-bold flex items-center justify-center gap-2 transition cursor-pointer"
               >
-                <MessageCircle className="w-5 h-5 fill-white" />
-                <span>Proceed To WhatsApp Checkout</span>
+                <MessageCircle className="w-4 h-4" />
+                <span>Or order on WhatsApp</span>
               </button>
 
               <div className="pt-1 flex items-center justify-center gap-1.5 text-[10px] font-semibold text-slate-400">

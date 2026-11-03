@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { useApp } from "@/context/AppContext";
 import {
   PRODUCTS,
@@ -29,7 +30,6 @@ export function FilteredCatalogSection() {
     addToCart,
     wishlist,
     toggleWishlist,
-    setSelectedProduct,
     openWhatsAppInquiry,
   } = useApp();
 
@@ -250,9 +250,8 @@ export function FilteredCatalogSection() {
                     >
                       {/* Product image — click opens quick view */}
                       <div className="relative">
-                        <button
-                          type="button"
-                          onClick={() => setSelectedProduct(product)}
+                        <Link
+                          href={`/shop/${product.slug}`}
                           aria-label={`View details of ${product.name}`}
                           className="relative w-full aspect-square rounded-2xl overflow-hidden bg-white p-4 sm:p-5 flex items-center justify-center cursor-pointer"
                         >
@@ -264,7 +263,7 @@ export function FilteredCatalogSection() {
                             style={{ width: "auto", height: "auto" }}
                             className="max-h-full max-w-full object-contain select-none group-hover:scale-105 transition-transform duration-300"
                           />
-                        </button>
+                        </Link>
 
                         {discountPercent(product) > 0 && (
                           <span className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md bg-[#5160a3] text-white text-[11px] font-semibold">
@@ -291,11 +290,8 @@ export function FilteredCatalogSection() {
                         <span className="text-[11px] font-semibold text-slate-400 line-clamp-1">
                           {product.categoryLabel}
                         </span>
-                        <h3
-                          onClick={() => setSelectedProduct(product)}
-                          className="mt-1 text-sm sm:text-base font-bold text-slate-900 group-hover:text-[#5160a3] transition-colors cursor-pointer line-clamp-2 leading-snug min-h-[2.5rem] sm:min-h-[2.75rem]"
-                        >
-                          {product.name}
+                        <h3 className="mt-1 text-sm sm:text-base font-bold text-slate-900 group-hover:text-[#5160a3] transition-colors line-clamp-2 leading-snug min-h-[2.5rem] sm:min-h-[2.75rem]">
+                          <Link href={`/shop/${product.slug}`}>{product.name}</Link>
                         </h3>
                         <div className="mt-1.5 flex items-baseline justify-center gap-2">
                           <span className="text-base sm:text-lg font-bold text-slate-900">

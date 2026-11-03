@@ -1,9 +1,10 @@
 import React from "react";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { ArrowLeft, AlertCircle, ShieldAlert, Mail, Phone, MapPin } from "lucide-react";
+import { ArrowLeft, AlertCircle, Mail, Phone, MapPin } from "lucide-react";
 import { COMPANY_INFO } from "@/constants/company";
 import { CommonHero } from "@/components/CommonHero";
+import { PolicyTabs } from "@/components/PolicyTabs";
 
 export const metadata: Metadata = {
   title: "Disclaimer",
@@ -50,26 +51,7 @@ export default function DisclaimerPage() {
           </p>
 
           {/* Policy Switcher Tabs */}
-          <div className="pt-4 border-t border-slate-100 flex flex-wrap gap-2">
-            <Link
-              href="/privacy-policy"
-              className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition-colors"
-            >
-              Privacy Policy
-            </Link>
-            <Link
-              href="/terms-and-conditions"
-              className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition-colors"
-            >
-              Terms &amp; Conditions
-            </Link>
-            <Link
-              href="/disclaimer"
-              className="px-4 py-2 rounded-xl bg-[#5160a3] text-white text-xs font-bold shadow-xs"
-            >
-              Disclaimer
-            </Link>
-          </div>
+          <PolicyTabs active="/disclaimer" />
         </div>
 
         {/* Content Body */}
