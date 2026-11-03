@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { IMAGES } from "@/constants/images";
+import Link from "next/link";
 import { AriviyaIcon } from "@/components/AriviyaIcon";
 import {
   CheckCircle2,
@@ -52,18 +53,18 @@ export function FlagshipSection() {
 
   return (
     <section
-      className="w-full py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 font-sans scroll-mt-20 bg-[#F5F7FC] border-b border-[#D9DFF0]"
+      className="w-full section-y px-4 sm:px-6 lg:px-8 font-sans scroll-mt-20 bg-[#F5F7FC] border-b border-[#D9DFF0]"
       id="flagship-products"
     >
       <div className="max-w-7xl mx-auto space-y-4 sm:space-y-6">
         
         <div className="text-center max-w-3xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2 text-xs sm:text-sm font-black uppercase tracking-wider text-[#5160a3]">
+          <div className="eyebrow">
             <AriviyaIcon className="w-4 h-4 text-[#5160a3] shrink-0" />
             <span>Our Products</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight leading-tight">
             Flagship Innovation:{" "}
             <span className="text-[#5160a3]">MammaryO</span>
           </h2>
@@ -106,7 +107,7 @@ export function FlagshipSection() {
                 Invented with NaxPoly® nano-biotechnology
               </span>
 
-              <h3 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+              <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
                 Clean milk production, naturally.
               </h3>
 
@@ -134,13 +135,13 @@ export function FlagshipSection() {
 
             {/* CTA Action Button */}
             <div className="pt-2">
-              <a
+              <Link
                 href="/#contact-section"
-                className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-2xl bg-[#5160a3] hover:bg-[#434f8a] text-white text-xs sm:text-sm font-bold uppercase tracking-wider transition-all shadow-md hover:shadow-lg active:scale-95 cursor-pointer"
+                className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-[10px] bg-[#5160a3] hover:bg-[#434f8a] text-white text-sm font-semibold transition-all shadow-md hover:shadow-lg active:scale-95 cursor-pointer"
               >
                 <span>Inquire About MammaryO</span>
                 <ArrowRight className="w-4 h-4" />
-              </a>
+              </Link>
             </div>
           </div>
 

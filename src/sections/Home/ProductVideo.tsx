@@ -26,7 +26,7 @@ const benefits = [
 export function ProductVideoSection() {
   return (
     <section
-      className="w-full py-12 sm:py-20 px-4 sm:px-6 lg:px-8 font-sans scroll-mt-20 bg-white border-b border-[#D9DFF0]"
+      className="w-full section-y px-4 sm:px-6 lg:px-8 font-sans scroll-mt-20 bg-white border-b border-[#D9DFF0]"
       id="product-video"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -34,12 +34,12 @@ export function ProductVideoSection() {
           {/* Left Column: Copy & Bullet Points */}
           <div className="lg:col-span-6 space-y-6">
             <div className="space-y-3">
-              <div className="inline-flex items-center gap-2 text-xs sm:text-sm font-black uppercase tracking-wider text-[#5160a3]">
+              <div className="eyebrow">
                 <AriviyaIcon className="w-4 h-4 text-[#5160a3] shrink-0" />
                 <span>Product Intro</span>
               </div>
 
-              <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight leading-tight">
+              <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight leading-tight">
                 See MammaryO 
                 <span className="text-[#5160a3]"> In Action</span>
               </h2>
@@ -69,7 +69,7 @@ export function ProductVideoSection() {
                     <strong className="block text-sm font-bold text-slate-900">
                       {title}
                     </strong>
-                    <p className="text-xs text-slate-500 leading-relaxed mt-0.5">
+                    <p className="text-sm text-slate-500 leading-relaxed mt-0.5">
                       {desc}
                     </p>
                   </div>

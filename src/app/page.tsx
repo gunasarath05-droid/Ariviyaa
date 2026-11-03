@@ -3,6 +3,7 @@ import { HeroSection } from "@/sections/Home/Hero";
 import { ProofStripSection } from "@/sections/Home/ProofStrip";
 import { FlagshipSection } from "@/sections/Home/Flagship";
 import { ProductVideoSection } from "@/sections/Home/ProductVideo";
+import { PhotoBandSection } from "@/sections/Home/PhotoBand";
 import { WhoWeServeSection } from "@/sections/Home/WhoWeServe";
 import { InvestorHighlights } from "@/sections/About/InvestorHighlights";
 import {
@@ -23,6 +24,7 @@ export default function HomePage() {
       <ProofStripSection />
       <FlagshipSection />
       <ProductVideoSection />
+      <PhotoBandSection />
       <WhoWeServeSection />
       <InvestorHighlights />
       <ScienceFromThanjavurSection />

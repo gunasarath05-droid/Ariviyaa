@@ -1,11 +1,6 @@
-import React from "react";
+import React, { Suspense } from "react";
 import type { Metadata } from "next";
-import { CommonHero } from "@/components/CommonHero";
-import {
-  ContactHero,
-  ContactFormSection,
-  FaqSection,
-} from "@/sections/Contact";
+import { ContactHero, ContactFormSection, OfficeLocations } from "@/sections/Contact";
 
 export const metadata: Metadata = {
   title: "Contact Us | Customer Care, Dealership & Investor Desk",
@@ -24,13 +19,13 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
-      <CommonHero
-        title="Contact Us"
-        breadcrumb={[{ label: "Home", href: "/" }, { label: "Contact Us" }]}
-        subtitle="Customer Care, Dealership Inquiries & Institutional Investor Desk"
-      />
+      {/* Contact uses its own centred hero with an overlapping contact-info card */}
       <ContactHero />
-      <ContactFormSection />
+      {/* Suspense is required because the form reads ?type= / ?role= from the URL */}
+      <Suspense fallback={<div className="min-h-[600px]" />}>
+        <ContactFormSection />
+      </Suspense>
+      <OfficeLocations />
     </>
   );
 }

@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { IMAGES } from "@/constants/images";
+import Link from "next/link";
 import { AriviyaIcon } from "@/components/AriviyaIcon";
 import {
   Trophy,
@@ -19,6 +20,7 @@ import {
   ExternalLink,
   Sparkles,
   FileCheck,
+  ChevronRight,
 } from "lucide-react";
 
 const events = [
@@ -131,6 +133,19 @@ const certificates = [
     description:
       "Officially recognized among India's Top 500 promising deep-tech startups by marquee venture leaders and AWS.",
   },
+  {
+    id: "iitb-pitch-perfect",
+    title: "Pitch Perfect 2021-22",
+    badge: "WINNER",
+    badgeColor: "bg-sky-600 text-white",
+    awardTitle: "Certificate of Achievement",
+    authority: "E-Club SJMSOM & SINE · IIT Bombay",
+    year: "2021-22",
+    image: IMAGES.awards.iitbPitchPerfect,
+    highlight: "Awarded to Dr. Sivakumar & Team Ariviya",
+    description:
+      "Winners of Pitch Perfect 2021-22, organised by E-Club SJMSOM in collaboration with SINE business incubator, IIT Bombay.",
+  },
 ];
 
 /**
@@ -144,15 +159,15 @@ export function WhereOurScienceRecognisedSection() {
   };
 
   return (
-    <section className="w-full py-16 sm:py-20 lg:py-24 bg-[#F5F7FC] font-sans border-b border-[#D9DFF0]" id="expo-events">
+    <section className="w-full section-y bg-[#F5F7FC] font-sans border-b border-[#D9DFF0]" id="expo-events">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
           <div className="space-y-3 max-w-2xl">
-            <div className="inline-flex items-center gap-2 text-xs sm:text-sm font-black uppercase tracking-wider text-[#5160a3]">
+            <div className="eyebrow">
               <AriviyaIcon className="w-4 h-4 text-[#5160a3] shrink-0" />
               <span>Expo &amp; Events</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-[1.15]">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight leading-[1.15]">
               Where Our Science <br className="hidden sm:inline" />
               <span className="text-[#5160a3]">Gets Recognised</span>
             </h2>
@@ -163,13 +178,13 @@ export function WhereOurScienceRecognisedSection() {
           </div>
 
           <div>
-            <a
+            <Link
               href="/#contact-section"
-              className="inline-flex items-center gap-2.5 px-7 py-3 rounded-full bg-[#5160a3] hover:bg-[#434f8a] text-white text-xs sm:text-sm font-bold tracking-wide uppercase shadow-sm hover:shadow-md transition-all active:scale-95 cursor-pointer"
+              className="inline-flex items-center gap-2.5 px-7 py-3 rounded-[10px] bg-[#5160a3] hover:bg-[#434f8a] text-white text-sm font-semibold shadow-sm hover:shadow-md transition-all active:scale-95 cursor-pointer"
             >
               <span>Meet Us At An Event</span>
               <ArrowRight className="w-4 h-4" />
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -205,7 +220,7 @@ export function WhereOurScienceRecognisedSection() {
 
               {/* Event Details */}
               <div className="p-5 flex-1 flex flex-col justify-between space-y-3">
-                <h3 className="text-base sm:text-lg font-black text-slate-900 group-hover:text-[#5160a3] transition-colors leading-snug">
+                <h3 className="text-base sm:text-lg font-bold text-slate-900 group-hover:text-[#5160a3] transition-colors leading-snug">
                   {event.title}
                 </h3>
                 <div className="flex items-center gap-1.5 text-xs text-slate-500 font-medium">
@@ -228,7 +243,7 @@ export function AchievementsAwardsSection() {
   const [selectedCert, setSelectedCert] = useState<(typeof certificates)[0] | null>(null);
 
   return (
-    <section className="w-full py-16 sm:py-20 lg:py-24 bg-white font-sans border-b border-[#D9DFF0]" id="awards">
+    <section className="w-full section-y bg-white font-sans border-b border-[#D9DFF0]" id="awards">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 sm:space-y-16">
         
         {/* ========================================================================= */}
@@ -236,14 +251,14 @@ export function AchievementsAwardsSection() {
         {/* ========================================================================= */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 bg-[#F5F7FC] p-6 sm:p-8 lg:p-10 rounded-3xl border border-[#D9DFF0]">
           <div className="space-y-3 max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#5160a3]/10 text-xs font-black uppercase tracking-wider text-[#5160a3]">
+            <div className="eyebrow">
               <Trophy className="w-4 h-4 text-[#5160a3]" />
               <span>Verified Accreditations &amp; Awards</span>
             </div>
-            <h2 className="text-xl sm:text-2xl lg:text-3xl font-black text-slate-900 tracking-tight leading-tight">
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900 tracking-tight leading-tight">
               National Honors &amp; <span className="text-[#5160a3]">Official Certificates</span>
             </h2>
-            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+            <p className="text-sm sm:text-[15px] text-slate-600 leading-relaxed font-normal">
               Validated and awarded by Startup India, Invest India, Govt. of Tamil Nadu (StartupTN), and premier innovation challenges across India.
             </p>
           </div>
@@ -269,64 +284,44 @@ export function AchievementsAwardsSection() {
         {/* ========================================================================= */}
         {/* HERO SECTION: CERTIFICATES FRONT AND CENTER (PRIMARY FOCUS)               */}
         {/* ========================================================================= */}
-        <div className="space-y-6">
+        <div className="space-y-3">
+          <p className="lg:hidden flex items-center justify-end gap-1 text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+            <span>Swipe to see all {certificates.length}</span>
+            <ChevronRight className="w-3.5 h-3.5" />
+          </p>
 
-          {/* 3 Prominent Certificate Display Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
+          {/* Certificate cards: swipeable row on mobile/tablet, 4-column grid on desktop */}
+          <div className="flex lg:grid lg:grid-cols-4 gap-5 lg:gap-6 items-stretch overflow-x-auto lg:overflow-visible snap-x snap-mandatory no-scrollbar -mx-4 px-4 sm:-mx-6 sm:px-6 lg:mx-0 lg:px-0 pt-2 pb-4">
             {certificates.map((cert) => (
               <article
                 key={cert.id}
                 onClick={() => setSelectedCert(cert)}
-                className="group bg-[#F8FAFC] hover:bg-white rounded-3xl border-2 border-[#D9DFF0] hover:border-[#5160a3] p-4 sm:p-5 shadow-xs hover:shadow-2xl transition-all duration-300 flex flex-col justify-between cursor-pointer hover:-translate-y-2 relative overflow-hidden"
+                className="group shrink-0 w-[82%] sm:w-[46%] md:w-[40%] lg:w-auto snap-start bg-[#F8FAFC] hover:bg-white rounded-3xl border-2 border-[#D9DFF0] hover:border-[#5160a3] p-3 sm:p-4 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col cursor-pointer relative overflow-hidden"
               >
-                {/* Glowing top ribbon accent */}
-                <div className="space-y-4">
-                  
-                  {/* Framed Certificate Document Canvas */}
-                  <div className="relative aspect-[3/3.8] w-full rounded-2xl overflow-hidden bg-white border border-slate-200/90 shadow-sm group-hover:shadow-lg transition-all duration-300 flex items-center justify-center p-2 sm:p-2.5">
-                    <img
-                      src={cert.image}
-                      alt={cert.title}
-                      className="w-full h-full object-contain select-none group-hover:scale-[1.03] transition-transform duration-500"
-                      onError={(e) => {
-                        (e.currentTarget as HTMLElement).style.display = "none";
-                      }}
-                    />
+                {/* Certificate image only — badge, authority and description open in the viewer */}
+                <div className="relative aspect-4/3 w-full rounded-2xl overflow-hidden bg-white border border-slate-200/90 shadow-sm group-hover:shadow-lg transition-all duration-300 flex items-center justify-center p-2">
+                  <img
+                    src={cert.image}
+                    alt={cert.title}
+                    className="w-full h-full object-contain select-none group-hover:scale-[1.03] transition-transform duration-500"
+                  />
 
-                    {/* Floating Grant/Winner Tag Over Certificate */}
-                    <div className="absolute top-2.5 left-2.5 z-10">
-                      <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10.5px] font-black uppercase tracking-wider shadow-md ${cert.badgeColor}`}>
-                        <Award className="w-3.5 h-3.5" />
-                        <span>{cert.badge}</span>
-                      </span>
-                    </div>
-
-                    {/* Interactive Zoom Hover Overlay */}
-                    <div className="absolute inset-0 bg-[#5160a3]/20 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/95 text-slate-900 text-xs font-black shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                        <ZoomIn className="w-4 h-4 text-[#5160a3]" />
-                        <span>View</span>
-                      </span>
-                    </div>
+                  {/* Interactive Zoom Hover Overlay */}
+                  <div className="absolute inset-0 bg-[#5160a3]/20 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/95 text-slate-900 text-xs font-black shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                      <ZoomIn className="w-4 h-4 text-[#5160a3]" />
+                      <span>View Details</span>
+                    </span>
                   </div>
+                </div>
 
-                  {/* Certificate Information */}
-                  <div className="space-y-1.5 pt-1">
-                    <div className="flex items-center justify-between text-xs">
-                      <span className="font-bold text-[#5160a3]">{cert.authority}</span>
-                      <span className="px-2 py-0.5 rounded-md bg-slate-200/70 text-slate-700 font-bold text-[11px]">
-                        {cert.year}
-                      </span>
-                    </div>
-                    
-                    <h4 className="text-lg sm:text-xl font-black text-slate-900 group-hover:text-[#5160a3] transition-colors leading-snug">
-                      {cert.title}
-                    </h4>
-
-                    <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                      {cert.description}
-                    </p>
-                  </div>
+                <div className="pt-3 flex items-start justify-between gap-2">
+                  <h4 className="text-sm sm:text-base font-bold text-slate-900 group-hover:text-[#5160a3] transition-colors leading-snug">
+                    {cert.title}
+                  </h4>
+                  <span className="shrink-0 px-2 py-0.5 rounded-md bg-slate-200/70 text-slate-700 font-bold text-[11px]">
+                    {cert.year}
+                  </span>
                 </div>
               </article>
             ))}
@@ -395,7 +390,7 @@ export function AchievementsAwardsSection() {
                   <FileCheck className="w-5 h-5" />
                 </span>
                 <div>
-                  <h3 className="text-base sm:text-lg font-black text-slate-900 leading-tight">
+                  <h3 className="text-base sm:text-lg font-bold text-slate-900 leading-tight">
                     {selectedCert.title}
                   </h3>
                   <p className="text-xs text-slate-500">
@@ -414,31 +409,37 @@ export function AchievementsAwardsSection() {
             </div>
 
             {/* Modal Body: Large Certificate Image */}
-            <div className="flex-1 overflow-y-auto p-4 sm:p-6 bg-slate-100 flex items-center justify-center min-h-[360px] sm:min-h-[480px]">
-              <div className="relative w-full max-w-xl aspect-[3/4] bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-300/80 p-2 sm:p-3 flex items-center justify-center">
+            <div className="flex-1 overflow-y-auto">
+              <div className="p-4 sm:p-6 bg-slate-100 flex items-center justify-center">
                 <img
                   src={selectedCert.image}
                   alt={selectedCert.title}
-                  className="w-full h-full object-contain select-none"
+                  className="max-w-full max-h-[55vh] w-auto h-auto object-contain select-none bg-white rounded-2xl shadow-xl border border-slate-300/80 p-2 sm:p-3"
                 />
+              </div>
+
+              {/* Certificate Details */}
+              <div className="p-4 sm:p-6 bg-white space-y-3">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10.5px] font-black uppercase tracking-wider ${selectedCert.badgeColor}`}>
+                    <Award className="w-3.5 h-3.5" />
+                    <span>{selectedCert.badge}</span>
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-emerald-600">
+                    <CheckCircle2 className="w-3.5 h-3.5" />
+                    {selectedCert.awardTitle}
+                  </span>
+                </div>
+                <p className="text-sm text-slate-700 leading-relaxed">{selectedCert.description}</p>
+                <p className="text-xs font-semibold text-slate-500">{selectedCert.highlight}</p>
               </div>
             </div>
 
             {/* Modal Footer */}
-            <div className="p-4 sm:p-5 border-t border-slate-100 bg-white flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-              <div className="space-y-0.5">
-                <span className="text-xs font-black uppercase tracking-wider text-emerald-600 flex items-center gap-1.5">
-                  <CheckCircle2 className="w-3.5 h-3.5" />
-                  {selectedCert.awardTitle}
-                </span>
-                <p className="text-xs text-slate-600">
-                  {selectedCert.highlight}
-                </p>
-              </div>
-
+            <div className="p-4 sm:p-5 border-t border-slate-100 bg-white flex justify-end">
               <button
                 onClick={() => setSelectedCert(null)}
-                className="px-6 py-2.5 rounded-xl bg-[#5160a3] hover:bg-[#434f8a] text-white text-xs font-bold transition active:scale-95 cursor-pointer self-end sm:self-auto"
+                className="px-6 py-2.5 rounded-[10px] bg-[#5160a3] hover:bg-[#434f8a] text-white text-sm font-semibold transition active:scale-95 cursor-pointer"
               >
                 Close Viewer
               </button>

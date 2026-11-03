@@ -149,9 +149,9 @@ export function Header() {
           <div className="flex items-center gap-4 sm:gap-8 shrink-0">
             {/* Account Button */}
             <Link
-              href="/contact"
+              href="/login"
               className="flex flex-col items-center justify-center text-slate-800 hover:text-[#5160a3] transition-colors cursor-pointer group"
-              title="Account & Investor Desk"
+              title="Sign in / My Account"
             >
               <User
                 className="w-5 h-5 text-slate-800 group-hover:text-[#5160a3] transition-colors"
@@ -322,16 +322,30 @@ export function Header() {
 
                 return (
                   <Link
-                    key={link.name}
-                    href={link.href || "/"}
-                    className={`px-3.5 py-2 rounded-lg text-sm lg:text-[15px] font-semibold transition-all duration-200 ${
-                      isCurrentActive
-                        ? "bg-white/15 text-white font-bold shadow-xs border border-white/20"
-                        : "text-slate-200 hover:text-white hover:bg-white/10"
-                    }`}
-                  >
-                    {link.name}
-                  </Link>
+  key={link.name}
+  href={link.href || "/"}
+  className={`group relative px-3.5 text-sm lg:text-[15px] font-semibold
+    transition-all duration-300 ease-out
+    ${
+      isCurrentActive
+        ? "text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.25)]"
+        : "text-slate-200 hover:text-white"
+    }
+
+    after:absolute after:left-1/2 after:-bottom-0.5
+    after:h-[2px] after:-translate-x-1/2
+    after:rounded-full after:bg-white
+    after:transition-all after:duration-300 after:ease-out
+
+    ${
+      isCurrentActive
+        ? "after:w-[calc(100%-1.75rem)]"
+        : "after:w-0 group-hover:after:w-[calc(100%-1.75rem)]"
+    }
+  `}
+>
+  {link.name}
+</Link>
                 );
               })}
             </div>

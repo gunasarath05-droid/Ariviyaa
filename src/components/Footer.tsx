@@ -20,6 +20,16 @@ import {
   FaWhatsapp,
 } from "react-icons/fa";
 
+const CUSTOMER_CARE_LINKS = [
+  { label: "My Account", href: "/account" },
+  { label: "Track Order", href: "/account/orders" },
+  { label: "Returns", href: "/return-order" },
+  { label: "FAQ", href: "/faq" },
+  { label: "Shipping Policy", href: "/shipping-policy" },
+  { label: "Refund Policy", href: "/refund-policy" },
+  { label: "Store Locations", href: "/store-locations" },
+];
+
 export function Footer() {
   return (
     <footer className="bg-[#F5F7FC] text-slate-700 font-sans border-t border-[#D9DFF0] relative overflow-hidden">
@@ -27,7 +37,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
           
           {/* Col 1: Brand & Bio (4 cols) */}
-          <div className="lg:col-span-4 space-y-3">
+          <div className="lg:col-span-3 space-y-3">
             <Link href="/" className="inline-block group">
               <img
                 src={IMAGES.logoPng}
@@ -92,6 +102,23 @@ export function Footer() {
             </ul>
           </div>
 
+          {/* Col 3: Customer care & policies */}
+          <div className="lg:col-span-2 space-y-3">
+            <h4 className="text-xs font-black uppercase tracking-wider text-[#5160a3] border-l-2 border-[#5160a3] pl-2.5">
+              Customer Care
+            </h4>
+            <ul className="space-y-2 text-xs sm:text-sm text-slate-600 font-medium">
+              {CUSTOMER_CARE_LINKS.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="hover:text-[#5160a3] transition-colors flex items-center gap-1">
+                    <ChevronRight className="w-3 h-3 text-[#5160a3]" />
+                    <span>{link.label}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
           {/* Col 3: Contact Info (3.5 cols) */}
           <div className="lg:col-span-3 space-y-3">
             <h4 className="text-xs font-black uppercase tracking-wider text-[#5160a3] border-l-2 border-[#5160a3] pl-2.5">
@@ -132,8 +159,8 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Col 4: Connect & Socials (2.5 cols) */}
-          <div className="lg:col-span-3 space-y-3">
+          {/* Col 4: Connect & Socials */}
+          <div className="lg:col-span-2 space-y-3">
             <h4 className="text-xs font-black uppercase tracking-wider text-[#5160a3] border-l-2 border-[#5160a3] pl-2.5">
               Connect With Us
             </h4>

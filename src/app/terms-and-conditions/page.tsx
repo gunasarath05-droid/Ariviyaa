@@ -1,8 +1,10 @@
 import React from "react";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { ArrowLeft, FileText, CheckCircle2, Mail, Phone, MapPin } from "lucide-react";
+import { ArrowLeft, FileText, Mail, Phone, MapPin } from "lucide-react";
 import { COMPANY_INFO } from "@/constants/company";
+import { CommonHero } from "@/components/CommonHero";
+import { PolicyTabs } from "@/components/PolicyTabs";
 
 export const metadata: Metadata = {
   title: "Terms & Conditions",
@@ -15,8 +17,14 @@ export const metadata: Metadata = {
 
 export default function TermsAndConditionsPage() {
   return (
-    <div className="w-full bg-[#FAF7F2] min-h-screen py-12 sm:py-16 px-4 sm:px-6 lg:px-8 font-sans">
-      <div className="max-w-4xl mx-auto space-y-8 sm:space-y-10">
+    <>
+      <CommonHero
+        title="Terms & Conditions"
+        breadcrumb={[{ label: "Home", href: "/" }, { label: "Terms & Conditions" }]}
+        subtitle="Review the terms, order guidelines, and conditions of use for Ariviya platforms"
+      />
+      <div className="w-full bg-[#F5F7FC] min-h-screen py-10 sm:py-14 px-4 sm:px-6 lg:px-8 font-sans">
+        <div className="max-w-4xl mx-auto space-y-8 sm:space-y-10">
         {/* Navigation Breadcrumb */}
         <div className="flex items-center justify-between">
           <Link
@@ -43,26 +51,7 @@ export default function TermsAndConditionsPage() {
           </p>
 
           {/* Policy Switcher Tabs */}
-          <div className="pt-4 border-t border-slate-100 flex flex-wrap gap-2">
-            <Link
-              href="/privacy-policy"
-              className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition-colors"
-            >
-              Privacy Policy
-            </Link>
-            <Link
-              href="/terms-and-conditions"
-              className="px-4 py-2 rounded-xl bg-[#5160a3] text-white text-xs font-bold shadow-xs"
-            >
-              Terms &amp; Conditions
-            </Link>
-            <Link
-              href="/disclaimer"
-              className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition-colors"
-            >
-              Disclaimer
-            </Link>
-          </div>
+          <PolicyTabs active="/terms-and-conditions" />
         </div>
 
         {/* Content Body */}
@@ -149,5 +138,6 @@ export default function TermsAndConditionsPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }

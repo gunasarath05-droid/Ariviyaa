@@ -20,16 +20,16 @@ import {
 
 export function InvestorHighlights() {
   return (
-    <section className="w-full py-16 sm:py-20 lg:py-24 bg-white font-sans border-b border-[#D9DFF0]" id="investor-highlights">
+    <section className="w-full section-y bg-white font-sans border-b border-[#D9DFF0]" id="investor-highlights">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 sm:space-y-16">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#5160a3]/10 text-[#5160a3] text-xs font-bold uppercase tracking-wider">
+          <div className="eyebrow">
             <TrendingUp className="w-4 h-4 text-[#5160a3]" />
             <span>Investment & Institutional Backing</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-[1.15]">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight leading-[1.15]">
             Bridging Deep-Tech Nanotechnology with a{" "}
             <span className="text-[#5160a3]">Multi-Billion Dollar Market</span>
           </h2>
@@ -46,8 +46,8 @@ export function InvestorHighlights() {
               <div className="w-12 h-12 rounded-xl bg-[#5160a3]/10 text-[#5160a3] flex items-center justify-center">
                 <Target className="w-6 h-6" />
               </div>
-              <h3 className="text-lg font-black text-slate-900">₹7,000+ Cr Market Loss</h3>
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              <h3 className="text-lg font-bold text-slate-900">₹7,000+ Cr Market Loss</h3>
+              <p className="text-sm sm:text-[15px] text-slate-600 leading-relaxed">
                 Bovine mastitis costs Indian dairy farmers over ₹7,000 Crores every year in discarded milk and cow loss. Our patented non-antibiotic dip prevents infection at origin.
               </p>
             </div>
@@ -62,8 +62,8 @@ export function InvestorHighlights() {
               <div className="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-600 flex items-center justify-center">
                 <ShieldCheck className="w-6 h-6" />
               </div>
-              <h3 className="text-lg font-black text-slate-900">Patented NaxPoly® IP</h3>
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              <h3 className="text-lg font-bold text-slate-900">Patented NaxPoly® IP</h3>
+              <p className="text-sm sm:text-[15px] text-slate-600 leading-relaxed">
                 Indian Patent Granted (2024) for our green-synthesis bio-polymer matrix. Zero chemical residue, 100% biodegradable, and leaves no antibiotic footprint in commercial milk.
               </p>
             </div>
@@ -78,8 +78,8 @@ export function InvestorHighlights() {
               <div className="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-600 flex items-center justify-center">
                 <Award className="w-6 h-6" />
               </div>
-              <h3 className="text-lg font-black text-slate-900">StartupTN & TANUVAS Backed</h3>
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              <h3 className="text-lg font-bold text-slate-900">StartupTN & TANUVAS Backed</h3>
+              <p className="text-sm sm:text-[15px] text-slate-600 leading-relaxed">
                 Funded by StartupTN TANSEED 3.0 seed grant from Govt of Tamil Nadu. Field efficacy tested and validated by veterinary doctors at TANUVAS TRPVB.
               </p>
             </div>
@@ -94,8 +94,8 @@ export function InvestorHighlights() {
               <div className="w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-600 flex items-center justify-center">
                 <Globe2 className="w-6 h-6" />
               </div>
-              <h3 className="text-lg font-black text-slate-900">B2B + D2C Scalability</h3>
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              <h3 className="text-lg font-bold text-slate-900">B2B + D2C Scalability</h3>
+              <p className="text-sm sm:text-[15px] text-slate-600 leading-relaxed">
                 Omnichannel expansion strategy covering dairy farmer federations, retail veterinary clinics, poultry integrators, and pet parent e-commerce.
               </p>
             </div>
@@ -112,7 +112,7 @@ export function InvestorHighlights() {
               <BarChart3 className="w-3.5 h-3.5" />
               <span>Investment & Partnership Desk</span>
             </div>
-            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight leading-tight">
+            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight leading-tight">
               Partner with Ariviya to Build the Future of Sustainable Animal Health
             </h3>
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
@@ -122,7 +122,7 @@ export function InvestorHighlights() {
             <div className="flex flex-wrap items-center gap-4 pt-4">
               <Link
                 href="/contact?role=investor"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#5160a3] hover:bg-[#43518a] text-white text-sm font-bold shadow-md hover:shadow-lg transition-all"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-[10px] bg-[#5160a3] hover:bg-[#43518a] text-white text-sm font-semibold shadow-md hover:shadow-lg transition-all"
               >
                 <Mail className="w-4 h-4" />
                 <span>Contact Investor Relations</span>

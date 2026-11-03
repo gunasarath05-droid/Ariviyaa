@@ -2,16 +2,15 @@ import React from "react";
 import type { Metadata } from "next";
 import { CommonHero } from "@/components/CommonHero";
 import {
-  InvestorHighlights,
   ScienceFromThanjavurSection,
   AchievementsAwardsSection,
-  WhereOurScienceRecognisedSection,
   TeamBehindAriviyaaSection,
   WhyChooseUsSection,
 } from "@/sections/About";
-import { FlagshipSection } from "@/sections/Home/Flagship";
-import { FaqSection } from "@/sections/Home/Faq";
 import { CtaSection } from "@/sections/Home/Cta";
+
+// About covers what Home doesn't: company story, differentiators, certificates & funding, team.
+// Investor highlights, events, flagship product and FAQ live on the Home page.
 
 export const metadata: Metadata = {
   title: "About Us | Deep-Tech Veterinary Nanotechnology & Investor Credentials",
@@ -39,12 +38,8 @@ export default function AboutPage() {
       />
       <ScienceFromThanjavurSection />
       <WhyChooseUsSection />
-      <InvestorHighlights />
       <AchievementsAwardsSection />
-      <WhereOurScienceRecognisedSection />
       <TeamBehindAriviyaaSection />
-      <FlagshipSection />
-      <FaqSection />
       <CtaSection />
     </>
   );

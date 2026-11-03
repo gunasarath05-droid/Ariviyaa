@@ -16,17 +16,20 @@ export const IMAGES = {
   hero: "/assets/Hero.jpg",
   heroCutout: "/assets/Hero.jpg",
   farmLandscape: "/assets/Hero.jpg",
-  petStoreBanner: "/assets/common-hero-banner.png",
+  petStoreBanner: "/assets/product-hero.png",
   friendlyPetsRow: "/assets/categories/avatar_dog.jpg",
   aboutPuppy: "/assets/categories/avatar_dog.jpg",
-  contactBanner: "/assets/common-hero-banner.png",
-  commonHeroBanner: "/assets/common-hero-banner.png",
+  contactBanner: "/assets/product-hero.png",
+  commonHeroBanner: "/assets/product-hero.png",
+  productHeroBanner: "/assets/product-hero.png",
+  productImage: "/assets/Product Image.png",
   productShowcase: "/assets/images.jpg",
   imagesJpg: "/assets/images.jpg",
 
   // Awards & Recognition (/assets/awards)
   awards: {
     ariviyaDoc: "/assets/awards/Ariviya 1_page-0001.jpg",
+    iitbPitchPerfect: "/assets/awards/Ariviya 1_page-0001.jpg",
     tanseed: "/assets/awards/award-tanseed.jpg",
     dettolWinner: "/assets/awards/cert-dettol-winner.jpg",
     kuberansHouse: "/assets/awards/cert-kuberans-house.jpg",
@@ -38,7 +41,7 @@ export const IMAGES = {
     nabl: "/assets/Badges/badge-nabl.jpg",
     patented: "/assets/Badges/badge-patented.jpg",
     tanuvas: "/assets/Badges/badge-tanuvas.jpg",
-    glp: "/assets/Badges/badge-glp.jpeg",
+    glp: "/assets/Badges/badge-glp.png",
   },
 
   // Events & Summits (/assets/Events)
@@ -61,8 +64,8 @@ export const IMAGES = {
     dog: "/assets/categories/avatar_dog.jpg",
     cat: "/assets/categories/avatar_cat.jpg",
     poultry: "/assets/categories/avatar_poultry.jpg",
-    floor: "/assets/categories/avatar_floor.jpg",
-    general: "/assets/categories/avatar_general.jpg",
+    floor: "/assets/products/cleanida_square.jpg",
+    general: "/assets/products/petenviron.jpg",
     goat: "/assets/categories/avatar_cow.jpg",
   },
 
@@ -102,7 +105,7 @@ export const IMAGES = {
     tiksha: "/assets/products/tiksha.jpg",
     tikshaLabel: "/assets/products/tiksha_label.png",
     tikifence: "/assets/products/tiksha.jpg",
-    cleanida: "/assets/products/tiksha.jpg",
+    cleanida: "/assets/products/cleanida_square.jpg",
 
     // Catalog aliases
     pe3: "/assets/products/petenviron.jpg",

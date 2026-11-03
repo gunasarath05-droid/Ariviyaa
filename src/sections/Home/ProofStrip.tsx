@@ -21,7 +21,7 @@ export function ProofStripSection() {
                 <Icon className="w-5 h-5" />
               </div>
               <div>
-                <strong className="block text-sm sm:text-base font-black text-slate-900 leading-tight">
+                <strong className="block text-sm sm:text-base font-bold text-slate-900 leading-tight">
                   {value}
                 </strong>
                 <span className="text-[11px] sm:text-xs text-slate-500 font-medium leading-tight">

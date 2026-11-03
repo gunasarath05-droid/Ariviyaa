@@ -29,7 +29,7 @@ export function CategoriesSection() {
       id: "dog",
       filterId: "pet",
       title: "Dogs",
-      subLabel: "10 Dedicated Formulas",
+      subLabel: "Wound, Skin, Ear & Tick",
       image: IMAGES.categories.dog,
       bgTint: "bg-[#F3F4F6]",
       division: "Animal Healthcare",
@@ -49,11 +49,11 @@ export function CategoriesSection() {
       id: "birds",
       filterId: "poultry",
       title: "Birds",
-      subLabel: "3 Flock Biosecurity",
+      subLabel: "Coming Soon",
       image: IMAGES.categories.poultry,
       bgTint: "bg-[#F3F4F6]",
       division: "Animal Healthcare",
-      tag: "3 Products",
+      tag: "Coming Soon",
     },
     {
       id: "floor",
@@ -69,11 +69,11 @@ export function CategoriesSection() {
       id: "general",
       filterId: "general",
       title: "General Care",
-      subLabel: "Disinfectant & Hands",
+      subLabel: "Surface Disinfectant",
       image: IMAGES.categories.general,
       bgTint: "bg-[#F3F4F6]",
       division: "General Care",
-      tag: "3 Products",
+      tag: "1 Product",
     },
   ];
 
@@ -106,7 +106,7 @@ export function CategoriesSection() {
 
       {/* Category Title & Subtitle */}
       <div className="mt-3 space-y-0.5">
-        <h3 className="text-xs sm:text-sm font-black text-slate-900 group-hover:text-[#5160a3] transition-colors leading-tight">
+        <h3 className="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-[#5160a3] transition-colors leading-tight">
           {cat.title}
         </h3>
         <p className="text-[10px] sm:text-[11px] text-slate-400 font-medium truncate max-w-[120px]">
@@ -117,17 +117,17 @@ export function CategoriesSection() {
   );
 
   return (
-    <section className="w-full py-14 sm:py-20 px-4 sm:px-6 lg:px-8 bg-white font-sans border-b border-slate-100">
+    <section className="w-full section-y px-4 sm:px-6 lg:px-8 bg-white font-sans border-b border-slate-100">
       <div className="max-w-7xl mx-auto space-y-8 sm:space-y-10">
         {/* Section Header with Navigation Arrows */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-center">
           <div className="space-y-2">
-            <div className="inline-flex items-center gap-2 text-xs sm:text-sm font-black uppercase tracking-wider text-[#5160a3]">
+            <div className="eyebrow">
               <AriviyaIcon className="w-4 h-4 text-[#5160a3] shrink-0" />
               <span>Shop By Category</span>
             </div>
 
-            <h2 className="text-2xl sm:text-4xl md:text-5xl font-black text-slate-900 tracking-tight font-serif sm:font-sans">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-slate-900 tracking-tight font-serif sm:font-sans">
               Best Products For Healthy Animals
             </h2>
           </div>
