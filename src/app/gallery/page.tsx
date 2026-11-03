@@ -1,7 +1,6 @@
 import React from "react";
 import type { Metadata } from "next";
 import { CommonHero } from "@/components/CommonHero";
-import { IMAGES } from "@/constants/images";
 import { GallerySection } from "@/sections/Media";
 import { CtaSection } from "@/sections/Home/Cta";
 
@@ -22,8 +21,6 @@ export default function GalleryPage() {
   return (
     <>
       <CommonHero
-        image={IMAGES.events.dettolPitch}
-        imagePosition="center 30%"
         title="Media & Gallery"
         breadcrumb={[{ label: "Home", href: "/" }, { label: "Gallery" }]}
         subtitle="Visual documentation of our lab breakthroughs, awards, and field demonstrations"

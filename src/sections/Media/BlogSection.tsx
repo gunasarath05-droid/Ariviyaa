@@ -110,22 +110,6 @@ export function BlogSection() {
   return (
     <section className="w-full section-y bg-[#F5F7FC] font-sans border-b border-[#D9DFF0]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
-        
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3">
-          <div className="eyebrow">
-            <BookOpen className="w-4 h-4" />
-            <span>Ariviya Science & Field Knowledge</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight leading-[1.15]">
-            Veterinary Insights, Field Guides & <br />
-            <span className="text-[#5160a3]">Biotech Breakthroughs</span>
-          </h2>
-          <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
-            Written by veterinary doctors, polymer research scientists, and livestock healthcare pioneers.
-          </p>
-        </div>
-
         {/* Filters & Search */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 bg-white p-3 sm:p-4 rounded-2xl border border-[#D9DFF0] shadow-2xs">
           {/* Category Tabs */}

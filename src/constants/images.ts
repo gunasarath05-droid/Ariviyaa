@@ -16,11 +16,13 @@ export const IMAGES = {
   hero: "/assets/Hero.jpg",
   heroCutout: "/assets/Hero.jpg",
   farmLandscape: "/assets/Hero.jpg",
-  petStoreBanner: "/assets/common-hero-banner.png",
+  petStoreBanner: "/assets/product-hero.png",
   friendlyPetsRow: "/assets/categories/avatar_dog.jpg",
   aboutPuppy: "/assets/categories/avatar_dog.jpg",
-  contactBanner: "/assets/common-hero-banner.png",
-  commonHeroBanner: "/assets/common-hero-banner.png",
+  contactBanner: "/assets/product-hero.png",
+  commonHeroBanner: "/assets/product-hero.png",
+  productHeroBanner: "/assets/product-hero.png",
+  productImage: "/assets/Product Image.png",
   productShowcase: "/assets/images.jpg",
   imagesJpg: "/assets/images.jpg",
 
@@ -39,7 +41,7 @@ export const IMAGES = {
     nabl: "/assets/Badges/badge-nabl.jpg",
     patented: "/assets/Badges/badge-patented.jpg",
     tanuvas: "/assets/Badges/badge-tanuvas.jpg",
-    glp: "/assets/Badges/badge-glp.jpeg",
+    glp: "/assets/Badges/badge-glp.png",
   },
 
   // Events & Summits (/assets/Events)

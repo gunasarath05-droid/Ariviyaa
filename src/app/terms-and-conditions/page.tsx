@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { ArrowLeft, FileText, CheckCircle2, Mail, Phone, MapPin } from "lucide-react";
 import { COMPANY_INFO } from "@/constants/company";
+import { CommonHero } from "@/components/CommonHero";
 
 export const metadata: Metadata = {
   title: "Terms & Conditions",
@@ -15,8 +16,14 @@ export const metadata: Metadata = {
 
 export default function TermsAndConditionsPage() {
   return (
-    <div className="w-full bg-[#FAF7F2] min-h-screen py-12 sm:py-16 px-4 sm:px-6 lg:px-8 font-sans">
-      <div className="max-w-4xl mx-auto space-y-8 sm:space-y-10">
+    <>
+      <CommonHero
+        title="Terms & Conditions"
+        breadcrumb={[{ label: "Home", href: "/" }, { label: "Terms & Conditions" }]}
+        subtitle="Review the terms, order guidelines, and conditions of use for Ariviya platforms"
+      />
+      <div className="w-full bg-[#F5F7FC] min-h-screen py-10 sm:py-14 px-4 sm:px-6 lg:px-8 font-sans">
+        <div className="max-w-4xl mx-auto space-y-8 sm:space-y-10">
         {/* Navigation Breadcrumb */}
         <div className="flex items-center justify-between">
           <Link
@@ -149,5 +156,6 @@ export default function TermsAndConditionsPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }

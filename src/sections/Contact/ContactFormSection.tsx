@@ -128,20 +128,6 @@ export function ContactFormSection() {
                 </li>
               ))}
             </ul>
-
-            <div className="rounded-2xl bg-[#F5F7FC] border border-[#D9DFF0] p-4 space-y-2 text-xs sm:text-sm text-slate-600">
-              <p className="flex items-center gap-2">
-                <Clock className="w-4 h-4 text-[#5160a3] shrink-0" />
-                <span>Mon – Sat, 9:00 AM – 6:30 PM IST</span>
-              </p>
-              <p className="flex items-start gap-2">
-                <Building2 className="w-4 h-4 text-[#5160a3] shrink-0 mt-0.5" />
-                <span>
-                  {COMPANY_INFO.address.line1} {COMPANY_INFO.address.city},{" "}
-                  {COMPANY_INFO.address.state} {COMPANY_INFO.address.pincode}
-                </span>
-              </p>
-            </div>
           </div>
 
           {/* Right: form card */}

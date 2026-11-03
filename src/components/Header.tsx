@@ -322,16 +322,30 @@ export function Header() {
 
                 return (
                   <Link
-                    key={link.name}
-                    href={link.href || "/"}
-                    className={`px-3.5 py-2 rounded-lg text-sm lg:text-[15px] font-semibold transition-all duration-200 ${
-                      isCurrentActive
-                        ? "bg-white/15 text-white font-bold shadow-xs border border-white/20"
-                        : "text-slate-200 hover:text-white hover:bg-white/10"
-                    }`}
-                  >
-                    {link.name}
-                  </Link>
+  key={link.name}
+  href={link.href || "/"}
+  className={`group relative px-3.5 text-sm lg:text-[15px] font-semibold
+    transition-all duration-300 ease-out
+    ${
+      isCurrentActive
+        ? "text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.25)]"
+        : "text-slate-200 hover:text-white"
+    }
+
+    after:absolute after:left-1/2 after:-bottom-0.5
+    after:h-[2px] after:-translate-x-1/2
+    after:rounded-full after:bg-white
+    after:transition-all after:duration-300 after:ease-out
+
+    ${
+      isCurrentActive
+        ? "after:w-[calc(100%-1.75rem)]"
+        : "after:w-0 group-hover:after:w-[calc(100%-1.75rem)]"
+    }
+  `}
+>
+  {link.name}
+</Link>
                 );
               })}
             </div>

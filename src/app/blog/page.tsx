@@ -1,7 +1,6 @@
 import React from "react";
 import type { Metadata } from "next";
 import { CommonHero } from "@/components/CommonHero";
-import { IMAGES } from "@/constants/images";
 import { BlogSection } from "@/sections/Media";
 import { CtaSection } from "@/sections/Home/Cta";
 
@@ -23,8 +22,6 @@ export default function BlogPage() {
   return (
     <>
       <CommonHero
-        image={IMAGES.hero}
-        imagePosition="center"
         title="Science & Blog"
         breadcrumb={[{ label: "Home", href: "/" }, { label: "Blog" }]}
         subtitle="Articles and field guides by veterinary doctors, research scientists, and livestock healthcare experts"

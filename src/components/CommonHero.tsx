@@ -3,9 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ChevronRight } from "lucide-react";
 import { IMAGES } from "@/constants/images";
-import { AriviyaIcon } from "@/components/AriviyaIcon";
 
 export interface BreadcrumbItem {
   label: string;
@@ -16,10 +14,8 @@ export interface CommonHeroProps {
   title: string;
   breadcrumb?: BreadcrumbItem[];
   subtitle?: string;
-  /** Page-specific banner image; defaults to the MammaryO product banner */
+  /** Page-specific banner image; defaults to the product hero lineup cutout */
   image?: string;
-  /** CSS object-position for the banner, e.g. "center" or "right" */
-  imagePosition?: string;
   className?: string;
 }
 
@@ -27,74 +23,73 @@ export function CommonHero({
   title,
   breadcrumb = [{ label: "Home", href: "/" }, { label: title }],
   subtitle,
-  image = IMAGES.commonHeroBanner,
-  imagePosition = "center",
+  image = IMAGES.productHeroBanner,
   className = "",
 }: CommonHeroProps) {
   return (
     <section
-      className={`relative w-full bg-[#EEF1F9] border-b border-[#D9DFF0] overflow-hidden font-sans ${className}`}
+      className={`relative w-full bg-gradient-to-r from-[#F5F7FC] via-[#EEF1F9] to-[#E9EEF8] border-b border-[#D9DFF0] overflow-hidden font-sans ${className}`}
     >
-      {/* Banner Image: full background on mobile, right half bleeding to the edge on desktop */}
-      <div className="absolute inset-y-0 right-0 w-full md:w-[55%] lg:w-1/2 pointer-events-none select-none">
-        <Image
-          src={image}
-          alt=""
-          fill
-          priority
-          sizes="(max-width: 768px) 100vw, 50vw"
-          className="object-cover"
-          style={{ objectPosition: imagePosition }}
-        />
-        {/* Mobile: soft wash so text stays readable over the photo */}
-        <div className="absolute inset-0 bg-[#EEF1F9]/85 md:hidden" />
-        {/* Desktop: fade the photo into the background colour instead of a hard edge */}
-        <div className="absolute inset-y-0 left-0 w-2/3 bg-gradient-to-r from-[#EEF1F9] via-[#EEF1F9]/60 to-transparent hidden md:block" />
-      </div>
 
-      {/* Decorative glow */}
-      <div className="absolute -left-24 -top-24 w-72 h-72 rounded-full bg-[#5160a3]/10 blur-3xl pointer-events-none" />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-6 md:gap-8 pt-8 sm:pt-10 md:pt-12 pb-0">
+          {/* Left Column: Title, Breadcrumbs, Subtitle */}
+          <div className="w-full md:max-w-xl lg:max-w-2xl pb-4 sm:pb-6 md:pb-10 space-y-2.5 sm:space-y-3 text-left">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 leading-[1.15]">
+              {title}
+            </h1>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="py-10 sm:py-14 lg:py-16 max-w-xl space-y-3 sm:space-y-4">
-          {breadcrumb && breadcrumb.length > 0 && (
-            <nav aria-label="Breadcrumb">
-              <ol className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-white/80 backdrop-blur-xs border border-[#D9DFF0] text-[11px] sm:text-xs font-semibold text-slate-500 shadow-2xs">
-                {breadcrumb.map((item, index) => {
-                  const isLast = index === breadcrumb.length - 1;
-                  return (
-                    <li key={index} className="flex items-center gap-1">
-                      {index > 0 && <ChevronRight className="w-3 h-3 text-slate-400" />}
-                      {item.href && !isLast ? (
-                        <Link href={item.href} className="hover:text-[#5160a3] transition-colors">
-                          {item.label}
-                        </Link>
-                      ) : (
-                        <span className="text-[#5160a3] font-bold" aria-current="page">
-                          {item.label}
-                        </span>
-                      )}
-                    </li>
-                  );
-                })}
-              </ol>
-            </nav>
-          )}
+            {/* Breadcrumb Navigation directly under title - matching reference pattern */}
+            {breadcrumb && breadcrumb.length > 0 && (
+              <nav aria-label="Breadcrumb" className="pt-0.5">
+                <ol className="inline-flex items-center gap-2 text-xs sm:text-sm font-medium text-slate-500">
+                  {breadcrumb.map((item, index) => {
+                    const isLast = index === breadcrumb.length - 1;
+                    return (
+                      <li key={index} className="flex items-center gap-2">
+                        {index > 0 && (
+                          <span className="text-slate-400 select-none text-xs">/</span>
+                        )}
+                        {item.href && !isLast ? (
+                          <Link
+                            href={item.href}
+                            className="text-slate-600 hover:text-[#5160a3] transition-colors"
+                          >
+                            {item.label}
+                          </Link>
+                        ) : (
+                          <span className="text-[#5160a3] font-bold" aria-current="page">
+                            {item.label}
+                          </span>
+                        )}
+                      </li>
+                    );
+                  })}
+                </ol>
+              </nav>
+            )}
 
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 leading-[1.1]">
-            {title}
-          </h1>
 
-          <div className="flex items-center gap-2">
-            <span className="h-1 w-10 rounded-full bg-[#5160a3]" />
-            <AriviyaIcon className="w-4 h-4 text-[#5160a3] shrink-0" />
+            {/* Subtle accent mark matching reference design */}
+            <div className="flex items-center gap-2 pt-2">
+              <span className="w-2 h-2 rounded-full bg-[#5160a3]" />
+              <span className="w-8 h-0.5 rounded-full bg-[#5160a3]/30" />
+            </div>
           </div>
 
-          {subtitle && (
-            <p className="text-sm sm:text-base text-slate-600 font-medium leading-relaxed max-w-lg">
-              {subtitle}
-            </p>
-          )}
+          {/* Right Column: Cutout Product Image sitting flush on bottom border */}
+          <div className="w-full md:w-auto flex-1 flex justify-center md:justify-end items-end self-end pointer-events-none select-none">
+            <div className="relative w-full w-auto h-[180px] sm:h-[220px] md:h-[250px] lg:h-[320px]">
+              <Image
+                src={image}
+                alt={title}
+                fill
+                priority
+                sizes="(max-width: 768px) 90vw, 560px"
+                className="object-contain object-bottom drop-shadow-md"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </section>

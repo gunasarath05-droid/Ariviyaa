@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { ArrowLeft, ShieldCheck, FileText, AlertCircle, Mail, Phone, MapPin } from "lucide-react";
 import { COMPANY_INFO } from "@/constants/company";
+import { CommonHero } from "@/components/CommonHero";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
@@ -15,8 +16,14 @@ export const metadata: Metadata = {
 
 export default function PrivacyPolicyPage() {
   return (
-    <div className="w-full bg-[#FAF7F2] min-h-screen py-12 sm:py-16 px-4 sm:px-6 lg:px-8 font-sans">
-      <div className="max-w-4xl mx-auto space-y-8 sm:space-y-10">
+    <>
+      <CommonHero
+        title="Privacy Policy"
+        breadcrumb={[{ label: "Home", href: "/" }, { label: "Privacy Policy" }]}
+        subtitle="Learn how Ariviya protects your personal information, records, and inquiries"
+      />
+      <div className="w-full bg-[#F5F7FC] min-h-screen py-10 sm:py-14 px-4 sm:px-6 lg:px-8 font-sans">
+        <div className="max-w-4xl mx-auto space-y-8 sm:space-y-10">
         {/* Navigation Breadcrumb */}
         <div className="flex items-center justify-between">
           <Link
@@ -150,5 +157,6 @@ export default function PrivacyPolicyPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }
