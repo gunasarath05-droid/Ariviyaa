@@ -100,7 +100,7 @@ export function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-40 bg-white border-b border-slate-100 shadow-xs font-sans">
+    <header className="site-header sticky top-0 z-40 bg-white border-b border-slate-100 shadow-xs font-sans">
       {/* ========================================================================= */}
       {/* 1. TOP BAR (White background: Logo, Search, User/Wishlist/Cart) */}
       {/* ========================================================================= */}
@@ -248,7 +248,8 @@ export function Header() {
 
       <nav className="bg-[#2B2D42] text-white shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-14 sm:h-16">
+          {/* Link bar is desktop/tablet only; phones use the menu button above */}
+          <div className="hidden md:flex items-center justify-between h-16">
             
             {/* Desktop Navigation Links */}
             <div className="hidden md:flex items-center space-x-1 lg:space-x-2">
@@ -377,33 +378,6 @@ export function Header() {
               >
                 <Mail className="w-5 h-5" />
                 <span className="font-bold text-white">{COMPANY_INFO.email}</span>
-              </a>
-            </div>
-
-            {/* Mobile menu trigger label when closed */}
-            <div className="md:hidden flex items-center justify-between w-full py-2">
-              <span className="text-xs font-bold text-slate-300 tracking-wider uppercase flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 inline-block animate-pulse" />
-                {pathname === "/"
-                  ? "Home"
-                  : pathname === "/about"
-                  ? "About Us"
-                  : pathname === "/shop"
-                  ? "Shop Products"
-                  : pathname === "/contact"
-                  ? "Contact Desk"
-                  : pathname === "/blog"
-                  ? "Research Blog"
-                  : pathname === "/gallery"
-                  ? "Field Gallery"
-                  : "Ariviyaa Menu"}
-              </span>
-              <a
-                href={`tel:${COMPANY_INFO.phone}`}
-                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-bold"
-              >
-                <Phone className="w-3 h-3" />
-                <span>Call Us</span>
               </a>
             </div>
 

@@ -12,7 +12,6 @@ import { SideDrawer } from "@/components/SideDrawer";
 import { SearchModal } from "@/components/SearchModal";
 import { PublicChrome } from "@/components/PublicChrome";
 import { SmoothScroll } from "@/components/SmoothScroll";
-import { RevealOnScroll } from "@/components/RevealOnScroll";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { IMAGES } from "@/constants/images";
 
@@ -107,7 +106,6 @@ export default function RootLayout({
         <AppProvider>
         <AccountProvider>
           <SmoothScroll />
-          <RevealOnScroll />
          
 
           {/* Top navigation header (hidden on /admin) */}

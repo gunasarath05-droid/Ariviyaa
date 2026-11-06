@@ -15,16 +15,19 @@ const points = [
 
 export function PhotoBandSection() {
   return (
-    <section className="relative w-full overflow-hidden bg-[#2B2D42] font-sans" id="mammaryo-band">
+    <section className="parallax-scope relative w-full overflow-hidden bg-[#2B2D42] font-sans" id="mammaryo-band">
       {/* Photo: right half on desktop, full background on mobile */}
       <div className="absolute inset-y-0 right-0 w-full lg:w-1/2 pointer-events-none select-none">
-        <Image
-          src={IMAGES.products.mammaryo}
-          alt=""
-          fill
-          sizes="(max-width: 1024px) 100vw, 50vw"
-          className="object-cover object-[center_60%]"
-        />
+        {/* Taller than the band so the parallax drift never shows an edge (styles in globals.css) */}
+        <div className="parallax-layer absolute inset-x-0 -top-16 -bottom-16">
+          <Image
+            src={IMAGES.products.mammaryo}
+            alt=""
+            fill
+            sizes="(max-width: 1024px) 100vw, 50vw"
+            className="object-cover object-[center_60%]"
+          />
+        </div>
         <div className="absolute inset-0 bg-[#2B2D42]/85 lg:hidden" />
         <div className="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-[#2B2D42] to-transparent hidden lg:block" />
       </div>

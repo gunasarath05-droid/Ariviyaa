@@ -89,10 +89,10 @@ export function CategoriesSection() {
     <div
       key={cat.id}
       onClick={() => handleCategoryClick(cat.filterId)}
-      className="flex flex-col items-center justify-center text-center group cursor-pointer select-none transition-all duration-300 p-2 rounded-2xl hover:bg-[#F5F7FC]"
+      className="min-w-0 flex flex-col items-center justify-center text-center group cursor-pointer select-none transition-all duration-300 p-2 rounded-2xl hover:bg-[#F5F7FC]"
     >
       {/* Circular Avatar Container */}
-      <div className="relative w-24 h-24 sm:w-28 sm:h-28 lg:w-42 lg:h-42 rounded-full overflow-hidden bg-[#F5F7FC] p-1.5 shadow-sm group-hover:shadow-md transition-shadow">
+      <div className="relative w-24 h-24 lg:w-32 lg:h-32 xl:w-40 xl:h-40 rounded-full overflow-hidden bg-[#F5F7FC] p-1.5 shadow-sm group-hover:shadow-md transition-shadow">
         <div className="relative w-full h-full rounded-full overflow-hidden bg-white">
           <Image
             src={cat.image}
@@ -109,7 +109,7 @@ export function CategoriesSection() {
         <h3 className="h-card text-slate-900 group-hover:text-[#5160a3] transition-colors">
           {cat.title}
         </h3>
-        <p className="text-xs text-slate-500 font-medium truncate max-w-[120px]">
+        <p className="text-xs text-slate-500 font-medium truncate max-w-full">
           {cat.subLabel}
         </p>
       </div>
@@ -133,8 +133,8 @@ export function CategoriesSection() {
           </div>
         </div>
 
-        {/* Desktop & Tablet: Centered Row */}
-        <div className="hidden md:flex items-center justify-center gap-4 lg:gap-6 xl:gap-8 flex-wrap max-w-7xl mx-auto">
+        {/* Desktop & Tablet: all categories in one row */}
+        <div className="hidden md:grid grid-cols-6 gap-3 lg:gap-6">
           {categories.map((cat) => renderCategoryItem(cat))}
         </div>
 

@@ -7,6 +7,16 @@
   /* Entrance animations for page heroes: class names animate-fade-up / animate-fade-in */
   --animate-fade-up: fade-up 0.8s cubic-bezier(0.2, 0.65, 0.3, 1) both;
   --animate-fade-in: fade-in 0.9s ease-out both;
+  --animate-page-in: page-in 0.45s ease-out both;
+
+  @keyframes page-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 
   @keyframes fade-up {
     from {
@@ -310,34 +320,6 @@ nav,
   animation: floatY 4s ease-in-out infinite;
 }
 
-/* ---- Scroll reveal (driven by components/RevealOnScroll.tsx) ---- */
-.reveal {
-  opacity: 0;
-  transform: translateY(28px);
-  transition:
-    opacity 0.7s ease-out,
-    transform 0.7s cubic-bezier(0.2, 0.65, 0.3, 1);
-}
-
-.reveal.is-visible {
-  opacity: 1;
-  transform: none;
-}
-
-.reveal .reveal-child {
-  opacity: 0;
-  transform: translateY(16px);
-  transition:
-    opacity 0.6s ease-out,
-    transform 0.6s cubic-bezier(0.2, 0.65, 0.3, 1);
-  transition-delay: var(--reveal-delay, 0ms);
-}
-
-.reveal.is-visible .reveal-child {
-  opacity: 1;
-  transform: none;
-}
-
 /* ---- Smooth scrolling (components/SmoothScroll.tsx uses Lenis) ---- */
 html.lenis,
 html.lenis body {
@@ -352,16 +334,105 @@ html.lenis body {
   overscroll-behavior: contain;
 }
 
+/* ---- Motion system ----
+   CSS only, so nothing touches the DOM React renders (no hydration mismatch).
+   Scroll-driven parts use animation-timeline: browsers without it simply show content. */
+
+/* Hero text: each line rises in turn */
+.hero-stagger > * {
+  animation: fade-up 0.8s cubic-bezier(0.2, 0.65, 0.3, 1) both;
+}
+.hero-stagger > :nth-child(2) { animation-delay: 90ms; }
+.hero-stagger > :nth-child(3) { animation-delay: 180ms; }
+.hero-stagger > :nth-child(4) { animation-delay: 270ms; }
+.hero-stagger > :nth-child(5) { animation-delay: 360ms; }
+.hero-stagger > :nth-child(n + 6) { animation-delay: 450ms; }
+
+/* Hero accent line draws from the left */
+.hero-accent-line {
+  transform-origin: left center;
+  animation: grow-x 0.7s 0.35s cubic-bezier(0.2, 0.65, 0.3, 1) both;
+}
+
+@keyframes grow-x {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+/* Cards lift slightly on hover (uses `translate`, separate from scroll animations' `transform`) */
+.page-motion [class*="hover:shadow-md"] {
+  transition-property: translate, box-shadow, border-color, background-color, color;
+  transition-duration: 300ms;
+}
+.page-motion [class*="hover:shadow-md"]:hover {
+  translate: 0 -4px;
+}
+
+/* Photo hover shine (like the reference theme's image-anime): a light band sweeps across */
+.page-motion section [class*="aspect-["][class*="overflow-hidden"]::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 200%;
+  height: 0%;
+  background-color: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%) rotate(-45deg);
+  pointer-events: none;
+  z-index: 1;
+}
+.page-motion section [class*="aspect-["][class*="overflow-hidden"]:hover::after {
+  height: 250%;
+  background-color: transparent;
+  transition: all 600ms linear;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    /* Photo bands: the image drifts slower than the page for a sense of depth */
+    .parallax-scope {
+      view-timeline-name: --parallax;
+    }
+    .parallax-layer {
+      animation: parallax-drift linear both;
+      animation-timeline: --parallax;
+      animation-range: cover 0% cover 100%;
+    }
+
+    /* Site header gains a soft shadow once the page is scrolled */
+    .site-header {
+      animation: header-elevate linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 120px;
+    }
+  }
+}
+
+@keyframes parallax-drift {
+  from {
+    transform: translateY(-56px);
+  }
+  to {
+    transform: translateY(56px);
+  }
+}
+
+@keyframes header-elevate {
+  to {
+    box-shadow: 0 10px 30px -18px rgba(43, 45, 66, 0.45);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-fade-up,
-  .animate-fade-in {
+  .animate-fade-in,
+  .animate-page-in,
+  .hero-stagger > *,
+  .hero-accent-line {
     animation: none;
   }
 
-  .reveal,
-  .reveal .reveal-child {
-    opacity: 1;
-    transform: none;
-    transition: none;
+  .page-motion [class*="hover:shadow-md"]:hover {
+    translate: none;
   }
 }
