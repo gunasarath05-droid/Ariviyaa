@@ -75,12 +75,12 @@ export function FaqSection() {
             </div>
 
             {/* Bold Headline matching reference */}
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight leading-[1.15]">
+            <h2 className="h-section text-slate-900">
               MammaryO Answers For Dairy Businesses &amp; Partners
             </h2>
 
             {/* Subtitle / Description */}
-            <p className="text-sm sm:text-[15px] text-slate-500 leading-relaxed max-w-md font-normal">
+            <p className="t-lead text-slate-600 max-w-md">
               Common questions from dairy cooperatives, farms, veterinarians and distributors about how MammaryO works, how it is used and how to buy in bulk.
             </p>
 
@@ -105,7 +105,7 @@ export function FaqSection() {
                     className="w-full p-4 sm:p-5 flex items-center justify-between gap-4 text-left cursor-pointer select-none group"
                     aria-expanded={isOpen}
                   >
-                    <span className="text-xs sm:text-sm md:text-base font-bold text-slate-900 group-hover:text-[#5160a3] transition-colors leading-snug">
+                    <span className="h-card text-slate-900 group-hover:text-[#5160a3] transition-colors">
                       <span className="font-black mr-1.5">{faq.qNumber}.</span>
                       {faq.question}
                     </span>
@@ -122,7 +122,7 @@ export function FaqSection() {
 
                   {/* Expanded Answer Content */}
                   {isOpen && (
-                    <div className="px-4 sm:px-5 pb-5 pt-1 text-xs sm:text-sm text-slate-600 leading-relaxed font-normal border-t border-slate-200/50 mt-1">
+                    <div className="px-4 sm:px-5 pb-5 pt-1 t-body text-slate-500 border-t border-slate-200/50 mt-1">
                       {faq.answer}
                     </div>
                   )}

@@ -64,12 +64,12 @@ export function FlagshipSection() {
             <span>Our Products</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight leading-tight">
+          <h2 className="h-section text-slate-900">
             Flagship Innovation:{" "}
             <span className="text-[#5160a3]">MammaryO</span>
           </h2>
 
-          <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl mx-auto font-normal">
+          <p className="t-lead text-slate-600 max-w-2xl mx-auto">
             A nano-bio post-milking teat dip that helps prevent bovine mastitis
             and ensures clean milk production.
           </p>
@@ -107,11 +107,11 @@ export function FlagshipSection() {
                 Invented with NaxPoly® nano-biotechnology
               </span>
 
-              <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
+              <h3 className="h-block text-slate-900">
                 Clean milk production, naturally.
               </h3>
 
-              <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
+              <p className="t-lead text-slate-600">
                 MammaryO forms a protective physical and antimicrobial barrier
                 rich in organic compounds and amino acids — mitigating pathogen
                 invasion without contributing to antimicrobial resistance.

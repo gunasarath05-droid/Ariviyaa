@@ -26,7 +26,7 @@ export function HeroSection() {
             </div>
 
             {/* Main Headline */}
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight leading-[1.14]">
+            <h1 className="h-section text-slate-900">
               Bovine Udder Care for <br className="hidden sm:inline" />
               <span className="text-[#5160a3]">Clean Milk Production (CMP)</span>
             </h1>
@@ -61,17 +61,17 @@ export function HeroSection() {
             <div className="pt-2 flex flex-wrap gap-2 sm:gap-3 text-left max-w-xl">
               <div className="flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 rounded-full bg-white/85 backdrop-blur-xs border border-[#D9DFF0] shadow-2xs">
                 <ShieldCheck className="w-4 h-4 text-[#5160a3] shrink-0" />
-                <p className="text-[10px] sm:text-xs text-slate-800 font-bold">Zero Antibiotic Residue</p>
+                <p className="text-xs text-slate-800 font-bold">Zero Antibiotic Residue</p>
               </div>
 
               <div className="flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 rounded-full bg-white/85 backdrop-blur-xs border border-[#D9DFF0] shadow-2xs">
                 <Award className="w-4 h-4 text-[#5160a3] shrink-0" />
-                <p className="text-[10px] sm:text-xs text-slate-800 font-bold">TANUVAS Validated</p>
+                <p className="text-xs text-slate-800 font-bold">TANUVAS Validated</p>
               </div>
 
               <div className="flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 rounded-full bg-white/85 backdrop-blur-xs border border-[#D9DFF0] shadow-2xs">
                 <FileCheck className="w-4 h-4 text-[#5160a3] shrink-0" />
-                <p className="text-[10px] sm:text-xs text-slate-800 font-bold">Indian Patent 2024</p>
+                <p className="text-xs text-slate-800 font-bold">Indian Patent 2024</p>
               </div>
             </div>
 

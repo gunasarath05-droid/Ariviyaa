@@ -36,11 +36,11 @@ export function PhotoBandSection() {
             <span>Made For The Daily Milking Routine</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight">
+          <h2 className="h-section">
             Protect Every Teat, After Every Milking.
           </h2>
 
-          <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+          <p className="t-lead text-slate-300">
             MammaryO and its teat dip cup fit straight into the routine your farm already
             follows — dip after milking, let the film form, and wash it off before the next one.
           </p>

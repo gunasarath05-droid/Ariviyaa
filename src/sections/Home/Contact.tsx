@@ -56,18 +56,18 @@ export function ContactSection() {
           {/* ========================================================================= */}
           <div className="lg:col-span-6 space-y-6">
             {/* Paw Badge */}
-            <div className="inline-flex items-center gap-2 text-sm font-bold text-[#5160a3]">
+            <div className="eyebrow">
               <AriviyaIcon className="w-4 h-4 text-[#5160a3] shrink-0" />
               <span>Contact Us</span>
             </div>
 
             {/* Main Heading */}
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight leading-tight">
+            <h2 className="h-section text-slate-900">
               Bulk Orders, Distribution &amp; Partnerships
             </h2>
 
             {/* Description Text */}
-            <p className="text-slate-500 text-sm sm:text-base leading-relaxed max-w-xl">
+            <p className="t-lead text-slate-600 max-w-xl">
               Dairy cooperative, farm, veterinary clinic, distributor or investor? Tell us what you
               need and our team will share MammaryO pricing, technical documents and next steps.
             </p>
@@ -96,7 +96,7 @@ export function ContactSection() {
                   <Phone className="w-5 h-5 fill-white" />
                 </a>
                 <div>
-                  <h4 className="text-sm font-bold text-slate-900">Phone Number</h4>
+                  <h4 className="h-card text-slate-900">Phone Number</h4>
                   <a
                     href={`tel:${COMPANY_INFO.phone}`}
                     className="text-xs sm:text-sm text-slate-500 hover:text-[#0D5C46] transition-colors"
@@ -116,7 +116,7 @@ export function ContactSection() {
                   <Mail className="w-5 h-5" />
                 </a>
                 <div>
-                  <h4 className="text-sm font-bold text-slate-900">Email Address</h4>
+                  <h4 className="h-card text-slate-900">Email Address</h4>
                   <a
                     href={`mailto:${COMPANY_INFO.email}`}
                     className="text-xs sm:text-sm text-slate-500 hover:text-[#0D5C46] transition-colors"

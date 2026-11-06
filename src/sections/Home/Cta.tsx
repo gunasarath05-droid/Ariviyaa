@@ -15,18 +15,18 @@ export function CtaSection() {
 
           <div className="relative z-10 text-center space-y-6">
           
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-xs text-xs font-black uppercase tracking-wider text-white border border-white/20">
-              <AriviyaIcon className="w-4 h-4 text-white shrink-0" />
+            <div className="inline-flex items-center gap-2 text-sm font-semibold text-white/80">
+              <AriviyaIcon className="w-4 h-4 text-white/80 shrink-0" />
               <span>Partner With Ariviyaa</span>
             </div>
 
             {/* Title */}
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
+            <h2 className="h-section text-white">
               Prevention Is Better Than Cure
             </h2>
 
             {/* Description */}
-            <p className="text-sm sm:text-base lg:text-lg text-slate-200 leading-relaxed font-normal max-w-3xl mx-auto">
+            <p className="t-lead text-slate-200 max-w-3xl mx-auto">
               Partner with Ariviyaa to bring non-antibiotic, eco-friendly mastitis prevention and
               clean milk production to more dairy farms, cooperatives, and veterinary clinics.
             </p>

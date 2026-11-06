@@ -44,7 +44,7 @@ export const IMAGES = {
     glp: "/assets/Badges/badge-glp.png",
     dpiit: "/assets/Badges/badge-DPIIT.png",
     startupTN: "/assets/Badges/badge-StartupTN.png",
-    grants: "/assets/Badges/badge-Grants & Funding.png",
+    grants: "/assets/Badges/badge-GrantsFunding.png",
   },
 
   // Events & Summits (/assets/Events)

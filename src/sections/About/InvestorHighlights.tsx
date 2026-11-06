@@ -29,11 +29,11 @@ export function InvestorHighlights() {
             <TrendingUp className="w-4 h-4 text-[#5160a3]" />
             <span>Investment & Institutional Backing</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight leading-[1.15]">
+          <h2 className="h-section text-slate-900">
             Bridging Deep-Tech Nanotechnology with a{" "}
             <span className="text-[#5160a3]">Multi-Billion Dollar Market</span>
           </h2>
-          <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
+          <p className="t-lead text-slate-600">
             Ariviyaa is solving one of animal agriculture’s greatest economic and safety challenges: antibiotic-free antimicrobial protection for dairy, companion animals, and poultry.
           </p>
         </div>
@@ -46,12 +46,12 @@ export function InvestorHighlights() {
               <div className="w-12 h-12 rounded-xl bg-[#5160a3]/10 text-[#5160a3] flex items-center justify-center">
                 <Target className="w-6 h-6" />
               </div>
-              <h3 className="text-lg font-bold text-slate-900">₹7,000+ Cr Market Loss</h3>
-              <p className="text-sm sm:text-[15px] text-slate-600 leading-relaxed">
+              <h3 className="h-card text-slate-900">₹7,000+ Cr Market Loss</h3>
+              <p className="t-body text-slate-500">
                 Bovine mastitis costs Indian dairy farmers over ₹7,000 Crores every year in discarded milk and cow loss. Our patented non-antibiotic dip prevents infection at origin.
               </p>
             </div>
-            <div className="pt-4 border-t border-slate-200/80 mt-4 text-[11px] font-bold text-[#5160a3] uppercase tracking-wider">
+            <div className="pt-4 border-t border-slate-200/80 mt-4 text-xs font-bold text-[#5160a3] uppercase tracking-wider">
               Massive TAM & Farmer ROI
             </div>
           </div>
@@ -62,12 +62,12 @@ export function InvestorHighlights() {
               <div className="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-600 flex items-center justify-center">
                 <ShieldCheck className="w-6 h-6" />
               </div>
-              <h3 className="text-lg font-bold text-slate-900">Patented NaxPoly® IP</h3>
-              <p className="text-sm sm:text-[15px] text-slate-600 leading-relaxed">
+              <h3 className="h-card text-slate-900">Patented NaxPoly® IP</h3>
+              <p className="t-body text-slate-500">
                 Indian Patent Granted (2024) for our green-synthesis bio-polymer matrix. Zero chemical residue, 100% biodegradable, and leaves no antibiotic footprint in commercial milk.
               </p>
             </div>
-            <div className="pt-4 border-t border-slate-200/80 mt-4 text-[11px] font-bold text-emerald-600 uppercase tracking-wider">
+            <div className="pt-4 border-t border-slate-200/80 mt-4 text-xs font-bold text-emerald-600 uppercase tracking-wider">
               Strong Defensible IP Moat
             </div>
           </div>
@@ -78,12 +78,12 @@ export function InvestorHighlights() {
               <div className="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-600 flex items-center justify-center">
                 <Award className="w-6 h-6" />
               </div>
-              <h3 className="text-lg font-bold text-slate-900">StartupTN & TANUVAS Backed</h3>
-              <p className="text-sm sm:text-[15px] text-slate-600 leading-relaxed">
+              <h3 className="h-card text-slate-900">StartupTN & TANUVAS Backed</h3>
+              <p className="t-body text-slate-500">
                 Funded by StartupTN TANSEED 3.0 seed grant from Govt of Tamil Nadu. Field efficacy tested and validated by veterinary doctors at TANUVAS TRPVB.
               </p>
             </div>
-            <div className="pt-4 border-t border-slate-200/80 mt-4 text-[11px] font-bold text-blue-600 uppercase tracking-wider">
+            <div className="pt-4 border-t border-slate-200/80 mt-4 text-xs font-bold text-blue-600 uppercase tracking-wider">
               Govt & Institutional Trust
             </div>
           </div>
@@ -94,12 +94,12 @@ export function InvestorHighlights() {
               <div className="w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-600 flex items-center justify-center">
                 <Globe2 className="w-6 h-6" />
               </div>
-              <h3 className="text-lg font-bold text-slate-900">B2B + D2C Scalability</h3>
-              <p className="text-sm sm:text-[15px] text-slate-600 leading-relaxed">
+              <h3 className="h-card text-slate-900">B2B + D2C Scalability</h3>
+              <p className="t-body text-slate-500">
                 Omnichannel expansion strategy covering dairy farmer federations, retail veterinary clinics, poultry integrators, and pet parent e-commerce.
               </p>
             </div>
-            <div className="pt-4 border-t border-slate-200/80 mt-4 text-[11px] font-bold text-indigo-600 uppercase tracking-wider">
+            <div className="pt-4 border-t border-slate-200/80 mt-4 text-xs font-bold text-indigo-600 uppercase tracking-wider">
               High Margin Recurring Model
             </div>
           </div>
@@ -112,10 +112,10 @@ export function InvestorHighlights() {
               <BarChart3 className="w-3.5 h-3.5" />
               <span>Investment & Partnership Desk</span>
             </div>
-            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight leading-tight">
+            <h3 className="h-block">
               Partner with Ariviyaa to Build the Future of Sustainable Animal Health
             </h3>
-            <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+            <p className="t-lead text-slate-300">
               We welcome dialogues with venture capital firms, impact investors, agri-business funds, and strategic corporate partners who share our mission of eradicating antibiotic resistance in food animals.
             </p>
             

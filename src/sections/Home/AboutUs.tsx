@@ -93,19 +93,19 @@ export function ScienceFromThanjavurSection() {
               </div>
 
               {/* Main Heading */}
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight leading-[1.15]">
+              <h2 className="h-section text-slate-900">
                 Science From Thanjavur. <br className="hidden sm:inline" />
                 <span className="text-[#5160a3]">Care For Every Farm.</span>
               </h2>
 
               {/* Sub-label */}
-              <p className="text-sm sm:text-base font-bold text-[#5160a3]/90 tracking-wide uppercase">
+              <p className="t-kicker text-slate-500">
                 Ariviyaa Deep Tech Pvt. Ltd. — A Deep-Tech Biotechnology Startup
               </p>
             </div>
 
             {/* Body Description */}
-            <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
+            <p className="t-lead text-slate-600">
               Founded in 2021 by scientists and entrepreneurs, Ariviyaa translates locally developed
               scientific innovation into affordable, sustainable animal healthcare. We integrate
               nanotechnology, biotechnology, and polymer science to build products for animal health,
@@ -119,9 +119,9 @@ export function ScienceFromThanjavurSection() {
                   <span className="w-9 h-9 rounded-xl bg-[#5160a3] text-white flex items-center justify-center shrink-0">
                     <Target className="w-4.5 h-4.5" />
                   </span>
-                  <h3 className="text-base sm:text-lg font-bold text-slate-900">Our Mission</h3>
+                  <h3 className="h-card text-slate-900">Our Mission</h3>
                 </div>
-                <p className="text-sm sm:text-[15px] text-slate-600 leading-relaxed">
+                <p className="t-body text-slate-500">
                   Protect animals, improve farmers&apos; livelihoods and support clean milk production
                   through <span className="font-semibold text-[#5160a3]">NaxPoly®</span> green
                   nanotechnology.
@@ -132,9 +132,9 @@ export function ScienceFromThanjavurSection() {
                   <span className="w-9 h-9 rounded-xl bg-[#5160a3] text-white flex items-center justify-center shrink-0">
                     <Eye className="w-4.5 h-4.5" />
                   </span>
-                  <h3 className="text-base sm:text-lg font-bold text-slate-900">Our Vision</h3>
+                  <h3 className="h-card text-slate-900">Our Vision</h3>
                 </div>
-                <p className="text-sm sm:text-[15px] text-slate-600 leading-relaxed">
+                <p className="t-body text-slate-500">
                   Make antibiotic-free, eco-friendly animal healthcare the everyday standard for
                   India&apos;s dairy farms, veterinarians and pet parents.
                 </p>
@@ -152,7 +152,7 @@ export function ScienceFromThanjavurSection() {
                     <Icon className="w-4 h-4" />
                   </div>
                   <div>
-                    <span className="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
+                    <span className="block text-xs font-semibold text-slate-400 uppercase tracking-wider">
                       {label}
                     </span>
                     <span className="text-xs sm:text-sm font-black text-slate-800 leading-tight block mt-0.5">
@@ -216,10 +216,10 @@ export function TeamBehindAriviyaaSection() {
             <AriviyaIcon className="w-4 h-4 text-[#5160a3] shrink-0" />
             <span>Leadership</span>
           </div>
-          <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">
+          <h2 className="h-section text-slate-900">
             The Team Behind Ariviyaa
-          </h3>
-          <p className="text-xs sm:text-sm text-slate-500 font-medium">
+          </h2>
+          <p className="t-lead text-slate-600">
             Driven by dedicated scientists, veterinary specialists, and bio-innovators.
           </p>
         </div>
@@ -249,11 +249,11 @@ export function TeamBehindAriviyaaSection() {
                 )}
               </div>
 
-              <h4 className="mt-5 text-lg font-bold text-slate-900">{member.name}</h4>
+              <h4 className="mt-5 h-card text-slate-900">{member.name}</h4>
               <span className="mt-1.5 inline-block px-2.5 py-1 rounded-md bg-[#5160a3]/10 text-[#5160a3] text-xs font-semibold">
                 {member.role}
               </span>
-              <p className="mt-4 pt-4 border-t border-[#D9DFF0] w-full text-sm sm:text-[15px] text-slate-600 leading-relaxed">
+              <p className="mt-4 pt-4 border-t border-[#D9DFF0] w-full t-body text-slate-500">
                 {member.bio}
               </p>
             </article>

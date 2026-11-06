@@ -39,17 +39,17 @@ export function ProductVideoSection() {
                 <span>Product Intro</span>
               </div>
 
-              <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight leading-tight">
+              <h2 className="h-section text-slate-900">
                 See MammaryO 
                 <span className="text-[#5160a3]"> In Action</span>
               </h2>
 
-              <p className="text-sm font-bold text-slate-500 uppercase tracking-wide">
+              <p className="t-kicker text-slate-500">
                 Bovine Udder Care, Explained In Under A Minute.
               </p>
             </div>
 
-            <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
+            <p className="t-lead text-slate-600">
               Watch how our post-milking teat dip seamlessly fits into everyday
               milking routines — protecting teats after every milking for
               cleaner milk and healthier herds.
@@ -66,10 +66,10 @@ export function ProductVideoSection() {
                     <Icon className="w-4 h-4" />
                   </div>
                   <div>
-                    <strong className="block text-sm font-bold text-slate-900">
+                    <strong className="block h-card text-slate-900">
                       {title}
                     </strong>
-                    <p className="text-sm text-slate-500 leading-relaxed mt-0.5">
+                    <p className="t-body text-slate-500 mt-0.5">
                       {desc}
                     </p>
                   </div>

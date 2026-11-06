@@ -43,11 +43,11 @@ export function WhoWeServeSection() {
             <span>Who We Work With</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight leading-tight">
+          <h2 className="h-section text-slate-900">
             MammaryO For <span className="text-[#5160a3]">Every Link In The Dairy Chain</span>
           </h2>
 
-          <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
+          <p className="t-lead text-slate-600">
             We supply MammaryO directly to the businesses and professionals who keep India&apos;s
             milk clean.
           </p>
@@ -63,12 +63,12 @@ export function WhoWeServeSection() {
                 <div className="w-12 h-12 rounded-xl bg-[#5160a3]/10 text-[#5160a3] flex items-center justify-center">
                   <Icon className="w-6 h-6" />
                 </div>
-                <h3 className="text-lg font-bold text-slate-900 leading-snug">{title}</h3>
-                <p className="text-sm sm:text-[15px] text-slate-600 leading-relaxed">{desc}</p>
+                <h3 className="h-card text-slate-900">{title}</h3>
+                <p className="t-body text-slate-500">{desc}</p>
               </div>
 
               <div className="pt-4 mt-4 border-t border-slate-200/80 space-y-3">
-                <p className="text-[11px] font-bold text-[#5160a3] uppercase tracking-wider">
+                <p className="text-xs font-bold text-[#5160a3] uppercase tracking-wider">
                   {offer}
                 </p>
                 <a

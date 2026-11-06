@@ -167,11 +167,11 @@ export function WhereOurScienceRecognisedSection() {
               <AriviyaIcon className="w-4 h-4 text-[#5160a3] shrink-0" />
               <span>Expo &amp; Events</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight leading-[1.15]">
+            <h2 className="h-section text-slate-900">
               Where Our Science <br className="hidden sm:inline" />
               <span className="text-[#5160a3]">Gets Recognised</span>
             </h2>
-            <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+            <p className="t-lead text-slate-600">
               From startup showcases to national innovation challenges, Ariviyaa has earned industry
               credibility as a deep-tech nano-biotechnology enterprise for veterinary hygiene and biosecurity.
             </p>
@@ -213,14 +213,14 @@ export function WhereOurScienceRecognisedSection() {
                   </div>
                 )}
 
-                <span className="absolute top-3 right-3 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-[#5160a3] text-white shadow-xs">
+                <span className="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#5160a3] text-white shadow-xs">
                   {event.badge}
                 </span>
               </div>
 
               {/* Event Details */}
               <div className="p-5 flex-1 flex flex-col justify-between space-y-3">
-                <h3 className="text-base sm:text-lg font-bold text-slate-900 group-hover:text-[#5160a3] transition-colors leading-snug">
+                <h3 className="h-card text-slate-900 group-hover:text-[#5160a3] transition-colors">
                   {event.title}
                 </h3>
                 <div className="flex items-center gap-1.5 text-xs text-slate-500 font-medium">
@@ -255,10 +255,10 @@ export function AchievementsAwardsSection() {
               <Trophy className="w-4 h-4 text-[#5160a3]" />
               <span>Verified Accreditations &amp; Awards</span>
             </div>
-            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900 tracking-tight leading-tight">
+            <h2 className="h-block text-slate-900">
               National Honors &amp; <span className="text-[#5160a3]">Official Certificates</span>
             </h2>
-            <p className="text-sm sm:text-[15px] text-slate-600 leading-relaxed font-normal">
+            <p className="t-lead text-slate-600">
               Validated and awarded by Startup India, Invest India, Govt. of Tamil Nadu (StartupTN), and premier innovation challenges across India.
             </p>
           </div>
@@ -270,10 +270,10 @@ export function AchievementsAwardsSection() {
                 key={stat.label}
                 className="bg-white px-4 sm:px-5 py-3 rounded-2xl border border-[#D9DFF0] shadow-2xs min-w-[110px]"
               >
-                <strong className="block text-xl sm:text-2xl font-black text-[#5160a3]">
+                <strong className="block text-xl sm:text-2xl font-bold text-[#5160a3]">
                   {stat.value}
                 </strong>
-                <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wide">
+                <span className="text-xs font-bold text-slate-500 uppercase tracking-wide">
                   {stat.label}
                 </span>
               </div>
@@ -285,7 +285,7 @@ export function AchievementsAwardsSection() {
         {/* HERO SECTION: CERTIFICATES FRONT AND CENTER (PRIMARY FOCUS)               */}
         {/* ========================================================================= */}
         <div className="space-y-3">
-          <p className="lg:hidden flex items-center justify-end gap-1 text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+          <p className="lg:hidden flex items-center justify-end gap-1 text-xs font-bold text-slate-400 uppercase tracking-wider">
             <span>Swipe to see all {certificates.length}</span>
             <ChevronRight className="w-3.5 h-3.5" />
           </p>
@@ -316,10 +316,10 @@ export function AchievementsAwardsSection() {
                 </div>
 
                 <div className="pt-3 flex items-start justify-between gap-2">
-                  <h4 className="text-sm sm:text-base font-bold text-slate-900 group-hover:text-[#5160a3] transition-colors leading-snug">
+                  <h4 className="h-card text-slate-900 group-hover:text-[#5160a3] transition-colors">
                     {cert.title}
                   </h4>
-                  <span className="shrink-0 px-2 py-0.5 rounded-md bg-slate-200/70 text-slate-700 font-bold text-[11px]">
+                  <span className="shrink-0 px-2 py-0.5 rounded-md bg-slate-200/70 text-slate-700 font-bold text-xs">
                     {cert.year}
                   </span>
                 </div>
@@ -358,7 +358,7 @@ export function AchievementsAwardsSection() {
                   <h5 className="text-xs sm:text-sm font-bold text-slate-800 leading-snug line-clamp-1">
                     {award.title}
                   </h5>
-                  <p className="text-[11.5px] text-slate-500 leading-relaxed line-clamp-2">
+                  <p className="text-xs text-slate-500 leading-relaxed line-clamp-2">
                     {award.detail}
                   </p>
                 </div>

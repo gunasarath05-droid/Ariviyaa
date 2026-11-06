@@ -25,7 +25,7 @@ export function ProofStripSection() {
                 <strong className="block text-sm sm:text-base font-bold text-slate-900 leading-tight">
                   {value}
                 </strong>
-                <span className="text-[11px] sm:text-xs text-slate-500 font-medium leading-tight">
+                <span className="text-xs text-slate-500 font-medium leading-tight">
                   {label}
                 </span>
               </div>
