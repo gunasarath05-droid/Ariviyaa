@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { ShoppingBag, MessageCircle, Truck, Building2, ArrowRight } from "lucide-react";
+import { ShoppingBag, CreditCard, Truck, Building2, ArrowRight } from "lucide-react";
 
 const steps = [
   {
@@ -11,9 +11,9 @@ const steps = [
     Icon: ShoppingBag,
   },
   {
-    title: "Confirm on WhatsApp",
-    desc: "Send your cart in one tap. Our team confirms stock, delivery charges and payment.",
-    Icon: MessageCircle,
+    title: "Pay securely online",
+    desc: "Check out with UPI, cards, net banking or wallets through Razorpay.",
+    Icon: CreditCard,
   },
   {
     title: "Pan-India dispatch",

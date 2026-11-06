@@ -1,7 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from "react";
-import { ProductItem, ProductPack, PRODUCTS, formatPrice } from "@/constants/products";
+import { ProductItem, ProductPack, PRODUCTS } from "@/constants/products";
 import { COMPANY_INFO } from "@/constants/company";
 
 export interface CartItem {
@@ -46,7 +46,6 @@ interface AppContextType {
   clearCart: () => void;
   cartCount: number;
   cartSubtotal: number;
-  checkoutViaWhatsApp: () => void;
 
   // Wishlist
   wishlist: string[];
@@ -181,23 +180,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   const isInWishlist = (productId: string) => wishlist.includes(productId);
 
-  const checkoutViaWhatsApp = () => {
-    if (cart.length === 0) {
-      openWhatsAppInquiry();
-      return;
-    }
-
-    let message = `*Hello Ariviyaa! I would like to place an order / inquiry:*\n\n`;
-    cart.forEach((item, index) => {
-      message += `${index + 1}. *${item.product.name}* (${item.pack.size}) — ${item.quantity} × ${formatPrice(item.pack.price)} = ${formatPrice(item.pack.price * item.quantity)}\n`;
-    });
-    message += `\n*Subtotal:* ${formatPrice(cartSubtotal)}\n`;
-    message += `\nPlease confirm availability, delivery charges and dispatch details.`;
-
-    const url = `https://wa.me/${COMPANY_INFO.whatsapp}?text=${encodeURIComponent(message)}`;
-    window.open(url, "_blank");
-  };
-
   const openWhatsAppInquiry = (productName?: string) => {
     const message = productName
       ? `Hello Ariviyaa, I would like to inquire about ${productName}. Please share technical brochure, farm dosage and pricing.`
@@ -229,7 +211,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
         clearCart,
         cartCount,
         cartSubtotal,
-        checkoutViaWhatsApp,
         wishlist,
         toggleWishlist,
         isInWishlist,

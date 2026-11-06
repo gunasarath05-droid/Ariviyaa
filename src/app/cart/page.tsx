@@ -9,7 +9,6 @@ import {
   Trash2,
   Heart,
   ShoppingBag,
-  MessageCircle,
   Truck,
   Tag,
   Building2,
@@ -32,7 +31,6 @@ export default function CartPage() {
     removeFromCart,
     toggleWishlist,
     isInWishlist,
-    checkoutViaWhatsApp,
   } = useApp();
 
   // Cart restores from localStorage after mount; wait so the empty state doesn't flash
@@ -266,20 +264,10 @@ export default function CartPage() {
                     </div>
                   </dl>
 
-                  <div className="space-y-2.5">
-                    <Link href="/checkout" className={`${primaryButtonClass} w-full`}>
-                      Proceed to checkout
-                      <ArrowRight className="w-4 h-4" />
-                    </Link>
-                    <button
-                      type="button"
-                      onClick={checkoutViaWhatsApp}
-                      className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white border border-[#D9DFF0] text-sm font-bold text-emerald-700 hover:bg-emerald-50 transition-colors cursor-pointer"
-                    >
-                      <MessageCircle className="w-4 h-4" />
-                      Order on WhatsApp instead
-                    </button>
-                  </div>
+                  <Link href="/checkout" className={`${primaryButtonClass} w-full`}>
+                    Proceed to checkout
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
 
                   <p className="flex items-center justify-center gap-1.5 text-[11px] font-semibold text-slate-500">
                     <ShieldCheck className="w-3.5 h-3.5 text-[#5160a3]" />

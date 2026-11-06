@@ -13,7 +13,6 @@ import {
   Minus,
   Trash2,
   ArrowRight,
-  MessageCircle,
   ShieldCheck,
 } from "lucide-react";
 
@@ -28,7 +27,6 @@ export function SideDrawer() {
     removeFromCart,
     cartSubtotal,
     cartCount,
-    checkoutViaWhatsApp,
     wishlist,
     toggleWishlist,
     addToCart,
@@ -297,15 +295,6 @@ export function SideDrawer() {
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
-
-              {/* Secondary: send the cart on WhatsApp */}
-              <button
-                onClick={checkoutViaWhatsApp}
-                className="w-full py-2.5 px-4 rounded-xl bg-white border border-[#D9DFF0] hover:bg-emerald-50 text-emerald-700 text-xs font-bold flex items-center justify-center gap-2 transition cursor-pointer"
-              >
-                <MessageCircle className="w-4 h-4" />
-                <span>Or order on WhatsApp</span>
-              </button>
 
               <div className="pt-1 flex items-center justify-center gap-1.5 text-[10px] font-semibold text-slate-400">
                 <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />

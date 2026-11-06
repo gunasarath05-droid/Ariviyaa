@@ -136,8 +136,7 @@ export function FilteredCatalogSection() {
             Shop Pet &amp; Farm Care
           </h2>
           <p className="text-xs sm:text-sm text-slate-500 max-w-2xl mx-auto font-normal">
-            Add products to your cart and place your order on WhatsApp — we confirm and dispatch
-            across India.
+            Add products to your cart, pay securely online and we dispatch across India.
           </p>
         </div>
 
