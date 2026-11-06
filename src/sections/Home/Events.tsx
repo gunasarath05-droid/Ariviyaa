@@ -17,10 +17,7 @@ import {
   ArrowRight,
   ZoomIn,
   X,
-  ExternalLink,
-  Sparkles,
   FileCheck,
-  ChevronRight,
 } from "lucide-react";
 
 const events = [
@@ -57,7 +54,6 @@ const awards = [
     title: "SBI Foundation – C-CAMP AMR #2",
     detail: "Compulsory convertible debentures, Bengaluru",
     Icon: Coins,
-    color: "from-blue-600 to-indigo-700",
   },
   {
     year: "2025",
@@ -65,7 +61,6 @@ const awards = [
     title: "Silverline Broilers",
     detail: "Equity-based fund for poultry biosecurity expansion",
     Icon: TrendingUp,
-    color: "from-emerald-600 to-teal-700",
   },
   {
     year: "2022",
@@ -73,7 +68,6 @@ const awards = [
     title: "StartupTN TANSEED 3.0",
     detail: "Seed grant from Govt. of Tamil Nadu — 1 of 31 from 1,600+ applicants",
     Icon: Sprout,
-    color: "from-[#5160a3] to-purple-800",
   },
   {
     year: "2021",
@@ -81,7 +75,6 @@ const awards = [
     title: "Kuberan's House",
     detail: "Recognised among India's top startups at India's biggest startup show",
     Icon: Trophy,
-    color: "from-amber-500 to-orange-600",
   },
   {
     year: "2020",
@@ -89,7 +82,6 @@ const awards = [
     title: "Dettol's Innovate With Purpose",
     detail: "Innovative disinfectant challenge — Invest India, £3,000",
     Icon: ShieldCheck,
-    color: "from-[#5160a3] to-blue-800",
   },
 ];
 
@@ -245,131 +237,120 @@ export function WhereOurScienceRecognisedSection({ tone = "light" }: { tone?: "w
 export function AchievementsAwardsSection() {
   const [selectedCert, setSelectedCert] = useState<(typeof certificates)[0] | null>(null);
 
+  // Oldest first, so the timeline reads left to right (top to bottom on mobile)
+  const milestones = [...awards].reverse();
+
   return (
     <section className="w-full section-y bg-white font-sans border-b border-[#D9DFF0]" id="awards">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 sm:space-y-16">
-        
-        {/* ========================================================================= */}
-        {/* HEADER & QUICK STATS                                                      */}
-        {/* ========================================================================= */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 bg-[#F5F7FC] p-6 sm:p-8 lg:p-10 rounded-3xl border border-[#D9DFF0]">
-          <div className="space-y-3 max-w-2xl">
+        {/* Header + quick stats */}
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
+          <div className="space-y-4 max-w-2xl">
             <div className="eyebrow">
-              <Trophy className="w-4 h-4 text-[#5160a3]" />
-              <span>Verified Accreditations &amp; Awards</span>
+              <AriviyaIcon className="w-4 h-4 text-[#5160a3] shrink-0" />
+              <span>Awards &amp; Funding</span>
             </div>
-            <h2 className="h-block text-slate-900">
-              National Honors &amp; <span className="text-[#5160a3]">Official Certificates</span>
+            <h2 className="h-section text-slate-900">
+              Our Journey of <span className="text-[#5160a3]">Recognition</span>
             </h2>
             <p className="t-lead text-slate-600">
-              Validated and awarded by Startup India, Invest India, Govt. of Tamil Nadu (StartupTN), and premier innovation challenges across India.
+              Grants, investment and national awards from Startup India, Invest India, the Government of Tamil Nadu
+              and leading innovation programmes.
             </p>
           </div>
 
-          {/* Quick Stats Pills */}
-          <div className="flex flex-wrap items-center gap-3 sm:gap-4 shrink-0">
+          <div className="grid grid-cols-3 gap-3 sm:gap-4 shrink-0">
             {awardSummary.map((stat) => (
-              <div
-                key={stat.label}
-                className="bg-white px-4 sm:px-5 py-3 rounded-2xl border border-[#D9DFF0] shadow-2xs min-w-[110px]"
-              >
-                <strong className="block text-xl sm:text-2xl font-bold text-[#5160a3]">
-                  {stat.value}
-                </strong>
-                <span className="text-xs font-bold text-slate-500 uppercase tracking-wide">
-                  {stat.label}
-                </span>
+              <div key={stat.label} className="bg-[#F5F7FC] px-4 sm:px-5 py-4 rounded-2xl border border-[#D9DFF0] text-center lg:text-left">
+                <strong className="block text-xl sm:text-2xl font-bold text-[#5160a3]">{stat.value}</strong>
+                <span className="block text-xs font-semibold text-slate-500 uppercase tracking-wide mt-0.5">{stat.label}</span>
               </div>
             ))}
           </div>
         </div>
 
-        {/* ========================================================================= */}
-        {/* HERO SECTION: CERTIFICATES FRONT AND CENTER (PRIMARY FOCUS)               */}
-        {/* ========================================================================= */}
-        <div className="space-y-3">
-          <p className="lg:hidden flex items-center justify-end gap-1 text-xs font-bold text-slate-400 uppercase tracking-wider">
-            <span>Swipe to see all {certificates.length}</span>
-            <ChevronRight className="w-3.5 h-3.5" />
-          </p>
+        {/* Milestone timeline: horizontal on desktop, vertical on mobile */}
+        <div className="space-y-6">
+          <div className="flex flex-wrap items-baseline justify-between gap-2">
+            <h3 className="h-card text-slate-900">Grants &amp; growth milestones</h3>
+            <span className="text-sm font-bold text-[#5160a3]">₹49L+ in grants &amp; investment</span>
+          </div>
 
-          {/* Certificate cards: swipeable row on mobile/tablet, 4-column grid on desktop */}
-          <div className="flex lg:grid lg:grid-cols-4 gap-5 lg:gap-6 items-stretch overflow-x-auto lg:overflow-visible snap-x snap-mandatory no-scrollbar -mx-4 px-4 sm:-mx-6 sm:px-6 lg:mx-0 lg:px-0 pt-2 pb-4">
+          <ol className="relative grid grid-cols-1 lg:grid-cols-5 gap-0 lg:gap-5">
+            {/* Desktop connector line, centred on the dots */}
+            <span aria-hidden="true" className="hidden lg:block absolute left-0 right-0 top-[2.6875rem] h-0.5 bg-[#D9DFF0]" />
+
+            {milestones.map((m, i) => {
+              const MilestoneIcon = m.Icon;
+              const last = i === milestones.length - 1;
+              return (
+                <li key={m.title} className="relative pl-10 lg:pl-0 pb-8 lg:pb-0">
+                  {/* Mobile connector line */}
+                  {!last && <span aria-hidden="true" className="lg:hidden absolute left-[0.6875rem] top-8 bottom-0 w-0.5 bg-[#D9DFF0]" />}
+
+                  <span className="lg:block text-sm font-bold text-[#5160a3] lg:h-8 lg:leading-8 absolute lg:static left-10 top-0.5">
+                    {m.year}
+                  </span>
+
+                  <span className="absolute lg:relative left-0 top-0 lg:top-auto flex lg:h-6 items-center">
+                    <span className="w-6 h-6 rounded-full bg-white border-2 border-[#5160a3] flex items-center justify-center">
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#5160a3]" />
+                    </span>
+                  </span>
+
+                  <article className="mt-8 lg:mt-5 h-[calc(100%-2rem)] lg:h-auto bg-[#F5F7FC] rounded-2xl border border-[#D9DFF0] p-5 space-y-2 hover:bg-white hover:border-[#5160a3]/50 hover:shadow-md transition-all duration-300">
+                    <div className="flex items-center justify-between gap-2">
+                      <strong className="text-xl sm:text-2xl font-bold text-slate-900">{m.highlight}</strong>
+                      <span className="w-9 h-9 rounded-xl bg-[#5160a3]/10 text-[#5160a3] flex items-center justify-center shrink-0">
+                        <MilestoneIcon className="w-4.5 h-4.5" />
+                      </span>
+                    </div>
+                    <h4 className="h-card text-slate-900">{m.title}</h4>
+                    <p className="t-body text-slate-500">{m.detail}</p>
+                  </article>
+                </li>
+              );
+            })}
+          </ol>
+        </div>
+
+        {/* Official certificates */}
+        <div className="space-y-6">
+          <div className="flex flex-wrap items-baseline justify-between gap-2">
+            <h3 className="h-card text-slate-900">Official certificates</h3>
+            <span className="text-sm text-slate-500">Tap a certificate to view it</span>
+          </div>
+
+          {/* Swipeable row on mobile/tablet, 4-column grid on desktop */}
+          <div className="flex lg:grid lg:grid-cols-4 gap-5 lg:gap-6 items-stretch overflow-x-auto lg:overflow-visible snap-x snap-mandatory no-scrollbar -mx-4 px-4 sm:-mx-6 sm:px-6 lg:mx-0 lg:px-0 pb-2">
             {certificates.map((cert) => (
-              <article
+              <button
+                type="button"
                 key={cert.id}
                 onClick={() => setSelectedCert(cert)}
-                className="group shrink-0 w-[82%] sm:w-[46%] md:w-[40%] lg:w-auto snap-start bg-[#F8FAFC] hover:bg-white rounded-3xl border-2 border-[#D9DFF0] hover:border-[#5160a3] p-3 sm:p-4 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col cursor-pointer relative overflow-hidden"
+                className="group shrink-0 w-[78%] sm:w-[46%] md:w-[40%] lg:w-auto snap-start text-left bg-white rounded-2xl border border-[#D9DFF0] hover:border-[#5160a3] p-3 sm:p-4 shadow-2xs hover:shadow-md transition-all duration-300 flex flex-col cursor-pointer"
               >
-                {/* Certificate image only — badge, authority and description open in the viewer */}
-                <div className="relative aspect-4/3 w-full rounded-2xl overflow-hidden bg-white border border-slate-200/90 shadow-sm group-hover:shadow-lg transition-all duration-300 flex items-center justify-center p-2">
+                <div className="relative aspect-[4/3] w-full rounded-xl overflow-hidden bg-[#F5F7FC] border border-[#D9DFF0] flex items-center justify-center p-2">
                   <img
                     src={cert.image}
                     alt={cert.title}
                     className="w-full h-full object-contain select-none group-hover:scale-[1.03] transition-transform duration-500"
                   />
-
-                  {/* Interactive Zoom Hover Overlay */}
-                  <div className="absolute inset-0 bg-[#5160a3]/20 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/95 text-slate-900 text-xs font-black shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                      <ZoomIn className="w-4 h-4 text-[#5160a3]" />
-                      <span>View Details</span>
+                  <span className="absolute inset-0 bg-[#5160a3]/15 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white text-xs font-bold text-slate-900 shadow">
+                      <ZoomIn className="w-3.5 h-3.5 text-[#5160a3]" />
+                      View
                     </span>
-                  </div>
-                </div>
-
-                <div className="pt-3 flex items-start justify-between gap-2">
-                  <h4 className="h-card text-slate-900 group-hover:text-[#5160a3] transition-colors">
-                    {cert.title}
-                  </h4>
-                  <span className="shrink-0 px-2 py-0.5 rounded-md bg-slate-200/70 text-slate-700 font-bold text-xs">
-                    {cert.year}
                   </span>
                 </div>
-              </article>
+                <div className="pt-3 flex items-start justify-between gap-2">
+                  <span className="h-card text-slate-900 group-hover:text-[#5160a3] transition-colors">{cert.title}</span>
+                  <span className="shrink-0 px-2 py-0.5 rounded-md bg-[#EFF3FC] text-[#5160a3] font-bold text-xs">{cert.year}</span>
+                </div>
+              </button>
             ))}
           </div>
         </div>
-
-        {/* ========================================================================= */}
-        {/* COMPREHENSIVE GRANTS & VENTURE FUNDING ROW                                 */}
-        {/* ========================================================================= */}
-        <div className="space-y-4 pt-4 border-t border-[#D9DFF0]">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-black uppercase tracking-wider text-slate-500">
-              Institutional Grants &amp; Growth Capital Milestones
-            </span>
-            <span className="text-xs font-bold text-[#5160a3]">Total ₹49L+ Non-Dilutive &amp; Equity Grants</span>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {awards.slice(0, 4).map((award) => {
-              const AwardIcon = award.Icon;
-              return (
-                <div
-                  key={award.title}
-                  className="bg-[#F8FAFC] rounded-2xl border border-[#D9DFF0] p-4.5 space-y-2 hover:bg-white hover:shadow-md hover:border-[#5160a3]/40 transition-all duration-300"
-                >
-                  <div className="flex items-center justify-between">
-                    <span className="text-xl sm:text-2xl font-black text-slate-900">
-                      {award.highlight}
-                    </span>
-                    <span className="text-xs font-black px-2 py-0.5 rounded-full bg-slate-200/80 text-slate-700">
-                      {award.year}
-                    </span>
-                  </div>
-                  <h5 className="text-xs sm:text-sm font-bold text-slate-800 leading-snug line-clamp-1">
-                    {award.title}
-                  </h5>
-                  <p className="text-xs text-slate-500 leading-relaxed line-clamp-2">
-                    {award.detail}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
       </div>
 
       {/* ========================================================================= */}
