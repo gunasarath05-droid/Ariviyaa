@@ -42,6 +42,9 @@ export const IMAGES = {
     patented: "/assets/Badges/badge-patented.jpg",
     tanuvas: "/assets/Badges/badge-tanuvas.jpg",
     glp: "/assets/Badges/badge-glp.png",
+    dpiit: "/assets/Badges/badge-DPIIT.png",
+    startupTN: "/assets/Badges/badge-StartupTN.png",
+    grants: "/assets/Badges/badge-Grants & Funding.png",
   },
 
   // Events & Summits (/assets/Events)
