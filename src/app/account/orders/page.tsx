@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React from "react";
 import type { Metadata } from "next";
 import { CommonHero } from "@/components/CommonHero";
 import { AccountShell } from "@/components/AccountShell";
@@ -22,10 +22,7 @@ export default function OrderHistoryPage() {
         ]}
       />
       <AccountShell>
-        {/* OrderHistory reads ?tab= with useSearchParams */}
-        <Suspense fallback={null}>
-          <OrderHistory />
-        </Suspense>
+        <OrderHistory />
       </AccountShell>
     </>
   );

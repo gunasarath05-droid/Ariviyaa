@@ -3,14 +3,16 @@
 import React, { useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { LayoutDashboard, Package, RotateCcw, Heart, LogOut, BadgeCheck } from "lucide-react";
+import { LayoutDashboard, Package, RotateCcw, Heart, UserRound, MapPin, LogOut, BadgeCheck } from "lucide-react";
 import { useAccount } from "@/context/AccountContext";
 
 const ACCOUNT_LINKS = [
   { label: "Dashboard", href: "/account", Icon: LayoutDashboard },
   { label: "Order History", href: "/account/orders", Icon: Package },
-  { label: "Returns", href: "/account/orders?tab=returns", Icon: RotateCcw },
-  { label: "Wishlist", href: "/wishlist", Icon: Heart },
+  { label: "Returns", href: "/account/returns", Icon: RotateCcw },
+  { label: "Wishlist", href: "/account/wishlist", Icon: Heart },
+  { label: "Account details", href: "/account/profile", Icon: UserRound },
+  { label: "Addresses", href: "/account/addresses", Icon: MapPin },
 ];
 
 // Sidebar + content frame shared by the signed-in customer pages; signed-out visitors go to /login
@@ -53,7 +55,8 @@ export function AccountShell({ children }: { children: React.ReactNode }) {
   return (
     <div className="w-full bg-[#F5F7FC] py-10 sm:py-14 font-sans">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
-        <aside className="lg:col-span-3 space-y-4">
+        {/* Sidebar stays in view (below the sticky site header) while the content scrolls */}
+        <aside className="lg:col-span-3 space-y-4 lg:sticky lg:top-40 lg:self-start">
           <div className="bg-white rounded-2xl border border-[#D9DFF0] shadow-2xs p-5 flex items-center gap-3">
             <div className="w-12 h-12 rounded-full bg-[#5160a3] text-white flex items-center justify-center font-black shrink-0">
               {initials}

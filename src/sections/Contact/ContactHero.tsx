@@ -13,7 +13,7 @@ const channels = [
   {
     label: "Call Directly",
     value: COMPANY_INFO.displayPhone,
-    note: "Mon – Sat, 9:00 AM – 6:30 PM",
+    note: `Every day, ${COMPANY_INFO.supportHours}`,
     href: `tel:${COMPANY_INFO.phone}`,
     external: false,
     Icon: Phone,
@@ -42,8 +42,8 @@ const channels = [
   },
   {
     label: "Office Location",
-    value: "Periyar TBI, Vallam, Thanjavur",
-    note: "Tamil Nadu 613403 · Open in Maps",
+    value: "Unit #103, Periyar TBI, Vallam",
+    note: "Thanjavur, Tamil Nadu 613403 · Open in Maps",
     href: MAPS_URL,
     external: true,
     Icon: MapPin,

@@ -190,7 +190,7 @@ export function AccountDashboard() {
           </button>
         )}
         <Link
-          href="/account/orders?tab=returns"
+          href="/account/returns"
           className={`${cardClass} p-4 flex items-center gap-3 hover:border-[#5160a3] transition-colors`}
         >
           <span className="w-10 h-10 rounded-xl bg-[#5160a3]/10 text-[#5160a3] flex items-center justify-center shrink-0">
@@ -224,10 +224,10 @@ export function AccountDashboard() {
               <MapPin className="w-4.5 h-4.5 text-[#5160a3]" />
               Saved addresses
             </h3>
-            <button type="button" className="inline-flex items-center gap-1 text-xs font-bold text-[#5160a3] hover:underline cursor-pointer">
+            <Link href="/account/addresses" className="inline-flex items-center gap-1 text-xs font-bold text-[#5160a3] hover:underline">
               <Plus className="w-3.5 h-3.5" />
-              Add new
-            </button>
+              Manage
+            </Link>
           </div>
           {user.addresses.length === 0 ? (
             <p className="p-4 rounded-xl border border-dashed border-[#D9DFF0] text-sm text-slate-500">
@@ -244,9 +244,9 @@ export function AccountDashboard() {
                         <span className="px-2 py-0.5 rounded-full bg-[#5160a3] text-white text-[10px] font-bold">Default</span>
                       )}
                     </span>
-                    <button type="button" aria-label={`Edit ${label} address`} className="p-1 text-slate-400 hover:text-[#5160a3] cursor-pointer">
+                    <Link href="/account/addresses" aria-label={`Edit ${label} address`} className="p-1 text-slate-400 hover:text-[#5160a3]">
                       <Pencil className="w-3.5 h-3.5" />
-                    </button>
+                    </Link>
                   </div>
                   <p className="mt-1.5 text-slate-600 leading-relaxed">
                     {address.name}, {address.line1}
@@ -270,10 +270,10 @@ export function AccountDashboard() {
               )}
               {isBusiness ? "Business profile" : "Profile"}
             </h3>
-            <button type="button" className="inline-flex items-center gap-1 text-xs font-bold text-[#5160a3] hover:underline cursor-pointer">
+            <Link href="/account/profile" className="inline-flex items-center gap-1 text-xs font-bold text-[#5160a3] hover:underline">
               <Pencil className="w-3.5 h-3.5" />
               Edit
-            </button>
+            </Link>
           </div>
           <dl className="divide-y divide-slate-100 text-sm">
             {profileRows.map(([term, value]) => (

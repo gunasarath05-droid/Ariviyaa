@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import {
   Search,
   ChevronDown,
@@ -30,7 +29,9 @@ import { OrderProgress, OrderTimeline, StatusPill } from "../OrderProgress";
 
 type Filter = "all" | "progress" | "delivered" | "returns";
 
-const FILTERS: { id: Filter; label: string; match: (o: DemoOrder) => boolean }[] = [
+type FilterDef = { id: Filter; label: string; match: (o: DemoOrder) => boolean };
+
+const FILTERS: FilterDef[] = [
   { id: "all", label: "All orders", match: () => true },
   {
     id: "progress",
@@ -41,20 +42,21 @@ const FILTERS: { id: Filter; label: string; match: (o: DemoOrder) => boolean }[]
   { id: "returns", label: "Returns", match: (o) => o.status === "return-requested" || o.status === "returned" },
 ];
 
+// The Returns page shows return requests first, then delivered orders that can still be returned
+const RETURN_FILTERS: FilterDef[] = [
+  { ...FILTERS[3], label: "Return requests" },
+  { ...FILTERS[2], label: "Eligible to return" },
+];
+
 const actionClass =
   "inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl border border-[#D9DFF0] bg-white text-xs font-bold text-slate-700 hover:border-[#5160a3] hover:text-[#5160a3] transition-colors cursor-pointer";
 
-export function OrderHistory() {
+export function OrderHistory({ view = "orders" }: { view?: "orders" | "returns" }) {
   const { addToCart } = useApp();
   const { orders: allOrders } = useAccount();
-  const router = useRouter();
-  const pathname = usePathname();
-  // The active tab lives in the URL (?tab=returns) so the sidebar "Returns" link opens it
-  const tab = useSearchParams().get("tab");
-  const activeFilter = FILTERS.find((f) => f.id === tab) ?? FILTERS[0];
-  const filter = activeFilter.id;
-  const setFilter = (next: Filter) =>
-    router.replace(next === "all" ? pathname : `${pathname}?tab=${next}`, { scroll: false });
+  const filters = view === "returns" ? RETURN_FILTERS : FILTERS;
+  const [filter, setFilter] = useState<Filter>(filters[0].id);
+  const activeFilter = filters.find((f) => f.id === filter) ?? filters[0];
   const [query, setQuery] = useState("");
   const [openId, setOpenId] = useState<string | null>(allOrders[0]?.id ?? null);
   const [notice, setNotice] = useState("");
@@ -73,7 +75,7 @@ export function OrderHistory() {
       {/* Filters + search */}
       <div className={`${cardClass} p-3 sm:p-4 flex flex-col md:flex-row md:items-center justify-between gap-3`}>
         <div className="flex gap-1.5 overflow-x-auto no-scrollbar">
-          {FILTERS.map((f) => {
+          {filters.map((f) => {
             const count = allOrders.filter(f.match).length;
             return (
               <button
@@ -125,7 +127,9 @@ export function OrderHistory() {
             <>
               <p className="text-base font-bold text-slate-800">No return requests</p>
               <p className="text-sm text-slate-500">
-                To return something, open a delivered order and choose &ldquo;Return items&rdquo;.
+                {view === "returns"
+                  ? "Delivered orders you can return are listed under “Eligible to return”."
+                  : "To return something, open a delivered order and choose “Return items”."}
               </p>
             </>
           ) : (

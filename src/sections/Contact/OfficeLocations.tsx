@@ -43,7 +43,7 @@ export function OfficeLocations() {
             <ul className="space-y-3 pt-5 border-t border-[#D9DFF0] text-sm text-slate-600">
               <li className="flex items-start gap-2.5">
                 <Clock className="w-4 h-4 text-[#5160a3] shrink-0 mt-0.5" />
-                <span>Mon – Sat, 9:00 AM – 6:30 PM IST</span>
+                <span>Every day, {COMPANY_INFO.supportHours} IST</span>
               </li>
               <li className="flex items-start gap-2.5">
                 <Building2 className="w-4 h-4 text-[#5160a3] shrink-0 mt-0.5" />

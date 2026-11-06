@@ -1,7 +1,13 @@
 "use client";
 
 import React, { createContext, useContext, useEffect, useState, type ReactNode } from "react";
-import { DEMO_CUSTOMER, DEMO_ORDERS, type CustomerProfile, type DemoOrder } from "@/constants/demo";
+import {
+  DEMO_CUSTOMER,
+  DEMO_ORDERS,
+  type CustomerProfile,
+  type DemoOrder,
+  type SavedAddress,
+} from "@/constants/demo";
 
 /**
  * Demo sign-in for the client-review build: accounts and their orders live in this browser's
@@ -32,6 +38,11 @@ interface AccountContextType {
   /** Adds an order placed at checkout and saves its address if the account has none */
   recordOrder: (order: DemoOrder) => void;
   requestReturn: (orderId: string) => void;
+  /** Email is the account key on the demo build, so it is not editable here */
+  updateProfile: (details: Omit<SignUpDetails, "email">) => void;
+  /** Saves at `index`, or adds when index is null; a default address clears the others' flag */
+  saveAddress: (index: number | null, saved: SavedAddress) => void;
+  removeAddress: (index: number) => void;
 }
 
 const AccountContext = createContext<AccountContextType | undefined>(undefined);
@@ -127,9 +138,41 @@ export function AccountProvider({ children }: { children: ReactNode }) {
       current.returns.includes(orderId) ? current : { ...current, returns: [...current.returns, orderId] }
     );
 
+  const updateProfile = (details: Omit<SignUpDetails, "email">) =>
+    updateAccount((current) => ({ ...current, profile: { ...current.profile, ...details } }));
+
+  const setAddresses = (update: (addresses: SavedAddress[]) => SavedAddress[]) =>
+    updateAccount((current) => {
+      const next = update(current.profile.addresses);
+      // Always keep exactly one default while any address exists
+      const withDefault =
+        next.length > 0 && !next.some((a) => a.isDefault) ? next.map((a, i) => ({ ...a, isDefault: i === 0 })) : next;
+      return { ...current, profile: { ...current.profile, addresses: withDefault } };
+    });
+
+  const saveAddress = (index: number | null, saved: SavedAddress) =>
+    setAddresses((addresses) => {
+      const cleared = saved.isDefault ? addresses.map((a) => ({ ...a, isDefault: false })) : addresses;
+      return index === null ? [...cleared, saved] : cleared.map((a, i) => (i === index ? saved : a));
+    });
+
+  const removeAddress = (index: number) => setAddresses((addresses) => addresses.filter((_, i) => i !== index));
+
   return (
     <AccountContext.Provider
-      value={{ ready, user, orders, signIn, signUp, signOut, recordOrder, requestReturn }}
+      value={{
+        ready,
+        user,
+        orders,
+        signIn,
+        signUp,
+        signOut,
+        recordOrder,
+        requestReturn,
+        updateProfile,
+        saveAddress,
+        removeAddress,
+      }}
     >
       {children}
     </AccountContext.Provider>

@@ -30,14 +30,15 @@ export function Header() {
     setIsSearchOpen,
     setSearchQuery,
   } = useApp();
-  // Only known after mount, so the server-rendered header always shows "Sign in"
-  const { user } = useAccount();
+  const { user: sessionUser } = useAccount();
 
   // The header hydrates inside a Suspense boundary, after the saved cart/wishlist may
   // already be restored — render badge counts only once hydrated to match server HTML.
   const [isHydrated, setIsHydrated] = useState(false);
   // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => setIsHydrated(true), []);
+  // Same for the signed-in name: the server always renders "Sign in"
+  const user = isHydrated ? sessionUser : null;
 
   const [localSearch, setLocalSearch] = useState("");
   const [isMediaOpen, setIsMediaOpen] = useState(false);
