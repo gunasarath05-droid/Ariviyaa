@@ -2,7 +2,8 @@
 
 import React from "react";
 import { COMPANY_INFO } from "@/constants/company";
-import { Phone, MessageCircle } from "lucide-react";
+import { Phone } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 
 export function FloatingContact() {
   return (
@@ -19,7 +20,7 @@ export function FloatingContact() {
         className="group flex items-center bg-[#25D366] text-white rounded-l-full shadow-lg hover:shadow-[0_4px_20px_rgba(37,211,102,0.5)] transition-all duration-300 ease-in-out overflow-hidden h-12 p-1.5 cursor-pointer border-y border-l border-white/20"
       >
         <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center text-xl shrink-0 group-hover:bg-white/30 group-hover:scale-105 transition-all duration-300">
-          <MessageCircle className="w-5 h-5 fill-white" />
+          <FaWhatsapp className="w-6 h-6 text-white" />
         </div>
         <span className="max-w-0 group-hover:max-w-[120px] opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out whitespace-nowrap text-xs font-extrabold uppercase tracking-wider pl-0 group-hover:pl-2.5 group-hover:pr-3">
           WhatsApp

@@ -18,7 +18,7 @@ export function OrderSummaryCard({ items, totals, shippingLabel = "Shipping", ch
     <div className={`${cardClass} p-5 sm:p-6 space-y-5`}>
       <h2 className="text-lg font-bold text-slate-900">Order Summary</h2>
 
-      <ul className="space-y-3 max-h-72 overflow-y-auto pr-1">
+      <ul className="space-y-3 max-h-72 overflow-y-auto pt-2 pr-2">
         {items.map(({ product, quantity, pack }) => {
           const unitPrice = pack?.price ?? product.price;
           return (
@@ -32,7 +32,7 @@ export function OrderSummaryCard({ items, totals, shippingLabel = "Shipping", ch
                 style={{ width: "auto", height: "auto" }}
                 className="max-h-full max-w-full object-contain"
               />
-              <span className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-[#5160a3] text-white text-[10px] font-black flex items-center justify-center">
+              <span className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-[#5160a3] text-white text-[11px] font-bold flex items-center justify-center">
                 {quantity}
               </span>
             </div>
