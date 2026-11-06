@@ -53,10 +53,10 @@ export function FlagshipSection() {
 
   return (
     <section
-      className="w-full section-y px-4 sm:px-6 lg:px-8 font-sans scroll-mt-20 bg-[#F5F7FC] border-b border-[#D9DFF0]"
+      className="w-full section-y font-sans scroll-mt-20 bg-[#F5F7FC] border-b border-[#D9DFF0]"
       id="flagship-products"
     >
-      <div className="max-w-7xl mx-auto space-y-4 sm:space-y-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
         
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <div className="eyebrow">
@@ -64,28 +64,29 @@ export function FlagshipSection() {
             <span>Our Products</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight leading-tight">
+          <h2 className="h-section text-slate-900">
             Flagship Innovation:{" "}
             <span className="text-[#5160a3]">MammaryO</span>
           </h2>
 
-          <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl mx-auto font-normal">
+          <p className="t-lead text-slate-600 max-w-2xl mx-auto">
             A nano-bio post-milking teat dip that helps prevent bovine mastitis
             and ensures clean milk production.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           
           {/* Left: Product Visual Poster */}
-          <div className="lg:col-span-6 flex justify-center">
-            <div className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden">
+          <div>
+            {/* 3:2 matches the poster artwork, so it fills the frame without cropping */}
+            <div className="relative w-full aspect-[3/2] rounded-3xl overflow-hidden border border-[#D9DFF0] shadow-sm bg-white">
               {!imgError ? (
                 <Image
                   src={IMAGES.products.mammaryoPoster}
                   alt="MammaryO post teat dip solution"
                   fill
-                  className="object-contain select-none"
+                  className="object-cover select-none"
                   onError={() => setImgError(true)}
                   priority
                   sizes="(max-width: 1024px) 100vw, 50vw"
@@ -101,17 +102,17 @@ export function FlagshipSection() {
           </div>
 
           {/* Right: Product Details & Value Points */}
-          <div className="lg:col-span-6 space-y-6">
+          <div className="space-y-6">
             <div className="space-y-2.5">
               <span className="text-xs sm:text-sm font-semibold text-[#5160a3]">
                 Invented with NaxPoly® nano-biotechnology
               </span>
 
-              <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
+              <h3 className="h-block text-slate-900">
                 Clean milk production, naturally.
               </h3>
 
-              <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
+              <p className="t-lead text-slate-600">
                 MammaryO forms a protective physical and antimicrobial barrier
                 rich in organic compounds and amino acids — mitigating pathogen
                 invasion without contributing to antimicrobial resistance.

@@ -6,7 +6,7 @@ import { AccountDashboard } from "./AccountDashboard";
 
 export const metadata: Metadata = {
   title: "My Account",
-  description: "Your Ariviya orders, addresses, business details and saved products.",
+  description: "Your Ariviyaa orders, addresses, business details and saved products.",
   robots: { index: false },
 };
 

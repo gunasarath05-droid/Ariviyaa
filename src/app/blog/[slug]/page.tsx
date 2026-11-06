@@ -68,13 +68,13 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             <span className="inline-flex px-3 py-1 rounded-full bg-[#EFF3FC] border border-[#D9DFF0] text-xs font-bold text-[#5160a3]">
               {post.category}
             </span>
-            <h1 className="text-2xl sm:text-4xl font-black tracking-tight text-slate-900 leading-tight">
+            <h1 className="h-section text-slate-900">
               {post.title}
             </h1>
-            <p className="text-base sm:text-lg text-slate-600 leading-relaxed">{post.excerpt}</p>
+            <p className="t-lead text-slate-600">{post.excerpt}</p>
             <div className="flex flex-wrap items-center gap-x-5 gap-y-2 pt-2 text-sm text-slate-500">
               <div className="flex items-center gap-2.5">
-                <span className="w-9 h-9 rounded-full bg-[#5160a3] text-white text-xs font-black flex items-center justify-center">
+                <span className="w-9 h-9 rounded-full bg-[#5160a3] text-white text-xs font-bold flex items-center justify-center">
                   {post.author.replace("Dr. ", "").charAt(0)}
                 </span>
                 <span>
@@ -98,7 +98,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <div className="space-y-8">
             {post.body.map((section) => (
               <section key={section.heading} className="space-y-3">
-                <h2 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">{section.heading}</h2>
+                <h2 className="h-block text-slate-900">{section.heading}</h2>
                 {section.paragraphs.map((para) => (
                   <p key={para} className="text-base sm:text-[17px] text-slate-700 leading-8">
                     {para}
@@ -133,12 +133,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
       <section className="w-full section-y bg-[#F5F7FC] font-sans border-b border-[#D9DFF0]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-          <div className="space-y-2">
+          <div className="space-y-3">
             <div className="eyebrow">
               <AriviyaIcon className="w-4 h-4 text-[#5160a3] shrink-0" />
               <span>Keep reading</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">Related Articles</h2>
+            <h2 className="h-section text-slate-900">Related Articles</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {related.map((p) => (
@@ -151,8 +151,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                   <Image src={p.image} alt={p.title} fill sizes="(max-width: 768px) 100vw, 400px" className="object-cover group-hover:scale-105 transition-transform duration-500" />
                 </div>
                 <div className="p-5 space-y-2 flex-1 flex flex-col">
-                  <span className="text-[11px] font-bold text-[#5160a3]">{p.category}</span>
-                  <h3 className="text-base font-bold text-slate-900 group-hover:text-[#5160a3] line-clamp-2 leading-snug">{p.title}</h3>
+                  <span className="text-xs font-bold uppercase tracking-wider text-[#5160a3]">{p.category}</span>
+                  <h3 className="h-card text-slate-900 group-hover:text-[#5160a3] line-clamp-2">{p.title}</h3>
                   <span className="mt-auto pt-2 inline-flex items-center gap-1 text-xs font-bold text-[#5160a3]">
                     Read article <ArrowRight className="w-3.5 h-3.5" />
                   </span>

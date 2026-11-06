@@ -5,14 +5,14 @@ import { ContactHero, ContactFormSection, OfficeLocations } from "@/sections/Con
 export const metadata: Metadata = {
   title: "Contact Us | Customer Care, Dealership & Investor Desk",
   description:
-    "Get in touch with Ariviya Deep Tech Pvt. Ltd. Contact our veterinary experts, wholesale distributor desk, or investor relations team in Thanjavur, Tamil Nadu.",
+    "Get in touch with Ariviyaa Deep Tech Pvt. Ltd. Contact our veterinary experts, wholesale distributor desk, or investor relations team in Thanjavur, Tamil Nadu.",
   keywords: [
-    "Contact Ariviya",
-    "Ariviya Deep Tech Phone Number",
+    "Contact Ariviyaa",
+    "Ariviyaa Deep Tech Phone Number",
     "Thanjavur Veterinary Biotech Office",
     "MammaryO Teat Dip Dealership",
     "Veterinary Product Distributor Tamil Nadu",
-    "Ariviya Investor Relations",
+    "Ariviyaa Investor Relations",
   ],
 };
 

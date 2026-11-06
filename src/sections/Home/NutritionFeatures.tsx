@@ -15,7 +15,7 @@ export function NutritionFeaturesSection() {
 
         {/* 2. SUBTITLE */}
         <p className="mt-3 text-sm sm:text-base md:text-lg font-semibold text-[#0E4E5C] tracking-wide">
-          Discover Ariviya&apos;s Green Synthesis Naxpoly® Technology!
+          Discover Ariviyaa&apos;s Green Synthesis Naxpoly® Technology!
         </p>
 
         {/* 3. THREE-COLUMN CONTENT GRID */}
@@ -23,7 +23,7 @@ export function NutritionFeaturesSection() {
           {/* LEFT PARAGRAPH */}
           <div className="md:col-span-5 text-xs sm:text-sm md:text-[14.5px] text-[#4E626B] leading-relaxed font-medium text-justify sm:text-left bg-white/40 p-5 rounded-2xl border border-white/60 shadow-sm">
             <p>
-              At Ariviya, we believe in safeguarding animals and dairy herds without toxic
+              At Ariviyaa, we believe in safeguarding animals and dairy herds without toxic
               chemicals.{" "}
               <strong className="font-bold text-[#0A343D]">
                 That&apos;s why we have engineered fortified biopolymers stabilized by noble
@@ -57,7 +57,7 @@ export function NutritionFeaturesSection() {
               <strong className="font-bold text-[#0A343D]">
                 Clinically validated by TRPVB (TANUVAS) and JSS College of Pharmacy
               </strong>
-              , Ariviya products protect dairy cows from mastitis, heal pet wounds faster, and keep
+              , Ariviyaa products protect dairy cows from mastitis, heal pet wounds faster, and keep
               farms safe from superbugs and antimicrobial resistance.
             </p>
           </div>

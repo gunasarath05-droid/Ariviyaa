@@ -22,6 +22,7 @@ import { CommonHero } from "@/components/CommonHero";
 import { CheckoutSteps } from "@/components/CheckoutSteps";
 import { OrderSummaryCard } from "@/components/OrderSummaryCard";
 import { useApp } from "@/context/AppContext";
+import { useAccount } from "@/context/AccountContext";
 import { formatPrice } from "@/constants/products";
 import {
   DEMO_CUSTOMER,
@@ -144,11 +145,16 @@ function MethodPanel({ id }: { id: PaymentMethodId }) {
 export default function PaymentPage() {
   const router = useRouter();
   const { cart, cartSubtotal, clearCart } = useApp();
+  const { ready, user, recordOrder } = useAccount();
 
   const [mounted, setMounted] = useState(false);
   const [draft, setDraft] = useState<CheckoutDraft>(SAMPLE_DRAFT);
   const [paymentId, setPaymentId] = useState<PaymentMethodId>("upi");
   const [processing, setProcessing] = useState(false);
+
+  useEffect(() => {
+    if (ready && !user) router.replace("/login?next=/checkout");
+  }, [ready, user, router]);
 
   useEffect(() => {
     const saved = loadCheckoutDraft();
@@ -165,12 +171,32 @@ export default function PaymentPage() {
     setProcessing(true);
     // Simulates the Razorpay round trip; the backend will verify the payment signature
     window.setTimeout(() => {
-      savePlacedOrder({
-        id: newOrderId(),
-        placedAt: new Date().toISOString(),
-        draft,
+      const placedAt = new Date();
+      const id = newOrderId();
+      const items = cart.map(({ product, pack, quantity }) => ({ productId: product.id, size: pack.size, quantity }));
+      savePlacedOrder({ id, placedAt: placedAt.toISOString(), draft, paymentId, items });
+      // Signed-in shoppers see the order in their account right away
+      recordOrder({
+        id,
+        date: placedAt.toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" }),
+        status: "placed",
+        items,
+        shippingId: draft.shippingId,
         paymentId,
-        items: cart.map(({ product, quantity }) => ({ productId: product.id, quantity })),
+        address: draft.address,
+        timeline: [
+          {
+            status: "placed",
+            date: placedAt.toLocaleString("en-GB", {
+              day: "2-digit",
+              month: "short",
+              year: "numeric",
+              hour: "2-digit",
+              minute: "2-digit",
+              hour12: true,
+            }),
+          },
+        ],
       });
       clearCart();
       router.push("/order-confirmation");
@@ -189,19 +215,19 @@ export default function PaymentPage() {
         ]}
       />
 
-      <section className="w-full bg-[#F5F7FC] py-10 sm:py-14 font-sans">
+      <section className="w-full bg-white py-10 sm:py-14 font-sans">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
           <CheckoutSteps current={2} />
 
-          {!mounted ? (
+          {!mounted || !user ? (
             <div className={`${cardClass} h-96 animate-pulse`} />
           ) : cart.length === 0 && !processing ? (
             <div className={`${cardClass} py-16 px-6 text-center flex flex-col items-center gap-3`}>
               <div className="w-16 h-16 rounded-full bg-[#EFF3FC] text-[#5160a3] flex items-center justify-center">
                 <ShoppingBag className="w-8 h-8" />
               </div>
-              <h2 className="text-xl font-bold text-slate-900">Nothing to pay for yet</h2>
-              <p className="text-sm text-slate-500 max-w-sm">Your cart is empty. Add products to continue.</p>
+              <h2 className="h-card text-slate-900">Nothing to pay for yet</h2>
+              <p className="t-body text-slate-500 max-w-sm">Your cart is empty. Add products to continue.</p>
               <Link href="/shop" className={`${primaryButtonClass} mt-2`}>
                 Go to shop
                 <ArrowRight className="w-4 h-4" />
@@ -214,7 +240,7 @@ export default function PaymentPage() {
                 <div className={`${cardClass} p-5 sm:p-6 grid grid-cols-1 sm:grid-cols-2 gap-5`}>
                   <div className="space-y-1.5">
                     <div className="flex items-center justify-between gap-2">
-                      <h2 className="flex items-center gap-2 text-sm font-bold text-slate-900">
+                      <h2 className="flex items-center gap-2 h-card text-slate-900">
                         <MapPin className="w-4 h-4 text-[#5160a3]" />
                         Deliver to
                       </h2>
@@ -240,7 +266,7 @@ export default function PaymentPage() {
                   </div>
                   <div className="space-y-1.5 sm:border-l sm:border-slate-100 sm:pl-5">
                     <div className="flex items-center justify-between gap-2">
-                      <h2 className="flex items-center gap-2 text-sm font-bold text-slate-900">
+                      <h2 className="flex items-center gap-2 h-card text-slate-900">
                         <Truck className="w-4 h-4 text-[#5160a3]" />
                         Shipping
                       </h2>
@@ -259,7 +285,7 @@ export default function PaymentPage() {
                 {/* Payment methods */}
                 <div className={`${cardClass} p-5 sm:p-6 space-y-5`}>
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                    <h2 className="text-base sm:text-lg font-bold text-slate-900">Choose a payment method</h2>
+                    <h2 className="h-card text-slate-900">Choose a payment method</h2>
                     <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EFF3FC] border border-[#D9DFF0] text-xs font-bold text-[#5160a3] self-start">
                       <ShieldCheck className="w-3.5 h-3.5" />
                       Secured by Razorpay
@@ -315,13 +341,13 @@ export default function PaymentPage() {
 
                   <p className="flex items-start gap-2 text-xs text-slate-500">
                     <Lock className="w-3.5 h-3.5 text-[#5160a3] shrink-0 mt-px" />
-                    Card and bank details are entered in Razorpay&apos;s secure window — Ariviya never stores them.
+                    Card and bank details are entered in Razorpay&apos;s secure window — Ariviyaa never stores them.
                     This review build only simulates the payment.
                   </p>
                 </div>
               </div>
 
-              <aside className="lg:col-span-4 lg:sticky lg:top-28">
+              <aside className="lg:col-span-4 lg:sticky lg:top-40 lg:self-start">
                 <OrderSummaryCard items={cart} totals={totals} shippingLabel={`Shipping (${shipping.carrier})`}>
                   <button
                     type="button"
@@ -343,7 +369,7 @@ export default function PaymentPage() {
                       </>
                     )}
                   </button>
-                  <p className="text-center text-[11px] text-slate-500 leading-relaxed">
+                  <p className="text-center text-xs text-slate-500 leading-relaxed">
                     By placing this order you agree to our{" "}
                     <Link href="/terms-and-conditions" className="font-semibold text-[#5160a3] hover:underline">
                       Terms

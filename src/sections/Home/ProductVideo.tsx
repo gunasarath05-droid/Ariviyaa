@@ -26,30 +26,30 @@ const benefits = [
 export function ProductVideoSection() {
   return (
     <section
-      className="w-full section-y px-4 sm:px-6 lg:px-8 font-sans scroll-mt-20 bg-white border-b border-[#D9DFF0]"
+      className="w-full section-y font-sans scroll-mt-20 bg-white border-b border-[#D9DFF0]"
       id="product-video"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* Left Column: Copy & Bullet Points */}
-          <div className="lg:col-span-6 space-y-6">
+          <div className="space-y-6">
             <div className="space-y-3">
               <div className="eyebrow">
                 <AriviyaIcon className="w-4 h-4 text-[#5160a3] shrink-0" />
                 <span>Product Intro</span>
               </div>
 
-              <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight leading-tight">
+              <h2 className="h-section text-slate-900">
                 See MammaryO 
                 <span className="text-[#5160a3]"> In Action</span>
               </h2>
 
-              <p className="text-sm font-bold text-slate-500 uppercase tracking-wide">
+              <p className="t-kicker text-slate-500">
                 Bovine Udder Care, Explained In Under A Minute.
               </p>
             </div>
 
-            <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
+            <p className="t-lead text-slate-600">
               Watch how our post-milking teat dip seamlessly fits into everyday
               milking routines — protecting teats after every milking for
               cleaner milk and healthier herds.
@@ -66,10 +66,10 @@ export function ProductVideoSection() {
                     <Icon className="w-4 h-4" />
                   </div>
                   <div>
-                    <strong className="block text-sm font-bold text-slate-900">
+                    <strong className="block h-card text-slate-900">
                       {title}
                     </strong>
-                    <p className="text-sm text-slate-500 leading-relaxed mt-0.5">
+                    <p className="t-body text-slate-500 mt-0.5">
                       {desc}
                     </p>
                   </div>
@@ -79,8 +79,8 @@ export function ProductVideoSection() {
           </div>
 
           {/* Right Column: Responsive YouTube Video Frame */}
-          <div className="lg:col-span-6">
-            <div className="relative aspect-video w-full rounded-3xl overflow-hidden bg-slate-900 border-2 border-[#D9DFF0] shadow-xl">
+          <div>
+            <div className="relative aspect-video w-full rounded-3xl overflow-hidden bg-slate-900 border border-[#D9DFF0] shadow-sm">
               <iframe
                 src={`https://www.youtube-nocookie.com/embed/${videoId}?rel=0`}
                 title="Ariviyaa MammaryO product introduction video"

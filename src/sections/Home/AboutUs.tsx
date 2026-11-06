@@ -17,6 +17,10 @@ import {
   Eye,
 } from "lucide-react";
 
+/** Pages alternate white and light sections; each page picks the tone that fits its order */
+type SectionTone = "white" | "light";
+const TONE_BG: Record<SectionTone, string> = { white: "bg-white", light: "bg-[#F5F7FC]" };
+
 interface TeamMember {
   name: string;
   role: string;
@@ -71,7 +75,7 @@ const team: TeamMember[] = [
 /**
  * 7. SCIENCE FROM THANJAVUR SECTION
  */
-export function ScienceFromThanjavurSection() {
+export function ScienceFromThanjavurSection({ tone = "white" }: { tone?: SectionTone }) {
   const [imgError, setImgError] = useState<{ [key: string]: boolean }>({});
 
   const handleImageError = (id: string) => {
@@ -79,12 +83,12 @@ export function ScienceFromThanjavurSection() {
   };
 
   return (
-    <section className="w-full section-y bg-white font-sans border-b border-[#D9DFF0]" id="science-from-thanjavur">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+    <section className={`w-full section-y ${TONE_BG[tone]} font-sans border-b border-[#D9DFF0]`} id="science-from-thanjavur">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 lg:items-stretch">
           
           {/* Left Column: Story & Facts */}
-          <div className="lg:col-span-7 space-y-6 sm:space-y-8">
+          <div className="space-y-6 sm:space-y-8 lg:py-2">
             <div className="space-y-3">
               {/* Eyebrow */}
               <div className="eyebrow">
@@ -93,20 +97,20 @@ export function ScienceFromThanjavurSection() {
               </div>
 
               {/* Main Heading */}
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight leading-[1.15]">
+              <h2 className="h-section text-slate-900">
                 Science From Thanjavur. <br className="hidden sm:inline" />
                 <span className="text-[#5160a3]">Care For Every Farm.</span>
               </h2>
 
               {/* Sub-label */}
-              <p className="text-sm sm:text-base font-bold text-[#5160a3]/90 tracking-wide uppercase">
-                Ariviya Deep Tech Pvt. Ltd. — A Deep-Tech Biotechnology Startup
+              <p className="t-kicker text-slate-500">
+                Ariviyaa Deep Tech Pvt. Ltd. — A Deep-Tech Biotechnology Startup
               </p>
             </div>
 
             {/* Body Description */}
-            <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
-              Founded in 2021 by scientists and entrepreneurs, Ariviya translates locally developed
+            <p className="t-lead text-slate-600">
+              Founded in 2021 by scientists and entrepreneurs, Ariviyaa translates locally developed
               scientific innovation into affordable, sustainable animal healthcare. We integrate
               nanotechnology, biotechnology, and polymer science to build products for animal health,
               wound management, and antimicrobial protection.
@@ -119,9 +123,9 @@ export function ScienceFromThanjavurSection() {
                   <span className="w-9 h-9 rounded-xl bg-[#5160a3] text-white flex items-center justify-center shrink-0">
                     <Target className="w-4.5 h-4.5" />
                   </span>
-                  <h3 className="text-base sm:text-lg font-bold text-slate-900">Our Mission</h3>
+                  <h3 className="h-card text-slate-900">Our Mission</h3>
                 </div>
-                <p className="text-sm sm:text-[15px] text-slate-600 leading-relaxed">
+                <p className="t-body text-slate-500">
                   Protect animals, improve farmers&apos; livelihoods and support clean milk production
                   through <span className="font-semibold text-[#5160a3]">NaxPoly®</span> green
                   nanotechnology.
@@ -132,48 +136,28 @@ export function ScienceFromThanjavurSection() {
                   <span className="w-9 h-9 rounded-xl bg-[#5160a3] text-white flex items-center justify-center shrink-0">
                     <Eye className="w-4.5 h-4.5" />
                   </span>
-                  <h3 className="text-base sm:text-lg font-bold text-slate-900">Our Vision</h3>
+                  <h3 className="h-card text-slate-900">Our Vision</h3>
                 </div>
-                <p className="text-sm sm:text-[15px] text-slate-600 leading-relaxed">
+                <p className="t-body text-slate-500">
                   Make antibiotic-free, eco-friendly animal healthcare the everyday standard for
                   India&apos;s dairy farms, veterinarians and pet parents.
                 </p>
               </div>
             </div>
 
-            {/* Facts Row / Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 pt-2">
-              {aboutFacts.map(({ label, value, Icon }) => (
-                <div
-                  key={label}
-                  className="bg-[#F5F7FC] p-3.5 sm:p-4 rounded-2xl border border-[#D9DFF0] shadow-2xs hover:shadow-xs transition-shadow flex flex-col gap-2"
-                >
-                  <div className="w-8 h-8 rounded-xl bg-[#5160a3]/10 text-[#5160a3] flex items-center justify-center shrink-0">
-                    <Icon className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <span className="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
-                      {label}
-                    </span>
-                    <span className="text-xs sm:text-sm font-black text-slate-800 leading-tight block mt-0.5">
-                      {value}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
           </div>
 
           {/* Right Column: Product Range Visual */}
-          <div className="lg:col-span-5 relative">
-            <div className="relative rounded-[20px] overflow-hidden bg-white border border-[#D9DFF0]">
+          {/* Fills the full height of the text column on desktop */}
+          <div className="relative">
+            <div className="relative h-full rounded-3xl overflow-hidden bg-white border border-[#D9DFF0] shadow-sm">
 
               {/* Product Range Image Container */}
-              <div className="relative aspect-4/3 w-full bg-slate-100 overflow-hidden flex items-center justify-center">
+              <div className="relative aspect-[4/3] lg:aspect-auto lg:h-full lg:min-h-[420px] w-full bg-slate-100 overflow-hidden flex items-center justify-center">
                 {!imgError["product-range"] ? (
                   <Image
                     src={IMAGES.productShowcase}
-                    alt="Ariviya product range"
+                    alt="Ariviyaa product range"
                     fill
                     className="object-cover object-center hover:scale-105 transition-transform duration-700"
                     onError={() => handleImageError("product-range")}
@@ -184,13 +168,31 @@ export function ScienceFromThanjavurSection() {
                     <div className="w-16 h-16 rounded-2xl bg-[#5160a3]/10 text-[#5160a3] flex items-center justify-center mb-3">
                       <Sparkles className="w-8 h-8" />
                     </div>
-                    <span className="text-base font-bold text-slate-800">Ariviya Product Range</span>
+                    <span className="text-base font-bold text-slate-800">Ariviyaa Product Range</span>
                     <span className="text-xs text-slate-500 mt-1">NaxPoly® Chemical-Free Formulations</span>
                   </div>
                 )}
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Facts: one full-width row under both columns */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+          {aboutFacts.map(({ label, value, Icon }) => (
+            <div
+              key={label}
+              className={`${tone === "white" ? "bg-[#F5F7FC]" : "bg-white"} p-4 sm:p-5 rounded-2xl border border-[#D9DFF0] shadow-2xs flex items-center gap-3 sm:gap-4`}
+            >
+              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-[#5160a3]/10 text-[#5160a3] flex items-center justify-center shrink-0">
+                <Icon className="w-5 h-5" />
+              </div>
+              <div className="min-w-0">
+                <span className="block text-xs font-semibold text-slate-500 uppercase tracking-wider">{label}</span>
+                <span className="block h-card text-slate-900 mt-0.5">{value}</span>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -200,7 +202,7 @@ export function ScienceFromThanjavurSection() {
 /**
  * 10. TEAM BEHIND ARIVIYAA SECTION
  */
-export function TeamBehindAriviyaaSection() {
+export function TeamBehindAriviyaaSection({ tone = "light" }: { tone?: SectionTone }) {
   const [imgError, setImgError] = useState<{ [key: string]: boolean }>({});
 
   const handleImageError = (id: string) => {
@@ -208,7 +210,7 @@ export function TeamBehindAriviyaaSection() {
   };
 
   return (
-    <section className="w-full section-y bg-[#F5F7FC] font-sans border-b border-[#D9DFF0]" id="team">
+    <section className={`w-full section-y ${TONE_BG[tone]} font-sans border-b border-[#D9DFF0]`} id="team">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
         {/* Team Section Title */}
         <div className="text-center max-w-2xl mx-auto space-y-2">
@@ -216,10 +218,10 @@ export function TeamBehindAriviyaaSection() {
             <AriviyaIcon className="w-4 h-4 text-[#5160a3] shrink-0" />
             <span>Leadership</span>
           </div>
-          <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">
+          <h2 className="h-section text-slate-900">
             The Team Behind Ariviyaa
-          </h3>
-          <p className="text-xs sm:text-sm text-slate-500 font-medium">
+          </h2>
+          <p className="t-lead text-slate-600">
             Driven by dedicated scientists, veterinary specialists, and bio-innovators.
           </p>
         </div>
@@ -249,11 +251,11 @@ export function TeamBehindAriviyaaSection() {
                 )}
               </div>
 
-              <h4 className="mt-5 text-lg font-bold text-slate-900">{member.name}</h4>
+              <h4 className="mt-5 h-card text-slate-900">{member.name}</h4>
               <span className="mt-1.5 inline-block px-2.5 py-1 rounded-md bg-[#5160a3]/10 text-[#5160a3] text-xs font-semibold">
                 {member.role}
               </span>
-              <p className="mt-4 pt-4 border-t border-[#D9DFF0] w-full text-sm sm:text-[15px] text-slate-600 leading-relaxed">
+              <p className="mt-4 pt-4 border-t border-[#D9DFF0] w-full t-body text-slate-500">
                 {member.bio}
               </p>
             </article>

@@ -22,6 +22,69 @@
   color: #5160a3;
 }
 
+/* ---- Type scale (home page reference: Flagship + Product Intro sections) ----
+   Size, weight and line height only; set the colour next to the class so the same
+   utility works on light and dark sections. */
+
+/* Section title (H2): 30 / 36 / 48px */
+@utility h-section {
+  font-size: 1.875rem;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  @media (width >= 40rem) {
+    font-size: 2.25rem;
+  }
+  @media (width >= 64rem) {
+    font-size: 3rem;
+  }
+}
+
+/* Block title inside a section (H3): 24 / 30px */
+@utility h-block {
+  font-size: 1.5rem;
+  line-height: 1.25;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  @media (width >= 40rem) {
+    font-size: 1.875rem;
+  }
+}
+
+/* Short uppercase line under a title */
+@utility t-kicker {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+/* Intro paragraph under a title: 14 / 16px */
+@utility t-lead {
+  font-size: 0.875rem;
+  line-height: 1.625;
+  @media (width >= 40rem) {
+    font-size: 1rem;
+  }
+}
+
+/* Card / item title: 14 / 16px */
+@utility h-card {
+  font-size: 0.875rem;
+  line-height: 1.375;
+  font-weight: 700;
+  @media (width >= 40rem) {
+    font-size: 1rem;
+  }
+}
+
+/* Card / answer text: 14px */
+@utility t-body {
+  font-size: 0.875rem;
+  line-height: 1.625;
+}
+
 /* Standard vertical rhythm for page sections */
 @utility section-y {
   padding-top: 4rem;

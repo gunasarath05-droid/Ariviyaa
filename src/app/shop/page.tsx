@@ -7,9 +7,9 @@ import { CategoriesSection } from "@/sections/Home/Categories";
 export const metadata: Metadata = {
   title: "Shop Formulations | Safe Bio-Polymer Pet & Livestock Care",
   description:
-    "Buy patented MammaryO teat dip, non-toxic pet sanitizers, cattle wound sprays, and floor hygiene solutions online directly from Ariviya Deep Tech.",
+    "Buy patented MammaryO teat dip, non-toxic pet sanitizers, cattle wound sprays, and floor hygiene solutions online directly from Ariviyaa Deep Tech.",
   keywords: [
-    "Ariviya Shop",
+    "Ariviyaa Shop",
     "Buy MammaryO",
     "Bovine Teat Dip Online",
     "Pet Safe Sanitizer India",

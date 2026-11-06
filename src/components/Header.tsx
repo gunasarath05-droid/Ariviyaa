@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useApp } from "@/context/AppContext";
+import { useAccount } from "@/context/AccountContext";
 import { IMAGES } from "@/constants/images";
 import { COMPANY_INFO } from "@/constants/company";
 import {
@@ -29,12 +30,15 @@ export function Header() {
     setIsSearchOpen,
     setSearchQuery,
   } = useApp();
+  const { user: sessionUser } = useAccount();
 
   // The header hydrates inside a Suspense boundary, after the saved cart/wishlist may
   // already be restored — render badge counts only once hydrated to match server HTML.
   const [isHydrated, setIsHydrated] = useState(false);
   // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => setIsHydrated(true), []);
+  // Same for the signed-in name: the server always renders "Sign in"
+  const user = isHydrated ? sessionUser : null;
 
   const [localSearch, setLocalSearch] = useState("");
   const [isMediaOpen, setIsMediaOpen] = useState(false);
@@ -84,6 +88,7 @@ export function Header() {
       children: [
         { name: "Blog", href: "/blog"},
         { name: "Gallery", href: "/gallery" },
+        { name: "FAQ", href: "/faq" },
       ],
     },
     { name: "Contact", href: "/contact" },
@@ -106,7 +111,7 @@ export function Header() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={IMAGES.logoPng}
-              alt="Ariviya Animal Health Logo"
+              alt="Ariviyaa Animal Health Logo"
               width={160}
               height={48}
               className="h-8 sm:h-10 md:h-12 w-auto object-contain transition-transform group-hover:scale-102"
@@ -149,16 +154,16 @@ export function Header() {
           <div className="flex items-center gap-4 sm:gap-8 shrink-0">
             {/* Account Button */}
             <Link
-              href="/login"
+              href={user ? "/account" : "/login"}
               className="flex flex-col items-center justify-center text-slate-800 hover:text-[#5160a3] transition-colors cursor-pointer group"
-              title="Sign in / My Account"
+              title={user ? "My Account" : "Sign in"}
             >
               <User
                 className="w-5 h-5 text-slate-800 group-hover:text-[#5160a3] transition-colors"
                 strokeWidth={1.75}
               />
-              <span className="text-[10px] sm:text-[11px] font-medium text-slate-800 group-hover:text-[#5160a3] transition-colors mt-1 leading-none">
-                Account
+              <span className="text-xs font-medium text-slate-800 group-hover:text-[#5160a3] transition-colors mt-1 leading-none max-w-16 truncate">
+                {user ? `Hi, ${user.name.split(" ")[0]}` : "Sign in"}
               </span>
             </Link>
 
@@ -174,12 +179,12 @@ export function Header() {
                   strokeWidth={1.75}
                 />
                 {isHydrated && wishlist.length > 0 && (
-                  <span className="absolute -top-1.5 -right-2 w-4 h-4 bg-[#5160a3] text-white rounded-full text-[9px] font-black flex items-center justify-center shadow-xs">
+                  <span className="absolute -top-1.5 -right-2 w-4 h-4 bg-[#5160a3] text-white rounded-full text-[9px] font-bold flex items-center justify-center shadow-xs">
                     {wishlist.length}
                   </span>
                 )}
               </div>
-              <span className="text-[10px] sm:text-[11px] font-medium text-slate-800 group-hover:text-[#5160a3] transition-colors mt-1 leading-none">
+              <span className="text-xs font-medium text-slate-800 group-hover:text-[#5160a3] transition-colors mt-1 leading-none">
                 Wishlist
               </span>
             </button>
@@ -196,12 +201,12 @@ export function Header() {
                   strokeWidth={1.75}
                 />
                 {isHydrated && cartCount > 0 && (
-                  <span className="absolute -top-1.5 -right-2 w-4 h-4 bg-[#5160a3] text-white rounded-full text-[9px] font-black flex items-center justify-center shadow-xs">
+                  <span className="absolute -top-1.5 -right-2 w-4 h-4 bg-[#5160a3] text-white rounded-full text-[9px] font-bold flex items-center justify-center shadow-xs">
                     {cartCount}
                   </span>
                 )}
               </div>
-              <span className="text-[10px] sm:text-[11px] font-medium text-slate-800 group-hover:text-[#5160a3] transition-colors mt-1 leading-none">
+              <span className="text-xs font-medium text-slate-800 group-hover:text-[#5160a3] transition-colors mt-1 leading-none">
                 Cart
               </span>
             </button>
@@ -391,7 +396,7 @@ export function Header() {
                   ? "Research Blog"
                   : pathname === "/gallery"
                   ? "Field Gallery"
-                  : "Ariviya Menu"}
+                  : "Ariviyaa Menu"}
               </span>
               <a
                 href={`tel:${COMPANY_INFO.phone}`}
@@ -414,7 +419,7 @@ export function Header() {
               if (link.children) {
                 return (
                   <div key={link.name} className="pt-1 pb-1 space-y-1">
-                    <span className="block px-3 py-1 text-xs font-black uppercase tracking-wider text-slate-400">
+                    <span className="block px-3 py-1 text-xs font-bold uppercase tracking-wider text-slate-400">
                       {link.name}
                     </span>
                     <div className="pl-2 border-l border-slate-700 space-y-1">

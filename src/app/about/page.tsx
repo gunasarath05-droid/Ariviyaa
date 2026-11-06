@@ -15,9 +15,9 @@ import { CtaSection } from "@/sections/Home/Cta";
 export const metadata: Metadata = {
   title: "About Us | Deep-Tech Veterinary Nanotechnology & Investor Credentials",
   description:
-    "Learn about Ariviya Deep Tech Pvt. Ltd. — founded in Thanjavur, supported by StartupTN TANSEED 3.0, developing patented chemical-free bio-polymer healthcare for dairy, poultry, and pets.",
+    "Learn about Ariviyaa Deep Tech Pvt. Ltd. — founded in Thanjavur, supported by StartupTN TANSEED 3.0, developing patented chemical-free bio-polymer healthcare for dairy, poultry, and pets.",
   keywords: [
-    "Ariviya Deep Tech",
+    "Ariviyaa Deep Tech",
     "Thanjavur Biotech Startup",
     "StartupTN TANSEED 3.0",
     "NaxPoly Technology",

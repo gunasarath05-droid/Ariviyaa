@@ -33,7 +33,7 @@ export function B2BBanner() {
               </h2>
 
               <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
-                Ariviya supplies custom 5-liter, 20-liter, and drum formulations of MammaryO teat dip, teat spray, and livestock shed hygiene solutions with institutional pricing, field demo kits, and technical documentation.
+                Ariviyaa supplies custom 5-liter, 20-liter, and drum formulations of MammaryO teat dip, teat spray, and livestock shed hygiene solutions with institutional pricing, field demo kits, and technical documentation.
               </p>
 
               {/* Checklist */}

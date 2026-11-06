@@ -1,24 +1,22 @@
 import React from "react";
 import type { Metadata } from "next";
 import { Truck } from "lucide-react";
-import { PolicyPage, PolicySection } from "@/components/PolicyPage";
+import { PolicyPage, PolicySection, policyListClass } from "@/components/PolicyPage";
 import { SHIPPING_METHODS, FREE_SHIPPING_THRESHOLD } from "@/constants/demo";
 import { formatPrice } from "@/constants/products";
 
 export const metadata: Metadata = {
   title: "Shipping Policy",
   description:
-    "Delivery options, charges and timelines for Ariviya orders — Shiprocket courier partners, ST Courier for South India and bulk freight for business orders.",
+    "Delivery options, charges and timelines for Ariviyaa orders — Shiprocket courier partners, ST Courier for South India and bulk freight for business orders.",
   alternates: { canonical: "https://www.ariviyaa.com/shipping-policy" },
 };
-
-const listClass = "list-disc list-inside space-y-1.5 pl-2 text-slate-600 text-sm";
 
 export default function ShippingPolicyPage() {
   return (
     <PolicyPage
       title="Shipping Policy"
-      subtitle="How and when your Ariviya order reaches you"
+      subtitle="How and when your Ariviyaa order reaches you"
       badge="Delivery"
       BadgeIcon={Truck}
       href="/shipping-policy"
@@ -38,8 +36,8 @@ export default function ShippingPolicyPage() {
 
       <PolicySection title="2. Delivery Options & Charges">
         <div className="overflow-x-auto rounded-2xl border border-[#D9DFF0]">
-          <table className="w-full text-sm">
-            <thead className="bg-[#F5F7FC] text-left text-[11px] uppercase tracking-wider text-slate-600">
+          <table className="w-full t-body">
+            <thead className="bg-[#F5F7FC] text-left text-xs uppercase tracking-wider text-slate-600">
               <tr>
                 <th className="px-4 py-3 font-bold">Option</th>
                 <th className="px-4 py-3 font-bold">Partner</th>
@@ -62,14 +60,14 @@ export default function ShippingPolicyPage() {
             </tbody>
           </table>
         </div>
-        <p className="text-sm text-slate-600">
+        <p className="t-body text-slate-600">
           Standard delivery is <strong>free on orders above {formatPrice(FREE_SHIPPING_THRESHOLD)}</strong>. A{" "}
           {formatPrice(40)} handling fee applies to Cash on Delivery orders.
         </p>
       </PolicySection>
 
       <PolicySection title="3. Courier Partners">
-        <ul className={listClass}>
+        <ul className={policyListClass}>
           <li>
             <strong>Shiprocket:</strong> we use Shiprocket to book the best available courier (Delhivery, Xpressbees,
             Blue Dart, DTDC and others) for your pin code.
@@ -89,7 +87,7 @@ export default function ShippingPolicyPage() {
       </PolicySection>
 
       <PolicySection title="5. Bulk & Business Orders">
-        <ul className={listClass}>
+        <ul className={policyListClass}>
           <li>Orders for dairy cooperatives, clinics and distributors are shipped by surface freight or transport.</li>
           <li>Freight charges and delivery dates are confirmed with the quotation.</li>
           <li>A GST invoice is provided with every business order.</li>
@@ -97,7 +95,7 @@ export default function ShippingPolicyPage() {
       </PolicySection>
 
       <PolicySection title="6. Delays & Undelivered Parcels">
-        <ul className={listClass}>
+        <ul className={policyListClass}>
           <li>Remote pin codes, weather or festival rush can add 2–4 days to delivery.</li>
           <li>If a parcel is returned to us because of a wrong address or refusal, re-shipping charges apply.</li>
           <li>Check the parcel at delivery and report damage within 48 hours so we can raise a claim.</li>

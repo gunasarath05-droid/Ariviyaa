@@ -7,9 +7,9 @@ import { CtaSection } from "@/sections/Home/Cta";
 export const metadata: Metadata = {
   title: "Veterinary & Dairy Science Blog | Articles & Knowledge Base",
   description:
-    "Read veterinary science guides on bovine mastitis control, safe pet grooming, natural biopolymers, and dairy farm management by Ariviya Deep Tech scientists.",
+    "Read veterinary science guides on bovine mastitis control, safe pet grooming, natural biopolymers, and dairy farm management by Ariviyaa Deep Tech scientists.",
   keywords: [
-    "Ariviya Blog",
+    "Ariviyaa Blog",
     "Bovine Mastitis Guide",
     "Post Milking Teat Dip Importance",
     "Pet Safe Natural Cleaner",

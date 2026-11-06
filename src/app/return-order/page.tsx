@@ -6,7 +6,7 @@ import { ReturnOrderForm } from "./ReturnOrderForm";
 export const metadata: Metadata = {
   title: "Return an Order",
   description:
-    "Request a return or replacement for a damaged, wrong or missing Ariviya product. Free reverse pickup and refund to your original payment method.",
+    "Request a return or replacement for a damaged, wrong or missing Ariviyaa product. Free reverse pickup and refund to your original payment method.",
   alternates: { canonical: "https://www.ariviyaa.com/return-order" },
 };
 

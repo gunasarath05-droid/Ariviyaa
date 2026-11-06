@@ -7,7 +7,7 @@ import { CtaSection } from "@/sections/Home/Cta";
 export const metadata: Metadata = {
   title: "Frequently Asked Questions",
   description:
-    "Answers about Ariviya products, ordering and Razorpay payments, Shiprocket and ST Courier delivery, returns and refunds, and becoming a distributor.",
+    "Answers about Ariviyaa products, ordering and Razorpay payments, Shiprocket and ST Courier delivery, returns and refunds, and becoming a distributor.",
   alternates: { canonical: "https://www.ariviyaa.com/faq" },
 };
 

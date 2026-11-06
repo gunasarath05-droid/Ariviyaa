@@ -35,3 +35,17 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 # Ariviyaa
+
+## Demo admin access (frontend review build)
+
+The admin panel at `/admin` needs a sign-in. Until the backend is connected, sign-in is simulated in the browser:
+
+| Email | Role | Can open |
+| --- | --- | --- |
+| admin@ariviyaa.com | Owner | Everything, including Payments and Settings |
+| ops@ariviyaa.com | Operations | Dashboard, Orders, Returns, Products, Shipping |
+| support@ariviyaa.com | Support | Dashboard, Orders, Returns, Customers, Enquiries |
+
+Any password of 8 or more characters works for these emails. Five wrong attempts lock the form for 60 seconds, and an idle session signs out after 30 minutes.
+
+This is **not real security**: data and sessions live in `localStorage`. Before go-live the backend must provide hashed passwords, an httpOnly session cookie, a server-side check on every `/admin` request (e.g. in `proxy.ts`), and role checks on every admin API call.

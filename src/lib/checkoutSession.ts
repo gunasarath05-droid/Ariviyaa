@@ -19,7 +19,7 @@ export interface PlacedOrder {
   placedAt: string;
   draft: CheckoutDraft;
   paymentId: PaymentMethodId;
-  items: { productId: string; quantity: number }[];
+  items: { productId: string; size?: string; quantity: number }[];
 }
 
 const DRAFT_KEY = "ariviya-checkout-draft";

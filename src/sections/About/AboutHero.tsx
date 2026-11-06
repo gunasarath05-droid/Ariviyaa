@@ -41,7 +41,7 @@ export function AboutHero() {
 
             {/* Subheading */}
             <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl font-normal">
-              Ariviya Deep Tech Pvt. Ltd. develops proprietary, chemical-free nanobio-polymer formulations that eliminate antibiotic residues, protect dairy herds against bovine mastitis, and provide safe healthcare for companion animals and poultry.
+              Ariviyaa Deep Tech Pvt. Ltd. develops proprietary, chemical-free nanobio-polymer formulations that eliminate antibiotic residues, protect dairy herds against bovine mastitis, and provide safe healthcare for companion animals and poultry.
             </p>
 
             {/* Key Milestones Pill Row */}
@@ -99,7 +99,7 @@ export function AboutHero() {
               <div className="relative aspect-4/3 w-full bg-slate-100 overflow-hidden">
                 <Image
                   src={IMAGES.site.productsRange}
-                  alt="Ariviya Research and Formulations"
+                  alt="Ariviyaa Research and Formulations"
                   fill
                   className="object-cover object-center"
                   priority

@@ -8,26 +8,18 @@ import { CommonHero } from "@/components/CommonHero";
 import { CheckoutSteps } from "@/components/CheckoutSteps";
 import { OrderSummaryCard } from "@/components/OrderSummaryCard";
 import { useApp } from "@/context/AppContext";
+import { useAccount } from "@/context/AccountContext";
 import { formatPrice } from "@/constants/products";
 import {
-  DEMO_CUSTOMER,
   SHIPPING_METHODS,
   FREE_SHIPPING_THRESHOLD,
+  INDIAN_STATES,
   computeTotals,
   type Address,
   type ShippingMethodId,
 } from "@/constants/demo";
 import { loadCheckoutDraft, saveCheckoutDraft } from "@/lib/checkoutSession";
 import { cardClass, inputClass, labelClass, primaryButtonClass } from "@/components/ui/form";
-
-const INDIAN_STATES = [
-  "Andaman and Nicobar Islands", "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chandigarh",
-  "Chhattisgarh", "Dadra and Nagar Haveli and Daman and Diu", "Delhi", "Goa", "Gujarat", "Haryana",
-  "Himachal Pradesh", "Jammu and Kashmir", "Jharkhand", "Karnataka", "Kerala", "Ladakh", "Lakshadweep",
-  "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Puducherry",
-  "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand",
-  "West Bengal",
-];
 
 const EMPTY_ADDRESS: Address = {
   name: "",
@@ -43,7 +35,7 @@ type Errors = Partial<Record<"email" | "name" | "phone" | "line1" | "city" | "pi
 
 function SectionTitle({ step, icon: Icon, title }: { step: number; icon: React.ElementType; title: string }) {
   return (
-    <h2 className="flex items-center gap-2.5 text-base sm:text-lg font-bold text-slate-900">
+    <h2 className="flex items-center gap-2.5 h-card text-slate-900">
       <span className="w-8 h-8 rounded-xl bg-[#5160a3]/10 text-[#5160a3] flex items-center justify-center shrink-0">
         <Icon className="w-4 h-4" />
       </span>
@@ -61,6 +53,7 @@ function FieldError({ message }: { message?: string }) {
 export default function CheckoutPage() {
   const router = useRouter();
   const { cart, cartSubtotal } = useApp();
+  const { ready, user } = useAccount();
 
   const [mounted, setMounted] = useState(false);
   const [email, setEmail] = useState("");
@@ -72,12 +65,28 @@ export default function CheckoutPage() {
   const [notes, setNotes] = useState("");
   const [errors, setErrors] = useState<Errors>({});
 
-  // Restore a previous draft (e.g. coming back from the payment step)
+  // Guests can fill a cart, but checkout needs an account; the cart is kept while they sign in
   useEffect(() => {
+    if (ready && !user) router.replace("/login?next=/checkout");
+  }, [ready, user, router]);
+
+  // Restore a previous draft (e.g. coming back from the payment step), else prefill from the account
+  useEffect(() => {
+    if (!ready) return;
     const draft = loadCheckoutDraft();
+    if (!draft && user) {
+      const saved = user.addresses.find((a) => a.isDefault)?.address;
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setEmail(user.email);
+      setAddress(saved ?? { ...EMPTY_ADDRESS, name: user.name, phone: user.phone });
+      if (user.accountType === "Business" && user.gstin) {
+        setNeedsGst(true);
+        setBusinessName(user.businessName ?? "");
+        setGstin(user.gstin);
+      }
+    }
     if (draft) {
       // Restoring from sessionStorage (an external store) once on mount
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setEmail(draft.email);
       setAddress(draft.address);
       setShippingId(draft.shippingId);
@@ -89,23 +98,28 @@ export default function CheckoutPage() {
       }
     }
     setMounted(true);
-  }, []);
+    // Runs once the account session is known; later edits by the user are not overwritten
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ready]);
 
   const totals = computeTotals(cartSubtotal, shippingId);
 
   const updateAddress = (field: keyof Address) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
     setAddress((prev) => ({ ...prev, [field]: e.target.value }));
 
+  const savedAddresses = user?.addresses ?? [];
+  const hasBusinessDetails = Boolean(user?.businessName && user.gstin);
+
   const applySavedAddress = (index: number) => {
-    setAddress(DEMO_CUSTOMER.addresses[index].address);
-    setEmail((prev) => prev || DEMO_CUSTOMER.email);
+    setAddress(savedAddresses[index].address);
+    setEmail((prev) => prev || user?.email || "");
     setErrors({});
   };
 
   const fillBusinessDetails = () => {
     setNeedsGst(true);
-    setBusinessName(DEMO_CUSTOMER.businessName);
-    setGstin(DEMO_CUSTOMER.gstin);
+    setBusinessName(user?.businessName ?? "");
+    setGstin(user?.gstin ?? "");
   };
 
   const validate = (): Errors => {
@@ -149,19 +163,19 @@ export default function CheckoutPage() {
         breadcrumb={[{ label: "Home", href: "/" }, { label: "Cart", href: "/cart" }, { label: "Checkout" }]}
       />
 
-      <section className="w-full bg-[#F5F7FC] py-10 sm:py-14 font-sans">
+      <section className="w-full bg-white py-10 sm:py-14 font-sans">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
           <CheckoutSteps current={1} />
 
-          {!mounted ? (
+          {!mounted || !user ? (
             <div className={`${cardClass} h-96 animate-pulse`} />
           ) : cart.length === 0 ? (
             <div className={`${cardClass} py-16 px-6 text-center flex flex-col items-center gap-3`}>
               <div className="w-16 h-16 rounded-full bg-[#EFF3FC] text-[#5160a3] flex items-center justify-center">
                 <ShoppingBag className="w-8 h-8" />
               </div>
-              <h2 className="text-xl font-bold text-slate-900">Your cart is empty</h2>
-              <p className="text-sm text-slate-500 max-w-sm">Add products to your cart before checking out.</p>
+              <h2 className="h-card text-slate-900">Your cart is empty</h2>
+              <p className="t-body text-slate-500 max-w-sm">Add products to your cart before checking out.</p>
               <Link href="/shop" className={`${primaryButtonClass} mt-2`}>
                 Go to shop
                 <ArrowRight className="w-4 h-4" />
@@ -170,18 +184,10 @@ export default function CheckoutPage() {
           ) : (
             <form onSubmit={handleSubmit} noValidate className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
               <div className="lg:col-span-8 space-y-5">
-                {/* Login prompt */}
-                <div className={`${cardClass} p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3`}>
-                  <p className="text-sm text-slate-600">
-                    Already ordered with us? <strong className="text-slate-900">Sign in</strong> to use saved addresses and
-                    track orders.
-                  </p>
-                  <Link
-                    href="/login?next=/checkout"
-                    className="shrink-0 inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl border border-[#D9DFF0] text-sm font-bold text-[#5160a3] hover:border-[#5160a3]"
-                  >
-                    Login for faster checkout
-                  </Link>
+                {/* Who is ordering */}
+                <div className={`${cardClass} p-4 sm:p-5 text-sm text-slate-600`}>
+                  Ordering as <strong className="text-slate-900">{user.name}</strong> ({user.email}). This order will
+                  appear in your account.
                 </div>
 
                 {/* 1. Contact */}
@@ -217,7 +223,7 @@ export default function CheckoutPage() {
                         className={inputClass}
                       />
                       <FieldError message={errors.phone} />
-                      <p className="mt-1.5 text-[11px] text-slate-500">Order and tracking updates are sent by SMS / WhatsApp.</p>
+                      <p className="mt-1.5 text-xs text-slate-500">Order and tracking updates are sent by SMS / WhatsApp.</p>
                     </div>
                   </div>
                 </div>
@@ -226,9 +232,10 @@ export default function CheckoutPage() {
                 <div className={`${cardClass} p-5 sm:p-6 space-y-5`}>
                   <SectionTitle step={2} icon={MapPin} title="Delivery address" />
 
+                  {savedAddresses.length > 0 && (
                   <div className="flex flex-wrap items-center gap-2">
                     <span className="text-xs font-semibold text-slate-500">Saved addresses:</span>
-                    {DEMO_CUSTOMER.addresses.map((saved, index) => (
+                    {savedAddresses.map((saved, index) => (
                       <button
                         key={saved.label}
                         type="button"
@@ -239,6 +246,7 @@ export default function CheckoutPage() {
                       </button>
                     ))}
                   </div>
+                  )}
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="sm:col-span-2">
@@ -347,7 +355,7 @@ export default function CheckoutPage() {
                         <Building2 className="w-4 h-4 text-[#5160a3]" />
                         I need a GST invoice for my business
                       </label>
-                      {!needsGst && (
+                      {!needsGst && hasBusinessDetails && (
                         <button
                           type="button"
                           onClick={fillBusinessDetails}
@@ -422,7 +430,7 @@ export default function CheckoutPage() {
                           </span>
                           <span className="text-xs font-semibold text-[#5160a3]">via {method.carrier}</span>
                           <span className="text-xs text-slate-600">{method.eta}</span>
-                          <span className="text-[11px] text-slate-500">{method.note}</span>
+                          <span className="text-xs text-slate-500">{method.note}</span>
                         </label>
                       );
                     })}
@@ -456,7 +464,7 @@ export default function CheckoutPage() {
               </div>
 
               {/* Summary */}
-              <aside className="lg:col-span-4 lg:sticky lg:top-28">
+              <aside className="lg:col-span-4 lg:sticky lg:top-40 lg:self-start">
                 <OrderSummaryCard items={cart} totals={totals}>
                   <button type="submit" className={`${primaryButtonClass} w-full`}>
                     Continue to payment
@@ -465,7 +473,7 @@ export default function CheckoutPage() {
                   <Link href="/cart" className="block text-center text-sm font-bold text-[#5160a3] hover:underline">
                     ← Back to cart
                   </Link>
-                  <p className="flex items-center justify-center gap-1.5 text-[11px] font-semibold text-slate-500">
+                  <p className="flex items-center justify-center gap-1.5 text-xs font-semibold text-slate-500">
                     <ShieldCheck className="w-3.5 h-3.5 text-[#5160a3]" />
                     Payments secured by Razorpay
                   </p>

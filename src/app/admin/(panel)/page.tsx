@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import { AdminDashboard } from "@/components/admin/AdminDashboard";
 
 export const metadata: Metadata = {
-  title: "Admin Dashboard",
-  robots: { index: false },
+  title: "Dashboard",
 };
 
 export default function AdminPage() {

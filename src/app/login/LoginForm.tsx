@@ -3,7 +3,8 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useAccount } from "@/context/AccountContext";
 import {
   ShieldCheck,
   Truck,
@@ -14,6 +15,7 @@ import {
   EyeOff,
   User,
   Building2,
+  ShoppingBag,
 } from "lucide-react";
 import { IMAGES } from "@/constants/images";
 import { inputClass, labelClass, primaryButtonClass } from "@/components/ui/form";
@@ -30,6 +32,9 @@ const TRUST_POINTS = [
 
 export function LoginForm() {
   const router = useRouter();
+  // Sent here from the cart / checkout: remind them the cart is kept
+  const fromCheckout = useSearchParams().get("next") === "/checkout";
+  const { signIn, signUp } = useAccount();
   const [mode, setMode] = useState<Mode>("signin");
   const [accountType, setAccountType] = useState<AccountType>("Retail");
   const [phone, setPhone] = useState("");
@@ -38,9 +43,11 @@ export function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
 
-  // Demo build: every successful form lands on the account dashboard
-  const handleSubmit = (e: React.FormEvent) => {
+  // Demo build: the session lives in this browser until real auth replaces it
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const form = new FormData(e.currentTarget);
+    const field = (name: string) => String(form.get(name) ?? "").trim();
     if (mode === "signup") {
       if (phone.length !== 10) {
         setError("Enter a valid 10-digit mobile number.");
@@ -52,7 +59,21 @@ export function LoginForm() {
       }
     }
     setError("");
-    router.push("/account");
+    if (mode === "signup") {
+      signUp({
+        name: field("name"),
+        email: field("email"),
+        phone: `+91 ${phone}`,
+        accountType,
+        businessName: accountType === "Business" ? field("businessName") : undefined,
+        gstin: accountType === "Business" ? field("gstin").toUpperCase() || undefined : undefined,
+      });
+    } else {
+      signIn(field("email"));
+    }
+    // Only same-site paths, e.g. /checkout
+    const next = new URLSearchParams(window.location.search).get("next");
+    router.push(next && next.startsWith("/") && !next.startsWith("//") ? next : "/account");
   };
 
   const switchMode = (next: Mode) => {
@@ -74,7 +95,7 @@ export function LoginForm() {
   );
 
   return (
-    <section className="w-full bg-[#F5F7FC] py-10 sm:py-16 font-sans">
+    <section className="w-full bg-white py-10 sm:py-16 font-sans">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 bg-white rounded-3xl border border-[#D9DFF0] shadow-sm overflow-hidden">
           {/* Brand panel */}
@@ -83,7 +104,7 @@ export function LoginForm() {
               <Link href="/" className="inline-block">
                 <Image
                   src={IMAGES.logo}
-                  alt="Ariviya"
+                  alt="Ariviyaa"
                   width={150}
                   height={48}
                   style={{ width: "auto", height: "auto" }}
@@ -91,7 +112,7 @@ export function LoginForm() {
                 />
               </Link>
               <div className="space-y-2">
-                <h2 className="text-3xl font-black text-slate-900 tracking-tight leading-tight">
+                <h2 className="h-block text-slate-900">
                   Your farm &amp; pet care, one account away
                 </h2>
                 <p className="text-sm text-slate-600 leading-relaxed">
@@ -115,8 +136,18 @@ export function LoginForm() {
           {/* Form panel */}
           <div className="p-6 sm:p-10 lg:p-12">
             <div className="max-w-md mx-auto space-y-6">
+              {fromCheckout && (
+                <p className="flex items-start gap-2.5 p-3.5 rounded-xl bg-[#EFF3FC] border border-[#D9DFF0] text-sm text-slate-700">
+                  <ShoppingBag className="w-4 h-4 text-[#5160a3] shrink-0 mt-0.5" />
+                  <span>
+                    <strong className="text-slate-900">Your cart is saved.</strong> Sign in or create an account to
+                    place your order.
+                  </span>
+                </p>
+              )}
+
               <div className="space-y-1.5">
-                <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+                <h1 className="h-block text-slate-900">
                   {mode === "signin" ? "Welcome back" : "Create your account"}
                 </h1>
                 <p className="text-sm text-slate-500">
@@ -148,7 +179,7 @@ export function LoginForm() {
                                 : "border-[#D9DFF0] hover:border-[#5160a3]/50"
                             }`}
                           >
-                            <span className="flex items-center gap-2 text-sm font-bold text-slate-900">
+                            <span className="flex items-center gap-2 h-card text-slate-900">
                               <Icon className="w-4 h-4 text-[#5160a3]" />
                               {id}
                             </span>
@@ -164,6 +195,7 @@ export function LoginForm() {
                       </label>
                       <input
                         id="lg-name"
+                        name="name"
                         required
                         autoComplete="name"
                         placeholder="e.g. Rajesh Kumar"
@@ -200,7 +232,7 @@ export function LoginForm() {
                           <label htmlFor="lg-biz" className={labelClass}>
                             Business name
                           </label>
-                          <input id="lg-biz" required placeholder="e.g. Sri Murugan Dairy" className={inputClass} />
+                          <input id="lg-biz" name="businessName" required placeholder="e.g. Sri Murugan Dairy" className={inputClass} />
                         </div>
                         <div>
                           <label htmlFor="lg-gst" className={labelClass}>
@@ -208,6 +240,7 @@ export function LoginForm() {
                           </label>
                           <input
                             id="lg-gst"
+                            name="gstin"
                             placeholder="33ABCDE1234F1Z5"
                             maxLength={15}
                             className={`${inputClass} uppercase`}
@@ -224,6 +257,7 @@ export function LoginForm() {
                   </label>
                   <input
                     id="lg-email"
+                    name="email"
                     type="email"
                     required
                     autoComplete="email"
@@ -313,7 +347,7 @@ export function LoginForm() {
               </form>
 
               <div className="pt-5 border-t border-slate-100 text-center text-sm text-slate-600">
-                {mode === "signin" ? "New to Ariviya?" : "Already have an account?"}{" "}
+                {mode === "signin" ? "New to Ariviyaa?" : "Already have an account?"}{" "}
                 <button
                   type="button"
                   onClick={() => switchMode(mode === "signin" ? "signup" : "signin")}

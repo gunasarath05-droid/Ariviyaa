@@ -62,6 +62,7 @@ const GROUPS: { title: string; pages: { label: string; href: string; note?: stri
     pages: [
       { label: "404 page", href: "/this-page-does-not-exist" },
       { label: "Loading state", href: "/review/loading" },
+      { label: "Admin sign in", href: "/admin/login", note: "Staff only; see README for demo access" },
       { label: "Admin dashboard", href: "/admin" },
     ],
   },
@@ -75,11 +76,11 @@ export default function ReviewIndexPage() {
         breadcrumb={[{ label: "Home", href: "/" }, { label: "Page Index" }]}
         subtitle="Every page in this build, grouped for review"
       />
-      <section className="w-full section-y bg-[#F5F7FC] font-sans">
+      <section className="w-full section-y bg-white font-sans">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {GROUPS.map((group) => (
             <div key={group.title} className="bg-white rounded-2xl border border-[#D9DFF0] shadow-2xs p-5 sm:p-6">
-              <h2 className="text-base font-bold text-slate-900 mb-3">{group.title}</h2>
+              <h2 className="h-card text-slate-900 mb-3">{group.title}</h2>
               <ul className="divide-y divide-slate-100">
                 {group.pages.map((page) => (
                   <li key={page.href}>

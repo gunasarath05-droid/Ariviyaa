@@ -18,7 +18,7 @@ export function CheckoutSteps({ current }: { current: 0 | 1 | 2 | 3 }) {
         const active = index === current;
         const dot = (
           <span
-            className={`w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center text-[11px] font-black shrink-0 ${
+            className={`w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center text-xs font-bold shrink-0 ${
               done || active ? "bg-[#5160a3] text-white" : "bg-white border border-[#D9DFF0] text-slate-400"
             }`}
           >

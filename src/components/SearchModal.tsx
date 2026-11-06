@@ -68,7 +68,7 @@ export function SearchModal() {
         <div className="max-h-[60vh] overflow-y-auto p-4 sm:p-6 space-y-6">
           {!query.trim() ? (
             <div className="text-center py-8">
-              <div className="w-12 h-12 rounded-full bg-emerald-50 text-emerald-600 mx-auto flex items-center justify-center mb-3">
+              <div className="w-12 h-12 rounded-full bg-[#EFF3FC] text-[#5160a3] mx-auto flex items-center justify-center mb-3">
                 <Sparkles className="w-6 h-6" />
               </div>
               <h4 className="text-sm font-bold text-slate-800">Quick Search Suggestions</h4>
@@ -79,7 +79,7 @@ export function SearchModal() {
                     <button
                       key={term}
                       onClick={() => setQuery(term)}
-                      className="px-3 py-1.5 rounded-full bg-slate-100 text-xs font-semibold text-slate-700 hover:bg-[#495384] hover:text-white transition cursor-pointer"
+                      className="px-3 py-1.5 rounded-full bg-[#F5F7FC] text-xs font-semibold text-slate-700 hover:bg-[#5160a3] hover:text-white transition cursor-pointer"
                     >
                       {term}
                     </button>
@@ -104,8 +104,8 @@ export function SearchModal() {
             </div>
           ) : (
             <div>
-              <h5 className="text-xs font-black uppercase tracking-wider text-slate-400 mb-3 flex items-center gap-1.5">
-                <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" /> Products ({filteredProducts.length})
+              <h5 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3 flex items-center gap-1.5">
+                <ShieldCheck className="w-3.5 h-3.5 text-[#5160a3]" /> Products ({filteredProducts.length})
               </h5>
               <div className="space-y-2">
                 {filteredProducts.map((p) => (
@@ -115,9 +115,9 @@ export function SearchModal() {
                       setSelectedProduct(p);
                       setIsSearchOpen(false);
                     }}
-                    className="group flex items-center gap-3.5 p-3 rounded-2xl hover:bg-slate-50 border border-transparent hover:border-slate-200/80 cursor-pointer transition"
+                    className="group flex items-center gap-3.5 p-3 rounded-2xl hover:bg-[#F5F7FC] border border-transparent hover:border-[#D9DFF0] cursor-pointer transition"
                   >
-                    <div className="w-12 h-12 bg-slate-100 rounded-xl p-1 flex items-center justify-center shrink-0">
+                    <div className="w-12 h-12 bg-[#F5F7FC] rounded-xl p-1 flex items-center justify-center shrink-0">
                       <Image
                         src={p.image}
                         alt={p.name}
@@ -129,16 +129,16 @@ export function SearchModal() {
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2">
-                        <h6 className="text-sm font-bold text-slate-900 group-hover:text-[#495384] transition">
+                        <h6 className="h-card text-slate-900 group-hover:text-[#5160a3] transition">
                           {p.name}
                         </h6>
-                        <span className="text-[10px] px-2 py-0.5 rounded bg-slate-100 text-slate-600 font-bold">
+                        <span className="text-xs px-2 py-0.5 rounded bg-[#EFF3FC] text-[#5160a3] font-bold">
                           {p.badge}
                         </span>
                       </div>
                       <p className="text-xs text-slate-500 truncate mt-0.5">{p.subtitle}</p>
                     </div>
-                    <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-[#495384] group-hover:translate-x-1 transition" />
+                    <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-[#5160a3] group-hover:translate-x-1 transition" />
                   </div>
                 ))}
               </div>

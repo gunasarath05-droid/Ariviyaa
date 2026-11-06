@@ -46,11 +46,12 @@ export default function OrderConfirmationPage() {
     setMounted(true);
   }, []);
 
-  const items = order.items.flatMap(({ productId, quantity }) => {
+  const items = order.items.flatMap(({ productId, size, quantity }) => {
     const product = PRODUCTS.find((p) => p.id === productId);
-    return product ? [{ product, quantity }] : [];
+    const pack = product?.packs.find((p) => p.size === size) ?? product?.packs[0];
+    return product && pack ? [{ product, pack, quantity }] : [];
   });
-  const subtotal = items.reduce((sum, { product, quantity }) => sum + product.price * quantity, 0);
+  const subtotal = items.reduce((sum, { pack, quantity }) => sum + pack.price * quantity, 0);
   const totals = computeTotals(subtotal, order.draft.shippingId, order.paymentId);
   const shipping = SHIPPING_METHODS.find((m) => m.id === order.draft.shippingId) ?? SHIPPING_METHODS[0];
   const payment = PAYMENT_METHODS.find((p) => p.id === order.paymentId) ?? PAYMENT_METHODS[0];
@@ -93,7 +94,7 @@ export default function OrderConfirmationPage() {
         breadcrumb={[{ label: "Home", href: "/" }, { label: "Order Confirmation" }]}
       />
 
-      <section className="w-full bg-[#F5F7FC] py-10 sm:py-14 font-sans">
+      <section className="w-full bg-white py-10 sm:py-14 font-sans">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
           <CheckoutSteps current={3} />
 
@@ -106,7 +107,7 @@ export default function OrderConfirmationPage() {
                 <div className="w-16 h-16 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center">
                   <CheckCircle2 className="w-9 h-9" />
                 </div>
-                <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+                <h2 className="h-block text-slate-900">
                   Thank you, {address.name.split(" ")[0]}!
                 </h2>
                 <p className="text-sm sm:text-base text-slate-600 max-w-xl">
@@ -145,7 +146,7 @@ export default function OrderConfirmationPage() {
                   {/* Details */}
                   <div className={`${cardClass} p-5 sm:p-6 grid grid-cols-1 md:grid-cols-3 gap-5`}>
                     <div className="space-y-1.5">
-                      <h3 className="flex items-center gap-2 text-sm font-bold text-slate-900">
+                      <h3 className="flex items-center gap-2 h-card text-slate-900">
                         <MapPin className="w-4 h-4 text-[#5160a3]" />
                         Delivery address
                       </h3>
@@ -159,7 +160,7 @@ export default function OrderConfirmationPage() {
                       <p className="text-xs text-slate-500">{address.phone}</p>
                     </div>
                     <div className="space-y-1.5 md:border-l md:border-slate-100 md:pl-5">
-                      <h3 className="flex items-center gap-2 text-sm font-bold text-slate-900">
+                      <h3 className="flex items-center gap-2 h-card text-slate-900">
                         <Truck className="w-4 h-4 text-[#5160a3]" />
                         Shipping
                       </h3>
@@ -168,7 +169,7 @@ export default function OrderConfirmationPage() {
                       <p className="text-xs text-slate-500">Estimated {shipping.eta}</p>
                     </div>
                     <div className="space-y-1.5 md:border-l md:border-slate-100 md:pl-5">
-                      <h3 className="flex items-center gap-2 text-sm font-bold text-slate-900">
+                      <h3 className="flex items-center gap-2 h-card text-slate-900">
                         <CreditCard className="w-4 h-4 text-[#5160a3]" />
                         Payment
                       </h3>
@@ -184,7 +185,7 @@ export default function OrderConfirmationPage() {
 
                   {/* What happens next */}
                   <div className={`${cardClass} p-5 sm:p-6 space-y-5`}>
-                    <h3 className="text-base sm:text-lg font-bold text-slate-900">What happens next</h3>
+                    <h3 className="h-card text-slate-900">What happens next</h3>
                     <ol className="relative space-y-5">
                       {nextSteps.map(({ Icon, title, desc }, index) => (
                         <li key={title} className="relative flex items-start gap-4">
@@ -220,7 +221,7 @@ export default function OrderConfirmationPage() {
                   </p>
                 </div>
 
-                <aside className="lg:col-span-4 lg:sticky lg:top-28">
+                <aside className="lg:col-span-4 lg:sticky lg:top-40 lg:self-start">
                   <OrderSummaryCard items={items} totals={totals} shippingLabel={`Shipping (${shipping.carrier})`} />
                 </aside>
               </div>

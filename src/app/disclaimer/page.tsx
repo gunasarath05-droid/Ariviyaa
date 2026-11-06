@@ -1,15 +1,12 @@
 import React from "react";
-import Link from "next/link";
 import type { Metadata } from "next";
-import { ArrowLeft, AlertCircle, Mail, Phone, MapPin } from "lucide-react";
-import { COMPANY_INFO } from "@/constants/company";
-import { CommonHero } from "@/components/CommonHero";
-import { PolicyTabs } from "@/components/PolicyTabs";
+import { AlertCircle } from "lucide-react";
+import { PolicyPage, PolicySection } from "@/components/PolicyPage";
 
 export const metadata: Metadata = {
   title: "Disclaimer",
   description:
-    "Important veterinary guidance and scientific disclaimer regarding Ariviya nanobio-polymer veterinary formulations.",
+    "Important veterinary guidance and scientific disclaimer regarding Ariviyaa nanobio-polymer veterinary formulations.",
   alternates: {
     canonical: "https://www.ariviyaa.com/disclaimer",
   },
@@ -17,122 +14,67 @@ export const metadata: Metadata = {
 
 export default function DisclaimerPage() {
   return (
-    <>
-      <CommonHero
-        title="Disclaimer"
-        breadcrumb={[{ label: "Home", href: "/" }, { label: "Disclaimer" }]}
-        subtitle="Scientific and veterinary notice regarding Ariviya bio-polymer healthcare formulations"
-      />
-      <div className="w-full bg-[#F5F7FC] min-h-screen py-10 sm:py-14 px-4 sm:px-6 lg:px-8 font-sans">
-        <div className="max-w-4xl mx-auto space-y-8 sm:space-y-10">
-        {/* Navigation Breadcrumb */}
-        <div className="flex items-center justify-between">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-[#5160a3] hover:underline"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            <span>Back to Home</span>
-          </Link>
-          <span className="text-xs text-slate-400 font-medium">Last Updated: October 2026</span>
+    <PolicyPage
+      title="Disclaimer"
+      subtitle="Scientific and veterinary notice regarding Ariviyaa bio-polymer healthcare formulations"
+      badge="Scientific & Veterinary Notice"
+      BadgeIcon={AlertCircle}
+      href="/disclaimer"
+      lastUpdated="October 2026"
+      intro={
+        <p>
+          Please carefully read this Disclaimer regarding the use of <strong>Ariviyaa</strong> veterinary products,
+          scientific research summaries, and informational content provided on this platform.
+        </p>
+      }
+      contact={{
+        title: "5. Contact for Technical Clarification",
+        intro: "For technical queries regarding laboratory trial reports or application instructions:",
+        name: "Ariviyaa Technical Advisory Board",
+      }}
+    >
+      <PolicySection title="1. Not a Substitute for Professional Veterinary Diagnosis">
+        <p>
+          Information published on this website — including descriptions of bovine mastitis prevention, wound healing
+          polymers, bio-sanitizers, and tick repellents — is intended for educational, technical, and informational
+          purposes only.
+        </p>
+        {/* Amber is kept here on purpose: it is a warning notice */}
+        <div className="p-4 rounded-2xl bg-amber-50/70 border border-amber-200/70 text-amber-950 t-body">
+          <strong>Notice:</strong> This content is not intended to replace consultation, clinical examination, or
+          specific treatment prescribed by a licensed veterinary practitioner. Always consult a qualified veterinary
+          doctor for acute clinical emergencies or systemic infections.
         </div>
+      </PolicySection>
 
-        {/* Header Hero */}
-        <div className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200/80 shadow-xs space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-50 border border-amber-200 text-xs font-bold text-amber-800">
-            <AlertCircle className="w-4 h-4 text-amber-600" />
-            <span>Scientific &amp; Veterinary Notice</span>
-          </div>
-          <h1 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight font-serif sm:font-sans">
-            Disclaimer
-          </h1>
-          <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
-            Please carefully read this Disclaimer regarding the use of <strong>Ariviya</strong> veterinary products, scientific research summaries, and informational content provided on this platform.
-          </p>
+      <PolicySection title="2. Clinical Validation & Academic Testing">
+        <p>
+          Product claims, laboratory efficacy metrics, and antimicrobial barrier percentages cited on this website are
+          derived from controlled scientific evaluations, including testing conducted with <strong>TANUVAS-TRPVB</strong>{" "}
+          and independent laboratories.
+        </p>
+        <p className="t-body text-slate-600">
+          Actual on-farm results may vary depending on herd management hygiene, environmental pathogen load, application
+          frequency, farm climate, and pre-existing animal health conditions.
+        </p>
+      </PolicySection>
 
-          {/* Policy Switcher Tabs */}
-          <PolicyTabs active="/disclaimer" />
-        </div>
+      <PolicySection title="3. Topical & Lick-Safe Clarification">
+        <p>
+          Our companion animal and dairy cow bio-polymer formulations are certified non-toxic and engineered to be safe
+          even if licked during normal grooming. However, our topical products (sprays, teat barriers, shampoos) are
+          formulated for external physiological application and are not intended for internal dietary feeding or
+          intravenous injection.
+        </p>
+      </PolicySection>
 
-        {/* Content Body */}
-        <div className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200/80 shadow-xs space-y-8 text-slate-700 text-sm sm:text-base leading-relaxed font-normal">
-          <section className="space-y-3">
-            <h2 className="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-amber-500" />
-              1. Not a Substitute for Professional Veterinary Diagnosis
-            </h2>
-            <p>
-              Information published on this website — including descriptions of bovine mastitis prevention, wound healing polymers, bio-sanitizers, and tick repellents — is intended for educational, technical, and informational purposes only.
-            </p>
-            <div className="p-4 rounded-2xl bg-amber-50/70 border border-amber-200/70 text-amber-950 text-xs sm:text-sm leading-relaxed">
-              <strong>Notice:</strong> This content is not intended to replace consultation, clinical examination, or specific treatment prescribed by a licensed veterinary practitioner. Always consult a qualified veterinary doctor for acute clinical emergencies or systemic infections.
-            </div>
-          </section>
-
-          <section className="space-y-3">
-            <h2 className="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[#5160a3]" />
-              2. Clinical Validation &amp; Academic Testing
-            </h2>
-            <p>
-              Product claims, laboratory efficacy metrics, and antimicrobial barrier percentages cited on this website are derived from controlled scientific evaluations, including testing conducted with <strong>TANUVAS-TRPVB</strong> and independent laboratories.
-            </p>
-            <p className="text-slate-600 text-sm">
-              Actual on-farm results may vary depending on herd management hygiene, environmental pathogen load, application frequency, farm climate, and pre-existing animal health conditions.
-            </p>
-          </section>
-
-          <section className="space-y-3">
-            <h2 className="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[#5160a3]" />
-              3. Topical &amp; Lick-Safe Clarification
-            </h2>
-            <p>
-              Our companion animal and dairy cow bio-polymer formulations are certified non-toxic and engineered to be safe even if licked during normal grooming. However, our topical products (sprays, teat barriers, shampoos) are formulated for external physiological application and are not intended for internal dietary feeding or intravenous injection.
-            </p>
-          </section>
-
-          <section className="space-y-3">
-            <h2 className="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[#5160a3]" />
-              4. External Links &amp; Third-Party Mentions
-            </h2>
-            <p>
-              Any links to research portals, university announcements, or government startup grants are provided solely for user reference. Ariviya does not endorse or take responsibility for the continuous availability or accuracy of external third-party servers.
-            </p>
-          </section>
-
-          <section className="space-y-3">
-            <h2 className="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[#5160a3]" />
-              5. Contact for Technical Clarification
-            </h2>
-            <p>
-              For technical queries regarding laboratory trial reports or application instructions:
-            </p>
-            <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-2 text-sm">
-              <p className="font-bold text-slate-900">Ariviya Technical Advisory Board</p>
-              <p className="text-slate-600 flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-[#5160a3]" />
-                <span>{COMPANY_INFO.address.line1}, {COMPANY_INFO.address.city}, {COMPANY_INFO.address.state} - {COMPANY_INFO.address.pincode}</span>
-              </p>
-              <p className="text-slate-600 flex items-center gap-2">
-                <Mail className="w-4 h-4 text-[#5160a3]" />
-                <a href={`mailto:${COMPANY_INFO.email}`} className="text-[#5160a3] hover:underline">
-                  {COMPANY_INFO.email}
-                </a>
-              </p>
-              <p className="text-slate-600 flex items-center gap-2">
-                <Phone className="w-4 h-4 text-[#5160a3]" />
-                <a href={`tel:${COMPANY_INFO.phone}`} className="text-[#5160a3] hover:underline">
-                  {COMPANY_INFO.displayPhone}
-                </a>
-              </p>
-            </div>
-          </section>
-        </div>
-      </div>
-    </div>
-    </>
+      <PolicySection title="4. External Links & Third-Party Mentions">
+        <p>
+          Any links to research portals, university announcements, or government startup grants are provided solely for
+          user reference. Ariviyaa does not endorse or take responsibility for the continuous availability or accuracy of
+          external third-party servers.
+        </p>
+      </PolicySection>
+    </PolicyPage>
   );
 }

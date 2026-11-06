@@ -8,6 +8,7 @@ import {
   Phone,
   Mail,
   MapPin,
+  Clock,
   Sparkles,
   Leaf,
   ChevronRight,
@@ -41,7 +42,7 @@ export function Footer() {
             <Link href="/" className="inline-block group">
               <img
                 src={IMAGES.logoPng}
-                alt="Ariviya Animal Health Logo"
+                alt="Ariviyaa Animal Health Logo"
                 width={160}
                 height={48}
                 className="h-10 sm:h-12 w-auto object-contain"
@@ -49,17 +50,17 @@ export function Footer() {
             </Link>
 
             <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal max-w-sm">
-              Ariviya Deep Tech Pvt. Ltd. — A deep-tech veterinary biotechnology startup founded in Thanjavur, supported by StartupTN TANSEED 3.0, developing patented chemical-free bio-polymer healthcare essentials.
+              Ariviyaa Deep Tech Pvt. Ltd. — A deep-tech veterinary biotechnology startup founded in Thanjavur, supported by StartupTN TANSEED 3.0, developing patented chemical-free bio-polymer healthcare essentials.
             </p>
 
-            <div className="pt-2 text-[11px] font-bold text-[#5160a3] uppercase tracking-wider">
+            <div className="pt-2 text-xs font-bold text-[#5160a3] uppercase tracking-wider">
               Govt. of Tamil Nadu • StartupTN Grantee
             </div>
           </div>
 
           {/* Col 2: Quick Links (2.5 cols) */}
           <div className="lg:col-span-2 space-y-3">
-            <h4 className="text-xs font-black uppercase tracking-wider text-[#5160a3] border-l-2 border-[#5160a3] pl-2.5">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-[#5160a3] border-l-2 border-[#5160a3] pl-2.5">
               Quick Links
             </h4>
             <ul className="space-y-2 text-xs sm:text-sm text-slate-600 font-medium">
@@ -104,7 +105,7 @@ export function Footer() {
 
           {/* Col 3: Customer care & policies */}
           <div className="lg:col-span-2 space-y-3">
-            <h4 className="text-xs font-black uppercase tracking-wider text-[#5160a3] border-l-2 border-[#5160a3] pl-2.5">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-[#5160a3] border-l-2 border-[#5160a3] pl-2.5">
               Customer Care
             </h4>
             <ul className="space-y-2 text-xs sm:text-sm text-slate-600 font-medium">
@@ -121,7 +122,7 @@ export function Footer() {
 
           {/* Col 3: Contact Info (3.5 cols) */}
           <div className="lg:col-span-3 space-y-3">
-            <h4 className="text-xs font-black uppercase tracking-wider text-[#5160a3] border-l-2 border-[#5160a3] pl-2.5">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-[#5160a3] border-l-2 border-[#5160a3] pl-2.5">
               Contact Desk
             </h4>
 
@@ -156,12 +157,20 @@ export function Footer() {
                   {COMPANY_INFO.email}
                 </a>
               </div>
+
+              {/* Support hours */}
+              <div className="flex items-center gap-2.5">
+                <Clock className="w-4 h-4 text-[#5160a3] shrink-0" />
+                <span>Support: {COMPANY_INFO.supportHours}</span>
+              </div>
+
+              <p className="text-xs text-slate-500">GSTIN: {COMPANY_INFO.gstin}</p>
             </div>
           </div>
 
           {/* Col 4: Connect & Socials */}
           <div className="lg:col-span-2 space-y-3">
-            <h4 className="text-xs font-black uppercase tracking-wider text-[#5160a3] border-l-2 border-[#5160a3] pl-2.5">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-[#5160a3] border-l-2 border-[#5160a3] pl-2.5">
               Connect With Us
             </h4>
 
@@ -233,7 +242,7 @@ export function Footer() {
       <div className="border-t border-[#D9DFF0] bg-[#F5F7FC] py-5 px-4 sm:px-6 lg:px-8 text-xs text-slate-600 font-medium relative z-10">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
           <p>
-            &copy; {new Date().getFullYear()} Ariviya Animal Health. All rights reserved.
+            &copy; {new Date().getFullYear()} Ariviyaa Animal Health. All rights reserved.
           </p>
 
           <p className="text-slate-600">

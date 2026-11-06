@@ -85,7 +85,7 @@ export function SpecializedSolutionsSection() {
             </h2>
 
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed font-normal">
-              From commercial dairy cattle to beloved companion pets, Ariviya formulates non-antibiotic
+              From commercial dairy cattle to beloved companion pets, Ariviyaa formulates non-antibiotic
               biopolymer solutions designed for maximum safety, rapid recovery, and zero chemical residues.
             </p>
           </div>

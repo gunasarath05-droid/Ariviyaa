@@ -23,10 +23,10 @@ export function FaqBrowser() {
     .filter((c) => c.items.length > 0);
 
   return (
-    <section className="w-full section-y bg-[#F5F7FC] font-sans border-b border-[#D9DFF0]">
+    <section className="w-full section-y bg-white font-sans border-b border-[#D9DFF0]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10">
-        {/* Category list + help card */}
-        <aside className="lg:col-span-4 space-y-4">
+        {/* Category list + help card: stays in view (below the site header) while answers scroll */}
+        <aside className="lg:col-span-4 space-y-4 lg:sticky lg:top-40 lg:self-start">
           <div className="relative">
             <input
               type="search"
@@ -57,9 +57,9 @@ export function FaqBrowser() {
             ))}
           </nav>
 
-          <div className="hidden lg:block bg-white rounded-2xl border border-[#D9DFF0] p-6 space-y-3">
-            <h2 className="text-lg font-bold text-slate-900">Still have questions?</h2>
-            <p className="text-sm text-slate-600 leading-relaxed">
+          <div className="hidden lg:block bg-[#F5F7FC] rounded-2xl border border-[#D9DFF0] p-6 space-y-3">
+            <h2 className="h-card text-slate-900">Still have questions?</h2>
+            <p className="t-body text-slate-600">
               Our animal health team replies within a few hours on working days.
             </p>
             <button
@@ -79,26 +79,26 @@ export function FaqBrowser() {
         {/* Questions */}
         <div className="lg:col-span-8 space-y-8">
           {categories.length === 0 && (
-            <div className="bg-white rounded-2xl border border-[#D9DFF0] p-10 text-center text-sm text-slate-500">
+            <div className="bg-[#F5F7FC] rounded-2xl border border-[#D9DFF0] p-10 text-center t-body text-slate-500">
               No questions match &ldquo;{query}&rdquo;. Try another word or contact us.
             </div>
           )}
 
           {categories.map((category) => (
             <div key={category.id} className="space-y-3">
-              <h2 className="text-lg sm:text-xl font-bold text-slate-900">{category.title}</h2>
+              <h2 className="t-kicker text-slate-500">{category.title}</h2>
               <ul className="space-y-3">
                 {category.items.map((item) => {
                   const isOpen = openKey === item.key;
                   return (
-                    <li key={item.key} className="bg-white rounded-2xl border border-[#D9DFF0] overflow-hidden">
+                    <li key={item.key} className="bg-white rounded-2xl border border-[#D9DFF0] shadow-2xs overflow-hidden">
                       <button
                         type="button"
                         onClick={() => setOpenKey(isOpen ? "" : item.key)}
                         aria-expanded={isOpen}
                         className="w-full flex items-center justify-between gap-4 px-5 py-4 text-left cursor-pointer"
                       >
-                        <span className={`text-sm sm:text-base font-bold ${isOpen ? "text-[#5160a3]" : "text-slate-900"}`}>
+                        <span className={`h-card ${isOpen ? "text-[#5160a3]" : "text-slate-900"}`}>
                           {item.question}
                         </span>
                         <span
@@ -110,7 +110,7 @@ export function FaqBrowser() {
                         </span>
                       </button>
                       {isOpen && (
-                        <p className="px-5 pb-5 -mt-1 text-sm sm:text-[15px] text-slate-600 leading-relaxed">{item.answer}</p>
+                        <p className="px-5 pb-5 -mt-1 t-body text-slate-600">{item.answer}</p>
                       )}
                     </li>
                   );

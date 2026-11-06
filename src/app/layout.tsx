@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Inter } from "next/font/google";
 import "./globals.css";
 import { AppProvider } from "@/context/AppContext";
+import { AccountProvider } from "@/context/AccountContext";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { FloatingContact } from "@/components/FloatingContact";
@@ -33,14 +34,14 @@ export const metadata: Metadata = {
     canonical: "https://www.ariviyaa.com",
   },
   title: {
-    default: "Ariviya - Animal Health Care | Natural Bio-Polymer & Nanotechnology Essentials",
-    template: "%s | Ariviya Animal Health Care",
+    default: "Ariviyaa - Animal Health Care | Natural Bio-Polymer & Nanotechnology Essentials",
+    template: "%s | Ariviyaa Animal Health Care",
   },
   description:
     "Sustainable, chemical-free nanobio-polymer health care essentials for dairy cattle, livestock, poultry, and pets. Supported by StartupTN.",
   keywords: [
-    "Ariviya",
     "Ariviyaa",
+    "Ariviya",
     "Animal Health Care",
     "Bovine Mastitis Prevention",
     "TANUVAS",
@@ -57,24 +58,24 @@ export const metadata: Metadata = {
     apple: "/icon.png",
   },
   openGraph: {
-    title: "Ariviya - Animal Health Care | Natural Bio-Polymer & Nanotechnology Essentials",
+    title: "Ariviyaa - Animal Health Care | Natural Bio-Polymer & Nanotechnology Essentials",
     description:
       "Sustainable, chemical-free nanobio-polymer health care essentials for dairy cattle, livestock, poultry, and pets. Supported by StartupTN.",
     url: "https://www.ariviyaa.com",
-    siteName: "Ariviya Animal Health",
+    siteName: "Ariviyaa Animal Health",
     images: [
       {
         url: IMAGES.farmLandscape,
         width: 1200,
         height: 630,
-        alt: "Ariviya Animal Health Care",
+        alt: "Ariviyaa Animal Health Care",
       },
     ],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ariviya - Animal Health Care",
+    title: "Ariviyaa - Animal Health Care",
     description:
       "Sustainable, chemical-free nanobio-polymer health care essentials for dairy cattle, livestock, poultry, and pets. Supported by StartupTN.",
     images: [IMAGES.farmLandscape],
@@ -100,6 +101,7 @@ export default function RootLayout({
         className="font-body antialiased bg-[#F5F7FC] text-slate-800 min-h-screen flex flex-col selection:bg-emerald-200 selection:text-emerald-900"
       >
         <AppProvider>
+        <AccountProvider>
          
 
           {/* Top navigation header (hidden on /admin) */}
@@ -126,6 +128,7 @@ export default function RootLayout({
               <Footer />
             </PublicChrome>
           </Suspense>
+        </AccountProvider>
         </AppProvider>
       </body>
     </html>

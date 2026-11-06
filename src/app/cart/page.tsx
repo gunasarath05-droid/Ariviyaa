@@ -9,7 +9,6 @@ import {
   Trash2,
   Heart,
   ShoppingBag,
-  MessageCircle,
   Truck,
   Tag,
   Building2,
@@ -18,7 +17,8 @@ import {
 } from "lucide-react";
 import { CommonHero } from "@/components/CommonHero";
 import { CheckoutSteps } from "@/components/CheckoutSteps";
-import { useApp } from "@/context/AppContext";
+import { useApp, cartLineKey } from "@/context/AppContext";
+import { useAccount } from "@/context/AccountContext";
 import { formatPrice } from "@/constants/products";
 import { computeTotals, FREE_SHIPPING_THRESHOLD } from "@/constants/demo";
 import { cardClass, inputClass, primaryButtonClass } from "@/components/ui/form";
@@ -32,8 +32,8 @@ export default function CartPage() {
     removeFromCart,
     toggleWishlist,
     isInWishlist,
-    checkoutViaWhatsApp,
   } = useApp();
+  const { user } = useAccount();
 
   // Cart restores from localStorage after mount; wait so the empty state doesn't flash
   const [mounted, setMounted] = useState(false);
@@ -56,9 +56,9 @@ export default function CartPage() {
     }
   };
 
-  const moveToWishlist = (productId: string) => {
+  const moveToWishlist = (productId: string, lineKey: string) => {
     if (!isInWishlist(productId)) toggleWishlist(productId);
-    removeFromCart(productId);
+    removeFromCart(lineKey);
   };
 
   return (
@@ -68,7 +68,7 @@ export default function CartPage() {
         breadcrumb={[{ label: "Home", href: "/" }, { label: "Shop", href: "/shop" }, { label: "Cart" }]}
       />
 
-      <section className="w-full bg-[#F5F7FC] py-10 sm:py-14 font-sans">
+      <section className="w-full bg-white py-10 sm:py-14 font-sans">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
           <CheckoutSteps current={0} />
 
@@ -79,8 +79,8 @@ export default function CartPage() {
               <div className="w-16 h-16 rounded-full bg-[#EFF3FC] text-[#5160a3] flex items-center justify-center">
                 <ShoppingBag className="w-8 h-8" />
               </div>
-              <h2 className="text-xl font-bold text-slate-900">Your cart is empty</h2>
-              <p className="text-sm text-slate-500 max-w-sm">
+              <h2 className="h-card text-slate-900">Your cart is empty</h2>
+              <p className="t-body text-slate-500 max-w-sm">
                 Browse mastitis care, pet health and farm hygiene products and add them here.
               </p>
               <Link href="/shop" className={`${primaryButtonClass} mt-2`}>
@@ -110,14 +110,17 @@ export default function CartPage() {
                 </div>
 
                 <div className={`${cardClass} divide-y divide-slate-100`}>
-                  <div className="hidden sm:grid grid-cols-12 gap-4 px-5 py-3 text-[11px] font-bold uppercase tracking-wider text-slate-500">
+                  <div className="hidden sm:grid grid-cols-12 gap-4 px-5 py-3 text-xs font-bold uppercase tracking-wider text-slate-500">
                     <span className="col-span-6">Product</span>
                     <span className="col-span-3 text-center">Quantity</span>
                     <span className="col-span-3 text-right">Total</span>
                   </div>
 
-                  {cart.map(({ product, quantity }) => (
-                    <div key={product.id} className="p-4 sm:px-5 sm:py-4 grid grid-cols-12 gap-3 sm:gap-4 items-center">
+                  {cart.map((item) => {
+                    const { product, pack, quantity } = item;
+                    const lineKey = cartLineKey(item);
+                    return (
+                    <div key={lineKey} className="p-4 sm:px-5 sm:py-4 grid grid-cols-12 gap-3 sm:gap-4 items-center">
                       <div className="col-span-12 sm:col-span-6 flex items-center gap-3.5 min-w-0">
                         <Link
                           href={`/shop/${product.slug}`}
@@ -139,12 +142,12 @@ export default function CartPage() {
                           >
                             {product.name}
                           </Link>
-                          <p className="text-xs text-slate-500">{product.categoryLabel}</p>
-                          <p className="text-sm font-semibold text-slate-700">{formatPrice(product.price)}</p>
+                          <p className="text-xs text-slate-500">Pack: {pack.size}</p>
+                          <p className="text-sm font-semibold text-slate-700">{formatPrice(pack.price)}</p>
                           <div className="flex items-center gap-3 pt-0.5 text-xs font-semibold">
                             <button
                               type="button"
-                              onClick={() => moveToWishlist(product.id)}
+                              onClick={() => moveToWishlist(product.id, lineKey)}
                               className="inline-flex items-center gap-1 text-slate-500 hover:text-[#5160a3] cursor-pointer"
                             >
                               <Heart className="w-3.5 h-3.5" />
@@ -152,7 +155,7 @@ export default function CartPage() {
                             </button>
                             <button
                               type="button"
-                              onClick={() => removeFromCart(product.id)}
+                              onClick={() => removeFromCart(lineKey)}
                               className="inline-flex items-center gap-1 text-slate-500 hover:text-rose-600 cursor-pointer"
                             >
                               <Trash2 className="w-3.5 h-3.5" />
@@ -166,7 +169,7 @@ export default function CartPage() {
                         <div className="inline-flex items-center border border-[#D9DFF0] rounded-xl overflow-hidden bg-white">
                           <button
                             type="button"
-                            onClick={() => updateQuantity(product.id, quantity - 1)}
+                            onClick={() => updateQuantity(lineKey, quantity - 1)}
                             className="px-3 py-2 text-slate-600 hover:bg-[#F5F7FC] cursor-pointer"
                             aria-label={`Decrease quantity of ${product.name}`}
                           >
@@ -175,7 +178,7 @@ export default function CartPage() {
                           <span className="w-10 text-center text-sm font-bold text-slate-900">{quantity}</span>
                           <button
                             type="button"
-                            onClick={() => updateQuantity(product.id, quantity + 1)}
+                            onClick={() => updateQuantity(lineKey, quantity + 1)}
                             className="px-3 py-2 text-slate-600 hover:bg-[#F5F7FC] cursor-pointer"
                             aria-label={`Increase quantity of ${product.name}`}
                           >
@@ -185,10 +188,11 @@ export default function CartPage() {
                       </div>
 
                       <div className="col-span-6 sm:col-span-3 text-right text-base font-bold text-slate-900">
-                        {formatPrice(product.price * quantity)}
+                        {formatPrice(pack.price * quantity)}
                       </div>
                     </div>
-                  ))}
+                    );
+                  })}
                 </div>
 
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
@@ -208,9 +212,9 @@ export default function CartPage() {
               </div>
 
               {/* Summary */}
-              <aside className="lg:col-span-4 lg:sticky lg:top-28 space-y-4">
+              <aside className="lg:col-span-4 lg:sticky lg:top-40 lg:self-start space-y-4">
                 <div className={`${cardClass} p-5 sm:p-6 space-y-5`}>
-                  <h2 className="text-lg font-bold text-slate-900">Order Summary</h2>
+                  <h2 className="h-card text-slate-900">Order Summary</h2>
 
                   <form onSubmit={applyCoupon} className="space-y-2">
                     <label htmlFor="coupon" className="sr-only">
@@ -258,26 +262,24 @@ export default function CartPage() {
                     </div>
                     <div className="pt-3 border-t border-slate-100 flex justify-between items-baseline">
                       <dt className="font-bold text-slate-900">Total</dt>
-                      <dd className="text-2xl font-black text-slate-900">{formatPrice(totals.total)}</dd>
+                      <dd className="text-2xl font-bold text-slate-900">{formatPrice(totals.total)}</dd>
                     </div>
                   </dl>
 
-                  <div className="space-y-2.5">
-                    <Link href="/checkout" className={`${primaryButtonClass} w-full`}>
-                      Proceed to checkout
-                      <ArrowRight className="w-4 h-4" />
-                    </Link>
-                    <button
-                      type="button"
-                      onClick={checkoutViaWhatsApp}
-                      className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white border border-[#D9DFF0] text-sm font-bold text-emerald-700 hover:bg-emerald-50 transition-colors cursor-pointer"
-                    >
-                      <MessageCircle className="w-4 h-4" />
-                      Order on WhatsApp instead
-                    </button>
-                  </div>
+                  <Link
+                    href={user ? "/checkout" : "/login?next=/checkout"}
+                    className={`${primaryButtonClass} w-full`}
+                  >
+                    {user ? "Proceed to checkout" : "Sign in to checkout"}
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                  {!user && (
+                    <p className="text-center text-xs text-slate-500">
+                      New here? You can create an account in a minute — your cart stays saved.
+                    </p>
+                  )}
 
-                  <p className="flex items-center justify-center gap-1.5 text-[11px] font-semibold text-slate-500">
+                  <p className="flex items-center justify-center gap-1.5 text-xs font-semibold text-slate-500">
                     <ShieldCheck className="w-3.5 h-3.5 text-[#5160a3]" />
                     Secure payments by Razorpay · Shipping via Shiprocket
                   </p>

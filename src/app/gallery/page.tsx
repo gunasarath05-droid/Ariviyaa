@@ -7,9 +7,9 @@ import { CtaSection } from "@/sections/Home/Cta";
 export const metadata: Metadata = {
   title: "Media Gallery & Awards | Visual Milestones & Recognitions",
   description:
-    "Explore photos and visual documentation of Ariviya Deep Tech's awards (StartupTN TANSEED 3.0, Dettol Innovate With Purpose, Kuberan's House), lab research, and field demonstrations.",
+    "Explore photos and visual documentation of Ariviyaa Deep Tech's awards (StartupTN TANSEED 3.0, Dettol Innovate With Purpose, Kuberan's House), lab research, and field demonstrations.",
   keywords: [
-    "Ariviya Gallery",
+    "Ariviyaa Gallery",
     "StartupTN TANSEED Awards Photos",
     "Dettol Innovate With Purpose Winner",
     "Thanjavur Biotech Lab Photos",
