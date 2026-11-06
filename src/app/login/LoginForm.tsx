@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useAccount } from "@/context/AccountContext";
 import {
   ShieldCheck,
@@ -15,6 +15,7 @@ import {
   EyeOff,
   User,
   Building2,
+  ShoppingBag,
 } from "lucide-react";
 import { IMAGES } from "@/constants/images";
 import { inputClass, labelClass, primaryButtonClass } from "@/components/ui/form";
@@ -31,6 +32,8 @@ const TRUST_POINTS = [
 
 export function LoginForm() {
   const router = useRouter();
+  // Sent here from the cart / checkout: remind them the cart is kept
+  const fromCheckout = useSearchParams().get("next") === "/checkout";
   const { signIn, signUp } = useAccount();
   const [mode, setMode] = useState<Mode>("signin");
   const [accountType, setAccountType] = useState<AccountType>("Retail");
@@ -133,6 +136,16 @@ export function LoginForm() {
           {/* Form panel */}
           <div className="p-6 sm:p-10 lg:p-12">
             <div className="max-w-md mx-auto space-y-6">
+              {fromCheckout && (
+                <p className="flex items-start gap-2.5 p-3.5 rounded-xl bg-[#EFF3FC] border border-[#D9DFF0] text-sm text-slate-700">
+                  <ShoppingBag className="w-4 h-4 text-[#5160a3] shrink-0 mt-0.5" />
+                  <span>
+                    <strong className="text-slate-900">Your cart is saved.</strong> Sign in or create an account to
+                    place your order.
+                  </span>
+                </p>
+              )}
+
               <div className="space-y-1.5">
                 <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
                   {mode === "signin" ? "Welcome back" : "Create your account"}

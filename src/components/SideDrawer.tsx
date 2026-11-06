@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useApp, cartLineKey } from "@/context/AppContext";
+import { useAccount } from "@/context/AccountContext";
 import { PRODUCTS, formatPrice } from "@/constants/products";
 import {
   X,
@@ -32,6 +33,8 @@ export function SideDrawer() {
     addToCart,
     setSelectedProduct,
   } = useApp();
+  // Guests keep their cart; checkout asks them to sign in first
+  const { user } = useAccount();
 
   if (!isSideDrawerOpen) return null;
 
@@ -287,12 +290,12 @@ export function SideDrawer() {
                   View cart
                 </Link>
                 <Link
-                  href="/checkout"
+                  href={user ? "/checkout" : "/login?next=/checkout"}
                   onClick={() => setIsSideDrawerOpen(false)}
                   className="py-3 px-4 rounded-xl bg-[#5160a3] hover:bg-[#434f8a] text-white text-xs sm:text-sm font-bold flex items-center justify-center gap-1.5 transition"
                 >
-                  Checkout
-                  <ArrowRight className="w-4 h-4" />
+                  {user ? "Checkout" : "Sign in to checkout"}
+                  <ArrowRight className="w-4 h-4 shrink-0" />
                 </Link>
               </div>
 

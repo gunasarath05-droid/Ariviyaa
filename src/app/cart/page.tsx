@@ -18,6 +18,7 @@ import {
 import { CommonHero } from "@/components/CommonHero";
 import { CheckoutSteps } from "@/components/CheckoutSteps";
 import { useApp, cartLineKey } from "@/context/AppContext";
+import { useAccount } from "@/context/AccountContext";
 import { formatPrice } from "@/constants/products";
 import { computeTotals, FREE_SHIPPING_THRESHOLD } from "@/constants/demo";
 import { cardClass, inputClass, primaryButtonClass } from "@/components/ui/form";
@@ -32,6 +33,7 @@ export default function CartPage() {
     toggleWishlist,
     isInWishlist,
   } = useApp();
+  const { user } = useAccount();
 
   // Cart restores from localStorage after mount; wait so the empty state doesn't flash
   const [mounted, setMounted] = useState(false);
@@ -264,10 +266,18 @@ export default function CartPage() {
                     </div>
                   </dl>
 
-                  <Link href="/checkout" className={`${primaryButtonClass} w-full`}>
-                    Proceed to checkout
+                  <Link
+                    href={user ? "/checkout" : "/login?next=/checkout"}
+                    className={`${primaryButtonClass} w-full`}
+                  >
+                    {user ? "Proceed to checkout" : "Sign in to checkout"}
                     <ArrowRight className="w-4 h-4" />
                   </Link>
+                  {!user && (
+                    <p className="text-center text-xs text-slate-500">
+                      New here? You can create an account in a minute — your cart stays saved.
+                    </p>
+                  )}
 
                   <p className="flex items-center justify-center gap-1.5 text-[11px] font-semibold text-slate-500">
                     <ShieldCheck className="w-3.5 h-3.5 text-[#5160a3]" />

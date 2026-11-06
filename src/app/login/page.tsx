@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import type { Metadata } from "next";
 import { LoginForm } from "./LoginForm";
 
@@ -10,5 +10,10 @@ export const metadata: Metadata = {
 };
 
 export default function LoginPage() {
-  return <LoginForm />;
+  return (
+    // LoginForm reads ?next= with useSearchParams
+    <Suspense fallback={<div className="min-h-[70vh] bg-[#F5F7FC]" />}>
+      <LoginForm />
+    </Suspense>
+  );
 }

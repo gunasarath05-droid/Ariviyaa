@@ -145,12 +145,16 @@ function MethodPanel({ id }: { id: PaymentMethodId }) {
 export default function PaymentPage() {
   const router = useRouter();
   const { cart, cartSubtotal, clearCart } = useApp();
-  const { recordOrder } = useAccount();
+  const { ready, user, recordOrder } = useAccount();
 
   const [mounted, setMounted] = useState(false);
   const [draft, setDraft] = useState<CheckoutDraft>(SAMPLE_DRAFT);
   const [paymentId, setPaymentId] = useState<PaymentMethodId>("upi");
   const [processing, setProcessing] = useState(false);
+
+  useEffect(() => {
+    if (ready && !user) router.replace("/login?next=/checkout");
+  }, [ready, user, router]);
 
   useEffect(() => {
     const saved = loadCheckoutDraft();
@@ -215,7 +219,7 @@ export default function PaymentPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
           <CheckoutSteps current={2} />
 
-          {!mounted ? (
+          {!mounted || !user ? (
             <div className={`${cardClass} h-96 animate-pulse`} />
           ) : cart.length === 0 && !processing ? (
             <div className={`${cardClass} py-16 px-6 text-center flex flex-col items-center gap-3`}>

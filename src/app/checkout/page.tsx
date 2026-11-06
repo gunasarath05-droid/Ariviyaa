@@ -65,6 +65,11 @@ export default function CheckoutPage() {
   const [notes, setNotes] = useState("");
   const [errors, setErrors] = useState<Errors>({});
 
+  // Guests can fill a cart, but checkout needs an account; the cart is kept while they sign in
+  useEffect(() => {
+    if (ready && !user) router.replace("/login?next=/checkout");
+  }, [ready, user, router]);
+
   // Restore a previous draft (e.g. coming back from the payment step), else prefill from the account
   useEffect(() => {
     if (!ready) return;
@@ -162,7 +167,7 @@ export default function CheckoutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
           <CheckoutSteps current={1} />
 
-          {!mounted ? (
+          {!mounted || !user ? (
             <div className={`${cardClass} h-96 animate-pulse`} />
           ) : cart.length === 0 ? (
             <div className={`${cardClass} py-16 px-6 text-center flex flex-col items-center gap-3`}>
@@ -179,26 +184,11 @@ export default function CheckoutPage() {
           ) : (
             <form onSubmit={handleSubmit} noValidate className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
               <div className="lg:col-span-8 space-y-5">
-                {/* Login prompt (signed-in shoppers see who they are ordering as) */}
-                {user ? (
-                  <div className={`${cardClass} p-4 sm:p-5 text-sm text-slate-600`}>
-                    Ordering as <strong className="text-slate-900">{user.name}</strong> ({user.email}). This order
-                    will appear in your account.
-                  </div>
-                ) : (
-                <div className={`${cardClass} p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3`}>
-                  <p className="text-sm text-slate-600">
-                    Already ordered with us? <strong className="text-slate-900">Sign in</strong> to use saved addresses and
-                    track orders.
-                  </p>
-                  <Link
-                    href="/login?next=/checkout"
-                    className="shrink-0 inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl border border-[#D9DFF0] text-sm font-bold text-[#5160a3] hover:border-[#5160a3]"
-                  >
-                    Login for faster checkout
-                  </Link>
+                {/* Who is ordering */}
+                <div className={`${cardClass} p-4 sm:p-5 text-sm text-slate-600`}>
+                  Ordering as <strong className="text-slate-900">{user.name}</strong> ({user.email}). This order will
+                  appear in your account.
                 </div>
-                )}
 
                 {/* 1. Contact */}
                 <div className={`${cardClass} p-5 sm:p-6 space-y-5`}>
