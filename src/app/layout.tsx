@@ -11,6 +11,7 @@ import { ProductModal } from "@/components/ProductModal";
 import { SideDrawer } from "@/components/SideDrawer";
 import { SearchModal } from "@/components/SearchModal";
 import { PublicChrome } from "@/components/PublicChrome";
+import { SmoothScroll } from "@/components/SmoothScroll";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { IMAGES } from "@/constants/images";
 
@@ -91,6 +92,8 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${plusJakarta.variable} ${inter.variable} scroll-smooth`}
+      // Lets Next turn smooth scrolling off during page changes, so new pages open at the top
+      data-scroll-behavior="smooth"
       suppressHydrationWarning
     >
       <head>
@@ -102,6 +105,7 @@ export default function RootLayout({
       >
         <AppProvider>
         <AccountProvider>
+          <SmoothScroll />
          
 
           {/* Top navigation header (hidden on /admin) */}
