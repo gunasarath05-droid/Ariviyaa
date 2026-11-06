@@ -23,10 +23,10 @@ export function FaqBrowser() {
     .filter((c) => c.items.length > 0);
 
   return (
-    <section className="w-full section-y bg-[#F5F7FC] font-sans border-b border-[#D9DFF0]">
+    <section className="w-full section-y bg-white font-sans border-b border-[#D9DFF0]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10">
-        {/* Category list + help card */}
-        <aside className="lg:col-span-4 space-y-4">
+        {/* Category list + help card: stays in view (below the site header) while answers scroll */}
+        <aside className="lg:col-span-4 space-y-4 lg:sticky lg:top-40 lg:self-start">
           <div className="relative">
             <input
               type="search"
@@ -57,7 +57,7 @@ export function FaqBrowser() {
             ))}
           </nav>
 
-          <div className="hidden lg:block bg-white rounded-2xl border border-[#D9DFF0] p-6 space-y-3">
+          <div className="hidden lg:block bg-[#F5F7FC] rounded-2xl border border-[#D9DFF0] p-6 space-y-3">
             <h2 className="text-lg font-bold text-slate-900">Still have questions?</h2>
             <p className="text-sm text-slate-600 leading-relaxed">
               Our animal health team replies within a few hours on working days.
