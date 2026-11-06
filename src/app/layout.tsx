@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Inter } from "next/font/google";
 import "./globals.css";
 import { AppProvider } from "@/context/AppContext";
+import { AccountProvider } from "@/context/AccountContext";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { FloatingContact } from "@/components/FloatingContact";
@@ -100,6 +101,7 @@ export default function RootLayout({
         className="font-body antialiased bg-[#F5F7FC] text-slate-800 min-h-screen flex flex-col selection:bg-emerald-200 selection:text-emerald-900"
       >
         <AppProvider>
+        <AccountProvider>
          
 
           {/* Top navigation header (hidden on /admin) */}
@@ -126,6 +128,7 @@ export default function RootLayout({
               <Footer />
             </PublicChrome>
           </Suspense>
+        </AccountProvider>
         </AppProvider>
       </body>
     </html>

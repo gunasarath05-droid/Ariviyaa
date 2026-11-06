@@ -22,6 +22,7 @@ import { CommonHero } from "@/components/CommonHero";
 import { CheckoutSteps } from "@/components/CheckoutSteps";
 import { OrderSummaryCard } from "@/components/OrderSummaryCard";
 import { useApp } from "@/context/AppContext";
+import { useAccount } from "@/context/AccountContext";
 import { formatPrice } from "@/constants/products";
 import {
   DEMO_CUSTOMER,
@@ -144,6 +145,7 @@ function MethodPanel({ id }: { id: PaymentMethodId }) {
 export default function PaymentPage() {
   const router = useRouter();
   const { cart, cartSubtotal, clearCart } = useApp();
+  const { recordOrder } = useAccount();
 
   const [mounted, setMounted] = useState(false);
   const [draft, setDraft] = useState<CheckoutDraft>(SAMPLE_DRAFT);
@@ -165,12 +167,32 @@ export default function PaymentPage() {
     setProcessing(true);
     // Simulates the Razorpay round trip; the backend will verify the payment signature
     window.setTimeout(() => {
-      savePlacedOrder({
-        id: newOrderId(),
-        placedAt: new Date().toISOString(),
-        draft,
+      const placedAt = new Date();
+      const id = newOrderId();
+      const items = cart.map(({ product, pack, quantity }) => ({ productId: product.id, size: pack.size, quantity }));
+      savePlacedOrder({ id, placedAt: placedAt.toISOString(), draft, paymentId, items });
+      // Signed-in shoppers see the order in their account right away
+      recordOrder({
+        id,
+        date: placedAt.toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" }),
+        status: "placed",
+        items,
+        shippingId: draft.shippingId,
         paymentId,
-        items: cart.map(({ product, pack, quantity }) => ({ productId: product.id, size: pack.size, quantity })),
+        address: draft.address,
+        timeline: [
+          {
+            status: "placed",
+            date: placedAt.toLocaleString("en-GB", {
+              day: "2-digit",
+              month: "short",
+              year: "numeric",
+              hour: "2-digit",
+              minute: "2-digit",
+              hour12: true,
+            }),
+          },
+        ],
       });
       clearCart();
       router.push("/order-confirmation");

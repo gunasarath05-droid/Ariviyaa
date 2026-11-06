@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useAccount } from "@/context/AccountContext";
 import {
   ShieldCheck,
   Truck,
@@ -30,6 +31,7 @@ const TRUST_POINTS = [
 
 export function LoginForm() {
   const router = useRouter();
+  const { signIn, signUp } = useAccount();
   const [mode, setMode] = useState<Mode>("signin");
   const [accountType, setAccountType] = useState<AccountType>("Retail");
   const [phone, setPhone] = useState("");
@@ -38,9 +40,11 @@ export function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
 
-  // Demo build: every successful form lands on the account dashboard
-  const handleSubmit = (e: React.FormEvent) => {
+  // Demo build: the session lives in this browser until real auth replaces it
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const form = new FormData(e.currentTarget);
+    const field = (name: string) => String(form.get(name) ?? "").trim();
     if (mode === "signup") {
       if (phone.length !== 10) {
         setError("Enter a valid 10-digit mobile number.");
@@ -52,7 +56,21 @@ export function LoginForm() {
       }
     }
     setError("");
-    router.push("/account");
+    if (mode === "signup") {
+      signUp({
+        name: field("name"),
+        email: field("email"),
+        phone: `+91 ${phone}`,
+        accountType,
+        businessName: accountType === "Business" ? field("businessName") : undefined,
+        gstin: accountType === "Business" ? field("gstin").toUpperCase() || undefined : undefined,
+      });
+    } else {
+      signIn(field("email"));
+    }
+    // Only same-site paths, e.g. /checkout
+    const next = new URLSearchParams(window.location.search).get("next");
+    router.push(next && next.startsWith("/") && !next.startsWith("//") ? next : "/account");
   };
 
   const switchMode = (next: Mode) => {
@@ -164,6 +182,7 @@ export function LoginForm() {
                       </label>
                       <input
                         id="lg-name"
+                        name="name"
                         required
                         autoComplete="name"
                         placeholder="e.g. Rajesh Kumar"
@@ -200,7 +219,7 @@ export function LoginForm() {
                           <label htmlFor="lg-biz" className={labelClass}>
                             Business name
                           </label>
-                          <input id="lg-biz" required placeholder="e.g. Sri Murugan Dairy" className={inputClass} />
+                          <input id="lg-biz" name="businessName" required placeholder="e.g. Sri Murugan Dairy" className={inputClass} />
                         </div>
                         <div>
                           <label htmlFor="lg-gst" className={labelClass}>
@@ -208,6 +227,7 @@ export function LoginForm() {
                           </label>
                           <input
                             id="lg-gst"
+                            name="gstin"
                             placeholder="33ABCDE1234F1Z5"
                             maxLength={15}
                             className={`${inputClass} uppercase`}
@@ -224,6 +244,7 @@ export function LoginForm() {
                   </label>
                   <input
                     id="lg-email"
+                    name="email"
                     type="email"
                     required
                     autoComplete="email"

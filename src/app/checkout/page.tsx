@@ -8,9 +8,9 @@ import { CommonHero } from "@/components/CommonHero";
 import { CheckoutSteps } from "@/components/CheckoutSteps";
 import { OrderSummaryCard } from "@/components/OrderSummaryCard";
 import { useApp } from "@/context/AppContext";
+import { useAccount } from "@/context/AccountContext";
 import { formatPrice } from "@/constants/products";
 import {
-  DEMO_CUSTOMER,
   SHIPPING_METHODS,
   FREE_SHIPPING_THRESHOLD,
   computeTotals,
@@ -61,6 +61,7 @@ function FieldError({ message }: { message?: string }) {
 export default function CheckoutPage() {
   const router = useRouter();
   const { cart, cartSubtotal } = useApp();
+  const { ready, user } = useAccount();
 
   const [mounted, setMounted] = useState(false);
   const [email, setEmail] = useState("");
@@ -72,12 +73,23 @@ export default function CheckoutPage() {
   const [notes, setNotes] = useState("");
   const [errors, setErrors] = useState<Errors>({});
 
-  // Restore a previous draft (e.g. coming back from the payment step)
+  // Restore a previous draft (e.g. coming back from the payment step), else prefill from the account
   useEffect(() => {
+    if (!ready) return;
     const draft = loadCheckoutDraft();
+    if (!draft && user) {
+      const saved = user.addresses.find((a) => a.isDefault)?.address;
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setEmail(user.email);
+      setAddress(saved ?? { ...EMPTY_ADDRESS, name: user.name, phone: user.phone });
+      if (user.accountType === "Business" && user.gstin) {
+        setNeedsGst(true);
+        setBusinessName(user.businessName ?? "");
+        setGstin(user.gstin);
+      }
+    }
     if (draft) {
       // Restoring from sessionStorage (an external store) once on mount
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setEmail(draft.email);
       setAddress(draft.address);
       setShippingId(draft.shippingId);
@@ -89,23 +101,28 @@ export default function CheckoutPage() {
       }
     }
     setMounted(true);
-  }, []);
+    // Runs once the account session is known; later edits by the user are not overwritten
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ready]);
 
   const totals = computeTotals(cartSubtotal, shippingId);
 
   const updateAddress = (field: keyof Address) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
     setAddress((prev) => ({ ...prev, [field]: e.target.value }));
 
+  const savedAddresses = user?.addresses ?? [];
+  const hasBusinessDetails = Boolean(user?.businessName && user.gstin);
+
   const applySavedAddress = (index: number) => {
-    setAddress(DEMO_CUSTOMER.addresses[index].address);
-    setEmail((prev) => prev || DEMO_CUSTOMER.email);
+    setAddress(savedAddresses[index].address);
+    setEmail((prev) => prev || user?.email || "");
     setErrors({});
   };
 
   const fillBusinessDetails = () => {
     setNeedsGst(true);
-    setBusinessName(DEMO_CUSTOMER.businessName);
-    setGstin(DEMO_CUSTOMER.gstin);
+    setBusinessName(user?.businessName ?? "");
+    setGstin(user?.gstin ?? "");
   };
 
   const validate = (): Errors => {
@@ -170,7 +187,13 @@ export default function CheckoutPage() {
           ) : (
             <form onSubmit={handleSubmit} noValidate className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
               <div className="lg:col-span-8 space-y-5">
-                {/* Login prompt */}
+                {/* Login prompt (signed-in shoppers see who they are ordering as) */}
+                {user ? (
+                  <div className={`${cardClass} p-4 sm:p-5 text-sm text-slate-600`}>
+                    Ordering as <strong className="text-slate-900">{user.name}</strong> ({user.email}). This order
+                    will appear in your account.
+                  </div>
+                ) : (
                 <div className={`${cardClass} p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3`}>
                   <p className="text-sm text-slate-600">
                     Already ordered with us? <strong className="text-slate-900">Sign in</strong> to use saved addresses and
@@ -183,6 +206,7 @@ export default function CheckoutPage() {
                     Login for faster checkout
                   </Link>
                 </div>
+                )}
 
                 {/* 1. Contact */}
                 <div className={`${cardClass} p-5 sm:p-6 space-y-5`}>
@@ -226,9 +250,10 @@ export default function CheckoutPage() {
                 <div className={`${cardClass} p-5 sm:p-6 space-y-5`}>
                   <SectionTitle step={2} icon={MapPin} title="Delivery address" />
 
+                  {savedAddresses.length > 0 && (
                   <div className="flex flex-wrap items-center gap-2">
                     <span className="text-xs font-semibold text-slate-500">Saved addresses:</span>
-                    {DEMO_CUSTOMER.addresses.map((saved, index) => (
+                    {savedAddresses.map((saved, index) => (
                       <button
                         key={saved.label}
                         type="button"
@@ -239,6 +264,7 @@ export default function CheckoutPage() {
                       </button>
                     ))}
                   </div>
+                  )}
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="sm:col-span-2">
@@ -347,7 +373,7 @@ export default function CheckoutPage() {
                         <Building2 className="w-4 h-4 text-[#5160a3]" />
                         I need a GST invoice for my business
                       </label>
-                      {!needsGst && (
+                      {!needsGst && hasBusinessDetails && (
                         <button
                           type="button"
                           onClick={fillBusinessDetails}

@@ -20,9 +20,9 @@ import {
   X,
 } from "lucide-react";
 import { formatPrice } from "@/constants/products";
+import { useAccount } from "@/context/AccountContext";
 import { COMPANY_INFO } from "@/constants/company";
 import {
-  DEMO_CUSTOMER,
   DEMO_ORDERS,
   PAYMENT_METHODS,
   RETURN_REASONS,
@@ -42,6 +42,9 @@ const STEP_LABELS = ["Find order", "Select items", "Review"];
 
 export function ReturnOrderForm() {
   const searchParams = useSearchParams();
+  const { user, orders: accountOrders, requestReturn } = useAccount();
+  // Signed-in customers return from their own orders; guests look one up by ID + contact
+  const sourceOrders = user ? accountOrders : DEMO_ORDERS;
   const [step, setStep] = useState<Step>(0);
   const [orderId, setOrderId] = useState(searchParams.get("order") ?? "");
   const [contact, setContact] = useState("");
@@ -56,20 +59,24 @@ export function ReturnOrderForm() {
   const [addressIndex, setAddressIndex] = useState(0);
   const [returnId, setReturnId] = useState("");
 
-  const eligibleOrders = DEMO_ORDERS.filter((o) => o.status === "delivered");
+  const eligibleOrders = sourceOrders.filter((o) => o.status === "delivered");
   const items = order ? orderProducts(order) : [];
-  const selected = items.filter(({ product }) => (quantities[product.id] ?? 0) > 0);
-  const refundAmount = selected.reduce(
-    (sum, { product }) => sum + product.price * (quantities[product.id] ?? 0),
-    0
-  );
+  const lineKey = (line: { product: { id: string }; pack: { size: string } }) => `${line.product.id}|${line.pack.size}`;
+  const selected = items.filter((line) => (quantities[lineKey(line)] ?? 0) > 0);
+  const refundAmount = selected.reduce((sum, line) => sum + line.pack.price * (quantities[lineKey(line)] ?? 0), 0);
   const isCod = order?.paymentId === "cod";
   const paymentLabel = PAYMENT_METHODS.find((p) => p.id === order?.paymentId)?.label;
-  const pickup = DEMO_CUSTOMER.addresses[addressIndex].address;
+  const pickupOptions =
+    user && user.addresses.length > 0
+      ? user.addresses
+      : order
+        ? [{ label: "Delivery address", isDefault: true, address: order.address }]
+        : [];
+  const pickup = (pickupOptions[addressIndex] ?? pickupOptions[0])?.address;
 
   const findOrder = (e: React.FormEvent) => {
     e.preventDefault();
-    const match = DEMO_ORDERS.find((o) => o.id.toLowerCase() === orderId.trim().toLowerCase());
+    const match = sourceOrders.find((o) => o.id.toLowerCase() === orderId.trim().toLowerCase());
     if (!match) {
       setError("We couldn't find that order. Check the order ID in your confirmation email or SMS.");
       return;
@@ -101,6 +108,7 @@ export function ReturnOrderForm() {
   };
 
   const submit = () => {
+    if (user && order) requestReturn(order.id);
     setReturnId(`RET-${String(Math.floor(43 + Math.random() * 900)).padStart(4, "0")}`);
   };
 
@@ -196,6 +204,7 @@ export function ReturnOrderForm() {
                         className={inputClass}
                       />
                     </div>
+                    {!user && (
                     <div>
                       <label htmlFor="ro-contact" className={labelClass}>
                         Mobile or email used for the order
@@ -209,6 +218,7 @@ export function ReturnOrderForm() {
                         className={inputClass}
                       />
                     </div>
+                    )}
                   </div>
                   {error && (
                     <p role="alert" className="px-4 py-3 rounded-xl bg-rose-50 border border-rose-200 text-sm text-rose-700">
@@ -226,7 +236,7 @@ export function ReturnOrderForm() {
                             type="button"
                             onClick={() => {
                               setOrderId(o.id);
-                              setContact(DEMO_CUSTOMER.phone);
+                              if (!user) setContact("+91 98765 43210");
                             }}
                             className={`px-3.5 py-2 rounded-xl border text-xs font-bold transition-colors cursor-pointer ${
                               orderId === o.id
@@ -257,10 +267,12 @@ export function ReturnOrderForm() {
                       <span className="text-xs font-semibold text-slate-500">Order {order.id}</span>
                     </div>
                     <ul className="divide-y divide-slate-100 border border-[#D9DFF0] rounded-xl">
-                      {items.map(({ product, quantity }) => {
-                        const qty = quantities[product.id] ?? 0;
+                      {items.map((line) => {
+                        const { product, pack, quantity } = line;
+                        const key = lineKey(line);
+                        const qty = quantities[key] ?? 0;
                         return (
-                          <li key={product.id} className="p-3 sm:p-4 flex items-center gap-3">
+                          <li key={key} className="p-3 sm:p-4 flex items-center gap-3">
                             <div className="w-14 h-14 rounded-lg bg-[#F5F7FC] p-1.5 flex items-center justify-center shrink-0">
                               <Image
                                 src={product.image}
@@ -274,13 +286,13 @@ export function ReturnOrderForm() {
                             <div className="flex-1 min-w-0">
                               <p className="text-sm font-bold text-slate-900 line-clamp-1">{product.name}</p>
                               <p className="text-xs text-slate-500">
-                                Bought {quantity} · {formatPrice(product.price)} each
+                                {pack.size} · Bought {quantity} · {formatPrice(pack.price)} each
                               </p>
                             </div>
                             <div className="flex items-center border border-[#D9DFF0] rounded-lg overflow-hidden text-sm">
                               <button
                                 type="button"
-                                onClick={() => changeQty(product.id, quantity, -1)}
+                                onClick={() => changeQty(key, quantity, -1)}
                                 aria-label={`Return one less ${product.name}`}
                                 className="px-2.5 py-1.5 text-slate-600 hover:bg-slate-100 cursor-pointer"
                               >
@@ -289,7 +301,7 @@ export function ReturnOrderForm() {
                               <span className="w-8 text-center font-bold text-slate-900">{qty}</span>
                               <button
                                 type="button"
-                                onClick={() => changeQty(product.id, quantity, 1)}
+                                onClick={() => changeQty(key, quantity, 1)}
                                 aria-label={`Return one more ${product.name}`}
                                 className="px-2.5 py-1.5 text-slate-600 hover:bg-slate-100 cursor-pointer"
                               >
@@ -440,7 +452,7 @@ export function ReturnOrderForm() {
                   <div className="space-y-3">
                     <h3 className="text-base font-bold text-slate-900">Pickup address</h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                      {DEMO_CUSTOMER.addresses.map(({ label, address }, i) => (
+                      {pickupOptions.map(({ label, address }, i) => (
                         <label
                           key={label}
                           className={`p-4 rounded-xl border cursor-pointer text-sm transition-colors ${
@@ -487,13 +499,13 @@ export function ReturnOrderForm() {
                 <div className={`${cardClass} p-5 sm:p-8 space-y-6`}>
                   <h2 className="text-xl font-bold text-slate-900">Review your return</h2>
                   <ul className="divide-y divide-slate-100 border border-[#D9DFF0] rounded-xl">
-                    {selected.map(({ product }) => (
-                      <li key={product.id} className="p-3 flex items-center justify-between gap-3 text-sm">
+                    {selected.map((line) => (
+                      <li key={lineKey(line)} className="p-3 flex items-center justify-between gap-3 text-sm">
                         <span className="font-semibold text-slate-900">
-                          {product.name} × {quantities[product.id]}
+                          {line.product.name} ({line.pack.size}) × {quantities[lineKey(line)]}
                         </span>
                         <span className="font-bold text-slate-900">
-                          {formatPrice(product.price * (quantities[product.id] ?? 0))}
+                          {formatPrice(line.pack.price * (quantities[lineKey(line)] ?? 0))}
                         </span>
                       </li>
                     ))}
@@ -513,7 +525,7 @@ export function ReturnOrderForm() {
                   </dl>
                   <p className="flex items-start gap-2 text-sm text-slate-600">
                     <MapPin className="w-4 h-4 text-[#5160a3] mt-0.5 shrink-0" />
-                    Pickup from {pickup.name}, {pickup.line1}, {pickup.city}, {pickup.state} – {pickup.pincode}
+                    Pickup from {pickup?.name}, {pickup?.line1}, {pickup?.city}, {pickup?.state} – {pickup?.pincode}
                   </p>
                   <div className="p-4 rounded-xl bg-[#EFF3FC] border border-[#D9DFF0] flex items-center justify-between">
                     <span className="text-sm font-bold text-slate-700">Estimated refund</span>
@@ -568,7 +580,7 @@ export function ReturnOrderForm() {
               <Link href="/contact" className="font-semibold text-[#5160a3] hover:underline">
                 contact us
               </Link>
-              . Mon–Sat, 9 AM – 6 PM.
+              . Every day, {COMPANY_INFO.supportHours}.
             </p>
           </div>
         </aside>

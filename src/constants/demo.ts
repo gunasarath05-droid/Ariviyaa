@@ -2,7 +2,7 @@
  * Demo data for the client-review build. Everything here is placeholder content that the
  * backend (orders, customers, Razorpay, Shiprocket) will replace — nothing is persisted.
  */
-import { PRODUCTS, type ProductItem } from "@/constants/products";
+import { PRODUCTS, type ProductItem, type ProductPack } from "@/constants/products";
 
 // ---------------------------------------------------------------------------
 // Shipping & payment
@@ -105,11 +105,29 @@ export interface Address {
   pincode: string;
 }
 
-export const DEMO_CUSTOMER = {
+export interface SavedAddress {
+  label: string;
+  isDefault: boolean;
+  address: Address;
+}
+
+export interface CustomerProfile {
+  name: string;
+  email: string;
+  phone: string;
+  accountType: "Retail" | "Business";
+  businessName?: string;
+  gstin?: string;
+  memberSince: string;
+  addresses: SavedAddress[];
+}
+
+/** Sample returning customer, used when someone signs in on the demo build */
+export const DEMO_CUSTOMER: CustomerProfile = {
   name: "Rajesh Kumar",
   email: "rajesh@murugandairy.in",
   phone: "+91 98765 43210",
-  accountType: "Business" as "Retail" | "Business",
+  accountType: "Business",
   businessName: "Sri Murugan Dairy Farm",
   gstin: "33ABCDE1234F1Z5",
   memberSince: "March 2026",
@@ -186,6 +204,8 @@ export const TRACKING_STEPS: OrderStatus[] = [
 
 export interface OrderLine {
   productId: string;
+  /** Pack size bought; older lines without one use the product's smallest pack */
+  size?: string;
   quantity: number;
 }
 
@@ -287,16 +307,19 @@ export const DEMO_ORDERS: DemoOrder[] = [
   },
 ];
 
-export function orderProducts(order: DemoOrder): { product: ProductItem; quantity: number }[] {
-  return order.items.flatMap(({ productId, quantity }) => {
+export function orderProducts(
+  order: DemoOrder
+): { product: ProductItem; pack: ProductPack; quantity: number }[] {
+  return order.items.flatMap(({ productId, size, quantity }) => {
     const product = PRODUCTS.find((p) => p.id === productId);
-    return product ? [{ product, quantity }] : [];
+    const pack = product?.packs.find((p) => p.size === size) ?? product?.packs[0];
+    return product && pack ? [{ product, pack, quantity }] : [];
   });
 }
 
 export function orderTotals(order: DemoOrder): OrderTotals {
   const subtotal = orderProducts(order).reduce(
-    (sum, { product, quantity }) => sum + product.price * quantity,
+    (sum, { pack, quantity }) => sum + pack.price * quantity,
     0
   );
   return computeTotals(subtotal, order.shippingId, order.paymentId);

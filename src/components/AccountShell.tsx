@@ -1,25 +1,54 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { LayoutDashboard, Package, RotateCcw, Heart, LogOut, BadgeCheck } from "lucide-react";
-import { DEMO_CUSTOMER } from "@/constants/demo";
+import { useAccount } from "@/context/AccountContext";
 
 const ACCOUNT_LINKS = [
   { label: "Dashboard", href: "/account", Icon: LayoutDashboard },
   { label: "Order History", href: "/account/orders", Icon: Package },
-  { label: "Returns", href: "/return-order", Icon: RotateCcw },
+  { label: "Returns", href: "/account/orders?tab=returns", Icon: RotateCcw },
   { label: "Wishlist", href: "/wishlist", Icon: Heart },
 ];
 
-// Sidebar + content frame shared by the signed-in customer pages
+// Sidebar + content frame shared by the signed-in customer pages; signed-out visitors go to /login
 export function AccountShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const initials = DEMO_CUSTOMER.name
+  const router = useRouter();
+  const { ready, user, signOut } = useAccount();
+  // Set while signing out so the guard below doesn't add ?next= to the login URL
+  const signingOut = useRef(false);
+
+  useEffect(() => {
+    if (ready && !user && !signingOut.current) router.replace(`/login?next=${encodeURIComponent(pathname)}`);
+  }, [ready, user, pathname, router]);
+
+  if (!ready || !user) {
+    return (
+      <div className="w-full bg-[#F5F7FC] py-10 sm:py-14">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 animate-pulse">
+          <div className="lg:col-span-3 h-48 rounded-2xl bg-white border border-[#D9DFF0]" />
+          <div className="lg:col-span-9 h-96 rounded-2xl bg-white border border-[#D9DFF0]" />
+        </div>
+      </div>
+    );
+  }
+
+  const initials = user.name
     .split(" ")
+    .filter(Boolean)
     .map((part) => part[0])
-    .join("");
+    .slice(0, 2)
+    .join("")
+    .toUpperCase();
+
+  const handleSignOut = () => {
+    signingOut.current = true;
+    signOut();
+    router.push("/login");
+  };
 
   return (
     <div className="w-full bg-[#F5F7FC] py-10 sm:py-14 font-sans">
@@ -30,11 +59,11 @@ export function AccountShell({ children }: { children: React.ReactNode }) {
               {initials}
             </div>
             <div className="min-w-0">
-              <p className="text-sm font-bold text-slate-900 truncate">{DEMO_CUSTOMER.name}</p>
-              <p className="text-xs text-slate-500 truncate">{DEMO_CUSTOMER.businessName}</p>
+              <p className="text-sm font-bold text-slate-900 truncate">{user.name}</p>
+              <p className="text-xs text-slate-500 truncate">{user.businessName ?? user.email}</p>
               <span className="mt-1 inline-flex items-center gap-1 text-[11px] font-bold text-[#5160a3]">
                 <BadgeCheck className="w-3.5 h-3.5" />
-                {DEMO_CUSTOMER.accountType} account
+                {user.accountType} account
               </span>
             </div>
           </div>
@@ -58,13 +87,14 @@ export function AccountShell({ children }: { children: React.ReactNode }) {
                 </Link>
               );
             })}
-            <Link
-              href="/login"
-              className="flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap text-slate-500 hover:bg-[#F5F7FC] hover:text-rose-600 transition-colors"
+            <button
+              type="button"
+              onClick={handleSignOut}
+              className="flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap text-slate-500 hover:bg-[#F5F7FC] hover:text-rose-600 transition-colors cursor-pointer"
             >
               <LogOut className="w-4 h-4 shrink-0" />
               Sign out
-            </Link>
+            </button>
           </nav>
         </aside>
 

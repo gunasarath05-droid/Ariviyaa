@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import {
   Search,
   ChevronDown,
@@ -15,9 +16,9 @@ import {
   PackageSearch,
 } from "lucide-react";
 import { useApp } from "@/context/AppContext";
+import { useAccount } from "@/context/AccountContext";
 import { formatPrice } from "@/constants/products";
 import {
-  DEMO_ORDERS,
   PAYMENT_METHODS,
   SHIPPING_METHODS,
   orderProducts,
@@ -45,13 +46,20 @@ const actionClass =
 
 export function OrderHistory() {
   const { addToCart } = useApp();
-  const [filter, setFilter] = useState<Filter>("all");
+  const { orders: allOrders } = useAccount();
+  const router = useRouter();
+  const pathname = usePathname();
+  // The active tab lives in the URL (?tab=returns) so the sidebar "Returns" link opens it
+  const tab = useSearchParams().get("tab");
+  const activeFilter = FILTERS.find((f) => f.id === tab) ?? FILTERS[0];
+  const filter = activeFilter.id;
+  const setFilter = (next: Filter) =>
+    router.replace(next === "all" ? pathname : `${pathname}?tab=${next}`, { scroll: false });
   const [query, setQuery] = useState("");
-  const [openId, setOpenId] = useState<string | null>(DEMO_ORDERS[0]?.id ?? null);
+  const [openId, setOpenId] = useState<string | null>(allOrders[0]?.id ?? null);
   const [notice, setNotice] = useState("");
 
-  const activeFilter = FILTERS.find((f) => f.id === filter) ?? FILTERS[0];
-  const orders = DEMO_ORDERS.filter(
+  const orders = allOrders.filter(
     (o) => activeFilter.match(o) && o.id.toLowerCase().includes(query.trim().toLowerCase())
   );
 
@@ -66,7 +74,7 @@ export function OrderHistory() {
       <div className={`${cardClass} p-3 sm:p-4 flex flex-col md:flex-row md:items-center justify-between gap-3`}>
         <div className="flex gap-1.5 overflow-x-auto no-scrollbar">
           {FILTERS.map((f) => {
-            const count = DEMO_ORDERS.filter(f.match).length;
+            const count = allOrders.filter(f.match).length;
             return (
               <button
                 key={f.id}
@@ -105,8 +113,27 @@ export function OrderHistory() {
           <span className="mx-auto w-14 h-14 rounded-full bg-[#F5F7FC] text-slate-300 flex items-center justify-center">
             <PackageSearch className="w-7 h-7" />
           </span>
-          <p className="text-base font-bold text-slate-800">No orders found</p>
-          <p className="text-sm text-slate-500">Try another filter or check the order ID.</p>
+          {allOrders.length === 0 ? (
+            <>
+              <p className="text-base font-bold text-slate-800">No orders yet</p>
+              <p className="text-sm text-slate-500">Orders you place will appear here with live tracking.</p>
+              <Link href="/shop" className="inline-block text-sm font-bold text-[#5160a3] hover:underline">
+                Start shopping →
+              </Link>
+            </>
+          ) : filter === "returns" && !query.trim() ? (
+            <>
+              <p className="text-base font-bold text-slate-800">No return requests</p>
+              <p className="text-sm text-slate-500">
+                To return something, open a delivered order and choose &ldquo;Return items&rdquo;.
+              </p>
+            </>
+          ) : (
+            <>
+              <p className="text-base font-bold text-slate-800">No orders found</p>
+              <p className="text-sm text-slate-500">Try another filter or check the order ID.</p>
+            </>
+          )}
         </div>
       ) : (
         <div className="space-y-4">
@@ -127,9 +154,9 @@ export function OrderHistory() {
                   className="w-full p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center gap-4 text-left cursor-pointer hover:bg-[#F5F7FC]/50 transition-colors"
                 >
                   <div className="flex -space-x-3 shrink-0">
-                    {items.slice(0, 3).map(({ product }) => (
+                    {items.slice(0, 3).map(({ product, pack }) => (
                       <div
-                        key={product.id}
+                        key={`${product.id}|${pack.size}`}
                         className="w-14 h-14 rounded-xl bg-[#F5F7FC] border-2 border-white p-1.5 flex items-center justify-center"
                       >
                         <Image
@@ -174,8 +201,8 @@ export function OrderHistory() {
                       {/* Items + totals */}
                       <div className="lg:col-span-3 space-y-4">
                         <ul className="divide-y divide-slate-100 border border-[#D9DFF0] rounded-xl">
-                          {items.map(({ product, quantity }) => (
-                            <li key={product.id} className="p-3 flex items-center gap-3">
+                          {items.map(({ product, pack, quantity }) => (
+                            <li key={`${product.id}|${pack.size}`} className="p-3 flex items-center gap-3">
                               <div className="w-12 h-12 rounded-lg bg-[#F5F7FC] p-1 flex items-center justify-center shrink-0">
                                 <Image
                                   src={product.image}
@@ -194,11 +221,11 @@ export function OrderHistory() {
                                   {product.name}
                                 </Link>
                                 <p className="text-xs text-slate-500">
-                                  {quantity} × {formatPrice(product.price)}
+                                  {pack.size} · {quantity} × {formatPrice(pack.price)}
                                 </p>
                               </div>
                               <span className="text-sm font-bold text-slate-900">
-                                {formatPrice(product.price * quantity)}
+                                {formatPrice(pack.price * quantity)}
                               </span>
                             </li>
                           ))}
@@ -275,7 +302,9 @@ export function OrderHistory() {
                       <button
                         type="button"
                         className={actionClass}
-                        onClick={() => items.forEach(({ product, quantity }) => addToCart(product, quantity))}
+                        onClick={() =>
+                          items.forEach(({ product, pack, quantity }) => addToCart(product, quantity, pack))
+                        }
                       >
                         <RefreshCw className="w-3.5 h-3.5" />
                         Reorder

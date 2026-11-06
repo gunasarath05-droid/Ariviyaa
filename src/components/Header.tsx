@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useApp } from "@/context/AppContext";
+import { useAccount } from "@/context/AccountContext";
 import { IMAGES } from "@/constants/images";
 import { COMPANY_INFO } from "@/constants/company";
 import {
@@ -29,6 +30,8 @@ export function Header() {
     setIsSearchOpen,
     setSearchQuery,
   } = useApp();
+  // Only known after mount, so the server-rendered header always shows "Sign in"
+  const { user } = useAccount();
 
   // The header hydrates inside a Suspense boundary, after the saved cart/wishlist may
   // already be restored — render badge counts only once hydrated to match server HTML.
@@ -149,16 +152,16 @@ export function Header() {
           <div className="flex items-center gap-4 sm:gap-8 shrink-0">
             {/* Account Button */}
             <Link
-              href="/login"
+              href={user ? "/account" : "/login"}
               className="flex flex-col items-center justify-center text-slate-800 hover:text-[#5160a3] transition-colors cursor-pointer group"
-              title="Sign in / My Account"
+              title={user ? "My Account" : "Sign in"}
             >
               <User
                 className="w-5 h-5 text-slate-800 group-hover:text-[#5160a3] transition-colors"
                 strokeWidth={1.75}
               />
-              <span className="text-[10px] sm:text-[11px] font-medium text-slate-800 group-hover:text-[#5160a3] transition-colors mt-1 leading-none">
-                Account
+              <span className="text-[10px] sm:text-[11px] font-medium text-slate-800 group-hover:text-[#5160a3] transition-colors mt-1 leading-none max-w-16 truncate">
+                {user ? `Hi, ${user.name.split(" ")[0]}` : "Sign in"}
               </span>
             </Link>
 
