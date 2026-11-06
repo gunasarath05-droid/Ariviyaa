@@ -62,6 +62,7 @@ const GROUPS: { title: string; pages: { label: string; href: string; note?: stri
     pages: [
       { label: "404 page", href: "/this-page-does-not-exist" },
       { label: "Loading state", href: "/review/loading" },
+      { label: "Admin sign in", href: "/admin/login", note: "Staff only; see README for demo access" },
       { label: "Admin dashboard", href: "/admin" },
     ],
   },

@@ -8,6 +8,7 @@ import {
   type DemoOrder,
   type SavedAddress,
 } from "@/constants/demo";
+import { ORDER_UPDATES_KEY, applyOrderUpdate, loadOrderUpdates, type OrderUpdates } from "@/lib/orderUpdates";
 
 /**
  * Demo sign-in for the client-review build: accounts and their orders live in this browser's
@@ -15,7 +16,7 @@ import {
  * Passwords are never stored.
  */
 
-interface StoredAccount {
+export interface StoredAccount {
   profile: CustomerProfile;
   /** Signed in (not signed up): shows the sample order history of a returning customer */
   returning: boolean;
@@ -48,7 +49,7 @@ interface AccountContextType {
 const AccountContext = createContext<AccountContextType | undefined>(undefined);
 
 const SESSION_KEY = "ariviya-session";
-const ACCOUNTS_KEY = "ariviya-accounts";
+export const ACCOUNTS_KEY = "ariviya-accounts";
 
 const memberSince = () => new Date().toLocaleDateString("en-IN", { month: "long", year: "numeric" });
 
@@ -65,6 +66,8 @@ export function AccountProvider({ children }: { children: ReactNode }) {
   const [ready, setReady] = useState(false);
   const [accounts, setAccounts] = useState<Record<string, StoredAccount>>({});
   const [sessionEmail, setSessionEmail] = useState<string | null>(null);
+  // Status / courier changes made in the admin panel
+  const [orderUpdates, setOrderUpdates] = useState<OrderUpdates>({});
 
   // Restore after mount so server and client markup match
   /* eslint-disable react-hooks/set-state-in-effect */
@@ -72,12 +75,21 @@ export function AccountProvider({ children }: { children: ReactNode }) {
     try {
       setAccounts(JSON.parse(localStorage.getItem(ACCOUNTS_KEY) || "{}"));
       setSessionEmail(localStorage.getItem(SESSION_KEY));
+      setOrderUpdates(loadOrderUpdates());
     } catch {
       // Storage unavailable — the visitor simply starts signed out
     }
     setReady(true);
   }, []);
   /* eslint-enable react-hooks/set-state-in-effect */
+
+  useEffect(() => {
+    const onStorage = (e: StorageEvent) => {
+      if (e.key === ORDER_UPDATES_KEY) setOrderUpdates(loadOrderUpdates());
+    };
+    window.addEventListener("storage", onStorage);
+    return () => window.removeEventListener("storage", onStorage);
+  }, []);
 
   useEffect(() => {
     if (!ready) return;
@@ -93,7 +105,9 @@ export function AccountProvider({ children }: { children: ReactNode }) {
   const account = sessionEmail ? accounts[sessionEmail] : undefined;
   const user = account?.profile ?? null;
   const orders = account
-    ? [...account.orders, ...(account.returning ? DEMO_ORDERS : [])].map((o) => withReturnStatus(o, account.returns))
+    ? [...account.orders, ...(account.returning ? DEMO_ORDERS : [])].map((o) =>
+        withReturnStatus(applyOrderUpdate(o, orderUpdates[o.id]), account.returns)
+      )
     : [];
 
   const updateAccount = (update: (current: StoredAccount) => StoredAccount) => {
