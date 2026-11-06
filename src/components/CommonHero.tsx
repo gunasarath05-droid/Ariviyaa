@@ -34,7 +34,7 @@ export function CommonHero({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-6 md:gap-8 pt-8 sm:pt-10 md:pt-12 pb-0">
           {/* Left Column: Title, Breadcrumbs, Subtitle */}
-          <div className="w-full md:max-w-xl lg:max-w-2xl pb-4 sm:pb-6 md:pb-10 space-y-2.5 sm:space-y-3 text-left">
+          <div className="w-full md:max-w-xl lg:max-w-2xl pb-4 sm:pb-6 md:pb-10 space-y-2.5 sm:space-y-3 text-left animate-fade-up">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 leading-[1.15]">
               {title}
             </h1>
@@ -78,7 +78,7 @@ export function CommonHero({
           </div>
 
           {/* Right Column: Cutout Product Image sitting flush on bottom border */}
-          <div className="w-full md:w-auto flex-1 flex justify-center md:justify-end items-end self-end pointer-events-none select-none">
+          <div className="w-full md:w-auto flex-1 flex justify-center md:justify-end items-end self-end pointer-events-none select-none animate-fade-in [animation-delay:150ms]">
             <div className="relative w-full w-auto h-[180px] sm:h-[220px] md:h-[250px] lg:h-[320px]">
               <Image
                 src={image}
