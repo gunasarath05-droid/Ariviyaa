@@ -26,13 +26,13 @@ const benefits = [
 export function ProductVideoSection() {
   return (
     <section
-      className="w-full section-y px-4 sm:px-6 lg:px-8 font-sans scroll-mt-20 bg-white border-b border-[#D9DFF0]"
+      className="w-full section-y font-sans scroll-mt-20 bg-white border-b border-[#D9DFF0]"
       id="product-video"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* Left Column: Copy & Bullet Points */}
-          <div className="lg:col-span-6 space-y-6">
+          <div className="space-y-6">
             <div className="space-y-3">
               <div className="eyebrow">
                 <AriviyaIcon className="w-4 h-4 text-[#5160a3] shrink-0" />
@@ -79,8 +79,8 @@ export function ProductVideoSection() {
           </div>
 
           {/* Right Column: Responsive YouTube Video Frame */}
-          <div className="lg:col-span-6">
-            <div className="relative aspect-video w-full rounded-3xl overflow-hidden bg-slate-900 border-2 border-[#D9DFF0] shadow-xl">
+          <div>
+            <div className="relative aspect-video w-full rounded-3xl overflow-hidden bg-slate-900 border border-[#D9DFF0] shadow-sm">
               <iframe
                 src={`https://www.youtube-nocookie.com/embed/${videoId}?rel=0`}
                 title="Ariviyaa MammaryO product introduction video"

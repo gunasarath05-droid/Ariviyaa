@@ -95,6 +95,7 @@ function EnquiryDetail({ enquiry, onClose }: { enquiry: AdminEnquiry; onClose: (
       <dl className="text-sm divide-y divide-slate-100">
         {[
           ["Type", enquiry.type],
+          ["Source", enquiry.source ?? "Added by team"],
           ["Product", enquiry.product],
           ["Quantity", enquiry.quantity],
           ["Location", enquiry.location],

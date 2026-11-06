@@ -27,9 +27,9 @@ export default function HomePage() {
       <PhotoBandSection />
       <WhoWeServeSection />
       <InvestorHighlights />
-      <ScienceFromThanjavurSection />
-      <WhereOurScienceRecognisedSection />
-      <TeamBehindAriviyaaSection />
+      <ScienceFromThanjavurSection tone="light" />
+      <WhereOurScienceRecognisedSection tone="white" />
+      <TeamBehindAriviyaaSection tone="light" />
       <FaqSection />
       <CtaSection />
       <ContactSection />

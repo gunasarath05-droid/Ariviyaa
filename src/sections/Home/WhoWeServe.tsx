@@ -33,10 +33,10 @@ const segments = [
 export function WhoWeServeSection() {
   return (
     <section
-      className="w-full section-y px-4 sm:px-6 lg:px-8 font-sans scroll-mt-20 bg-[#F5F7FC] border-b border-[#D9DFF0]"
+      className="w-full section-y font-sans scroll-mt-20 bg-[#F5F7FC] border-b border-[#D9DFF0]"
       id="who-we-serve"
     >
-      <div className="max-w-7xl mx-auto space-y-10 sm:space-y-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <div className="eyebrow">
             <AriviyaIcon className="w-4 h-4 text-[#5160a3] shrink-0" />

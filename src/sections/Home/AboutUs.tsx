@@ -17,6 +17,10 @@ import {
   Eye,
 } from "lucide-react";
 
+/** Pages alternate white and light sections; each page picks the tone that fits its order */
+type SectionTone = "white" | "light";
+const TONE_BG: Record<SectionTone, string> = { white: "bg-white", light: "bg-[#F5F7FC]" };
+
 interface TeamMember {
   name: string;
   role: string;
@@ -71,7 +75,7 @@ const team: TeamMember[] = [
 /**
  * 7. SCIENCE FROM THANJAVUR SECTION
  */
-export function ScienceFromThanjavurSection() {
+export function ScienceFromThanjavurSection({ tone = "white" }: { tone?: SectionTone }) {
   const [imgError, setImgError] = useState<{ [key: string]: boolean }>({});
 
   const handleImageError = (id: string) => {
@@ -79,12 +83,12 @@ export function ScienceFromThanjavurSection() {
   };
 
   return (
-    <section className="w-full section-y bg-white font-sans border-b border-[#D9DFF0]" id="science-from-thanjavur">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+    <section className={`w-full section-y ${TONE_BG[tone]} font-sans border-b border-[#D9DFF0]`} id="science-from-thanjavur">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 lg:items-stretch">
           
           {/* Left Column: Story & Facts */}
-          <div className="lg:col-span-7 space-y-6 sm:space-y-8">
+          <div className="space-y-6 sm:space-y-8 lg:py-2">
             <div className="space-y-3">
               {/* Eyebrow */}
               <div className="eyebrow">
@@ -141,35 +145,15 @@ export function ScienceFromThanjavurSection() {
               </div>
             </div>
 
-            {/* Facts Row / Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 pt-2">
-              {aboutFacts.map(({ label, value, Icon }) => (
-                <div
-                  key={label}
-                  className="bg-[#F5F7FC] p-3.5 sm:p-4 rounded-2xl border border-[#D9DFF0] shadow-2xs hover:shadow-xs transition-shadow flex flex-col gap-2"
-                >
-                  <div className="w-8 h-8 rounded-xl bg-[#5160a3]/10 text-[#5160a3] flex items-center justify-center shrink-0">
-                    <Icon className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <span className="block text-xs font-semibold text-slate-400 uppercase tracking-wider">
-                      {label}
-                    </span>
-                    <span className="text-xs sm:text-sm font-black text-slate-800 leading-tight block mt-0.5">
-                      {value}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
           </div>
 
           {/* Right Column: Product Range Visual */}
-          <div className="lg:col-span-5 relative">
-            <div className="relative rounded-[20px] overflow-hidden bg-white border border-[#D9DFF0]">
+          {/* Fills the full height of the text column on desktop */}
+          <div className="relative">
+            <div className="relative h-full rounded-3xl overflow-hidden bg-white border border-[#D9DFF0] shadow-sm">
 
               {/* Product Range Image Container */}
-              <div className="relative aspect-4/3 w-full bg-slate-100 overflow-hidden flex items-center justify-center">
+              <div className="relative aspect-[4/3] lg:aspect-auto lg:h-full lg:min-h-[420px] w-full bg-slate-100 overflow-hidden flex items-center justify-center">
                 {!imgError["product-range"] ? (
                   <Image
                     src={IMAGES.productShowcase}
@@ -192,6 +176,24 @@ export function ScienceFromThanjavurSection() {
             </div>
           </div>
         </div>
+
+        {/* Facts: one full-width row under both columns */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+          {aboutFacts.map(({ label, value, Icon }) => (
+            <div
+              key={label}
+              className={`${tone === "white" ? "bg-[#F5F7FC]" : "bg-white"} p-4 sm:p-5 rounded-2xl border border-[#D9DFF0] shadow-2xs flex items-center gap-3 sm:gap-4`}
+            >
+              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-[#5160a3]/10 text-[#5160a3] flex items-center justify-center shrink-0">
+                <Icon className="w-5 h-5" />
+              </div>
+              <div className="min-w-0">
+                <span className="block text-xs font-semibold text-slate-500 uppercase tracking-wider">{label}</span>
+                <span className="block h-card text-slate-900 mt-0.5">{value}</span>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -200,7 +202,7 @@ export function ScienceFromThanjavurSection() {
 /**
  * 10. TEAM BEHIND ARIVIYAA SECTION
  */
-export function TeamBehindAriviyaaSection() {
+export function TeamBehindAriviyaaSection({ tone = "light" }: { tone?: SectionTone }) {
   const [imgError, setImgError] = useState<{ [key: string]: boolean }>({});
 
   const handleImageError = (id: string) => {
@@ -208,7 +210,7 @@ export function TeamBehindAriviyaaSection() {
   };
 
   return (
-    <section className="w-full section-y bg-[#F5F7FC] font-sans border-b border-[#D9DFF0]" id="team">
+    <section className={`w-full section-y ${TONE_BG[tone]} font-sans border-b border-[#D9DFF0]`} id="team">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
         {/* Team Section Title */}
         <div className="text-center max-w-2xl mx-auto space-y-2">

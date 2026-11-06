@@ -351,7 +351,16 @@ export interface AdminEnquiry {
   id: string;
   name: string;
   organisation: string;
-  type: "Distributor" | "Dealer" | "Vet clinic" | "Dairy co-op" | "Bulk order";
+  type:
+    | "Distributor"
+    | "Dealer"
+    | "Vet clinic"
+    | "Dairy co-op"
+    | "Dairy farm"
+    | "Bulk order"
+    | "Investor"
+    | "Pet parent"
+    | "Other";
   phone: string;
   email: string;
   location: string;
@@ -361,6 +370,8 @@ export interface AdminEnquiry {
   date: string;
   status: EnquiryStatus;
   notes: string[];
+  /** Where it came from, e.g. "Website – Home page" */
+  source?: string;
 }
 
 export const ADMIN_SEED_ENQUIRIES: AdminEnquiry[] = [

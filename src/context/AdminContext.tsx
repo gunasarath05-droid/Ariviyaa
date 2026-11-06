@@ -30,6 +30,7 @@ import {
   timelineStamp,
   type OrderUpdates,
 } from "@/lib/orderUpdates";
+import { ENQUIRY_INBOX_KEY, loadEnquiryInbox } from "@/lib/enquiryInbox";
 
 /**
  * Demo admin panel store. Sign-in, data and edits live in this browser's localStorage until the
@@ -175,6 +176,8 @@ export function AdminProvider({ children }: { children: ReactNode }) {
   const [data, setData] = useState<AdminData>(SEED_DATA);
   const [updates, setUpdates] = useState<OrderUpdates>({});
   const [accounts, setAccounts] = useState<Record<string, StoredAccount>>({});
+  // Enquiries sent from the website forms
+  const [inbox, setInbox] = useState<AdminEnquiry[]>([]);
   const [lock, setLock] = useState<{ count: number; until: number }>({ count: 0, until: 0 });
   const [now, setNow] = useState(0);
 
@@ -187,6 +190,7 @@ export function AdminProvider({ children }: { children: ReactNode }) {
     setData({ ...SEED_DATA, ...readJson<Partial<AdminData>>(DATA_KEY, {}) });
     setUpdates(loadOrderUpdates());
     setAccounts(readJson(ACCOUNTS_KEY, {}));
+    setInbox(loadEnquiryInbox());
     setLock(readJson(LOCK_KEY, { count: 0, until: 0 }));
     setNow(Date.now());
     setReady(true);
@@ -208,6 +212,7 @@ export function AdminProvider({ children }: { children: ReactNode }) {
     const onStorage = (e: StorageEvent) => {
       if (e.key === ACCOUNTS_KEY) setAccounts(readJson(ACCOUNTS_KEY, {}));
       if (e.key === ORDER_UPDATES_KEY) setUpdates(loadOrderUpdates());
+      if (e.key === ENQUIRY_INBOX_KEY) setInbox(loadEnquiryInbox());
     };
     window.addEventListener("storage", onStorage);
     return () => window.removeEventListener("storage", onStorage);
@@ -315,13 +320,18 @@ export function AdminProvider({ children }: { children: ReactNode }) {
       return { ...prev, returns: [updated, ...others] };
     });
 
+  // Website enquiries the admin hasn't touched yet show first; once edited they live in admin data
+  const enquiries = [...inbox.filter((e) => !data.enquiries.some((x) => x.id === e.id)), ...data.enquiries];
+
   const updateEnquiry = (id: string, patch: Partial<AdminEnquiry>, note?: string) =>
-    setData((prev) => ({
-      ...prev,
-      enquiries: prev.enquiries.map((e) =>
-        e.id === id ? { ...e, ...patch, notes: note ? [...e.notes, note] : e.notes } : e
-      ),
-    }));
+    setData((prev) => {
+      const existing = prev.enquiries.find((e) => e.id === id) ?? inbox.find((e) => e.id === id);
+      if (!existing) return prev;
+      const updated = { ...existing, ...patch, notes: note ? [...existing.notes, note] : existing.notes };
+      return prev.enquiries.some((e) => e.id === id)
+        ? { ...prev, enquiries: prev.enquiries.map((e) => (e.id === id ? updated : e)) }
+        : { ...prev, enquiries: [updated, ...prev.enquiries] };
+    });
 
   const setStock = (productId: string, stock: number, reorderAt?: number) =>
     setData((prev) => ({
@@ -354,7 +364,7 @@ export function AdminProvider({ children }: { children: ReactNode }) {
         updateOrder,
         returns,
         updateReturn,
-        enquiries: data.enquiries,
+        enquiries,
         updateEnquiry,
         stock: data.stock,
         setStock,

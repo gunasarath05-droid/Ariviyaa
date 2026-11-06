@@ -151,7 +151,7 @@ const certificates = [
 /**
  * 8. WHERE OUR SCIENCE GETS RECOGNISED SECTION
  */
-export function WhereOurScienceRecognisedSection() {
+export function WhereOurScienceRecognisedSection({ tone = "light" }: { tone?: "white" | "light" }) {
   const [imgError, setImgError] = useState<{ [key: string]: boolean }>({});
 
   const handleImageError = (id: string) => {
@@ -159,7 +159,10 @@ export function WhereOurScienceRecognisedSection() {
   };
 
   return (
-    <section className="w-full section-y bg-[#F5F7FC] font-sans border-b border-[#D9DFF0]" id="expo-events">
+    <section
+      className={`w-full section-y ${tone === "white" ? "bg-white" : "bg-[#F5F7FC]"} font-sans border-b border-[#D9DFF0]`}
+      id="expo-events"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
           <div className="space-y-3 max-w-2xl">
