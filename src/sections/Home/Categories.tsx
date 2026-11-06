@@ -89,10 +89,10 @@ export function CategoriesSection() {
     <div
       key={cat.id}
       onClick={() => handleCategoryClick(cat.filterId)}
-      className="flex flex-col items-center justify-center text-center group cursor-pointer select-none transition-all duration-300 p-2 rounded-2xl hover:bg-slate-50/70"
+      className="flex flex-col items-center justify-center text-center group cursor-pointer select-none transition-all duration-300 p-2 rounded-2xl hover:bg-[#F5F7FC]"
     >
       {/* Circular Avatar Container */}
-      <div className="relative w-24 h-24 sm:w-28 sm:h-28 lg:w-42 lg:h-42 rounded-full overflow-hidden bg-[#F3F4F6] p-1.5 shadow-sm group-hover:shadow-md transition-shadow">
+      <div className="relative w-24 h-24 sm:w-28 sm:h-28 lg:w-42 lg:h-42 rounded-full overflow-hidden bg-[#F5F7FC] p-1.5 shadow-sm group-hover:shadow-md transition-shadow">
         <div className="relative w-full h-full rounded-full overflow-hidden bg-white">
           <Image
             src={cat.image}
@@ -106,10 +106,10 @@ export function CategoriesSection() {
 
       {/* Category Title & Subtitle */}
       <div className="mt-3 space-y-0.5">
-        <h3 className="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-[#5160a3] transition-colors leading-tight">
+        <h3 className="h-card text-slate-900 group-hover:text-[#5160a3] transition-colors">
           {cat.title}
         </h3>
-        <p className="text-[10px] sm:text-[11px] text-slate-400 font-medium truncate max-w-[120px]">
+        <p className="text-xs text-slate-500 font-medium truncate max-w-[120px]">
           {cat.subLabel}
         </p>
       </div>
@@ -117,17 +117,17 @@ export function CategoriesSection() {
   );
 
   return (
-    <section className="w-full section-y px-4 sm:px-6 lg:px-8 bg-white font-sans border-b border-slate-100">
-      <div className="max-w-7xl mx-auto space-y-8 sm:space-y-10">
+    <section className="w-full section-y bg-white font-sans border-b border-[#D9DFF0]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
         {/* Section Header with Navigation Arrows */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-center">
-          <div className="space-y-2">
+          <div className="space-y-3">
             <div className="eyebrow">
               <AriviyaIcon className="w-4 h-4 text-[#5160a3] shrink-0" />
               <span>Shop By Category</span>
             </div>
 
-            <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-slate-900 tracking-tight font-serif sm:font-sans">
+            <h2 className="h-section text-slate-900">
               Best Products For Healthy Animals
             </h2>
           </div>

@@ -123,25 +123,25 @@ export function FilteredCatalogSection() {
   return (
     <section
       id="catalog-section"
-      className="w-full section-y px-4 sm:px-6 lg:px-8 bg-white font-sans scroll-mt-20 border-b border-slate-100"
+      className="w-full section-y bg-[#F5F7FC] font-sans scroll-mt-20 border-b border-[#D9DFF0]"
     >
-      <div className="max-w-7xl mx-auto space-y-12 sm:space-y-16">
-        <div className="text-center space-y-2">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
+        <div className="text-center space-y-3">
           <div className="eyebrow">
             <AriviyaIcon className="w-4 h-4 text-[#5160a3] shrink-0" />
             <span>Shop Online</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl font-bold text-slate-900 tracking-tight font-serif sm:font-sans">
+          <h2 className="h-section text-slate-900">
             Shop Pet &amp; Farm Care
           </h2>
-          <p className="text-xs sm:text-sm text-slate-500 max-w-2xl mx-auto font-normal">
+          <p className="t-lead text-slate-600 max-w-2xl mx-auto">
             Add products to your cart, pay securely online and we dispatch across India.
           </p>
         </div>
 
         {/* Section Sub-bar: Active Category Summary + Search Filter */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pb-6 border-b border-slate-100">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pb-6 border-b border-[#D9DFF0]">
           <div className="flex items-center overflow-x-auto no-scrollbar gap-2 sm:gap-2.5 pb-2 w-full sm:flex-wrap justify-start sm:justify-center">
             {categoryTabs.map((tab) => {
               const isActive = activeCategory === tab.id;
@@ -159,7 +159,7 @@ export function FilteredCatalogSection() {
                   className={`flex items-center justify-center gap-2 px-2 sm:px-4 py-2 sm:py-2 rounded-2xl transition-all duration-200 cursor-pointer select-none shrink-0 ${
                     isActive
                       ? "bg-[#5160a3] text-white shadow-md shadow-[#5160a3]/25 ring-1 ring-[#5160a3]"
-                      : "bg-slate-50 hover:bg-slate-100 text-slate-700 hover:text-slate-900 border border-slate-100"
+                      : "bg-white hover:border-[#5160a3] text-slate-700 hover:text-[#5160a3] border border-[#D9DFF0]"
                   }`}
                 >
                   {/* React Icon */}
@@ -195,7 +195,7 @@ export function FilteredCatalogSection() {
                 setShowAll(false);
               }}
               placeholder="Search formulations..."
-              className="w-full pl-9 pr-4 py-2 text-xs bg-slate-50 border border-slate-200 rounded-full focus:outline-none focus:border-[#495384] text-slate-800 font-medium"
+              className="w-full pl-9 pr-4 py-2 text-sm bg-white border border-[#D9DFF0] rounded-full focus:outline-none focus:border-[#5160a3] text-slate-800 font-medium"
             />
             <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
           </div>
@@ -244,14 +244,14 @@ export function FilteredCatalogSection() {
                   return (
                     <div
                       key={product.id}
-                      className="bg-[#F5F7FC] rounded-[20px] p-2.5 sm:p-3 flex flex-col group"
+                      className="bg-white rounded-[20px] border border-[#D9DFF0] p-2.5 sm:p-3 flex flex-col group hover:shadow-md transition-shadow"
                     >
                       {/* Product image — click opens quick view */}
                       <div className="relative">
                         <Link
                           href={`/shop/${product.slug}`}
                           aria-label={`View details of ${product.name}`}
-                          className="relative w-full aspect-square rounded-2xl overflow-hidden bg-white p-4 sm:p-5 flex items-center justify-center cursor-pointer"
+                          className="relative w-full aspect-square rounded-2xl overflow-hidden bg-[#F5F7FC] p-4 sm:p-5 flex items-center justify-center cursor-pointer"
                         >
                           <Image
                             src={product.image}
@@ -264,7 +264,7 @@ export function FilteredCatalogSection() {
                         </Link>
 
                         {product.comingSoon && (
-                          <span className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md bg-[#5160a3] text-white text-[11px] font-semibold">
+                          <span className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md bg-[#5160a3] text-white text-xs font-semibold">
                             Coming soon
                           </span>
                         )}
@@ -285,10 +285,10 @@ export function FilteredCatalogSection() {
 
                       {/* Name, category, price */}
                       <div className="px-1.5 pt-3 pb-1 flex-1 flex flex-col text-center">
-                        <span className="text-[11px] font-semibold text-slate-400 line-clamp-1">
+                        <span className="text-xs font-semibold text-slate-500 line-clamp-1">
                           {product.categoryLabel}
                         </span>
-                        <h3 className="mt-1 text-sm sm:text-base font-bold text-slate-900 group-hover:text-[#5160a3] transition-colors line-clamp-2 leading-snug min-h-[2.5rem] sm:min-h-[2.75rem]">
+                        <h3 className="mt-1 h-card text-slate-900 group-hover:text-[#5160a3] transition-colors line-clamp-2 min-h-[2.5rem] sm:min-h-[2.75rem]">
                           <Link href={`/shop/${product.slug}`}>{product.name}</Link>
                         </h3>
                         <div className="mt-1.5 flex items-baseline justify-center gap-2">
@@ -361,14 +361,14 @@ export function FilteredCatalogSection() {
 
         {/* Poultry range is under development: show a coming-soon note instead of "no results" */}
         {filteredProducts.length === 0 && activeCategory === "poultry" && !searchTerm.trim() && (
-          <div className="text-center py-14 px-6 bg-[#F5F7FC] rounded-3xl border border-[#D9DFF0] max-w-2xl mx-auto space-y-3">
+          <div className="text-center py-14 px-6 bg-white rounded-3xl border border-[#D9DFF0] max-w-2xl mx-auto space-y-3">
             <div className="w-14 h-14 mx-auto rounded-2xl bg-[#5160a3]/10 text-[#5160a3] flex items-center justify-center">
               <GiRooster className="w-7 h-7" />
             </div>
-            <h3 className="text-lg sm:text-xl font-bold text-slate-900">
+            <h3 className="h-card text-slate-900">
               Poultry Care Products — Coming Soon
             </h3>
-            <p className="text-sm sm:text-[15px] text-slate-600 leading-relaxed">
+            <p className="t-body text-slate-500">
               We are developing NaxPoly® biosecurity solutions for poultry farms. Message us to
               get notified at launch or to discuss requirements for your farm.
             </p>
@@ -384,7 +384,7 @@ export function FilteredCatalogSection() {
 
         {/* Empty State */}
         {filteredProducts.length === 0 && !(activeCategory === "poultry" && !searchTerm.trim()) && (
-          <div className="text-center py-16 bg-slate-50 rounded-3xl border border-slate-200/80">
+          <div className="text-center py-16 bg-white rounded-3xl border border-[#D9DFF0]">
             <p className="text-slate-500 text-sm">
               No formulations match your search criteria.
             </p>

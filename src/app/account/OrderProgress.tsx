@@ -11,7 +11,7 @@ import {
 export function StatusPill({ status }: { status: OrderStatus }) {
   return (
     <span
-      className={`inline-flex items-center px-2.5 py-1 rounded-full border text-[11px] font-bold whitespace-nowrap ${ORDER_STATUS_STYLE[status]}`}
+      className={`inline-flex items-center px-2.5 py-1 rounded-full border text-xs font-bold whitespace-nowrap ${ORDER_STATUS_STYLE[status]}`}
     >
       {ORDER_STATUS_LABEL[status]}
     </span>
@@ -46,7 +46,7 @@ export function OrderProgress({ order }: { order: DemoOrder }) {
               <Check className="w-3.5 h-3.5" />
             </span>
             <span
-              className={`mt-1.5 text-[10px] sm:text-[11px] font-semibold leading-tight ${
+              className={`mt-1.5 text-xs font-semibold leading-tight ${
                 done ? "text-slate-800" : "text-slate-400"
               }`}
             >

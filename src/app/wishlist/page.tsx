@@ -13,7 +13,7 @@ export default function WishlistPage() {
         subtitle="Products you've saved to compare or order later"
       />
 
-      <section className="w-full bg-[#F5F7FC] py-10 sm:py-14 font-sans">
+      <section className="w-full bg-white py-10 sm:py-14 font-sans">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <WishlistGrid />
         </div>

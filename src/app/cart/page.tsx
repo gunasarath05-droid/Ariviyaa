@@ -68,7 +68,7 @@ export default function CartPage() {
         breadcrumb={[{ label: "Home", href: "/" }, { label: "Shop", href: "/shop" }, { label: "Cart" }]}
       />
 
-      <section className="w-full bg-[#F5F7FC] py-10 sm:py-14 font-sans">
+      <section className="w-full bg-white py-10 sm:py-14 font-sans">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
           <CheckoutSteps current={0} />
 
@@ -79,8 +79,8 @@ export default function CartPage() {
               <div className="w-16 h-16 rounded-full bg-[#EFF3FC] text-[#5160a3] flex items-center justify-center">
                 <ShoppingBag className="w-8 h-8" />
               </div>
-              <h2 className="text-xl font-bold text-slate-900">Your cart is empty</h2>
-              <p className="text-sm text-slate-500 max-w-sm">
+              <h2 className="h-card text-slate-900">Your cart is empty</h2>
+              <p className="t-body text-slate-500 max-w-sm">
                 Browse mastitis care, pet health and farm hygiene products and add them here.
               </p>
               <Link href="/shop" className={`${primaryButtonClass} mt-2`}>
@@ -110,7 +110,7 @@ export default function CartPage() {
                 </div>
 
                 <div className={`${cardClass} divide-y divide-slate-100`}>
-                  <div className="hidden sm:grid grid-cols-12 gap-4 px-5 py-3 text-[11px] font-bold uppercase tracking-wider text-slate-500">
+                  <div className="hidden sm:grid grid-cols-12 gap-4 px-5 py-3 text-xs font-bold uppercase tracking-wider text-slate-500">
                     <span className="col-span-6">Product</span>
                     <span className="col-span-3 text-center">Quantity</span>
                     <span className="col-span-3 text-right">Total</span>
@@ -212,9 +212,9 @@ export default function CartPage() {
               </div>
 
               {/* Summary */}
-              <aside className="lg:col-span-4 lg:sticky lg:top-28 space-y-4">
+              <aside className="lg:col-span-4 lg:sticky lg:top-40 lg:self-start space-y-4">
                 <div className={`${cardClass} p-5 sm:p-6 space-y-5`}>
-                  <h2 className="text-lg font-bold text-slate-900">Order Summary</h2>
+                  <h2 className="h-card text-slate-900">Order Summary</h2>
 
                   <form onSubmit={applyCoupon} className="space-y-2">
                     <label htmlFor="coupon" className="sr-only">
@@ -262,7 +262,7 @@ export default function CartPage() {
                     </div>
                     <div className="pt-3 border-t border-slate-100 flex justify-between items-baseline">
                       <dt className="font-bold text-slate-900">Total</dt>
-                      <dd className="text-2xl font-black text-slate-900">{formatPrice(totals.total)}</dd>
+                      <dd className="text-2xl font-bold text-slate-900">{formatPrice(totals.total)}</dd>
                     </div>
                   </dl>
 
@@ -279,7 +279,7 @@ export default function CartPage() {
                     </p>
                   )}
 
-                  <p className="flex items-center justify-center gap-1.5 text-[11px] font-semibold text-slate-500">
+                  <p className="flex items-center justify-center gap-1.5 text-xs font-semibold text-slate-500">
                     <ShieldCheck className="w-3.5 h-3.5 text-[#5160a3]" />
                     Secure payments by Razorpay · Shipping via Shiprocket
                   </p>

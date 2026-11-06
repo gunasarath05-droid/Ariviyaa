@@ -27,25 +27,26 @@ const DEALERS: Dealer[] = [
 
 const CITIES = ["All", ...Array.from(new Set(DEALERS.map((d) => d.city)))];
 
-export function DealerList() {
+export function DealerList({ tone = "light" }: { tone?: "white" | "light" }) {
+  const light = tone === "light";
   const [city, setCity] = useState("All");
   const shown = DEALERS.filter((d) => city === "All" || d.city === city);
 
   return (
-    <section className="w-full section-y bg-white font-sans border-b border-[#D9DFF0]" id="dealers">
+    <section className={`w-full section-y ${light ? "bg-[#F5F7FC]" : "bg-white"} font-sans border-b border-[#D9DFF0]`} id="dealers">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="text-center max-w-2xl mx-auto space-y-3">
           <div className="eyebrow">
             <AriviyaIcon className="w-4 h-4 text-[#5160a3] shrink-0" />
             <span>Where to Buy</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
+          <h2 className="h-section text-slate-900">
             Authorised <span className="text-[#5160a3]">Dealers &amp; Stockists</span>
           </h2>
-          <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+          <p className="t-lead text-slate-600">
             Buy Ariviyaa products over the counter from our partners near you.
           </p>
-          <p className="text-xs text-slate-400">Sample listing for review — final dealer network to be added.</p>
+          <p className="text-xs text-slate-500">Sample listing for review — final dealer network to be added.</p>
         </div>
 
         <div className="flex items-center gap-2 overflow-x-auto no-scrollbar sm:flex-wrap sm:justify-center pb-1">
@@ -57,7 +58,7 @@ export function DealerList() {
               className={`px-4 py-2 rounded-xl text-sm font-semibold whitespace-nowrap border transition-colors cursor-pointer ${
                 city === c
                   ? "bg-[#5160a3] border-[#5160a3] text-white"
-                  : "bg-[#F5F7FC] border-[#D9DFF0] text-slate-700 hover:border-[#5160a3]"
+                  : `${light ? "bg-white" : "bg-[#F5F7FC]"} border-[#D9DFF0] text-slate-700 hover:border-[#5160a3]`
               }`}
             >
               {c}
@@ -67,17 +68,17 @@ export function DealerList() {
 
         <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {shown.map((d) => (
-            <li key={d.name} className="bg-[#F5F7FC] rounded-2xl border border-[#D9DFF0] p-5 flex flex-col gap-3">
+            <li key={d.name} className={`${light ? "bg-white shadow-2xs" : "bg-[#F5F7FC]"} rounded-2xl border border-[#D9DFF0] p-5 flex flex-col gap-3`}>
               <div className="flex items-start justify-between gap-3">
                 <span className="w-10 h-10 rounded-xl bg-[#5160a3]/10 text-[#5160a3] flex items-center justify-center shrink-0">
                   {d.type === "Distributor" ? <Building2 className="w-5 h-5" /> : <Store className="w-5 h-5" />}
                 </span>
-                <span className="px-2.5 py-1 rounded-full bg-white border border-[#D9DFF0] text-[11px] font-bold text-[#5160a3]">
+                <span className="px-2.5 py-1 rounded-full bg-[#EFF3FC] border border-[#D9DFF0] text-xs font-bold text-[#5160a3]">
                   {d.type}
                 </span>
               </div>
-              <h3 className="text-base font-bold text-slate-900">{d.name}</h3>
-              <p className="text-sm text-slate-600 flex items-start gap-2">
+              <h3 className="h-card text-slate-900">{d.name}</h3>
+              <p className="t-body text-slate-600 flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-[#5160a3] shrink-0 mt-0.5" />
                 {d.address}
               </p>
@@ -101,10 +102,10 @@ export function DealerList() {
         </ul>
 
         {/* Become a dealer */}
-        <div className="bg-[#F5F7FC] rounded-3xl border border-[#D9DFF0] p-6 sm:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div className={`${light ? "bg-white shadow-2xs" : "bg-[#F5F7FC]"} rounded-3xl border border-[#D9DFF0] p-6 sm:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6`}>
           <div className="space-y-2 max-w-2xl">
-            <h3 className="text-xl sm:text-2xl font-bold text-slate-900">No dealer in your area yet?</h3>
-            <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+            <h3 className="h-block text-slate-900">No dealer in your area yet?</h3>
+            <p className="t-lead text-slate-600">
               Become an authorised Ariviyaa dealer — get dealer pricing, GST invoicing, marketing material and
               field-demo support from our animal health team.
             </p>

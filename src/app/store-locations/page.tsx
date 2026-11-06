@@ -19,8 +19,9 @@ export default function StoreLocationsPage() {
         breadcrumb={[{ label: "Home", href: "/" }, { label: "Store Locations" }]}
         subtitle="Visit our Thanjavur office or find an authorised dealer near you"
       />
-      <OfficeLocations />
-      <DealerList />
+      {/* Hero is light, so the page runs white → light */}
+      <OfficeLocations tone="white" />
+      <DealerList tone="light" />
     </>
   );
 }

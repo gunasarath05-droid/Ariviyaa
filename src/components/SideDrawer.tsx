@@ -54,8 +54,8 @@ export function SideDrawer() {
           {/* 1. TOP HEADER & TABS */}
           <div className="p-4 sm:p-5 border-b border-slate-100 bg-slate-50/70">
             <div className="flex items-center justify-between mb-3">
-              <div className="flex items-center gap-2 text-slate-900 font-black text-base sm:text-lg">
-                <ShoppingBag className="w-5 h-5 text-[#495384]" />
+              <div className="flex items-center gap-2 text-slate-900 font-bold text-base sm:text-lg">
+                <ShoppingBag className="w-5 h-5 text-[#5160a3]" />
                 <span>
                   {drawerTab === "cart"
                     ? `Shopping Cart (${cartCount})`
@@ -107,7 +107,7 @@ export function SideDrawer() {
                   <div className="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center text-slate-300">
                     <ShoppingBag className="w-8 h-8" />
                   </div>
-                  <h4 className="text-base font-bold text-slate-700">Your shopping cart is empty</h4>
+                  <h4 className="h-card text-slate-700">Your shopping cart is empty</h4>
                   <p className="text-xs text-slate-400 max-w-xs">
                     Explore our Udder care, mastitis formulas, and pet health solutions to add items.
                   </p>
@@ -150,12 +150,12 @@ export function SideDrawer() {
                             <Trash2 className="w-3.5 h-3.5" />
                           </button>
                         </div>
-                        <p className="text-[11px] text-slate-500 font-semibold">
+                        <p className="text-xs text-slate-500 font-semibold">
                           {item.pack.size} · {formatPrice(item.pack.price)} each
                         </p>
 
                         <div className="flex items-center justify-between mt-2 pt-1">
-                          <span className="text-sm font-black text-slate-900">
+                          <span className="text-sm font-bold text-slate-900">
                             {formatPrice(item.pack.price * item.quantity)}
                           </span>
 
@@ -196,7 +196,7 @@ export function SideDrawer() {
                   <div className="w-16 h-16 rounded-full bg-rose-50 flex items-center justify-center text-rose-300">
                     <Heart className="w-8 h-8" />
                   </div>
-                  <h4 className="text-base font-bold text-slate-700">No saved items yet</h4>
+                  <h4 className="h-card text-slate-700">No saved items yet</h4>
                   <p className="text-xs text-slate-400 max-w-xs">
                     Click the heart icon on any formulation to save it for quick review.
                   </p>
@@ -227,7 +227,7 @@ export function SideDrawer() {
                         </div>
                         <div className="truncate">
                           <h5 className="text-xs font-bold text-slate-900 truncate">{p.name}</h5>
-                          <p className="text-[11px] text-[#10B981] font-semibold">{p.categoryLabel}</p>
+                          <p className="text-xs text-slate-500 font-semibold">{p.categoryLabel}</p>
                         </div>
                       </div>
 
@@ -271,11 +271,11 @@ export function SideDrawer() {
                   <span className="text-xs font-bold text-slate-700 uppercase tracking-wider block">
                     Subtotal ({cartCount} {cartCount === 1 ? "item" : "items"})
                   </span>
-                  <span className="text-[10px] text-slate-400 font-medium">
+                  <span className="text-xs text-slate-400 font-medium">
                     Shipping &amp; GST shown at checkout
                   </span>
                 </div>
-                <span className="text-xl font-black text-slate-900">
+                <span className="text-xl font-bold text-slate-900">
                   {formatPrice(cartSubtotal)}
                 </span>
               </div>
@@ -299,8 +299,8 @@ export function SideDrawer() {
                 </Link>
               </div>
 
-              <div className="pt-1 flex items-center justify-center gap-1.5 text-[10px] font-semibold text-slate-400">
-                <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+              <div className="pt-1 flex items-center justify-center gap-1.5 text-xs font-semibold text-slate-400">
+                <ShieldCheck className="w-3.5 h-3.5 text-[#5160a3]" />
                 <span>TANUVAS & JSS Tested Formulations | Direct Lab Dispatch</span>
               </div>
             </div>

@@ -164,7 +164,7 @@ export function GallerySection() {
   });
 
   return (
-    <section className="w-full section-y bg-[#F5F7FC] font-sans border-b border-[#D9DFF0]">
+    <section className="w-full section-y bg-white font-sans border-b border-[#D9DFF0]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
         {/* Toolbar: Category filter + result count */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
@@ -182,13 +182,13 @@ export function GallerySection() {
                   className={`shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs sm:text-sm font-bold border transition-all cursor-pointer ${
                     isActive
                       ? "bg-[#5160a3] border-[#5160a3] text-white shadow-xs"
-                      : "bg-white border-[#D9DFF0] text-slate-600 hover:text-slate-900 hover:border-[#5160a3]"
+                      : "bg-white border-[#D9DFF0] text-slate-600 hover:text-[#5160a3] hover:border-[#5160a3]"
                   }`}
                 >
                   <span>{cat}</span>
                   <span
-                    className={`px-1.5 py-0.5 rounded-full text-[10px] leading-none ${
-                      isActive ? "bg-white/20 text-white" : "bg-slate-100 text-slate-500"
+                    className={`px-1.5 py-0.5 rounded-full text-xs leading-none ${
+                      isActive ? "bg-white/20 text-white" : "bg-[#F5F7FC] text-slate-500"
                     }`}
                   >
                     {count}
@@ -213,7 +213,7 @@ export function GallerySection() {
             >
               <div
                 className={`relative aspect-4/3 w-full overflow-hidden ${
-                  item.fit === "contain" ? "bg-white" : "bg-slate-100"
+                  item.fit === "contain" ? "bg-white" : "bg-[#F5F7FC]"
                 }`}
               >
                 <Image
@@ -234,11 +234,11 @@ export function GallerySection() {
 
               {/* Title only — category, organiser, date and description open in the lightbox */}
               <div className="p-4 sm:p-5 flex-1 flex items-start justify-between gap-3 border-t border-[#D9DFF0]">
-                <h3 className="text-sm sm:text-base font-bold text-slate-900 group-hover:text-[#5160a3] transition-colors leading-snug">
+                <h3 className="h-card text-slate-900 group-hover:text-[#5160a3] transition-colors">
                   {item.title}
                 </h3>
                 {item.date && (
-                  <span className="shrink-0 px-2 py-0.5 rounded-md bg-slate-100 text-slate-600 font-bold text-[11px]">
+                  <span className="shrink-0 px-2 py-0.5 rounded-md bg-[#EFF3FC] text-[#5160a3] font-bold text-xs">
                     {item.date}
                   </span>
                 )}
@@ -294,7 +294,7 @@ export function GallerySection() {
                   </button>
                 </>
               )}
-              <span className="absolute bottom-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-slate-900/80 text-white text-[11px] font-bold">
+              <span className="absolute bottom-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-slate-900/80 text-white text-xs font-bold">
                 {(activeIndex ?? 0) + 1} / {filteredItems.length}
               </span>
             </div>
@@ -309,9 +309,9 @@ export function GallerySection() {
                   </>
                 )}
               </div>
-              <h3 className="text-lg sm:text-2xl font-bold text-slate-900">{activeItem.title}</h3>
+              <h3 className="h-block text-slate-900">{activeItem.title}</h3>
               <p className="text-sm font-semibold text-slate-700">{activeItem.subtitle}</p>
-              <p className="text-sm sm:text-[15px] text-slate-600 leading-relaxed pt-2 border-t border-slate-100">
+              <p className="t-body text-slate-600 pt-2 border-t border-[#D9DFF0]">
                 {activeItem.description}
               </p>
             </div>

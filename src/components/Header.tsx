@@ -88,6 +88,7 @@ export function Header() {
       children: [
         { name: "Blog", href: "/blog"},
         { name: "Gallery", href: "/gallery" },
+        { name: "FAQ", href: "/faq" },
       ],
     },
     { name: "Contact", href: "/contact" },
@@ -161,7 +162,7 @@ export function Header() {
                 className="w-5 h-5 text-slate-800 group-hover:text-[#5160a3] transition-colors"
                 strokeWidth={1.75}
               />
-              <span className="text-[10px] sm:text-[11px] font-medium text-slate-800 group-hover:text-[#5160a3] transition-colors mt-1 leading-none max-w-16 truncate">
+              <span className="text-xs font-medium text-slate-800 group-hover:text-[#5160a3] transition-colors mt-1 leading-none max-w-16 truncate">
                 {user ? `Hi, ${user.name.split(" ")[0]}` : "Sign in"}
               </span>
             </Link>
@@ -178,12 +179,12 @@ export function Header() {
                   strokeWidth={1.75}
                 />
                 {isHydrated && wishlist.length > 0 && (
-                  <span className="absolute -top-1.5 -right-2 w-4 h-4 bg-[#5160a3] text-white rounded-full text-[9px] font-black flex items-center justify-center shadow-xs">
+                  <span className="absolute -top-1.5 -right-2 w-4 h-4 bg-[#5160a3] text-white rounded-full text-[9px] font-bold flex items-center justify-center shadow-xs">
                     {wishlist.length}
                   </span>
                 )}
               </div>
-              <span className="text-[10px] sm:text-[11px] font-medium text-slate-800 group-hover:text-[#5160a3] transition-colors mt-1 leading-none">
+              <span className="text-xs font-medium text-slate-800 group-hover:text-[#5160a3] transition-colors mt-1 leading-none">
                 Wishlist
               </span>
             </button>
@@ -200,12 +201,12 @@ export function Header() {
                   strokeWidth={1.75}
                 />
                 {isHydrated && cartCount > 0 && (
-                  <span className="absolute -top-1.5 -right-2 w-4 h-4 bg-[#5160a3] text-white rounded-full text-[9px] font-black flex items-center justify-center shadow-xs">
+                  <span className="absolute -top-1.5 -right-2 w-4 h-4 bg-[#5160a3] text-white rounded-full text-[9px] font-bold flex items-center justify-center shadow-xs">
                     {cartCount}
                   </span>
                 )}
               </div>
-              <span className="text-[10px] sm:text-[11px] font-medium text-slate-800 group-hover:text-[#5160a3] transition-colors mt-1 leading-none">
+              <span className="text-xs font-medium text-slate-800 group-hover:text-[#5160a3] transition-colors mt-1 leading-none">
                 Cart
               </span>
             </button>
@@ -418,7 +419,7 @@ export function Header() {
               if (link.children) {
                 return (
                   <div key={link.name} className="pt-1 pb-1 space-y-1">
-                    <span className="block px-3 py-1 text-xs font-black uppercase tracking-wider text-slate-400">
+                    <span className="block px-3 py-1 text-xs font-bold uppercase tracking-wider text-slate-400">
                       {link.name}
                     </span>
                     <div className="pl-2 border-l border-slate-700 space-y-1">

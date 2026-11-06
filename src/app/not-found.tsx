@@ -24,13 +24,13 @@ export default function NotFound() {
             <AriviyaIcon className="w-4 h-4 text-[#5160a3] shrink-0" />
             <span>Error 404</span>
           </div>
-          <p className="text-7xl sm:text-8xl font-black tracking-tight text-[#5160a3] font-heading leading-none">
+          <p className="text-7xl sm:text-8xl font-bold tracking-tight text-[#5160a3] font-heading leading-none">
             404
           </p>
-          <h1 className="text-2xl sm:text-4xl font-bold text-slate-900 tracking-tight">
+          <h1 className="h-section text-slate-900">
             We couldn&apos;t find that page
           </h1>
-          <p className="text-sm sm:text-base text-slate-600 max-w-xl mx-auto leading-relaxed">
+          <p className="t-lead text-slate-600 max-w-xl mx-auto">
             The link may be old or the page may have moved. Try one of these instead, or talk to our
             team on WhatsApp.
           </p>
@@ -66,7 +66,7 @@ export default function NotFound() {
                   <Icon className="w-5 h-5" />
                 </span>
                 <span>
-                  <span className="block text-sm font-bold text-slate-900 group-hover:text-[#5160a3]">{label}</span>
+                  <span className="block h-card text-slate-900 group-hover:text-[#5160a3]">{label}</span>
                   <span className="block text-xs text-slate-500 mt-0.5">{desc}</span>
                 </span>
               </Link>

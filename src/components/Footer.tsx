@@ -53,14 +53,14 @@ export function Footer() {
               Ariviyaa Deep Tech Pvt. Ltd. — A deep-tech veterinary biotechnology startup founded in Thanjavur, supported by StartupTN TANSEED 3.0, developing patented chemical-free bio-polymer healthcare essentials.
             </p>
 
-            <div className="pt-2 text-[11px] font-bold text-[#5160a3] uppercase tracking-wider">
+            <div className="pt-2 text-xs font-bold text-[#5160a3] uppercase tracking-wider">
               Govt. of Tamil Nadu • StartupTN Grantee
             </div>
           </div>
 
           {/* Col 2: Quick Links (2.5 cols) */}
           <div className="lg:col-span-2 space-y-3">
-            <h4 className="text-xs font-black uppercase tracking-wider text-[#5160a3] border-l-2 border-[#5160a3] pl-2.5">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-[#5160a3] border-l-2 border-[#5160a3] pl-2.5">
               Quick Links
             </h4>
             <ul className="space-y-2 text-xs sm:text-sm text-slate-600 font-medium">
@@ -105,7 +105,7 @@ export function Footer() {
 
           {/* Col 3: Customer care & policies */}
           <div className="lg:col-span-2 space-y-3">
-            <h4 className="text-xs font-black uppercase tracking-wider text-[#5160a3] border-l-2 border-[#5160a3] pl-2.5">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-[#5160a3] border-l-2 border-[#5160a3] pl-2.5">
               Customer Care
             </h4>
             <ul className="space-y-2 text-xs sm:text-sm text-slate-600 font-medium">
@@ -122,7 +122,7 @@ export function Footer() {
 
           {/* Col 3: Contact Info (3.5 cols) */}
           <div className="lg:col-span-3 space-y-3">
-            <h4 className="text-xs font-black uppercase tracking-wider text-[#5160a3] border-l-2 border-[#5160a3] pl-2.5">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-[#5160a3] border-l-2 border-[#5160a3] pl-2.5">
               Contact Desk
             </h4>
 
@@ -170,7 +170,7 @@ export function Footer() {
 
           {/* Col 4: Connect & Socials */}
           <div className="lg:col-span-2 space-y-3">
-            <h4 className="text-xs font-black uppercase tracking-wider text-[#5160a3] border-l-2 border-[#5160a3] pl-2.5">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-[#5160a3] border-l-2 border-[#5160a3] pl-2.5">
               Connect With Us
             </h4>
 

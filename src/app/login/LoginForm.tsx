@@ -95,7 +95,7 @@ export function LoginForm() {
   );
 
   return (
-    <section className="w-full bg-[#F5F7FC] py-10 sm:py-16 font-sans">
+    <section className="w-full bg-white py-10 sm:py-16 font-sans">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 bg-white rounded-3xl border border-[#D9DFF0] shadow-sm overflow-hidden">
           {/* Brand panel */}
@@ -112,7 +112,7 @@ export function LoginForm() {
                 />
               </Link>
               <div className="space-y-2">
-                <h2 className="text-3xl font-black text-slate-900 tracking-tight leading-tight">
+                <h2 className="h-block text-slate-900">
                   Your farm &amp; pet care, one account away
                 </h2>
                 <p className="text-sm text-slate-600 leading-relaxed">
@@ -147,7 +147,7 @@ export function LoginForm() {
               )}
 
               <div className="space-y-1.5">
-                <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+                <h1 className="h-block text-slate-900">
                   {mode === "signin" ? "Welcome back" : "Create your account"}
                 </h1>
                 <p className="text-sm text-slate-500">
@@ -179,7 +179,7 @@ export function LoginForm() {
                                 : "border-[#D9DFF0] hover:border-[#5160a3]/50"
                             }`}
                           >
-                            <span className="flex items-center gap-2 text-sm font-bold text-slate-900">
+                            <span className="flex items-center gap-2 h-card text-slate-900">
                               <Icon className="w-4 h-4 text-[#5160a3]" />
                               {id}
                             </span>

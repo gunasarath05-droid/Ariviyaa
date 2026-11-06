@@ -91,8 +91,8 @@ export function ProductModal() {
             </div>
 
             <div className="w-full max-w-[260px] sm:max-w-[300px] md:max-w-[320px] bg-white/90 backdrop-blur-sm rounded-xl py-2 px-3 border border-slate-200/60 text-center shadow-2xs">
-              <p className="text-[10px] sm:text-[11px] font-bold text-slate-600 flex items-center justify-center gap-1.5">
-                <AriviyaIcon className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+              <p className="text-xs font-bold text-slate-600 flex items-center justify-center gap-1.5">
+                <AriviyaIcon className="w-3.5 h-3.5 text-[#5160a3] shrink-0" />
                 <span>Target: {selectedProduct.targetAnimals}</span>
               </p>
             </div>
@@ -103,17 +103,17 @@ export function ProductModal() {
             <div className="space-y-3.5 sm:space-y-4">
               {/* Product Header with safe right-padding so title never overlaps close button */}
               <div className="pr-16 sm:pr-20 md:pr-12">
-                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#0A343D] tracking-tight leading-snug">
+                <h3 className="h-block text-slate-900">
                   {selectedProduct.name}
                 </h3>
-                <p className="text-xs sm:text-sm font-semibold text-[#10B981] mt-1">
+                <p className="text-sm font-semibold text-[#5160a3] mt-1">
                   {selectedProduct.subtitle}
                 </p>
               </div>
 
               {/* Price */}
               <div className="flex items-baseline gap-2.5">
-                <span className="text-2xl sm:text-3xl font-black text-slate-900">
+                <span className="text-2xl sm:text-3xl font-bold text-slate-900">
                   {priceLabel(selectedProduct)}
                 </span>
                 <span className="text-sm text-slate-500">
@@ -121,15 +121,15 @@ export function ProductModal() {
                 </span>
               </div>
 
-              <p className="text-sm sm:text-[15px] text-slate-600 leading-relaxed font-normal">
+              <p className="t-body text-slate-600">
                 {selectedProduct.description}
               </p>
 
               {/* Key Benefit Highlight Box */}
-              <div className="p-3 sm:p-3.5 rounded-2xl bg-emerald-50/70 border border-emerald-100">
+              <div className="p-3 sm:p-3.5 rounded-2xl bg-[#EFF3FC] border border-[#D9DFF0]">
                 <div className="flex items-start gap-2.5">
-                  <Shield className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                  <p className="text-xs font-medium text-emerald-950 leading-snug">
+                  <Shield className="w-4 h-4 text-[#5160a3] shrink-0 mt-0.5" />
+                  <p className="text-sm font-medium text-slate-700 leading-snug">
                     <strong className="font-bold">Key Science Advantage:</strong>{" "}
                     {selectedProduct.keyBenefit}
                   </p>
@@ -138,12 +138,12 @@ export function ProductModal() {
 
               {/* Features List */}
               <div>
-                <h4 className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
+                <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">
                   Key Formulation Features
                 </h4>
                 <ul className="space-y-1.5 sm:space-y-2">
                   {selectedProduct.features.map((feat, idx) => (
-                    <li key={idx} className="flex items-center gap-2 text-xs font-bold text-slate-700">
+                    <li key={idx} className="flex items-center gap-2 text-sm font-semibold text-slate-700">
                       <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-500 shrink-0" />
                       <span>{feat}</span>
                     </li>

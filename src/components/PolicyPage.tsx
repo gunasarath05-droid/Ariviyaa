@@ -5,6 +5,15 @@ import { COMPANY_INFO } from "@/constants/company";
 import { CommonHero } from "@/components/CommonHero";
 import { PolicyTabs } from "@/components/PolicyTabs";
 
+interface PolicyContact {
+  /** Section heading, e.g. "5. Contact Us Regarding Privacy" */
+  title: string;
+  /** Optional line above the contact card */
+  intro?: React.ReactNode;
+  /** Desk name shown in the card */
+  name: string;
+}
+
 interface PolicyPageProps {
   title: string;
   subtitle: string;
@@ -13,10 +22,13 @@ interface PolicyPageProps {
   intro: React.ReactNode;
   href: string;
   lastUpdated?: string;
+  contact?: PolicyContact;
   children: React.ReactNode;
 }
 
-// Frame shared by the newer policy pages — same layout as Privacy Policy
+const DEFAULT_CONTACT: PolicyContact = { title: "Contact Us", name: "Ariviyaa Bio-Innovations Hub" };
+
+// Frame shared by every legal / policy page so all five look the same
 export function PolicyPage({
   title,
   subtitle,
@@ -25,41 +37,43 @@ export function PolicyPage({
   intro,
   href,
   lastUpdated = "November 2026",
+  contact = DEFAULT_CONTACT,
   children,
 }: PolicyPageProps) {
   return (
     <>
       <CommonHero title={title} breadcrumb={[{ label: "Home", href: "/" }, { label: title }]} subtitle={subtitle} />
-      <div className="w-full bg-[#F5F7FC] min-h-screen py-10 sm:py-14 px-4 sm:px-6 lg:px-8 font-sans">
-        <div className="max-w-4xl mx-auto space-y-8 sm:space-y-10">
-          <div className="flex items-center justify-between">
-            <Link href="/" className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-[#5160a3] hover:underline">
+      <section className="w-full bg-white section-y font-sans">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+          <div className="flex items-center justify-between gap-4">
+            <Link href="/" className="inline-flex items-center gap-2 text-sm font-bold text-[#5160a3] hover:underline">
               <ArrowLeft className="w-4 h-4" />
               <span>Back to Home</span>
             </Link>
-            <span className="text-xs text-slate-400 font-medium">Last Updated: {lastUpdated}</span>
+            <span className="text-xs text-slate-500 font-medium">Last Updated: {lastUpdated}</span>
           </div>
 
-          <div className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200/80 shadow-xs space-y-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-100 text-xs font-bold text-[#5160a3]">
+          {/* Intro + switcher (the page title is already in the hero above) */}
+          <div className="bg-[#F5F7FC] rounded-3xl p-6 sm:p-8 border border-[#D9DFF0] space-y-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-[#D9DFF0] text-xs font-bold text-[#5160a3]">
               <BadgeIcon className="w-4 h-4" />
               <span>{badge}</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">{title}</h2>
-            <div className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">{intro}</div>
+            <div className="t-lead text-slate-600">{intro}</div>
             <PolicyTabs active={href} />
           </div>
 
-          <div className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200/80 shadow-xs space-y-8 text-slate-700 text-sm sm:text-base leading-relaxed font-normal">
+          <div className="bg-white rounded-3xl p-6 sm:p-10 border border-[#D9DFF0] shadow-2xs space-y-8 t-lead text-slate-700">
             {children}
 
-            <section className="space-y-3 pt-6 border-t border-slate-100">
-              <h2 className="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-[#5160a3]" />
-                Contact Us
+            <section className="space-y-3 pt-6 border-t border-[#D9DFF0]">
+              <h2 className="h-card text-slate-900 flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-[#5160a3] shrink-0" />
+                {contact.title}
               </h2>
-              <div className="bg-slate-50 rounded-2xl p-5 border border-slate-100 space-y-2.5 text-sm">
-                <p className="font-bold text-slate-900">Ariviyaa Bio-Innovations Hub</p>
+              {contact.intro && <p>{contact.intro}</p>}
+              <div className="bg-[#F5F7FC] rounded-2xl p-5 border border-[#D9DFF0] space-y-2.5 t-body">
+                <p className="font-bold text-slate-900">{contact.name}</p>
                 <p className="text-slate-600 flex items-center gap-2">
                   <MapPin className="w-4 h-4 text-[#5160a3] shrink-0" />
                   <span>
@@ -83,7 +97,7 @@ export function PolicyPage({
             </section>
           </div>
         </div>
-      </div>
+      </section>
     </>
   );
 }
@@ -91,7 +105,7 @@ export function PolicyPage({
 export function PolicySection({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <section className="space-y-3">
-      <h2 className="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
+      <h2 className="h-card text-slate-900 flex items-center gap-2">
         <span className="w-2 h-2 rounded-full bg-[#5160a3] shrink-0" />
         {title}
       </h2>
@@ -99,3 +113,6 @@ export function PolicySection({ title, children }: { title: string; children: Re
     </section>
   );
 }
+
+/** Bulleted list style used inside policy sections */
+export const policyListClass = "list-disc list-inside space-y-1.5 pl-2 t-body text-slate-600";

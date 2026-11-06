@@ -31,7 +31,7 @@ export default function AccountReturnsPage() {
               <RotateCcw className="w-5 h-5" />
             </span>
             <div>
-              <h2 className="text-base sm:text-lg font-bold text-slate-900">Returns within 7 days of delivery</h2>
+              <h2 className="h-card text-slate-900">Returns within 7 days of delivery</h2>
               <p className="text-sm text-slate-500 mt-0.5">
                 Free reverse pickup through Shiprocket. Refund in 5–7 working days after quality check.
               </p>

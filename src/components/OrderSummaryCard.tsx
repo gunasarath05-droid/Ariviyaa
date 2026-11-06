@@ -16,7 +16,7 @@ interface OrderSummaryCardProps {
 export function OrderSummaryCard({ items, totals, shippingLabel = "Shipping", children }: OrderSummaryCardProps) {
   return (
     <div className={`${cardClass} p-5 sm:p-6 space-y-5`}>
-      <h2 className="text-lg font-bold text-slate-900">Order Summary</h2>
+      <h2 className="h-card text-slate-900">Order Summary</h2>
 
       <ul className="space-y-3 max-h-72 overflow-y-auto pt-2 pr-2">
         {items.map(({ product, quantity, pack }) => {
@@ -72,7 +72,7 @@ export function OrderSummaryCard({ items, totals, shippingLabel = "Shipping", ch
         </div>
         <div className="pt-3 border-t border-slate-100 flex justify-between items-baseline">
           <dt className="font-bold text-slate-900">Total</dt>
-          <dd className="text-2xl font-black text-slate-900">{formatPrice(totals.total)}</dd>
+          <dd className="text-2xl font-bold text-slate-900">{formatPrice(totals.total)}</dd>
         </div>
       </dl>
 

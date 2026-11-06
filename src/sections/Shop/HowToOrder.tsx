@@ -24,9 +24,9 @@ const steps = [
 
 export function HowToOrderSection() {
   return (
-    <section className="w-full section-y bg-[#F5F7FC] border-t border-[#D9DFF0] font-sans" id="how-to-order">
+    <section className="w-full section-y bg-white border-b border-[#D9DFF0] font-sans" id="how-to-order">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        <h2 className="text-center text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
+        <h2 className="text-center h-block text-slate-900">
           How Ordering Works
         </h2>
 
@@ -34,17 +34,17 @@ export function HowToOrderSection() {
           {steps.map(({ title, desc, Icon }, index) => (
             <li
               key={title}
-              className="bg-white p-5 sm:p-6 rounded-2xl border border-[#D9DFF0] shadow-2xs flex items-start gap-4"
+              className="bg-[#F5F7FC] p-5 sm:p-6 rounded-2xl border border-[#D9DFF0] flex items-start gap-4"
             >
               <div className="relative w-11 h-11 rounded-xl bg-[#5160a3]/10 text-[#5160a3] flex items-center justify-center shrink-0">
                 <Icon className="w-5 h-5" />
-                <span className="absolute -top-2 -left-2 w-5 h-5 rounded-full bg-[#5160a3] text-white text-[10px] font-black flex items-center justify-center">
+                <span className="absolute -top-2 -left-2 w-5 h-5 rounded-full bg-[#5160a3] text-white text-xs font-bold flex items-center justify-center">
                   {index + 1}
                 </span>
               </div>
               <div>
-                <h3 className="text-sm sm:text-base font-bold text-slate-900">{title}</h3>
-                <p className="text-sm sm:text-[15px] text-slate-600 leading-relaxed mt-1">{desc}</p>
+                <h3 className="h-card text-slate-900">{title}</h3>
+                <p className="t-body text-slate-500 mt-1">{desc}</p>
               </div>
             </li>
           ))}

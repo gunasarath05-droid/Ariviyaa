@@ -30,8 +30,8 @@ export function WishlistGrid({ columns = "lg:grid-cols-4" }: { columns?: string 
           <div className="w-16 h-16 rounded-full bg-[#EFF3FC] text-[#5160a3] flex items-center justify-center">
             <Heart className="w-8 h-8" />
           </div>
-          <h2 className="text-xl font-bold text-slate-900">No saved products yet</h2>
-          <p className="text-sm text-slate-500 max-w-sm">
+          <h2 className="h-card text-slate-900">No saved products yet</h2>
+          <p className="t-body text-slate-500 max-w-sm">
             Tap the heart on any product to save it here for quick review.
           </p>
           <Link href="/shop" className={`${primaryButtonClass} mt-2`}>
@@ -70,7 +70,7 @@ export function WishlistGrid({ columns = "lg:grid-cols-4" }: { columns?: string 
                     />
                   </Link>
                   {product.comingSoon && (
-                    <span className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md bg-[#5160a3] text-white text-[11px] font-semibold">
+                    <span className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md bg-[#5160a3] text-white text-xs font-semibold">
                       Coming soon
                     </span>
                   )}
@@ -86,7 +86,7 @@ export function WishlistGrid({ columns = "lg:grid-cols-4" }: { columns?: string 
                 </div>
 
                 <div className="px-1.5 pt-3 pb-1 flex-1 flex flex-col text-center">
-                  <span className="text-[11px] font-semibold text-slate-400 line-clamp-1">
+                  <span className="text-xs font-semibold text-slate-400 line-clamp-1">
                     {product.categoryLabel}
                   </span>
                   <Link
@@ -96,7 +96,7 @@ export function WishlistGrid({ columns = "lg:grid-cols-4" }: { columns?: string 
                     {product.name}
                   </Link>
                   <div className="mt-1.5 flex items-baseline justify-center gap-2">
-                    <span className="text-base sm:text-lg font-bold text-slate-900">
+                    <span className="h-card text-slate-900">
                       {priceLabel(product)}
                     </span>
                     <span className="text-xs text-slate-400">{product.packs[0].size}</span>

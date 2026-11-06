@@ -177,7 +177,7 @@ export function OrderHistory({ view = "orders" }: { view?: "orders" | "returns" 
 
                   <div className="flex-1 min-w-0">
                     <div className="flex flex-wrap items-center gap-2">
-                      <span className="text-sm sm:text-base font-black text-slate-900">{order.id}</span>
+                      <span className="text-sm sm:text-base font-bold text-slate-900">{order.id}</span>
                       <StatusPill status={order.status} />
                     </div>
                     <p className="text-xs text-slate-500 mt-1">
@@ -190,7 +190,7 @@ export function OrderHistory({ view = "orders" }: { view?: "orders" | "returns" 
                   </div>
 
                   <div className="flex items-center justify-between sm:justify-end gap-4 shrink-0">
-                    <span className="text-base font-black text-slate-900">{formatPrice(totals.total)}</span>
+                    <span className="text-base font-bold text-slate-900">{formatPrice(totals.total)}</span>
                     <ChevronDown
                       className={`w-5 h-5 text-slate-400 transition-transform ${isOpen ? "rotate-180" : ""}`}
                     />
@@ -250,7 +250,7 @@ export function OrderHistory({ view = "orders" }: { view?: "orders" | "returns" 
                               <dd>{formatPrice(totals.codFee)}</dd>
                             </div>
                           )}
-                          <div className="flex justify-between pt-2 border-t border-slate-100 font-black text-slate-900">
+                          <div className="flex justify-between pt-2 border-t border-slate-100 font-bold text-slate-900">
                             <dt>Total paid</dt>
                             <dd>{formatPrice(totals.total)}</dd>
                           </div>

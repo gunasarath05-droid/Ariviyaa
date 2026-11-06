@@ -73,7 +73,7 @@ export function AccountDashboard() {
       {/* Greeting */}
       <div className={`${cardClass} p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4`}>
         <div>
-          <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">Hello, {firstName}</h2>
+          <h2 className="h-block text-slate-900">Hello, {firstName}</h2>
           <p className="text-sm text-slate-500 mt-1">
             Member since {user.memberSince} · {user.email}
           </p>
@@ -94,7 +94,7 @@ export function AccountDashboard() {
             <span className="w-9 h-9 rounded-xl bg-[#5160a3]/10 text-[#5160a3] flex items-center justify-center">
               <Icon className="w-4.5 h-4.5" />
             </span>
-            <p className="mt-3 text-2xl font-black text-slate-900">{value}</p>
+            <p className="mt-3 text-2xl font-bold text-slate-900">{value}</p>
             <p className="text-xs font-semibold text-slate-500">{label}</p>
           </div>
         ))}
@@ -106,7 +106,7 @@ export function AccountDashboard() {
           <div className="p-5 sm:p-6 border-b border-slate-100 flex flex-wrap items-center justify-between gap-3">
             <div>
               <p className="text-xs font-bold uppercase tracking-wider text-slate-400">Latest order</p>
-              <p className="text-base font-black text-slate-900">
+              <p className="text-base font-bold text-slate-900">
                 {latest.id} <span className="font-medium text-slate-500 text-sm">· {latest.date}</span>
               </p>
             </div>
@@ -161,8 +161,8 @@ export function AccountDashboard() {
           <span className="w-14 h-14 rounded-full bg-[#EFF3FC] text-[#5160a3] flex items-center justify-center">
             <ShoppingBag className="w-7 h-7" />
           </span>
-          <h3 className="text-lg font-bold text-slate-900">No orders yet</h3>
-          <p className="text-sm text-slate-500 max-w-sm">
+          <h3 className="h-card text-slate-900">No orders yet</h3>
+          <p className="t-body text-slate-500 max-w-sm">
             Your orders, tracking and invoices will show here after your first purchase.
           </p>
           <Link href="/shop" className={`${primaryButtonClass} mt-1`}>
@@ -220,7 +220,7 @@ export function AccountDashboard() {
         {/* Addresses */}
         <div className={`${cardClass} p-5 sm:p-6 space-y-4`}>
           <div className="flex items-center justify-between">
-            <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
+            <h3 className="h-card text-slate-900 flex items-center gap-2">
               <MapPin className="w-4.5 h-4.5 text-[#5160a3]" />
               Saved addresses
             </h3>
@@ -241,7 +241,7 @@ export function AccountDashboard() {
                     <span className="flex items-center gap-2">
                       <span className="font-bold text-slate-900">{label}</span>
                       {isDefault && (
-                        <span className="px-2 py-0.5 rounded-full bg-[#5160a3] text-white text-[10px] font-bold">Default</span>
+                        <span className="px-2 py-0.5 rounded-full bg-[#5160a3] text-white text-xs font-bold">Default</span>
                       )}
                     </span>
                     <Link href="/account/addresses" aria-label={`Edit ${label} address`} className="p-1 text-slate-400 hover:text-[#5160a3]">
@@ -262,7 +262,7 @@ export function AccountDashboard() {
         {/* Profile (business details for business accounts) */}
         <div className={`${cardClass} p-5 sm:p-6 space-y-4`}>
           <div className="flex items-center justify-between">
-            <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
+            <h3 className="h-card text-slate-900 flex items-center gap-2">
               {isBusiness ? (
                 <Building2 className="w-4.5 h-4.5 text-[#5160a3]" />
               ) : (

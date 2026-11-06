@@ -29,7 +29,7 @@ export function AccountShell({ children }: { children: React.ReactNode }) {
 
   if (!ready || !user) {
     return (
-      <div className="w-full bg-[#F5F7FC] py-10 sm:py-14">
+      <div className="w-full bg-white py-10 sm:py-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 animate-pulse">
           <div className="lg:col-span-3 h-48 rounded-2xl bg-white border border-[#D9DFF0]" />
           <div className="lg:col-span-9 h-96 rounded-2xl bg-white border border-[#D9DFF0]" />
@@ -53,18 +53,18 @@ export function AccountShell({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <div className="w-full bg-[#F5F7FC] py-10 sm:py-14 font-sans">
+    <div className="w-full bg-white py-10 sm:py-14 font-sans">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
         {/* Sidebar stays in view (below the sticky site header) while the content scrolls */}
         <aside className="lg:col-span-3 space-y-4 lg:sticky lg:top-40 lg:self-start">
           <div className="bg-white rounded-2xl border border-[#D9DFF0] shadow-2xs p-5 flex items-center gap-3">
-            <div className="w-12 h-12 rounded-full bg-[#5160a3] text-white flex items-center justify-center font-black shrink-0">
+            <div className="w-12 h-12 rounded-full bg-[#5160a3] text-white flex items-center justify-center font-bold shrink-0">
               {initials}
             </div>
             <div className="min-w-0">
               <p className="text-sm font-bold text-slate-900 truncate">{user.name}</p>
               <p className="text-xs text-slate-500 truncate">{user.businessName ?? user.email}</p>
-              <span className="mt-1 inline-flex items-center gap-1 text-[11px] font-bold text-[#5160a3]">
+              <span className="mt-1 inline-flex items-center gap-1 text-xs font-bold text-[#5160a3]">
                 <BadgeCheck className="w-3.5 h-3.5" />
                 {user.accountType} account
               </span>

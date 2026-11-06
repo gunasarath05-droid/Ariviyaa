@@ -101,7 +101,7 @@ export function ProfileForm() {
     <>
       {/* Personal + business details */}
       <form onSubmit={saveProfile} noValidate className={`${cardClass} p-5 sm:p-6 space-y-5`}>
-        <h2 className="flex items-center gap-2 text-base sm:text-lg font-bold text-slate-900">
+        <h2 className="flex items-center gap-2 h-card text-slate-900">
           <UserRound className="w-5 h-5 text-[#5160a3]" />
           Personal details
         </h2>
@@ -150,12 +150,12 @@ export function ProfileForm() {
               readOnly
               className={`${inputClass} bg-[#F5F7FC] text-slate-500 cursor-not-allowed`}
             />
-            <p className="mt-1.5 text-[11px] text-slate-500">Your sign-in email. Contact support to change it.</p>
+            <p className="mt-1.5 text-xs text-slate-500">Your sign-in email. Contact support to change it.</p>
           </div>
         </div>
 
         <div className="pt-5 border-t border-slate-100 space-y-4">
-          <h3 className="flex items-center gap-2 text-sm font-bold text-slate-900">
+          <h3 className="flex items-center gap-2 h-card text-slate-900">
             <Building2 className="w-4 h-4 text-[#5160a3]" />
             Account type
           </h3>
@@ -227,7 +227,7 @@ export function ProfileForm() {
       {/* Password */}
       <form onSubmit={changePassword} noValidate className={`${cardClass} p-5 sm:p-6 space-y-5`}>
         <div className="flex items-center justify-between gap-3">
-          <h2 className="flex items-center gap-2 text-base sm:text-lg font-bold text-slate-900">
+          <h2 className="flex items-center gap-2 h-card text-slate-900">
             <KeyRound className="w-5 h-5 text-[#5160a3]" />
             Change password
           </h2>

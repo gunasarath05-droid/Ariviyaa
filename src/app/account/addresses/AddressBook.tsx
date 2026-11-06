@@ -62,7 +62,7 @@ export function AddressBook() {
 
   const form = editing && (
     <form onSubmit={submit} noValidate className={`${cardClass} p-5 sm:p-6 space-y-5`}>
-      <h2 className="text-base sm:text-lg font-bold text-slate-900">
+      <h2 className="h-card text-slate-900">
         {editing.index === null ? "Add a new address" : `Edit ${addresses[editing.index]?.label} address`}
       </h2>
 
@@ -177,7 +177,7 @@ export function AddressBook() {
     <>
       <div className={`${cardClass} p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4`}>
         <div>
-          <h2 className="flex items-center gap-2 text-base sm:text-lg font-bold text-slate-900">
+          <h2 className="flex items-center gap-2 h-card text-slate-900">
             <MapPin className="w-5 h-5 text-[#5160a3]" />
             Saved addresses
           </h2>
@@ -210,7 +210,7 @@ export function AddressBook() {
                   <span className="flex items-center gap-2">
                     <span className="font-bold text-slate-900">{saved.label}</span>
                     {saved.isDefault && (
-                      <span className="px-2 py-0.5 rounded-full bg-[#5160a3] text-white text-[10px] font-bold">Default</span>
+                      <span className="px-2 py-0.5 rounded-full bg-[#5160a3] text-white text-xs font-bold">Default</span>
                     )}
                   </span>
                   <span className="flex items-center gap-1">

@@ -35,7 +35,7 @@ type Errors = Partial<Record<"email" | "name" | "phone" | "line1" | "city" | "pi
 
 function SectionTitle({ step, icon: Icon, title }: { step: number; icon: React.ElementType; title: string }) {
   return (
-    <h2 className="flex items-center gap-2.5 text-base sm:text-lg font-bold text-slate-900">
+    <h2 className="flex items-center gap-2.5 h-card text-slate-900">
       <span className="w-8 h-8 rounded-xl bg-[#5160a3]/10 text-[#5160a3] flex items-center justify-center shrink-0">
         <Icon className="w-4 h-4" />
       </span>
@@ -163,7 +163,7 @@ export default function CheckoutPage() {
         breadcrumb={[{ label: "Home", href: "/" }, { label: "Cart", href: "/cart" }, { label: "Checkout" }]}
       />
 
-      <section className="w-full bg-[#F5F7FC] py-10 sm:py-14 font-sans">
+      <section className="w-full bg-white py-10 sm:py-14 font-sans">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
           <CheckoutSteps current={1} />
 
@@ -174,8 +174,8 @@ export default function CheckoutPage() {
               <div className="w-16 h-16 rounded-full bg-[#EFF3FC] text-[#5160a3] flex items-center justify-center">
                 <ShoppingBag className="w-8 h-8" />
               </div>
-              <h2 className="text-xl font-bold text-slate-900">Your cart is empty</h2>
-              <p className="text-sm text-slate-500 max-w-sm">Add products to your cart before checking out.</p>
+              <h2 className="h-card text-slate-900">Your cart is empty</h2>
+              <p className="t-body text-slate-500 max-w-sm">Add products to your cart before checking out.</p>
               <Link href="/shop" className={`${primaryButtonClass} mt-2`}>
                 Go to shop
                 <ArrowRight className="w-4 h-4" />
@@ -223,7 +223,7 @@ export default function CheckoutPage() {
                         className={inputClass}
                       />
                       <FieldError message={errors.phone} />
-                      <p className="mt-1.5 text-[11px] text-slate-500">Order and tracking updates are sent by SMS / WhatsApp.</p>
+                      <p className="mt-1.5 text-xs text-slate-500">Order and tracking updates are sent by SMS / WhatsApp.</p>
                     </div>
                   </div>
                 </div>
@@ -430,7 +430,7 @@ export default function CheckoutPage() {
                           </span>
                           <span className="text-xs font-semibold text-[#5160a3]">via {method.carrier}</span>
                           <span className="text-xs text-slate-600">{method.eta}</span>
-                          <span className="text-[11px] text-slate-500">{method.note}</span>
+                          <span className="text-xs text-slate-500">{method.note}</span>
                         </label>
                       );
                     })}
@@ -464,7 +464,7 @@ export default function CheckoutPage() {
               </div>
 
               {/* Summary */}
-              <aside className="lg:col-span-4 lg:sticky lg:top-28">
+              <aside className="lg:col-span-4 lg:sticky lg:top-40 lg:self-start">
                 <OrderSummaryCard items={cart} totals={totals}>
                   <button type="submit" className={`${primaryButtonClass} w-full`}>
                     Continue to payment
@@ -473,7 +473,7 @@ export default function CheckoutPage() {
                   <Link href="/cart" className="block text-center text-sm font-bold text-[#5160a3] hover:underline">
                     ← Back to cart
                   </Link>
-                  <p className="flex items-center justify-center gap-1.5 text-[11px] font-semibold text-slate-500">
+                  <p className="flex items-center justify-center gap-1.5 text-xs font-semibold text-slate-500">
                     <ShieldCheck className="w-3.5 h-3.5 text-[#5160a3]" />
                     Payments secured by Razorpay
                   </p>

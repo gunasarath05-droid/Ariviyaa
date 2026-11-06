@@ -108,7 +108,7 @@ export function ProductDetail({ product }: { product: ProductItem }) {
 
       {/* Main product block */}
       <section className="w-full bg-[#F5F7FC] py-8 sm:py-12 font-sans">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
           {/* Gallery */}
           <div className="lg:col-span-6 space-y-3">
             <div className="relative bg-white rounded-3xl border border-[#D9DFF0] aspect-square flex items-center justify-center p-8 sm:p-12">
@@ -162,10 +162,10 @@ export function ProductDetail({ product }: { product: ProductItem }) {
           <div className="lg:col-span-6 space-y-5">
             <div className="space-y-2">
               <span className="text-xs sm:text-sm font-semibold text-[#5160a3]">{product.categoryLabel}</span>
-              <h1 className="text-2xl sm:text-4xl font-black tracking-tight text-slate-900 leading-tight">
+              <h1 className="h-section text-slate-900">
                 {product.name}
               </h1>
-              <p className="text-sm sm:text-base text-slate-600 leading-relaxed">{product.subtitle}</p>
+              <p className="t-lead text-slate-600">{product.subtitle}</p>
               {product.rating && product.reviewsCount ? (
                 <div className="flex items-center gap-2 text-sm">
                   <span className="inline-flex items-center gap-1 font-bold text-slate-900">
@@ -179,14 +179,14 @@ export function ProductDetail({ product }: { product: ProductItem }) {
             </div>
 
             <div className="flex items-baseline gap-3 pb-5 border-b border-[#D9DFF0]">
-              <span className="text-3xl font-black text-slate-900">{formatPrice(pack.price)}</span>
+              <span className="text-3xl font-bold text-slate-900">{formatPrice(pack.price)}</span>
               <span className="text-sm font-semibold text-slate-500">{pack.size}</span>
               <span className="ml-auto text-xs text-slate-500">Incl. of all taxes</span>
             </div>
 
             {/* Pack size */}
             <div className="space-y-2">
-              <p className="text-[11px] font-bold uppercase tracking-wider text-slate-700">Pack size</p>
+              <p className="text-xs font-bold uppercase tracking-wider text-slate-700">Pack size</p>
               <div className="flex flex-wrap gap-2">
                 {product.packs.map((option) => (
                   <button
@@ -300,7 +300,7 @@ export function ProductDetail({ product }: { product: ProductItem }) {
             </ul>
 
             <div className="bg-white rounded-2xl border border-[#D9DFF0] p-4 sm:p-5 space-y-2">
-              <p className="text-[11px] font-bold uppercase tracking-wider text-slate-700">Delivery options</p>
+              <p className="text-xs font-bold uppercase tracking-wider text-slate-700">Delivery options</p>
               <ul className="divide-y divide-slate-100">
                 {SHIPPING_METHODS.map((m) => (
                   <li key={m.id} className="py-2 flex items-center justify-between gap-3 text-sm">
@@ -337,7 +337,7 @@ export function ProductDetail({ product }: { product: ProductItem }) {
             </div>
 
             {tab === "Description" && (
-              <div className="space-y-5 text-sm sm:text-base text-slate-600 leading-relaxed">
+              <div className="space-y-5 t-lead text-slate-600">
                 <p>{product.description}</p>
                 <p className="font-semibold text-slate-800">{product.keyBenefit}</p>
                 <ul className="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -355,7 +355,7 @@ export function ProductDetail({ product }: { product: ProductItem }) {
               <ol className="space-y-3">
                 {HOW_TO_USE[product.categoryGroup].map((step, i) => (
                   <li key={step} className="flex items-start gap-3 text-sm sm:text-base text-slate-700">
-                    <span className="w-7 h-7 rounded-full bg-[#5160a3] text-white text-xs font-black flex items-center justify-center shrink-0">
+                    <span className="w-7 h-7 rounded-full bg-[#5160a3] text-white text-xs font-bold flex items-center justify-center shrink-0">
                       {i + 1}
                     </span>
                     <span className="pt-0.5">{step}</span>
@@ -396,17 +396,17 @@ export function ProductDetail({ product }: { product: ProductItem }) {
 
           {/* B2B / bulk pricing */}
           <aside className="lg:col-span-4">
-            <div className="bg-[#F5F7FC] rounded-2xl border border-[#D9DFF0] p-5 sm:p-6 space-y-4 lg:sticky lg:top-28">
+            <div className="bg-[#F5F7FC] rounded-2xl border border-[#D9DFF0] p-5 sm:p-6 space-y-4 lg:sticky lg:top-40">
               <div className="flex items-center gap-2">
                 <Building2 className="w-5 h-5 text-[#5160a3]" />
-                <h2 className="text-lg font-bold text-slate-900">Buying in bulk?</h2>
+                <h2 className="h-card text-slate-900">Buying in bulk?</h2>
               </div>
-              <p className="text-sm text-slate-600 leading-relaxed">
+              <p className="t-body text-slate-500">
                 Dairy cooperatives, vet clinics, pet stores and distributors get tiered pricing and GST invoices.
               </p>
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="text-left text-[11px] uppercase tracking-wider text-slate-500">
+                  <tr className="text-left text-xs uppercase tracking-wider text-slate-500">
                     <th className="pb-2 font-bold">Quantity</th>
                     <th className="pb-2 font-bold text-right">Price / unit</th>
                   </tr>
@@ -424,7 +424,7 @@ export function ProductDetail({ product }: { product: ProductItem }) {
                   ))}
                 </tbody>
               </table>
-              <p className="text-[11px] text-slate-400">Prices for the {pack.size} pack, GST included.</p>
+              <p className="text-xs text-slate-500">Prices for the {pack.size} pack, GST included.</p>
               <button
                 type="button"
                 onClick={() => openWhatsAppInquiry(`${product.name} (bulk order, ${pack.size})`)}
@@ -447,15 +447,15 @@ export function ProductDetail({ product }: { product: ProductItem }) {
 
       {/* Related products */}
       {related.length > 0 && (
-        <section className="w-full section-y bg-[#F5F7FC] font-sans">
+        <section className="w-full section-y bg-[#F5F7FC] font-sans border-b border-[#D9DFF0]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
             <div className="flex items-end justify-between gap-4">
-              <div className="space-y-2">
+              <div className="space-y-3">
                 <div className="eyebrow">
                   <AriviyaIcon className="w-4 h-4 text-[#5160a3] shrink-0" />
                   <span>You may also need</span>
                 </div>
-                <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">Related Products</h2>
+                <h2 className="h-section text-slate-900">Related Products</h2>
               </div>
               <Link href="/shop" className="hidden sm:inline-flex items-center gap-1 text-sm font-bold text-[#5160a3] hover:underline">
                 View all <ArrowRight className="w-4 h-4" />
@@ -479,8 +479,8 @@ export function ProductDetail({ product }: { product: ProductItem }) {
                     />
                   </div>
                   <div className="pt-3 px-1 text-center space-y-1">
-                    <span className="text-[11px] font-semibold text-slate-400 line-clamp-1">{p.categoryLabel}</span>
-                    <h3 className="text-sm sm:text-base font-bold text-slate-900 group-hover:text-[#5160a3] line-clamp-2 leading-snug">
+                    <span className="text-xs font-semibold text-slate-500 line-clamp-1">{p.categoryLabel}</span>
+                    <h3 className="h-card text-slate-900 group-hover:text-[#5160a3] line-clamp-2">
                       {p.name}
                     </h3>
                     <p className="text-base font-bold text-slate-900">{p.comingSoon ? "Coming soon" : priceLabel(p)}</p>
