@@ -7,7 +7,7 @@ import { PolicyPage, PolicySection } from "@/components/PolicyPage";
 export const metadata: Metadata = {
   title: "Refund, Returns & Cancellation Policy",
   description:
-    "How returns, refunds and order cancellations work for Ariviya products bought online — return window, refund timelines and how to raise a request.",
+    "How returns, refunds and order cancellations work for Ariviyaa products bought online — return window, refund timelines and how to raise a request.",
   alternates: { canonical: "https://www.ariviyaa.com/refund-policy" },
 };
 
@@ -23,7 +23,7 @@ export default function RefundPolicyPage() {
       href="/refund-policy"
       intro={
         <p>
-          We want every order from <strong>Ariviya</strong> to reach you in perfect condition. If something
+          We want every order from <strong>Ariviyaa</strong> to reach you in perfect condition. If something
           goes wrong — a damaged bottle, a wrong product or a missing item — this policy explains how we make it
           right.
         </p>

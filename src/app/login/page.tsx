@@ -5,7 +5,7 @@ import { LoginForm } from "./LoginForm";
 export const metadata: Metadata = {
   title: "Sign In or Create Account",
   description:
-    "Sign in to your Ariviya account to track orders, reorder farm and pet care products, request returns and download GST invoices.",
+    "Sign in to your Ariviyaa account to track orders, reorder farm and pet care products, request returns and download GST invoices.",
   robots: { index: false },
 };
 

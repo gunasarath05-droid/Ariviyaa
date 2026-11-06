@@ -25,7 +25,7 @@ import { AriviyaIcon } from "@/components/AriviyaIcon";
 import {
   PRODUCTS,
   formatPrice,
-  discountPercent,
+  priceLabel,
   type ProductItem,
   type CategoryGroup,
 } from "@/constants/products";
@@ -51,10 +51,10 @@ const HOW_TO_USE: Record<CategoryGroup, string[]> = {
     "Spray across sheds, feeders and drinkers after cleaning.",
     "Repeat between flock cycles and during disease alerts.",
   ],
-  floor: [
-    "Add one cap (10 mL) to 1 litre of water.",
-    "Mop floors, kennels and cages as usual — no rinse needed.",
-    "Safe for pets to walk on once dry.",
+  home: [
+    "Follow the dilution or spray directions on the label.",
+    "Use on floors, vessels or surfaces as directed.",
+    "Store closed, away from children and direct sunlight.",
   ],
   general: [
     "Spray directly on the surface from 15–20 cm.",
@@ -63,19 +63,11 @@ const HOW_TO_USE: Record<CategoryGroup, string[]> = {
   ],
 };
 
-// Sample pack sizes and bulk tiers shown for client review; final pricing comes from the backend
-const PACK_SIZES: Record<CategoryGroup, string[]> = {
-  farm: ["500 mL", "1 L", "5 L", "20 L", "Drum (200 L)"],
-  pet: ["100 mL", "250 mL", "1 L (clinic refill)"],
-  poultry: ["1 L", "5 L", "20 L"],
-  floor: ["500 mL", "1 L", "5 L"],
-  general: ["500 mL", "1 L", "5 L"],
-};
-
+// Bulk slabs from the client (Nov 2026): 10% is about one or two bottles free, 20% three or four
 const BULK_TIERS = [
   { range: "1 – 9 units", discount: 0 },
-  { range: "10 – 49 units", discount: 8 },
-  { range: "50 – 199 units", discount: 15 },
+  { range: "10 – 49 units", discount: 10 },
+  { range: "50 – 199 units", discount: 20 },
   { range: "200+ units", discount: null },
 ];
 
@@ -85,17 +77,16 @@ export function ProductDetail({ product }: { product: ProductItem }) {
   const router = useRouter();
   const { addToCart, toggleWishlist, isInWishlist, openWhatsAppInquiry, setIsSideDrawerOpen } = useApp();
   const [quantity, setQuantity] = useState(1);
-  const [pack, setPack] = useState(PACK_SIZES[product.categoryGroup][0]);
+  const [pack, setPack] = useState(product.packs[0]);
   const [tab, setTab] = useState<(typeof TABS)[number]>("Description");
 
   const saved = isInWishlist(product.id);
-  const discount = discountPercent(product);
   const related = PRODUCTS.filter(
     (p) => p.id !== product.id && (p.categoryGroup === product.categoryGroup || p.division === product.division)
   ).slice(0, 4);
 
   const buyNow = () => {
-    addToCart(product, quantity);
+    addToCart(product, quantity, pack);
     setIsSideDrawerOpen(false);
     router.push("/checkout");
   };
@@ -121,9 +112,9 @@ export function ProductDetail({ product }: { product: ProductItem }) {
           {/* Gallery */}
           <div className="lg:col-span-6 space-y-3">
             <div className="relative bg-white rounded-3xl border border-[#D9DFF0] aspect-square flex items-center justify-center p-8 sm:p-12">
-              {discount > 0 && (
+              {product.comingSoon && (
                 <span className="absolute top-4 left-4 px-2.5 py-1 rounded-md bg-[#5160a3] text-white text-xs font-semibold">
-                  {discount}% off
+                  Coming soon
                 </span>
               )}
               <button
@@ -175,24 +166,21 @@ export function ProductDetail({ product }: { product: ProductItem }) {
                 {product.name}
               </h1>
               <p className="text-sm sm:text-base text-slate-600 leading-relaxed">{product.subtitle}</p>
-              <div className="flex items-center gap-2 text-sm">
-                <span className="inline-flex items-center gap-1 font-bold text-slate-900">
-                  <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
-                  {product.rating}
-                </span>
-                <span className="text-slate-400">·</span>
-                <span className="text-slate-500">{product.reviewsCount} reviews</span>
-              </div>
+              {product.rating && product.reviewsCount ? (
+                <div className="flex items-center gap-2 text-sm">
+                  <span className="inline-flex items-center gap-1 font-bold text-slate-900">
+                    <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
+                    {product.rating}
+                  </span>
+                  <span className="text-slate-400">·</span>
+                  <span className="text-slate-500">{product.reviewsCount} reviews</span>
+                </div>
+              ) : null}
             </div>
 
             <div className="flex items-baseline gap-3 pb-5 border-b border-[#D9DFF0]">
-              <span className="text-3xl font-black text-slate-900">{formatPrice(product.price)}</span>
-              {discount > 0 && (
-                <>
-                  <span className="text-base text-slate-400 line-through">{formatPrice(product.originalPrice)}</span>
-                  <span className="text-sm font-bold text-emerald-600">Save {discount}%</span>
-                </>
-              )}
+              <span className="text-3xl font-black text-slate-900">{formatPrice(pack.price)}</span>
+              <span className="text-sm font-semibold text-slate-500">{pack.size}</span>
               <span className="ml-auto text-xs text-slate-500">Incl. of all taxes</span>
             </div>
 
@@ -200,24 +188,44 @@ export function ProductDetail({ product }: { product: ProductItem }) {
             <div className="space-y-2">
               <p className="text-[11px] font-bold uppercase tracking-wider text-slate-700">Pack size</p>
               <div className="flex flex-wrap gap-2">
-                {PACK_SIZES[product.categoryGroup].map((size) => (
+                {product.packs.map((option) => (
                   <button
-                    key={size}
+                    key={option.size}
                     type="button"
-                    onClick={() => setPack(size)}
+                    onClick={() => setPack(option)}
+                    aria-pressed={pack.size === option.size}
                     className={`px-4 py-2 rounded-xl text-sm font-semibold border transition-colors cursor-pointer ${
-                      pack === size
+                      pack.size === option.size
                         ? "bg-[#5160a3] border-[#5160a3] text-white"
                         : "bg-white border-[#D9DFF0] text-slate-700 hover:border-[#5160a3]"
                     }`}
                   >
-                    {size}
+                    {option.size}
+                    <span className={`ml-1.5 font-normal ${pack.size === option.size ? "text-white/80" : "text-slate-400"}`}>
+                      {formatPrice(option.price)}
+                    </span>
                   </button>
                 ))}
               </div>
             </div>
 
-            {/* Quantity + actions */}
+            {/* Quantity + actions (coming-soon products take enquiries only) */}
+            {product.comingSoon ? (
+              <div className="bg-white rounded-2xl border border-[#D9DFF0] p-4 sm:p-5 space-y-3">
+                <p className="text-sm text-slate-700">
+                  <strong className="text-slate-900">Launching soon.</strong> Message us to get notified or to
+                  book an early bulk order.
+                </p>
+                <button
+                  type="button"
+                  onClick={() => openWhatsAppInquiry(`${product.name} (${pack.size}, coming soon)`)}
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#5160a3] hover:bg-[#434f8a] text-white text-sm font-bold transition-colors cursor-pointer"
+                >
+                  <MessageCircle className="w-4 h-4" />
+                  Notify Me on WhatsApp
+                </button>
+              </div>
+            ) : (
             <div className="flex flex-col sm:flex-row gap-3">
               <div className="flex items-center justify-between border border-[#D9DFF0] rounded-xl bg-white">
                 <button
@@ -240,7 +248,7 @@ export function ProductDetail({ product }: { product: ProductItem }) {
               </div>
               <button
                 type="button"
-                onClick={() => addToCart(product, quantity)}
+                onClick={() => addToCart(product, quantity, pack)}
                 className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white border-2 border-[#5160a3] text-[#5160a3] hover:bg-[#EFF3FC] text-sm font-bold transition-colors cursor-pointer"
               >
                 <ShoppingBag className="w-4 h-4" />
@@ -255,6 +263,7 @@ export function ProductDetail({ product }: { product: ProductItem }) {
                 Buy Now
               </button>
             </div>
+            )}
 
             <button
               type="button"
@@ -362,8 +371,8 @@ export function ProductDetail({ product }: { product: ProductItem }) {
                   ["Technology", product.techTag],
                   ["Division", product.divisionLabel],
                   ["Category", product.categoryLabel],
-                  ["Pack sizes", PACK_SIZES[product.categoryGroup].join(", ")],
-                  ["Tested with", COMPANY_INFO.supportedBy[1]],
+                  ["Pack sizes", product.packs.map((p) => p.size).join(", ")],
+                  ["Tested with", COMPANY_INFO.supportedBy.find((s) => s.includes("TANUVAS")) ?? ""],
                   ["Manufactured at", `${COMPANY_INFO.address.city}, ${COMPANY_INFO.address.state}`],
                 ].map(([label, value]) => (
                   <div key={label} className="grid grid-cols-3 gap-3 px-4 py-3 bg-white odd:bg-[#F5F7FC]">
@@ -409,16 +418,16 @@ export function ProductDetail({ product }: { product: ProductItem }) {
                       <td className="py-2 text-right font-bold text-slate-900">
                         {tier.discount === null
                           ? "Get a quote"
-                          : formatPrice(Math.round(product.price * (1 - tier.discount / 100)))}
+                          : formatPrice(Math.round(pack.price * (1 - tier.discount / 100)))}
                       </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
-              <p className="text-[11px] text-slate-400">Sample tiers for review — final dealer pricing to be confirmed.</p>
+              <p className="text-[11px] text-slate-400">Prices for the {pack.size} pack, GST included.</p>
               <button
                 type="button"
-                onClick={() => openWhatsAppInquiry(`${product.name} (bulk order, ${pack})`)}
+                onClick={() => openWhatsAppInquiry(`${product.name} (bulk order, ${pack.size})`)}
                 className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#5160a3] hover:bg-[#434f8a] text-white text-sm font-bold transition-colors cursor-pointer"
               >
                 <MessageCircle className="w-4 h-4" />
@@ -474,7 +483,7 @@ export function ProductDetail({ product }: { product: ProductItem }) {
                     <h3 className="text-sm sm:text-base font-bold text-slate-900 group-hover:text-[#5160a3] line-clamp-2 leading-snug">
                       {p.name}
                     </h3>
-                    <p className="text-base font-bold text-slate-900">{formatPrice(p.price)}</p>
+                    <p className="text-base font-bold text-slate-900">{p.comingSoon ? "Coming soon" : priceLabel(p)}</p>
                   </div>
                 </Link>
               ))}

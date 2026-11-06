@@ -1,13 +1,19 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from "react";
-import { ProductItem, PRODUCTS, formatPrice } from "@/constants/products";
+import { ProductItem, ProductPack, PRODUCTS, formatPrice } from "@/constants/products";
 import { COMPANY_INFO } from "@/constants/company";
 
 export interface CartItem {
   product: ProductItem;
+  /** Each pack size is its own cart line with its own price */
+  pack: ProductPack;
   quantity: number;
 }
+
+/** Identifies a cart line: same product in two sizes = two lines */
+export const cartLineKey = (item: { product: ProductItem; pack: ProductPack }) =>
+  `${item.product.id}|${item.pack.size}`;
 
 interface AppContextType {
   // Search
@@ -33,9 +39,10 @@ interface AppContextType {
 
   // Cart
   cart: CartItem[];
-  addToCart: (product: ProductItem, qty?: number) => void;
-  removeFromCart: (productId: string) => void;
-  updateQuantity: (productId: string, qty: number) => void;
+  /** Adds the given pack (default: smallest); coming-soon products are ignored */
+  addToCart: (product: ProductItem, qty?: number, pack?: ProductPack) => void;
+  removeFromCart: (lineKey: string) => void;
+  updateQuantity: (lineKey: string, qty: number) => void;
   clearCart: () => void;
   cartCount: number;
   cartSubtotal: number;
@@ -73,16 +80,19 @@ export function AppProvider({ children }: { children: ReactNode }) {
   /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     try {
-      const savedCart: { id: string; quantity: number }[] = JSON.parse(
+      const savedCart: { id: string; size?: string; quantity: number }[] = JSON.parse(
         localStorage.getItem(CART_STORAGE_KEY) || "[]"
       );
       const savedWishlist: string[] = JSON.parse(
         localStorage.getItem(WISHLIST_STORAGE_KEY) || "[]"
       );
       setCart(
-        savedCart.flatMap(({ id, quantity }) => {
+        savedCart.flatMap(({ id, size, quantity }) => {
           const product = PRODUCTS.find((p) => p.id === id);
-          return product && quantity > 0 ? [{ product, quantity }] : [];
+          const pack = product?.packs.find((p) => p.size === size) ?? product?.packs[0];
+          return product && pack && !product.comingSoon && quantity > 0
+            ? [{ product, pack, quantity }]
+            : [];
         })
       );
       setWishlist(savedWishlist.filter((id) => PRODUCTS.some((p) => p.id === id)));
@@ -98,7 +108,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
     try {
       localStorage.setItem(
         CART_STORAGE_KEY,
-        JSON.stringify(cart.map((item) => ({ id: item.product.id, quantity: item.quantity })))
+        JSON.stringify(
+          cart.map((item) => ({ id: item.product.id, size: item.pack.size, quantity: item.quantity }))
+        )
       );
       localStorage.setItem(WISHLIST_STORAGE_KEY, JSON.stringify(wishlist));
     } catch {
@@ -123,35 +135,32 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setIsSideDrawerOpen(true);
   };
 
-  const addToCart = (product: ProductItem, qty = 1) => {
+  const addToCart = (product: ProductItem, qty = 1, pack: ProductPack = product.packs[0]) => {
+    if (product.comingSoon) return;
+    const key = cartLineKey({ product, pack });
     setCart((prev) => {
-      const existing = prev.find((item) => item.product.id === product.id);
-      if (existing) {
+      if (prev.some((item) => cartLineKey(item) === key)) {
         return prev.map((item) =>
-          item.product.id === product.id
-            ? { ...item, quantity: item.quantity + qty }
-            : item
+          cartLineKey(item) === key ? { ...item, quantity: item.quantity + qty } : item
         );
       }
-      return [...prev, { product, quantity: qty }];
+      return [...prev, { product, pack, quantity: qty }];
     });
     setDrawerTab("cart");
     setIsSideDrawerOpen(true);
   };
 
-  const removeFromCart = (productId: string) => {
-    setCart((prev) => prev.filter((item) => item.product.id !== productId));
+  const removeFromCart = (lineKey: string) => {
+    setCart((prev) => prev.filter((item) => cartLineKey(item) !== lineKey));
   };
 
-  const updateQuantity = (productId: string, qty: number) => {
+  const updateQuantity = (lineKey: string, qty: number) => {
     if (qty <= 0) {
-      removeFromCart(productId);
+      removeFromCart(lineKey);
       return;
     }
     setCart((prev) =>
-      prev.map((item) =>
-        item.product.id === productId ? { ...item, quantity: qty } : item
-      )
+      prev.map((item) => (cartLineKey(item) === lineKey ? { ...item, quantity: qty } : item))
     );
   };
 
@@ -160,7 +169,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   const cartSubtotal = cart.reduce(
-    (sum, item) => sum + item.product.price * item.quantity,
+    (sum, item) => sum + item.pack.price * item.quantity,
     0
   );
 
@@ -178,9 +187,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
       return;
     }
 
-    let message = `*Hello Ariviya! I would like to place an order / inquiry:*\n\n`;
+    let message = `*Hello Ariviyaa! I would like to place an order / inquiry:*\n\n`;
     cart.forEach((item, index) => {
-      message += `${index + 1}. *${item.product.name}* — ${item.quantity} × ${formatPrice(item.product.price)} = ${formatPrice(item.product.price * item.quantity)}\n`;
+      message += `${index + 1}. *${item.product.name}* (${item.pack.size}) — ${item.quantity} × ${formatPrice(item.pack.price)} = ${formatPrice(item.pack.price * item.quantity)}\n`;
     });
     message += `\n*Subtotal:* ${formatPrice(cartSubtotal)}\n`;
     message += `\nPlease confirm availability, delivery charges and dispatch details.`;
@@ -191,7 +200,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   const openWhatsAppInquiry = (productName?: string) => {
     const message = productName
-      ? `Hello Ariviya, I would like to inquire about ${productName}. Please share technical brochure, farm dosage and pricing.`
+      ? `Hello Ariviyaa, I would like to inquire about ${productName}. Please share technical brochure, farm dosage and pricing.`
       : COMPANY_INFO.whatsappMessage;
     const url = `https://wa.me/${COMPANY_INFO.whatsapp}?text=${encodeURIComponent(message)}`;
     window.open(url, "_blank");

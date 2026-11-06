@@ -36,7 +36,7 @@ export const FOOTER_SECTIONS = [
     title: "Quick Navigation",
     links: [
       { label: "Home Showcase", href: "#hero" },
-      { label: "About Ariviya", href: "#about-ariviya" },
+      { label: "About Ariviyaa", href: "#about-ariviya" },
       { label: "Specialized Solutions", href: "#specialized-solutions" },
       { label: "Green Naxpoly® Tech", href: "#science-tech" },
       { label: "Contact & Inquiries", href: "#contact-section" },

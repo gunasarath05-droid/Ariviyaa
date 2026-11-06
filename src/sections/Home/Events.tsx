@@ -142,7 +142,7 @@ const certificates = [
     authority: "E-Club SJMSOM & SINE · IIT Bombay",
     year: "2021-22",
     image: IMAGES.awards.iitbPitchPerfect,
-    highlight: "Awarded to Dr. Sivakumar & Team Ariviya",
+    highlight: "Awarded to Dr. Sivakumar & Team Ariviyaa",
     description:
       "Winners of Pitch Perfect 2021-22, organised by E-Club SJMSOM in collaboration with SINE business incubator, IIT Bombay.",
   },
@@ -172,7 +172,7 @@ export function WhereOurScienceRecognisedSection() {
               <span className="text-[#5160a3]">Gets Recognised</span>
             </h2>
             <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
-              From startup showcases to national innovation challenges, Ariviya has earned industry
+              From startup showcases to national innovation challenges, Ariviyaa has earned industry
               credibility as a deep-tech nano-biotechnology enterprise for veterinary hygiene and biosecurity.
             </p>
           </div>

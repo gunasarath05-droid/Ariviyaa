@@ -9,7 +9,7 @@ import { PolicyTabs } from "@/components/PolicyTabs";
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
-    "Learn how Ariviya protects your personal information, inquiry records, and communications in accordance with applicable data privacy laws.",
+    "Learn how Ariviyaa protects your personal information, inquiry records, and communications in accordance with applicable data privacy laws.",
   alternates: {
     canonical: "https://www.ariviyaa.com/privacy-policy",
   },
@@ -21,7 +21,7 @@ export default function PrivacyPolicyPage() {
       <CommonHero
         title="Privacy Policy"
         breadcrumb={[{ label: "Home", href: "/" }, { label: "Privacy Policy" }]}
-        subtitle="Learn how Ariviya protects your personal information, records, and inquiries"
+        subtitle="Learn how Ariviyaa protects your personal information, records, and inquiries"
       />
       <div className="w-full bg-[#F5F7FC] min-h-screen py-10 sm:py-14 px-4 sm:px-6 lg:px-8 font-sans">
         <div className="max-w-4xl mx-auto space-y-8 sm:space-y-10">
@@ -47,7 +47,7 @@ export default function PrivacyPolicyPage() {
             Privacy Policy
           </h1>
           <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
-            At <strong>Ariviya</strong> (Ariviya Bio-Innovations Hub), we respect your privacy and are committed to protecting your personal information. This Privacy Policy outlines how we collect, handle, and safeguard your details when you browse our catalog, submit product inquiries, or communicate with our technical desk.
+            At <strong>Ariviyaa</strong> (Ariviyaa Bio-Innovations Hub), we respect your privacy and are committed to protecting your personal information. This Privacy Policy outlines how we collect, handle, and safeguard your details when you browse our catalog, submit product inquiries, or communicate with our technical desk.
           </p>
 
           {/* Policy Switcher Tabs */}
@@ -117,7 +117,7 @@ export default function PrivacyPolicyPage() {
               If you have any questions or requests regarding your personal data or this policy, please reach out directly:
             </p>
             <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-2 text-sm">
-              <p className="font-bold text-slate-900">Ariviya Bio-Innovations Hub</p>
+              <p className="font-bold text-slate-900">Ariviyaa Bio-Innovations Hub</p>
               <p className="text-slate-600 flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-[#5160a3]" />
                 <span>{COMPANY_INFO.address.line1}, {COMPANY_INFO.address.city}, {COMPANY_INFO.address.state} - {COMPANY_INFO.address.pincode}</span>

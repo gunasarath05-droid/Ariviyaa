@@ -9,7 +9,7 @@ import { PolicyTabs } from "@/components/PolicyTabs";
 export const metadata: Metadata = {
   title: "Terms & Conditions",
   description:
-    "Review the terms, order inquiry guidelines, and conditions of use for Ariviya veterinary products and digital platforms.",
+    "Review the terms, order inquiry guidelines, and conditions of use for Ariviyaa veterinary products and digital platforms.",
   alternates: {
     canonical: "https://www.ariviyaa.com/terms-and-conditions",
   },
@@ -21,7 +21,7 @@ export default function TermsAndConditionsPage() {
       <CommonHero
         title="Terms & Conditions"
         breadcrumb={[{ label: "Home", href: "/" }, { label: "Terms & Conditions" }]}
-        subtitle="Review the terms, order guidelines, and conditions of use for Ariviya platforms"
+        subtitle="Review the terms, order guidelines, and conditions of use for Ariviyaa platforms"
       />
       <div className="w-full bg-[#F5F7FC] min-h-screen py-10 sm:py-14 px-4 sm:px-6 lg:px-8 font-sans">
         <div className="max-w-4xl mx-auto space-y-8 sm:space-y-10">
@@ -47,7 +47,7 @@ export default function TermsAndConditionsPage() {
             Terms &amp; Conditions
           </h1>
           <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
-            Welcome to <strong>Ariviya</strong>. By browsing our website, submitting inquiries, or ordering our green nanobio-polymer veterinary formulations, you agree to comply with and be bound by the following terms and conditions.
+            Welcome to <strong>Ariviyaa</strong>. By browsing our website, submitting inquiries, or ordering our green nanobio-polymer veterinary formulations, you agree to comply with and be bound by the following terms and conditions.
           </p>
 
           {/* Policy Switcher Tabs */}
@@ -62,7 +62,7 @@ export default function TermsAndConditionsPage() {
               1. Commercial Inquiries &amp; Quotations
             </h2>
             <p>
-              Ariviya manufactures specialized biological veterinary solutions. Products listed on this website represent formulations developed for commercial dairy farms, veterinary clinics, pet parents, and institutional cooperatives.
+              Ariviyaa manufactures specialized biological veterinary solutions. Products listed on this website represent formulations developed for commercial dairy farms, veterinary clinics, pet parents, and institutional cooperatives.
             </p>
             <ul className="list-disc list-inside space-y-1.5 pl-2 text-slate-600 text-sm">
               <li>Product availability, bulk packaging tiers, and final quotations are confirmed directly through authorized representatives on WhatsApp, email, or telephone.</li>
@@ -76,7 +76,7 @@ export default function TermsAndConditionsPage() {
               2. Intellectual Property Rights
             </h2>
             <p>
-              All trademarks, patents, proprietary formulation brands (including <strong>Naxpoly®</strong>, <strong>MammaryO</strong>, <strong>AnimSpray</strong>, and <strong>Tiksha</strong>), scientific literature, research validation summaries, graphics, and logos displayed on this site are the exclusive intellectual property of Ariviya. Unauthorized reproduction or reverse engineering is strictly prohibited.
+              All trademarks, patents, proprietary formulation brands (including <strong>Naxpoly®</strong>, <strong>MammaryO</strong>, <strong>AnimSpray</strong>, and <strong>Tiksha</strong>), scientific literature, research validation summaries, graphics, and logos displayed on this site are the exclusive intellectual property of Ariviyaa. Unauthorized reproduction or reverse engineering is strictly prohibited.
             </p>
           </section>
 
@@ -96,7 +96,7 @@ export default function TermsAndConditionsPage() {
               4. Product Handling &amp; Storage
             </h2>
             <p>
-              Purchasers and handlers are responsible for following specified storage conditions (e.g., store in cool, dry areas away from direct sunlight, maintain sealed caps). Ariviya is not responsible for product degradation resulting from improper on-farm storage or contamination.
+              Purchasers and handlers are responsible for following specified storage conditions (e.g., store in cool, dry areas away from direct sunlight, maintain sealed caps). Ariviyaa is not responsible for product degradation resulting from improper on-farm storage or contamination.
             </p>
           </section>
 
@@ -116,7 +116,7 @@ export default function TermsAndConditionsPage() {
               6. Queries &amp; Support
             </h2>
             <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-2 text-sm">
-              <p className="font-bold text-slate-900">Ariviya Legal &amp; Sales Desk</p>
+              <p className="font-bold text-slate-900">Ariviyaa Legal &amp; Sales Desk</p>
               <p className="text-slate-600 flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-[#5160a3]" />
                 <span>{COMPANY_INFO.address.line1}, {COMPANY_INFO.address.city}, {COMPANY_INFO.address.state} - {COMPANY_INFO.address.pincode}</span>

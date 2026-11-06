@@ -18,7 +18,7 @@ import {
 } from "lucide-react";
 import { CommonHero } from "@/components/CommonHero";
 import { CheckoutSteps } from "@/components/CheckoutSteps";
-import { useApp } from "@/context/AppContext";
+import { useApp, cartLineKey } from "@/context/AppContext";
 import { formatPrice } from "@/constants/products";
 import { computeTotals, FREE_SHIPPING_THRESHOLD } from "@/constants/demo";
 import { cardClass, inputClass, primaryButtonClass } from "@/components/ui/form";
@@ -56,9 +56,9 @@ export default function CartPage() {
     }
   };
 
-  const moveToWishlist = (productId: string) => {
+  const moveToWishlist = (productId: string, lineKey: string) => {
     if (!isInWishlist(productId)) toggleWishlist(productId);
-    removeFromCart(productId);
+    removeFromCart(lineKey);
   };
 
   return (
@@ -116,8 +116,11 @@ export default function CartPage() {
                     <span className="col-span-3 text-right">Total</span>
                   </div>
 
-                  {cart.map(({ product, quantity }) => (
-                    <div key={product.id} className="p-4 sm:px-5 sm:py-4 grid grid-cols-12 gap-3 sm:gap-4 items-center">
+                  {cart.map((item) => {
+                    const { product, pack, quantity } = item;
+                    const lineKey = cartLineKey(item);
+                    return (
+                    <div key={lineKey} className="p-4 sm:px-5 sm:py-4 grid grid-cols-12 gap-3 sm:gap-4 items-center">
                       <div className="col-span-12 sm:col-span-6 flex items-center gap-3.5 min-w-0">
                         <Link
                           href={`/shop/${product.slug}`}
@@ -139,12 +142,12 @@ export default function CartPage() {
                           >
                             {product.name}
                           </Link>
-                          <p className="text-xs text-slate-500">{product.categoryLabel}</p>
-                          <p className="text-sm font-semibold text-slate-700">{formatPrice(product.price)}</p>
+                          <p className="text-xs text-slate-500">Pack: {pack.size}</p>
+                          <p className="text-sm font-semibold text-slate-700">{formatPrice(pack.price)}</p>
                           <div className="flex items-center gap-3 pt-0.5 text-xs font-semibold">
                             <button
                               type="button"
-                              onClick={() => moveToWishlist(product.id)}
+                              onClick={() => moveToWishlist(product.id, lineKey)}
                               className="inline-flex items-center gap-1 text-slate-500 hover:text-[#5160a3] cursor-pointer"
                             >
                               <Heart className="w-3.5 h-3.5" />
@@ -152,7 +155,7 @@ export default function CartPage() {
                             </button>
                             <button
                               type="button"
-                              onClick={() => removeFromCart(product.id)}
+                              onClick={() => removeFromCart(lineKey)}
                               className="inline-flex items-center gap-1 text-slate-500 hover:text-rose-600 cursor-pointer"
                             >
                               <Trash2 className="w-3.5 h-3.5" />
@@ -166,7 +169,7 @@ export default function CartPage() {
                         <div className="inline-flex items-center border border-[#D9DFF0] rounded-xl overflow-hidden bg-white">
                           <button
                             type="button"
-                            onClick={() => updateQuantity(product.id, quantity - 1)}
+                            onClick={() => updateQuantity(lineKey, quantity - 1)}
                             className="px-3 py-2 text-slate-600 hover:bg-[#F5F7FC] cursor-pointer"
                             aria-label={`Decrease quantity of ${product.name}`}
                           >
@@ -175,7 +178,7 @@ export default function CartPage() {
                           <span className="w-10 text-center text-sm font-bold text-slate-900">{quantity}</span>
                           <button
                             type="button"
-                            onClick={() => updateQuantity(product.id, quantity + 1)}
+                            onClick={() => updateQuantity(lineKey, quantity + 1)}
                             className="px-3 py-2 text-slate-600 hover:bg-[#F5F7FC] cursor-pointer"
                             aria-label={`Increase quantity of ${product.name}`}
                           >
@@ -185,10 +188,11 @@ export default function CartPage() {
                       </div>
 
                       <div className="col-span-6 sm:col-span-3 text-right text-base font-bold text-slate-900">
-                        {formatPrice(product.price * quantity)}
+                        {formatPrice(pack.price * quantity)}
                       </div>
                     </div>
-                  ))}
+                    );
+                  })}
                 </div>
 
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-3">

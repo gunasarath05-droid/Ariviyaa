@@ -9,7 +9,7 @@ import { PolicyTabs } from "@/components/PolicyTabs";
 export const metadata: Metadata = {
   title: "Disclaimer",
   description:
-    "Important veterinary guidance and scientific disclaimer regarding Ariviya nanobio-polymer veterinary formulations.",
+    "Important veterinary guidance and scientific disclaimer regarding Ariviyaa nanobio-polymer veterinary formulations.",
   alternates: {
     canonical: "https://www.ariviyaa.com/disclaimer",
   },
@@ -21,7 +21,7 @@ export default function DisclaimerPage() {
       <CommonHero
         title="Disclaimer"
         breadcrumb={[{ label: "Home", href: "/" }, { label: "Disclaimer" }]}
-        subtitle="Scientific and veterinary notice regarding Ariviya bio-polymer healthcare formulations"
+        subtitle="Scientific and veterinary notice regarding Ariviyaa bio-polymer healthcare formulations"
       />
       <div className="w-full bg-[#F5F7FC] min-h-screen py-10 sm:py-14 px-4 sm:px-6 lg:px-8 font-sans">
         <div className="max-w-4xl mx-auto space-y-8 sm:space-y-10">
@@ -47,7 +47,7 @@ export default function DisclaimerPage() {
             Disclaimer
           </h1>
           <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
-            Please carefully read this Disclaimer regarding the use of <strong>Ariviya</strong> veterinary products, scientific research summaries, and informational content provided on this platform.
+            Please carefully read this Disclaimer regarding the use of <strong>Ariviyaa</strong> veterinary products, scientific research summaries, and informational content provided on this platform.
           </p>
 
           {/* Policy Switcher Tabs */}
@@ -98,7 +98,7 @@ export default function DisclaimerPage() {
               4. External Links &amp; Third-Party Mentions
             </h2>
             <p>
-              Any links to research portals, university announcements, or government startup grants are provided solely for user reference. Ariviya does not endorse or take responsibility for the continuous availability or accuracy of external third-party servers.
+              Any links to research portals, university announcements, or government startup grants are provided solely for user reference. Ariviyaa does not endorse or take responsibility for the continuous availability or accuracy of external third-party servers.
             </p>
           </section>
 
@@ -111,7 +111,7 @@ export default function DisclaimerPage() {
               For technical queries regarding laboratory trial reports or application instructions:
             </p>
             <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-2 text-sm">
-              <p className="font-bold text-slate-900">Ariviya Technical Advisory Board</p>
+              <p className="font-bold text-slate-900">Ariviyaa Technical Advisory Board</p>
               <p className="text-slate-600 flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-[#5160a3]" />
                 <span>{COMPANY_INFO.address.line1}, {COMPANY_INFO.address.city}, {COMPANY_INFO.address.state} - {COMPANY_INFO.address.pincode}</span>

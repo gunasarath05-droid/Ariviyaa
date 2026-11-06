@@ -47,7 +47,7 @@ export function ScienceTechSection() {
 
             <p className="text-xs sm:text-sm md:text-base text-slate-600 leading-relaxed">
               Traditional veterinary pharmaceuticals rely heavily on synthetic antibiotics and
-              harsh chemicals that accumulate in milk, meat, and surrounding soil. Ariviya delivers
+              harsh chemicals that accumulate in milk, meat, and surrounding soil. Ariviyaa delivers
               nature-derived polymers that form breathable protective bio-films, keeping animals
               free from infections naturally.
             </p>
@@ -105,7 +105,7 @@ export function ScienceTechSection() {
                 <div className="py-4">
                   <Image
                     src={IMAGES.site.productsRange}
-                    alt="Ariviya Lineup"
+                    alt="Ariviyaa Lineup"
                     width={400}
                     height={200}
                     style={{ width: "100%", height: "auto" }}

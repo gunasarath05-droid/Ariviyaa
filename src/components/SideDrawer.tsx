@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useApp } from "@/context/AppContext";
+import { useApp, cartLineKey } from "@/context/AppContext";
 import { PRODUCTS, formatPrice } from "@/constants/products";
 import {
   X,
@@ -122,7 +122,7 @@ export function SideDrawer() {
                 <div className="space-y-3.5">
                   {cart.map((item) => (
                     <div
-                      key={item.product.id}
+                      key={cartLineKey(item)}
                       className="p-3.5 rounded-2xl bg-white border border-slate-200/90 shadow-sm flex items-center gap-3.5"
                     >
                       <div className="w-16 h-16 bg-slate-50 rounded-xl p-1.5 flex items-center justify-center shrink-0 border border-slate-100">
@@ -142,27 +142,27 @@ export function SideDrawer() {
                             {item.product.name}
                           </h5>
                           <button
-                            onClick={() => removeFromCart(item.product.id)}
+                            onClick={() => removeFromCart(cartLineKey(item))}
                             className="text-slate-400 hover:text-rose-500 p-0.5 transition cursor-pointer"
                             title="Remove"
                           >
                             <Trash2 className="w-3.5 h-3.5" />
                           </button>
                         </div>
-                        <p className="text-[11px] text-[#10B981] font-semibold">
-                          {item.product.categoryLabel}
+                        <p className="text-[11px] text-slate-500 font-semibold">
+                          {item.pack.size} · {formatPrice(item.pack.price)} each
                         </p>
 
                         <div className="flex items-center justify-between mt-2 pt-1">
                           <span className="text-sm font-black text-slate-900">
-                            {formatPrice(item.product.price * item.quantity)}
+                            {formatPrice(item.pack.price * item.quantity)}
                           </span>
 
                           {/* Stepper (+ / -) */}
                           <div className="flex items-center border border-slate-200 rounded-lg overflow-hidden bg-slate-50 text-xs">
                             <button
                               onClick={() =>
-                                updateQuantity(item.product.id, item.quantity - 1)
+                                updateQuantity(cartLineKey(item), item.quantity - 1)
                               }
                               className="px-2 py-1 text-slate-600 hover:bg-slate-200 cursor-pointer"
                               title="Decrease"
@@ -174,7 +174,7 @@ export function SideDrawer() {
                             </span>
                             <button
                               onClick={() =>
-                                updateQuantity(item.product.id, item.quantity + 1)
+                                updateQuantity(cartLineKey(item), item.quantity + 1)
                               }
                               className="px-2 py-1 text-slate-600 hover:bg-slate-200 cursor-pointer"
                               title="Increase"

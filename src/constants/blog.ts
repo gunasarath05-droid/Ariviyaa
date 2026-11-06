@@ -73,7 +73,7 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     id: "post-2",
-    title: "Green Synthesis in Animal Health: Inside Ariviya's Patented NaxPoly® Technology",
+    title: "Green Synthesis in Animal Health: Inside Ariviyaa's Patented NaxPoly® Technology",
     slug: "green-synthesis-naxpoly-nanotechnology",
     excerpt: "A deep dive into how biodegradable carbohydrate-based polymers are synthesized using eco-friendly green chemistry to create robust antimicrobial matrices with zero toxic residues.",
     category: "Biotech Science",
@@ -187,7 +187,7 @@ export const BLOG_POSTS: BlogPost[] = [
     slug: "poultry-biosecurity-natural-disinfection",
     excerpt: "How natural antimicrobial formulations reduce flock mortality, eliminate foul odors, and prevent secondary respiratory infections in broiler and layer setups.",
     category: "Poultry Care",
-    author: "Ariviya Research Desk",
+    author: "Ariviyaa Research Desk",
     authorRole: "Biotech Advisory",
     date: "September 10, 2026",
     readTime: "5 min read",

@@ -15,7 +15,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { AriviyaIcon } from "@/components/AriviyaIcon";
-import { formatPrice, discountPercent } from "@/constants/products";
+import { priceLabel } from "@/constants/products";
 
 export function ProductModal() {
   const {
@@ -30,7 +30,6 @@ export function ProductModal() {
   if (!selectedProduct) return null;
 
   const isSaved = wishlist.includes(selectedProduct.id);
-  const discount = discountPercent(selectedProduct);
 
   const handleShare = () => {
     if (typeof navigator !== "undefined" && navigator.share) {
@@ -115,16 +114,11 @@ export function ProductModal() {
               {/* Price */}
               <div className="flex items-baseline gap-2.5">
                 <span className="text-2xl sm:text-3xl font-black text-slate-900">
-                  {formatPrice(selectedProduct.price)}
+                  {priceLabel(selectedProduct)}
                 </span>
-                {discount > 0 && (
-                  <>
-                    <span className="text-sm text-slate-400 line-through">
-                      MRP {formatPrice(selectedProduct.originalPrice)}
-                    </span>
-                    <span className="text-sm font-bold text-emerald-600">{discount}% off</span>
-                  </>
-                )}
+                <span className="text-sm text-slate-500">
+                  {selectedProduct.packs.map((p) => p.size).join(" · ")}
+                </span>
               </div>
 
               <p className="text-sm sm:text-[15px] text-slate-600 leading-relaxed font-normal">
@@ -161,14 +155,15 @@ export function ProductModal() {
             {/* CTAs */}
             <div className="pt-4 sm:pt-6 mt-4 sm:mt-6 border-t border-slate-100 flex items-center gap-2.5 sm:gap-3">
               <button
+                disabled={selectedProduct.comingSoon}
                 onClick={() => {
                   addToCart(selectedProduct, 1);
                   setSelectedProduct(null);
                 }}
-                className="flex-1 py-3 px-4 sm:px-6 rounded-[10px] bg-[#5160a3] hover:bg-[#434f8a] text-white text-sm font-semibold flex items-center justify-center gap-2 shadow-lg shadow-[#5160a3]/25 transition-all active:scale-95 cursor-pointer"
+                className="flex-1 py-3 px-4 sm:px-6 rounded-[10px] bg-[#5160a3] hover:bg-[#434f8a] text-white text-sm font-semibold flex items-center justify-center gap-2 shadow-lg shadow-[#5160a3]/25 transition-all active:scale-95 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <ShoppingBag className="w-4 h-4 shrink-0" />
-                <span className="truncate">Add to Cart</span>
+                <span className="truncate">{selectedProduct.comingSoon ? "Coming Soon" : "Add to Cart"}</span>
               </button>
 
               <button

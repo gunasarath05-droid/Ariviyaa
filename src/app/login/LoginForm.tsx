@@ -83,7 +83,7 @@ export function LoginForm() {
               <Link href="/" className="inline-block">
                 <Image
                   src={IMAGES.logo}
-                  alt="Ariviya"
+                  alt="Ariviyaa"
                   width={150}
                   height={48}
                   style={{ width: "auto", height: "auto" }}
@@ -313,7 +313,7 @@ export function LoginForm() {
               </form>
 
               <div className="pt-5 border-t border-slate-100 text-center text-sm text-slate-600">
-                {mode === "signin" ? "New to Ariviya?" : "Already have an account?"}{" "}
+                {mode === "signin" ? "New to Ariviyaa?" : "Already have an account?"}{" "}
                 <button
                   type="button"
                   onClick={() => switchMode(mode === "signin" ? "signup" : "signin")}

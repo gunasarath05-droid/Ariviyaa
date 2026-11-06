@@ -23,7 +23,7 @@ export function ContactSection() {
 
     // Compose inquiry message directly to WhatsApp with user's details
     const fullName = `${formData.firstName} ${formData.lastName}`.trim();
-    const message = `*Hello Ariviya! New Inquiry:*\n\n*Name:* ${fullName}\n*Email:* ${formData.email}\n*Phone:* ${formData.phone}\n*I am a:* ${formData.enquiryType}\n*Message:* ${formData.message}\n\nPlease share dosage, technical brochure, and pricing quote.`;
+    const message = `*Hello Ariviyaa! New Inquiry:*\n\n*Name:* ${fullName}\n*Email:* ${formData.email}\n*Phone:* ${formData.phone}\n*I am a:* ${formData.enquiryType}\n*Message:* ${formData.message}\n\nPlease share dosage, technical brochure, and pricing quote.`;
 
     const url = `https://wa.me/${COMPANY_INFO.whatsapp}?text=${encodeURIComponent(message)}`;
     window.open(url, "_blank");
@@ -76,7 +76,7 @@ export function ContactSection() {
             <div className="w-full py-2 hidden md:block">
               <Image
                 src={IMAGES.productShowcase}
-                alt="Ariviya product range with MammaryO teat dip"
+                alt="Ariviyaa product range with MammaryO teat dip"
                 width={650}
                 height={350}
                 className="w-full h-auto object-contain drop-shadow-sm select-none rounded-xl"

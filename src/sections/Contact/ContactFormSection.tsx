@@ -78,7 +78,7 @@ export function ContactFormSection() {
     e.preventDefault();
 
     const formattedMessage =
-      `*New Enquiry via Ariviya Website:*\n\n` +
+      `*New Enquiry via Ariviyaa Website:*\n\n` +
       `*Name:* ${formData.name}\n` +
       `*Organisation:* ${formData.organisation || "Not specified"}\n` +
       `*I am a:* ${formData.enquiryType}\n` +

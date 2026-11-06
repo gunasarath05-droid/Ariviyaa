@@ -19,7 +19,7 @@ const RECENT_POSTS = [
   },
   {
     id: "post-2",
-    title: "Green Synthesis in Animal Health: Inside Ariviya's Patented NaxPoly® Technology",
+    title: "Green Synthesis in Animal Health: Inside Ariviyaa's Patented NaxPoly® Technology",
     excerpt: "A deep dive into how biodegradable carbohydrate-based polymers are synthesized using eco-friendly green chemistry to create robust antimicrobial matrices with zero toxic residues.",
     category: "Biotech Science",
     author: "Dr. M. Sivakumar",

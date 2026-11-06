@@ -31,7 +31,7 @@ export function OfficeLocations() {
               <span className="w-11 h-11 rounded-xl bg-[#5160a3]/10 text-[#5160a3] flex items-center justify-center">
                 <MapPin className="w-5 h-5" />
               </span>
-              <h3 className="text-lg font-bold text-slate-900">Ariviya Deep Tech Pvt. Ltd.</h3>
+              <h3 className="text-lg font-bold text-slate-900">Ariviyaa Deep Tech Pvt. Ltd.</h3>
               <p className="text-sm sm:text-[15px] text-slate-600 leading-relaxed">
                 {COMPANY_INFO.address.line1}
                 <br />
@@ -65,7 +65,7 @@ export function OfficeLocations() {
           {/* Map */}
           <div className="lg:col-span-8 rounded-[20px] overflow-hidden border border-[#D9DFF0] bg-white min-h-[320px] sm:min-h-[400px]">
             <iframe
-              title="Ariviya Deep Tech office location on Google Maps"
+              title="Ariviyaa Deep Tech office location on Google Maps"
               // Place-name embed; swap for Google Maps "Share → Embed a map" code for an exact pin
               src={`https://maps.google.com/maps?q=${encodeURIComponent(MAP_QUERY)}&t=&z=14&ie=UTF8&iwloc=&output=embed`}
               className="w-full h-full min-h-[320px] sm:min-h-[400px] border-0"

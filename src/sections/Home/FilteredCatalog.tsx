@@ -7,8 +7,7 @@ import { useApp } from "@/context/AppContext";
 import {
   PRODUCTS,
   CategoryGroup,
-  formatPrice,
-  discountPercent,
+  priceLabel,
 } from "@/constants/products";
 import {
   ShoppingBag,
@@ -68,8 +67,8 @@ export function FilteredCatalogSection() {
       iconOnly: false,
     },
     {
-      id: "floor",
-      title: "FLOOR CLEANER",
+      id: "home",
+      title: "HOME CARE",
       icon: <FaSprayCan className="w-4.5 h-4.5 shrink-0" />,
       iconOnly: false,
     },
@@ -92,8 +91,8 @@ export function FilteredCatalogSection() {
       matchesCategory = item.categoryGroup === "pet";
     } else if (activeCategory === "poultry") {
       matchesCategory = item.categoryGroup === "poultry";
-    } else if (activeCategory === "floor") {
-      matchesCategory = item.categoryGroup === "floor";
+    } else if (activeCategory === "home") {
+      matchesCategory = item.categoryGroup === "home";
     } else if (activeCategory === "general") {
       matchesCategory = item.categoryGroup === "general";
     } else {
@@ -265,9 +264,9 @@ export function FilteredCatalogSection() {
                           />
                         </Link>
 
-                        {discountPercent(product) > 0 && (
+                        {product.comingSoon && (
                           <span className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md bg-[#5160a3] text-white text-[11px] font-semibold">
-                            {discountPercent(product)}% off
+                            Coming soon
                           </span>
                         )}
 
@@ -295,25 +294,32 @@ export function FilteredCatalogSection() {
                         </h3>
                         <div className="mt-1.5 flex items-baseline justify-center gap-2">
                           <span className="text-base sm:text-lg font-bold text-slate-900">
-                            {formatPrice(product.price)}
+                            {priceLabel(product)}
                           </span>
-                          {discountPercent(product) > 0 && (
-                            <span className="text-xs text-slate-400 line-through">
-                              {formatPrice(product.originalPrice)}
-                            </span>
-                          )}
+                          <span className="text-xs text-slate-400">{product.packs[0].size}</span>
                         </div>
 
                         {/* Purchase actions */}
                         <div className="mt-3 flex items-center gap-2">
-                          <button
-                            type="button"
-                            onClick={() => addToCart(product, 1)}
-                            className="flex-1 min-w-0 py-2.5 px-3 rounded-[10px] bg-[#5160a3] hover:bg-[#434f8a] active:scale-95 text-white text-sm font-semibold whitespace-nowrap transition-colors cursor-pointer flex items-center justify-center gap-1.5"
-                          >
-                            <ShoppingBag className="w-3.5 h-3.5 shrink-0" />
-                            <span>Add to Cart</span>
-                          </button>
+                          {product.comingSoon ? (
+                            <button
+                              type="button"
+                              onClick={() => openWhatsAppInquiry(`${product.name} (coming soon)`)}
+                              className="flex-1 min-w-0 py-2.5 px-3 rounded-[10px] bg-white border border-[#5160a3] text-[#5160a3] hover:bg-[#EFF3FC] text-sm font-semibold whitespace-nowrap transition-colors cursor-pointer flex items-center justify-center gap-1.5"
+                            >
+                              <MessageCircle className="w-3.5 h-3.5 shrink-0" />
+                              <span>Notify Me</span>
+                            </button>
+                          ) : (
+                            <button
+                              type="button"
+                              onClick={() => addToCart(product, 1)}
+                              className="flex-1 min-w-0 py-2.5 px-3 rounded-[10px] bg-[#5160a3] hover:bg-[#434f8a] active:scale-95 text-white text-sm font-semibold whitespace-nowrap transition-colors cursor-pointer flex items-center justify-center gap-1.5"
+                            >
+                              <ShoppingBag className="w-3.5 h-3.5 shrink-0" />
+                              <span>Add to Cart</span>
+                            </button>
+                          )}
                           <button
                             type="button"
                             onClick={() => openWhatsAppInquiry(product.name)}

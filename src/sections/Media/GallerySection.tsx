@@ -62,7 +62,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
     date: "2021-22",
     image: IMAGES.awards.iitbPitchPerfect,
     description:
-      "Certificate of Achievement awarded to Dr. Sivakumar and Team Ariviya as winners of Pitch Perfect 2021-22, organised by E-Club SJMSOM with SINE business incubator, IIT Bombay.",
+      "Certificate of Achievement awarded to Dr. Sivakumar and Team Ariviyaa as winners of Pitch Perfect 2021-22, organised by E-Club SJMSOM with SINE business incubator, IIT Bombay.",
     fit: "contain",
   },
   {
@@ -73,7 +73,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
     date: "2020",
     image: IMAGES.events.dettolPitch,
     description:
-      "Presenting Ariviya's NaxPoly® non-antibiotic hygiene technology to the Invest India and RB Health jury.",
+      "Presenting Ariviyaa's NaxPoly® non-antibiotic hygiene technology to the Invest India and RB Health jury.",
     fit: "cover",
   },
   {
@@ -83,7 +83,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
     category: "Events & Pitches",
     image: IMAGES.events.vanakkamStartups,
     description:
-      "The Ariviya team at the Vanakkam Startups showcase, presenting our animal-health innovations to Tamil Nadu's startup ecosystem.",
+      "The Ariviyaa team at the Vanakkam Startups showcase, presenting our animal-health innovations to Tamil Nadu's startup ecosystem.",
     fit: "cover",
   },
   {
@@ -118,7 +118,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
   },
   {
     id: "product-range",
-    title: "Ariviya Product Range",
+    title: "Ariviyaa Product Range",
     subtitle: "NaxPoly® chemical-free formulations",
     category: "Products & Research",
     image: IMAGES.productShowcase,

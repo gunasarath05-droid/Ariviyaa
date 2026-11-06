@@ -59,7 +59,7 @@ export function PolicyPage({
                 Contact Us
               </h2>
               <div className="bg-slate-50 rounded-2xl p-5 border border-slate-100 space-y-2.5 text-sm">
-                <p className="font-bold text-slate-900">Ariviya Bio-Innovations Hub</p>
+                <p className="font-bold text-slate-900">Ariviyaa Bio-Innovations Hub</p>
                 <p className="text-slate-600 flex items-center gap-2">
                   <MapPin className="w-4 h-4 text-[#5160a3] shrink-0" />
                   <span>

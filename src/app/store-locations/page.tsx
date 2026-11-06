@@ -7,7 +7,7 @@ import { DealerList } from "@/sections/Stores/DealerList";
 export const metadata: Metadata = {
   title: "Store Locations & Dealers",
   description:
-    "Visit Ariviya's head office in Thanjavur or find an authorised dealer, vet clinic or pet store near you that stocks Ariviya products.",
+    "Visit Ariviyaa's head office in Thanjavur or find an authorised dealer, vet clinic or pet store near you that stocks Ariviyaa products.",
   alternates: { canonical: "https://www.ariviyaa.com/store-locations" },
 };
 

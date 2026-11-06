@@ -1,5 +1,5 @@
 /**
- * Centralized Images Registry for Ariviya Frontend.
+ * Centralized Images Registry for Ariviyaa Frontend.
  * All image assets reside in `/public/assets` and are referenced from this single source of truth.
  */
 export const IMAGES = {
@@ -106,6 +106,9 @@ export const IMAGES = {
     tikshaLabel: "/assets/products/tiksha_label.png",
     tikifence: "/assets/products/tiksha.jpg",
     cleanida: "/assets/products/cleanida_square.jpg",
+
+    // Shown until the client's product photos arrive
+    placeholder: "/assets/products/placeholder.svg",
 
     // Catalog aliases
     pe3: "/assets/products/petenviron.jpg",

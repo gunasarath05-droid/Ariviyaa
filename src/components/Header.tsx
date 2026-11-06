@@ -106,7 +106,7 @@ export function Header() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={IMAGES.logoPng}
-              alt="Ariviya Animal Health Logo"
+              alt="Ariviyaa Animal Health Logo"
               width={160}
               height={48}
               className="h-8 sm:h-10 md:h-12 w-auto object-contain transition-transform group-hover:scale-102"
@@ -391,7 +391,7 @@ export function Header() {
                   ? "Research Blog"
                   : pathname === "/gallery"
                   ? "Field Gallery"
-                  : "Ariviya Menu"}
+                  : "Ariviyaa Menu"}
               </span>
               <a
                 href={`tel:${COMPANY_INFO.phone}`}

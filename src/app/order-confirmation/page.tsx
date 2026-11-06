@@ -46,11 +46,12 @@ export default function OrderConfirmationPage() {
     setMounted(true);
   }, []);
 
-  const items = order.items.flatMap(({ productId, quantity }) => {
+  const items = order.items.flatMap(({ productId, size, quantity }) => {
     const product = PRODUCTS.find((p) => p.id === productId);
-    return product ? [{ product, quantity }] : [];
+    const pack = product?.packs.find((p) => p.size === size) ?? product?.packs[0];
+    return product && pack ? [{ product, pack, quantity }] : [];
   });
-  const subtotal = items.reduce((sum, { product, quantity }) => sum + product.price * quantity, 0);
+  const subtotal = items.reduce((sum, { pack, quantity }) => sum + pack.price * quantity, 0);
   const totals = computeTotals(subtotal, order.draft.shippingId, order.paymentId);
   const shipping = SHIPPING_METHODS.find((m) => m.id === order.draft.shippingId) ?? SHIPPING_METHODS[0];
   const payment = PAYMENT_METHODS.find((p) => p.id === order.paymentId) ?? PAYMENT_METHODS[0];

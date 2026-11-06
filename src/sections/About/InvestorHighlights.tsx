@@ -34,7 +34,7 @@ export function InvestorHighlights() {
             <span className="text-[#5160a3]">Multi-Billion Dollar Market</span>
           </h2>
           <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
-            Ariviya is solving one of animal agriculture’s greatest economic and safety challenges: antibiotic-free antimicrobial protection for dairy, companion animals, and poultry.
+            Ariviyaa is solving one of animal agriculture’s greatest economic and safety challenges: antibiotic-free antimicrobial protection for dairy, companion animals, and poultry.
           </p>
         </div>
 
@@ -113,7 +113,7 @@ export function InvestorHighlights() {
               <span>Investment & Partnership Desk</span>
             </div>
             <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight leading-tight">
-              Partner with Ariviya to Build the Future of Sustainable Animal Health
+              Partner with Ariviyaa to Build the Future of Sustainable Animal Health
             </h3>
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
               We welcome dialogues with venture capital firms, impact investors, agri-business funds, and strategic corporate partners who share our mission of eradicating antibiotic resistance in food animals.

@@ -72,7 +72,7 @@ export function PetCareBannerSection() {
 
           {/* Subtitle / Description with highlighted accents */}
           <p className="text-sm sm:text-base text-slate-200/90 leading-relaxed font-normal max-w-2xl">
-            Ariviya is backed by{" "}
+            Ariviyaa is backed by{" "}
             <span className="text-[#F6DFC2] font-bold">StartupTN (Govt. of Tamil Nadu)</span>{" "}
             and clinically validated through rigorous veterinary protocols with{" "}
             <span className="text-[#F6DFC2] font-bold">TANUVAS-TRPVB</span> and{" "}

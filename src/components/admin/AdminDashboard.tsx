@@ -399,7 +399,7 @@ export function AdminDashboard() {
       {/* Sidebar (desktop) */}
       <aside className="hidden lg:flex w-64 shrink-0 flex-col bg-white border-r border-[#D9DFF0] sticky top-0 h-screen">
         <div className="h-16 px-5 flex items-center border-b border-slate-100">
-          <Image src={IMAGES.logo} alt="Ariviya" width={120} height={36} style={{ width: "auto", height: "auto" }} className="h-8 w-auto" />
+          <Image src={IMAGES.logo} alt="Ariviyaa" width={120} height={36} style={{ width: "auto", height: "auto" }} className="h-8 w-auto" />
           <span className="ml-2 px-2 py-0.5 rounded-md bg-[#EFF3FC] text-[#5160a3] text-[10px] font-bold">Admin</span>
         </div>
         <div className="flex-1 overflow-y-auto p-3">{navList}</div>
@@ -411,7 +411,7 @@ export function AdminDashboard() {
           <div className="absolute inset-0 bg-slate-900/50" onClick={() => setMenuOpen(false)} />
           <div className="absolute inset-y-0 left-0 w-72 max-w-[85%] bg-white p-3 overflow-y-auto">
             <div className="h-12 px-2 mb-2 flex items-center justify-between">
-              <Image src={IMAGES.logo} alt="Ariviya" width={110} height={32} style={{ width: "auto", height: "auto" }} className="h-7 w-auto" />
+              <Image src={IMAGES.logo} alt="Ariviyaa" width={110} height={32} style={{ width: "auto", height: "auto" }} className="h-7 w-auto" />
               <button type="button" aria-label="Close menu" onClick={() => setMenuOpen(false)} className="p-2 text-slate-500 cursor-pointer">
                 <X className="w-5 h-5" />
               </button>
@@ -470,7 +470,7 @@ export function AdminDashboard() {
             <div>
               <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">{active.label}</h1>
               <p className="text-sm text-slate-500 mt-1">
-                {section === "dashboard" ? "Overview for 3 November 2026" : "Ariviya store management"}
+                {section === "dashboard" ? "Overview for 3 November 2026" : "Ariviyaa store management"}
               </p>
             </div>
           </div>

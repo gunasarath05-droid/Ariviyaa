@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Order Confirmed",
-  description: "Your Ariviya order has been placed.",
+  description: "Your Ariviyaa order has been placed.",
   robots: { index: false, follow: true },
 };
 

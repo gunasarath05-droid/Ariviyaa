@@ -6,7 +6,7 @@ import { Phone, Mail, MapPin, MessageSquare } from "lucide-react";
 import { CommonHero } from "@/components/CommonHero";
 
 const MAPS_URL = `https://maps.google.com/?q=${encodeURIComponent(
-  "Periyar TBI, Vallam, Thanjavur, Tamil Nadu 613403"
+  "Unit #103, Periyar TBI, Vallam, Thanjavur, Tamil Nadu 613403"
 )}`;
 
 const channels = [

@@ -170,7 +170,7 @@ export default function PaymentPage() {
         placedAt: new Date().toISOString(),
         draft,
         paymentId,
-        items: cart.map(({ product, quantity }) => ({ productId: product.id, quantity })),
+        items: cart.map(({ product, pack, quantity }) => ({ productId: product.id, size: pack.size, quantity })),
       });
       clearCart();
       router.push("/order-confirmation");
@@ -315,7 +315,7 @@ export default function PaymentPage() {
 
                   <p className="flex items-start gap-2 text-xs text-slate-500">
                     <Lock className="w-3.5 h-3.5 text-[#5160a3] shrink-0 mt-px" />
-                    Card and bank details are entered in Razorpay&apos;s secure window — Ariviya never stores them.
+                    Card and bank details are entered in Razorpay&apos;s secure window — Ariviyaa never stores them.
                     This review build only simulates the payment.
                   </p>
                 </div>

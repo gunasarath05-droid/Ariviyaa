@@ -6,7 +6,7 @@ import Image from "next/image";
 import { Heart, ShoppingBag, X, ArrowRight } from "lucide-react";
 import { CommonHero } from "@/components/CommonHero";
 import { useApp } from "@/context/AppContext";
-import { PRODUCTS, formatPrice, discountPercent } from "@/constants/products";
+import { PRODUCTS, priceLabel } from "@/constants/products";
 import { cardClass, primaryButtonClass, secondaryButtonClass } from "@/components/ui/form";
 
 export default function WishlistPage() {
@@ -77,9 +77,9 @@ export default function WishlistPage() {
                           className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300"
                         />
                       </Link>
-                      {discountPercent(product) > 0 && (
+                      {product.comingSoon && (
                         <span className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md bg-[#5160a3] text-white text-[11px] font-semibold">
-                          {discountPercent(product)}% off
+                          Coming soon
                         </span>
                       )}
                       <button
@@ -105,22 +105,27 @@ export default function WishlistPage() {
                       </Link>
                       <div className="mt-1.5 flex items-baseline justify-center gap-2">
                         <span className="text-base sm:text-lg font-bold text-slate-900">
-                          {formatPrice(product.price)}
+                          {priceLabel(product)}
                         </span>
-                        {discountPercent(product) > 0 && (
-                          <span className="text-xs text-slate-400 line-through">
-                            {formatPrice(product.originalPrice)}
-                          </span>
-                        )}
+                        <span className="text-xs text-slate-400">{product.packs[0].size}</span>
                       </div>
-                      <button
-                        type="button"
-                        onClick={() => addToCart(product, 1)}
-                        className="mt-3 py-2.5 px-3 rounded-[10px] bg-[#5160a3] hover:bg-[#434f8a] text-white text-sm font-semibold transition-colors cursor-pointer flex items-center justify-center gap-1.5"
-                      >
-                        <ShoppingBag className="w-3.5 h-3.5 shrink-0" />
-                        Add to Cart
-                      </button>
+                      {product.comingSoon ? (
+                        <Link
+                          href={`/shop/${product.slug}`}
+                          className="mt-3 py-2.5 px-3 rounded-[10px] bg-white border border-[#5160a3] text-[#5160a3] hover:bg-[#EFF3FC] text-sm font-semibold transition-colors flex items-center justify-center gap-1.5"
+                        >
+                          Coming soon
+                        </Link>
+                      ) : (
+                        <button
+                          type="button"
+                          onClick={() => addToCart(product, 1)}
+                          className="mt-3 py-2.5 px-3 rounded-[10px] bg-[#5160a3] hover:bg-[#434f8a] text-white text-sm font-semibold transition-colors cursor-pointer flex items-center justify-center gap-1.5"
+                        >
+                          <ShoppingBag className="w-3.5 h-3.5 shrink-0" />
+                          Add to Cart
+                        </button>
+                      )}
                     </div>
                   </div>
                 ))}

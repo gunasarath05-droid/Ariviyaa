@@ -43,7 +43,7 @@ export function DealerList() {
             Authorised <span className="text-[#5160a3]">Dealers &amp; Stockists</span>
           </h2>
           <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
-            Buy Ariviya products over the counter from our partners near you.
+            Buy Ariviyaa products over the counter from our partners near you.
           </p>
           <p className="text-xs text-slate-400">Sample listing for review — final dealer network to be added.</p>
         </div>
@@ -105,7 +105,7 @@ export function DealerList() {
           <div className="space-y-2 max-w-2xl">
             <h3 className="text-xl sm:text-2xl font-bold text-slate-900">No dealer in your area yet?</h3>
             <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
-              Become an authorised Ariviya dealer — get dealer pricing, GST invoicing, marketing material and
+              Become an authorised Ariviyaa dealer — get dealer pricing, GST invoicing, marketing material and
               field-demo support from our animal health team.
             </p>
           </div>

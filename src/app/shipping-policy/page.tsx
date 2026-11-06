@@ -8,7 +8,7 @@ import { formatPrice } from "@/constants/products";
 export const metadata: Metadata = {
   title: "Shipping Policy",
   description:
-    "Delivery options, charges and timelines for Ariviya orders — Shiprocket courier partners, ST Courier for South India and bulk freight for business orders.",
+    "Delivery options, charges and timelines for Ariviyaa orders — Shiprocket courier partners, ST Courier for South India and bulk freight for business orders.",
   alternates: { canonical: "https://www.ariviyaa.com/shipping-policy" },
 };
 
@@ -18,7 +18,7 @@ export default function ShippingPolicyPage() {
   return (
     <PolicyPage
       title="Shipping Policy"
-      subtitle="How and when your Ariviya order reaches you"
+      subtitle="How and when your Ariviyaa order reaches you"
       badge="Delivery"
       BadgeIcon={Truck}
       href="/shipping-policy"

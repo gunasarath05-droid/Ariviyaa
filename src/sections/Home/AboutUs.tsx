@@ -100,13 +100,13 @@ export function ScienceFromThanjavurSection() {
 
               {/* Sub-label */}
               <p className="text-sm sm:text-base font-bold text-[#5160a3]/90 tracking-wide uppercase">
-                Ariviya Deep Tech Pvt. Ltd. — A Deep-Tech Biotechnology Startup
+                Ariviyaa Deep Tech Pvt. Ltd. — A Deep-Tech Biotechnology Startup
               </p>
             </div>
 
             {/* Body Description */}
             <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
-              Founded in 2021 by scientists and entrepreneurs, Ariviya translates locally developed
+              Founded in 2021 by scientists and entrepreneurs, Ariviyaa translates locally developed
               scientific innovation into affordable, sustainable animal healthcare. We integrate
               nanotechnology, biotechnology, and polymer science to build products for animal health,
               wound management, and antimicrobial protection.
@@ -173,7 +173,7 @@ export function ScienceFromThanjavurSection() {
                 {!imgError["product-range"] ? (
                   <Image
                     src={IMAGES.productShowcase}
-                    alt="Ariviya product range"
+                    alt="Ariviyaa product range"
                     fill
                     className="object-cover object-center hover:scale-105 transition-transform duration-700"
                     onError={() => handleImageError("product-range")}
@@ -184,7 +184,7 @@ export function ScienceFromThanjavurSection() {
                     <div className="w-16 h-16 rounded-2xl bg-[#5160a3]/10 text-[#5160a3] flex items-center justify-center mb-3">
                       <Sparkles className="w-8 h-8" />
                     </div>
-                    <span className="text-base font-bold text-slate-800">Ariviya Product Range</span>
+                    <span className="text-base font-bold text-slate-800">Ariviyaa Product Range</span>
                     <span className="text-xs text-slate-500 mt-1">NaxPoly® Chemical-Free Formulations</span>
                   </div>
                 )}
