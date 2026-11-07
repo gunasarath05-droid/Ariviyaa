@@ -86,7 +86,7 @@ export function Header() {
     {
       name: "Media",
       children: [
-        { name: "Blog", href: "/blog"},
+        { name: "Blog", href: "/blog" },
         { name: "Gallery", href: "/gallery" },
         { name: "FAQ", href: "/faq" },
       ],
@@ -227,7 +227,7 @@ export function Header() {
         </div>
 
         {/* Mobile Search Bar (visible on small screens) */}
-        <div className="pb-3 md:hidden">
+        {/* <div className="pb-3 md:hidden">
           <form onSubmit={handleSearchSubmit} className="relative w-full">
             <input
               type="text"
@@ -243,14 +243,14 @@ export function Header() {
               <Search className="w-4 h-4" />
             </button>
           </form>
-        </div>
+        </div> */}
       </div>
 
       <nav className="bg-[#2B2D42] text-white shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Link bar is desktop/tablet only; phones use the menu button above */}
           <div className="hidden md:flex items-center justify-between h-16">
-            
+
             {/* Desktop Navigation Links */}
             <div className="hidden md:flex items-center space-x-1 lg:space-x-2">
               {navLinks.map((link) => {
@@ -267,18 +267,16 @@ export function Header() {
                       <button
                         type="button"
                         onClick={() => setIsMediaOpen(!isMediaOpen)}
-                        className={`flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-sm lg:text-[15px] font-semibold transition-all duration-200 cursor-pointer ${
-                          isAnyChildActive
+                        className={`flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-sm lg:text-[15px] font-semibold transition-all duration-200 cursor-pointer ${isAnyChildActive
                             ? "bg-white/15 text-white font-bold shadow-xs border border-white/20"
                             : "text-slate-200 hover:text-white hover:bg-white/10"
-                        }`}
+                          }`}
                         aria-expanded={isMediaOpen}
                       >
                         <span>{link.name}</span>
                         <ChevronDown
-                          className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                            isMediaOpen ? "rotate-180 text-white" : "text-slate-400"
-                          }`}
+                          className={`w-3.5 h-3.5 transition-transform duration-200 ${isMediaOpen ? "rotate-180 text-white" : "text-slate-400"
+                            }`}
                         />
                       </button>
 
@@ -293,19 +291,17 @@ export function Header() {
                                 <Link
                                   key={child.name}
                                   href={child.href}
-                                  className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all duration-150 group ${
-                                    isChildActive
+                                  className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all duration-150 group ${isChildActive
                                       ? "bg-[#5160A3] text-white font-bold shadow-xs"
                                       : "text-slate-200 hover:text-white hover:bg-white/10"
-                                  }`}
+                                    }`}
                                 >
                                   {ChildIcon && (
                                     <div
-                                      className={`w-8 h-8 rounded-lg flex items-center justify-center transition-colors ${
-                                        isChildActive
+                                      className={`w-8 h-8 rounded-lg flex items-center justify-center transition-colors ${isChildActive
                                           ? "bg-white/20 text-white"
                                           : "bg-white/5 text-slate-300 group-hover:bg-white/15 group-hover:text-white"
-                                      }`}
+                                        }`}
                                     >
                                       <ChildIcon className="w-4 h-4" />
                                     </div>
@@ -328,34 +324,32 @@ export function Header() {
 
                 return (
                   <Link
-  key={link.name}
-  href={link.href || "/"}
-  className={`group relative px-3.5 text-sm lg:text-[15px] font-semibold
+                    key={link.name}
+                    href={link.href || "/"}
+                    className={`group relative px-3.5 text-sm lg:text-[15px] font-semibold
     transition-all duration-300 ease-out
-    ${
-      isCurrentActive
-        ? "text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.25)]"
-        : "text-slate-200 hover:text-white"
-    }
+    ${isCurrentActive
+                        ? "text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.25)]"
+                        : "text-slate-200 hover:text-white"
+                      }
 
     after:absolute after:left-1/2 after:-bottom-0.5
     after:h-[2px] after:-translate-x-1/2
     after:rounded-full after:bg-white
     after:transition-all after:duration-300 after:ease-out
 
-    ${
-      isCurrentActive
-        ? "after:w-[calc(100%-1.75rem)]"
-        : "after:w-0 group-hover:after:w-[calc(100%-1.75rem)]"
-    }
+    ${isCurrentActive
+                        ? "after:w-[calc(100%-1.75rem)]"
+                        : "after:w-0 group-hover:after:w-[calc(100%-1.75rem)]"
+                      }
   `}
->
-  {link.name}
-</Link>
+                  >
+                    {link.name}
+                  </Link>
                 );
               })}
             </div>
-              
+
             {/* Right Contact Hotline & Email */}
             <div className="hidden sm:flex items-center space-x-3 lg:space-x-4 text-xs lg:text-sm">
               {/* Phone Hotline */}
@@ -364,8 +358,8 @@ export function Header() {
                 className="flex items-center gap-2 text-white transition-all group"
                 title="Call Customer & Investor Desk"
               >
-                  <Phone className="w-4 h-4" />
-                  <span className="font-bold text-white">{COMPANY_INFO.displayPhone}</span>
+                <Phone className="w-4 h-4" />
+                <span className="font-bold text-white">{COMPANY_INFO.displayPhone}</span>
               </a>
 
               <span className="text-slate-600 hidden lg:inline">|</span>
@@ -404,11 +398,10 @@ export function Header() {
                           <Link
                             key={child.name}
                             href={child.href}
-                            className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-semibold transition-colors ${
-                              isChildActive
+                            className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-semibold transition-colors ${isChildActive
                                 ? "bg-[#5160A3] text-white"
                                 : "text-slate-300 hover:bg-white/10"
-                            }`}
+                              }`}
                           >
                             {ChildIcon && <ChildIcon className="w-4 h-4 text-slate-400" />}
                             <span>{child.name}</span>
@@ -427,11 +420,10 @@ export function Header() {
                 <Link
                   key={link.name}
                   href={link.href || "/"}
-                  className={`block px-3 py-2 rounded-lg text-sm font-semibold transition-colors ${
-                    isCurrentActive
+                  className={`block px-3 py-2 rounded-lg text-sm font-semibold transition-colors ${isCurrentActive
                       ? "bg-[#5160A3] text-white"
                       : "text-slate-200 hover:bg-white/10"
-                  }`}
+                    }`}
                 >
                   {link.name}
                 </Link>
@@ -439,7 +431,7 @@ export function Header() {
             })}
 
             {/* Mobile Contact Quick Actions */}
-            <div className="pt-3 border-t border-slate-700/60 grid grid-cols-2 gap-2 text-xs">
+            {/* <div className="pt-3 border-t border-slate-700/60 grid grid-cols-2 gap-2 text-xs">
               <a
                 href={`tel:${COMPANY_INFO.phone}`}
                 className="flex items-center justify-center gap-2 py-2 px-3 rounded-lg bg-emerald-500/15 text-emerald-300 font-bold"
@@ -454,7 +446,7 @@ export function Header() {
                 <Mail className="w-3.5 h-3.5" />
                 <span>Email Desk</span>
               </a>
-            </div>
+            </div> */}
           </div>
         )}
       </nav>

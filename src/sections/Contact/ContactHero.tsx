@@ -61,7 +61,7 @@ export function ContactHero() {
       />
 
       {/* Contact info channels card strip */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 sm:mt-8 font-sans">
+      {/* <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 sm:mt-8 font-sans">
         <div className="bg-white rounded-2xl sm:rounded-3xl border border-[#D9DFF0] shadow-sm grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 lg:divide-x divide-[#D9DFF0] overflow-hidden">
           {channels.map(({ label, value, note, href, external, Icon }) => (
             <a
@@ -85,7 +85,7 @@ export function ContactHero() {
             </a>
           ))}
         </div>
-      </div>
+      </div> */}
     </>
   );
 }
