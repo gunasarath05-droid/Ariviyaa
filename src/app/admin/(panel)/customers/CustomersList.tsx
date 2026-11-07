@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { Search, Users, Building2, Repeat, X, Phone, Mail, MessageCircle } from "lucide-react";
+import { Search, Users, Building2, Repeat, X, Phone, Mail, MessageCircle, Newspaper } from "lucide-react";
 import { formatPrice } from "@/constants/products";
 import { orderTotals } from "@/constants/demo";
 import type { AdminCustomerRef, AdminOrder } from "@/constants/adminData";
@@ -15,6 +15,7 @@ import {
   adminInputClass,
   adminLabelClass,
 } from "@/components/admin/ui";
+import { loadLocalSubscribers, type NewsletterSubscriber } from "@/lib/newsletterSubscribers";
 
 interface Customer extends AdminCustomerRef {
   orders: AdminOrder[];
@@ -133,6 +134,21 @@ export function CustomersList() {
   const [query, setQuery] = useState("");
   const [type, setType] = useState<"all" | "Retail" | "Business">("all");
   const [selected, setSelected] = useState<string | null>(null);
+  const [subscribers, setSubscribers] = useState<NewsletterSubscriber[]>([]);
+
+  // Fetch newsletter subscribers from API (persisted in data/newsletter-subscribers.json)
+  useEffect(() => {
+    fetch("/api/newsletter")
+      .then((r) => r.json())
+      .then((data) => {
+        if (data.success && Array.isArray(data.subscribers)) {
+          setSubscribers(data.subscribers);
+        }
+      })
+      .catch(() => {
+        setSubscribers(loadLocalSubscribers());
+      });
+  }, []);
 
   // Opening /admin/customers?email=… (e.g. from an order) preselects that customer
   useEffect(() => {
@@ -154,13 +170,14 @@ export function CustomersList() {
     { label: "Total customers", value: customers.length, Icon: Users },
     { label: "Business accounts", value: customers.filter((c) => c.type === "Business").length, Icon: Building2 },
     { label: "Repeat customers", value: customers.filter((c) => c.orders.length > 1).length, Icon: Repeat },
+    { label: "Newsletter Subscribers", value: subscribers.length, Icon: Newspaper },
   ];
 
   return (
     <>
       <AdminPageHeader title="Customers" subtitle="Everyone who has ordered, with their order history" />
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
         {tiles.map(({ label, value, Icon }) => (
           <div key={label} className={`${panelClass} p-4 flex items-center gap-3`}>
             <span className="w-10 h-10 rounded-xl bg-[#5160a3]/10 text-[#5160a3] flex items-center justify-center shrink-0">
@@ -261,6 +278,90 @@ export function CustomersList() {
         </div>
 
         {current && <CustomerDetail customer={current} onClose={() => setSelected(null)} />}
+      </div>
+
+      {/* ========================================================================= */}
+      {/* Newsletter Subscribers Section */}
+      {/* ========================================================================= */}
+      <div className={`${panelClass} p-5 space-y-4`}>
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <div className="flex items-center gap-2">
+              <Newspaper className="w-5 h-5 text-[#5160a3]" />
+              <h3 className="text-base font-bold text-slate-900">Newsletter Subscribers</h3>
+              <Pill tone="brand">{subscribers.length} total</Pill>
+            </div>
+            <p className="text-xs text-slate-500 mt-1">
+              Visitors who subscribed via the footer newsletter input across the website.
+            </p>
+          </div>
+
+          {subscribers.length > 0 && (
+            <button
+              type="button"
+              onClick={() => {
+                const emails = subscribers.map((s) => s.email).join("\n");
+                navigator.clipboard.writeText(emails);
+                alert("Copied all subscriber emails to clipboard!");
+              }}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[#D9DFF0] text-xs font-semibold text-slate-700 hover:bg-slate-50 cursor-pointer"
+            >
+              <Mail className="w-3.5 h-3.5" />
+              <span>Copy All Emails</span>
+            </button>
+          )}
+        </div>
+
+        {subscribers.length === 0 ? (
+          <p className="text-xs text-slate-500 py-4 text-center">
+            No newsletter subscribers yet. Submissions from the website footer will appear here.
+          </p>
+        ) : (
+          <div className="overflow-x-auto border border-[#D9DFF0] rounded-xl">
+            <table className="w-full text-left text-sm">
+              <thead className="bg-[#F5F7FC] text-xs uppercase font-bold text-slate-600 border-b border-[#D9DFF0]">
+                <tr>
+                  <th className="px-4 py-3">ID</th>
+                  <th className="px-4 py-3">Email Address</th>
+                  <th className="px-4 py-3">Subscribed Date</th>
+                  <th className="px-4 py-3">Source</th>
+                  <th className="px-4 py-3 text-right">Action</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100 font-medium">
+                {subscribers.map((sub) => (
+                  <tr key={sub.id} className="hover:bg-slate-50/80 transition-colors">
+                    <td className="px-4 py-2.5 text-xs text-slate-500 font-mono">{sub.id}</td>
+                    <td className="px-4 py-2.5 font-bold text-slate-900">{sub.email}</td>
+                    <td className="px-4 py-2.5 text-xs text-slate-500">
+                      {new Date(sub.subscribedAt).toLocaleDateString("en-GB", {
+                        day: "2-digit",
+                        month: "short",
+                        year: "numeric",
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      })}
+                    </td>
+                    <td className="px-4 py-2.5">
+                      <span className="inline-block px-2 py-0.5 rounded-full text-[11px] font-semibold bg-slate-100 text-slate-700">
+                        {sub.source}
+                      </span>
+                    </td>
+                    <td className="px-4 py-2.5 text-right">
+                      <a
+                        href={`mailto:${sub.email}`}
+                        className="inline-flex items-center gap-1 text-xs font-bold text-[#5160a3] hover:underline"
+                      >
+                        <Mail className="w-3 h-3" />
+                        <span>Send Email</span>
+                      </a>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
     </>
   );

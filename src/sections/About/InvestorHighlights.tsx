@@ -138,7 +138,7 @@ export function InvestorHighlights() {
           </div>
 
           {/* Decorative watermarks */}
-          <div className="absolute right-0 top-0 bottom-0 w-1/3 opacity-5 pointer-events-none hidden lg:flex items-center justify-center">
+          <div className="absolute right-0 top-0 bottom-0 w-1/3 opacity-40 pointer-events-none hidden lg:flex items-center justify-center">
             <AriviyaIcon className="w-72 h-72 text-white" />
           </div>
         </div>

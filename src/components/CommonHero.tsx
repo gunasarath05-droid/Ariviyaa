@@ -14,7 +14,7 @@ export interface CommonHeroProps {
   title: string;
   breadcrumb?: BreadcrumbItem[];
   subtitle?: string;
-  /** Page-specific banner image; defaults to the product hero lineup cutout */
+  /** Full background banner image; defaults to Veterinary Care */
   image?: string;
   className?: string;
 }
@@ -23,72 +23,74 @@ export function CommonHero({
   title,
   breadcrumb = [{ label: "Home", href: "/" }, { label: title }],
   subtitle,
-  image = IMAGES.productHeroBanner,
+  image = IMAGES.veterinaryCare,
   className = "",
 }: CommonHeroProps) {
   return (
     <section
-      className={`relative w-full bg-gradient-to-r from-[#F5F7FC] via-[#EEF1F9] to-[#E9EEF8] border-b border-[#D9DFF0] overflow-hidden font-sans ${className}`}
+      className={`relative w-full bg-gradient-to-r from-[#C5E5FD] via-[#EFF6FD] to-[#DCEBFB] border-b border-[#C0DCF5] overflow-hidden font-sans flex items-center min-h-[220px] sm:min-h-[260px] md:min-h-[300px] lg:min-h-[340px] xl:min-h-[380px] ${className}`}
     >
+      {/* Full Widescreen Background Banner Artwork */}
+      <div className="absolute inset-0 pointer-events-none select-none z-0">
+        <Image
+          src={image}
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-right sm:object-center"
+        />
+        {/* Soft gradient shield on left side to guarantee text contrast without obscuring the background */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#EEF5FD]/90 via-[#EEF5FD]/60 to-transparent w-full sm:w-3/5 lg:w-1/2 pointer-events-none" />
+      </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-6 md:gap-8 pt-8 sm:pt-10 md:pt-12 pb-0">
-          {/* Left Column: Title, Breadcrumbs, Subtitle */}
-          <div className="w-full md:max-w-xl lg:max-w-2xl pb-4 sm:pb-6 md:pb-10 space-y-2.5 sm:space-y-3 text-left hero-stagger">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 leading-[1.15]">
-              {title}
-            </h1>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full py-8 sm:py-10 md:py-12">
+        {/* Left Column: Title, Breadcrumbs, Subtitle */}
+        <div className="max-w-md sm:max-w-lg md:max-w-xl space-y-2.5 sm:space-y-3.5 text-left hero-stagger">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 leading-[1.15] drop-shadow-xs">
+            {title}
+          </h1>
 
-            {/* Breadcrumb Navigation directly under title - matching reference pattern */}
-            {breadcrumb && breadcrumb.length > 0 && (
-              <nav aria-label="Breadcrumb" className="pt-0.5">
-                <ol className="inline-flex items-center gap-2 text-xs sm:text-sm font-medium text-slate-500">
-                  {breadcrumb.map((item, index) => {
-                    const isLast = index === breadcrumb.length - 1;
-                    return (
-                      <li key={index} className="flex items-center gap-2">
-                        {index > 0 && (
-                          <span className="text-slate-400 select-none text-xs">/</span>
-                        )}
-                        {item.href && !isLast ? (
-                          <Link
-                            href={item.href}
-                            className="text-slate-600 hover:text-[#5160a3] transition-colors"
-                          >
-                            {item.label}
-                          </Link>
-                        ) : (
-                          <span className="text-[#5160a3] font-bold" aria-current="page">
-                            {item.label}
-                          </span>
-                        )}
-                      </li>
-                    );
-                  })}
-                </ol>
-              </nav>
-            )}
+          {/* Breadcrumb Navigation directly under title - matching Petmart pattern */}
+          {breadcrumb && breadcrumb.length > 0 && (
+            <nav aria-label="Breadcrumb" className="pt-0.5">
+              <ol className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-slate-600 bg-white/85 backdrop-blur-xs px-3.5 py-1.5 rounded-full border border-[#D0E0F4]/80 shadow-2xs">
+                {breadcrumb.map((item, index) => {
+                  const isLast = index === breadcrumb.length - 1;
+                  return (
+                    <li key={index} className="flex items-center gap-2">
+                      {index > 0 && (
+                        <span className="text-slate-400 select-none text-xs">/</span>
+                      )}
+                      {item.href && !isLast ? (
+                        <Link
+                          href={item.href}
+                          className="text-slate-600 hover:text-[#5160a3] transition-colors"
+                        >
+                          {item.label}
+                        </Link>
+                      ) : (
+                        <span className="text-[#5160a3] font-bold" aria-current="page">
+                          {item.label}
+                        </span>
+                      )}
+                    </li>
+                  );
+                })}
+              </ol>
+            </nav>
+          )}
 
+          {subtitle && (
+            <p className="text-xs sm:text-sm md:text-base text-slate-700 font-medium leading-relaxed max-w-lg pt-0.5">
+              {subtitle}
+            </p>
+          )}
 
-            {/* Subtle accent mark matching reference design */}
-            <div className="flex items-center gap-2 pt-2">
-              <span className="w-2 h-2 rounded-full bg-[#5160a3]" />
-              <span className="hero-accent-line w-8 h-0.5 rounded-full bg-[#5160a3]/30" />
-            </div>
-          </div>
-
-          {/* Right Column: Cutout Product Image sitting flush on bottom border */}
-          <div className="w-full md:w-auto flex-1 flex justify-center md:justify-end items-end self-end pointer-events-none select-none animate-fade-in [animation-delay:150ms]">
-            <div className="relative w-full w-auto h-[180px] sm:h-[220px] md:h-[250px] lg:h-[320px]">
-              <Image
-                src={image}
-                alt={title}
-                fill
-                priority
-                sizes="(max-width: 768px) 90vw, 560px"
-                className="object-contain object-bottom drop-shadow-md"
-              />
-            </div>
+          {/* Subtle accent mark matching reference design */}
+          <div className="flex items-center gap-2 pt-1">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#5160a3]" />
+            <span className="hero-accent-line w-8 h-0.5 rounded-full bg-[#5160a3]/40" />
           </div>
         </div>
       </div>
