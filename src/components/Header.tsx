@@ -41,9 +41,15 @@ export function Header() {
   const user = isHydrated ? sessionUser : null;
 
   const [localSearch, setLocalSearch] = useState("");
-  const [isMediaOpen, setIsMediaOpen] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [mediaOpenPath, setMediaOpenPath] = useState<string | null>(null);
+  const [mobileMenuOpenPath, setMobileMenuOpenPath] = useState<string | null>(null);
   const mediaRef = useRef<HTMLDivElement>(null);
+
+  const isMediaOpen = mediaOpenPath === pathname;
+  const isMobileMenuOpen = mobileMenuOpenPath === pathname;
+  const setIsMediaOpen = (open: boolean) => setMediaOpenPath(open ? pathname : null);
+  const setIsMobileMenuOpen = (open: boolean) =>
+    setMobileMenuOpenPath(open ? pathname : null);
 
   // Close media dropdown on click outside
   useEffect(() => {
@@ -52,18 +58,12 @@ export function Header() {
         mediaRef.current &&
         !mediaRef.current.contains(event.target as Node)
       ) {
-        setIsMediaOpen(false);
+        setMediaOpenPath(null);
       }
     }
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
-
-  // Close mobile menu on pathname change
-  useEffect(() => {
-    setIsMobileMenuOpen(false);
-    setIsMediaOpen(false);
-  }, [pathname]);
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
