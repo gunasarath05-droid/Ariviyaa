@@ -1,9 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { Plus, Minus, ArrowRight, MessageCircle } from "lucide-react";
+import { Plus, Minus } from "lucide-react";
 import { AriviyaIcon } from "@/components/AriviyaIcon";
-import { useApp } from "@/context/AppContext";
 
 interface FaqItem {
   id: string;
@@ -13,8 +12,6 @@ interface FaqItem {
 }
 
 export function FaqSection() {
-  const { openWhatsAppInquiry } = useApp();
-
   // Set the first item open by default to mirror the reference image design
   const [openId, setOpenId] = useState<string>("faq-1");
 
@@ -63,11 +60,11 @@ export function FaqSection() {
   return (
     <section id="faq-section" className="w-full section-y bg-white font-sans border-b border-slate-100 scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
           {/* ========================================================= */}
-          {/* LEFT COLUMN: Section Header & Direct Inquiry Button       */}
+          {/* LEFT COLUMN: Section Header (stays in view while scrolling) */}
           {/* ========================================================= */}
-          <div className="lg:col-span-5 space-y-5">
+          <div className="lg:col-span-5 space-y-5 lg:sticky lg:top-40 lg:self-start">
             {/* Paw Icon Badge */}
             <div className="eyebrow">
               <AriviyaIcon className="w-4 h-4 text-[#5160a3] shrink-0" />
@@ -83,8 +80,6 @@ export function FaqSection() {
             <p className="t-lead text-slate-600 max-w-md">
               Common questions from dairy cooperatives, farms, veterinarians and distributors about how MammaryO works, how it is used and how to buy in bulk.
             </p>
-
-            
           </div>
 
           {/* ========================================================= */}

@@ -49,7 +49,7 @@ export function ProductVideoSection() {
               </p>
             </div>
 
-            <p className="t-lead text-slate-600">
+            <p className="t-head text-slate-600">
               Watch how our post-milking teat dip seamlessly fits into everyday
               milking routines — protecting teats after every milking for
               cleaner milk and healthier herds.
@@ -66,12 +66,9 @@ export function ProductVideoSection() {
                     <Icon className="w-4 h-4" />
                   </div>
                   <div>
-                    <strong className="block h-card text-slate-900">
-                      {title}
+                    <strong className="block t-body h-card text-slate-900">
+                      {title} : <span className="t-body text-slate-500 mt-0.5 font-medium">{desc}</span>
                     </strong>
-                    <p className="t-body text-slate-500 mt-0.5">
-                      {desc}
-                    </p>
                   </div>
                 </div>
               ))}
