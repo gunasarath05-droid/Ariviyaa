@@ -14,9 +14,9 @@ export const IMAGES = {
   iconSvg: "/assets/logo/Ariviya Icon.svg",
 
   // Core Banners & Hero Images
-  hero: "/assets/Hero.jpg",
-  heroCutout: "/assets/Hero.jpg",
-  farmLandscape: "/assets/Hero.jpg",
+  hero: "/assets/Hero.png",
+  heroCutout: "/assets/Hero.png",
+  farmLandscape: "/assets/Hero.png",
   petStoreBanner: "/assets/Commonhero.png",
   friendlyPetsRow: "/assets/categories/avatar_dog.jpg",
   aboutPuppy: "/assets/categories/avatar_dog.jpg",
