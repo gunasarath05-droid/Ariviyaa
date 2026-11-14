@@ -149,8 +149,8 @@ export function ScienceFromThanjavurSection({ tone = "white" }: { tone?: Section
 
           {/* Right Column: Product Range Visual */}
           {/* Fills the full height of the text column on desktop */}
-          <div className="relative">
-            <div className="relative h-full rounded-3xl overflow-hidden bg-white border border-[#D9DFF0] shadow-sm">
+          <div className="relative py-2">
+            <div className="relative h-full rounded-3xl overflow-hidden bg-white border border-[#D9DFF0] shadow-sm ">
 
               {/* Product Range Image Container */}
               <div className="relative aspect-[4/3] lg:aspect-auto lg:h-full lg:min-h-[420px] w-full bg-slate-100 overflow-hidden flex items-center justify-center">

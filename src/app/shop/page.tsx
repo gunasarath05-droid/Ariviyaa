@@ -26,7 +26,7 @@ export default function ShopPage() {
     <>
       <CommonHero
         title="Our Products"
-        breadcrumb={[{ label: "Home", href: "/" }, { label: "Shop" }]}
+        breadcrumb={[{ label: "Shop" }]}
         subtitle="Patented green bio-polymer healthcare essentials for dairy herds, pets and clean homes"
       />
       <CategoriesSection />

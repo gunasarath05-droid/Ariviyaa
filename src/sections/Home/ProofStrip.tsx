@@ -18,7 +18,7 @@ export function ProofStripSection() {
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">
           {proofs.map(({ value, label, image }) => (
             <div key={label} className="flex items-center gap-3">
-              <div className="relative w-12 h-12 rounded-full bg-white border border-[#D9DFF0] overflow-hidden flex items-center justify-center shrink-0">
+              <div className="relative w-12 h-12 md:h-14 md:w-14 rounded-full bg-white border border-[#D9DFF0] overflow-hidden flex items-center justify-center shrink-0">
                 <Image src={image} alt={`${label} badge`} fill sizes="48px" className="object-contain p-1" />
               </div>
               <div>

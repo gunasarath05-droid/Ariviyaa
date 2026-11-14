@@ -53,7 +53,7 @@ export function WhoWeServeSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 group">
           {segments.map(({ title, desc, offer, Icon }) => (
             <div
               key={title}
@@ -73,7 +73,7 @@ export function WhoWeServeSection() {
                 </p>
                 <a
                   href="#contact-section"
-                  className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-slate-900 hover:text-[#5160a3] transition-colors"
+                  className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-slate-900 group-hover:text-[#5160a3] transition-colors"
                 >
                   <span>Request a quote</span>
                   <ArrowRight className="w-4 h-4" />

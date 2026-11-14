@@ -38,26 +38,28 @@ export function PhotoBandSection() {
             <AriviyaIcon className="w-4 h-4 text-white/80 shrink-0" />
             <span>Made For The Daily Milking Routine</span>
           </div>
+          <div className="flex flex-col gap-4">
+            <h2 className="h-section">
+              Protect Every Teat, After Every Milking.
+            </h2>
 
-          <h2 className="h-section">
-            Protect Every Teat, After Every Milking.
-          </h2>
+            <p className="t-lead text-slate-300">
+              MammaryO and its teat dip cup fit straight into the routine your farm already
+              follows — dip after milking, let the film form, and wash it off before the next one.
+            </p>
 
-          <p className="t-lead text-slate-300">
-            MammaryO and its teat dip cup fit straight into the routine your farm already
-            follows — dip after milking, let the film form, and wash it off before the next one.
-          </p>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {points.map((point) => (
+                <li key={point} className="flex items-center gap-2.5 text-sm sm:text-[15px] font-medium">
+                  <span className="w-5 h-5 rounded-full bg-emerald-400 text-[#2B2D42] flex items-center justify-center shrink-0">
+                    <Check className="w-3.5 h-3.5 stroke-[3]" />
+                  </span>
+                  <span>{point}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {points.map((point) => (
-              <li key={point} className="flex items-center gap-2.5 text-sm sm:text-[15px] font-medium">
-                <span className="w-5 h-5 rounded-full bg-emerald-400 text-[#2B2D42] flex items-center justify-center shrink-0">
-                  <Check className="w-3.5 h-3.5 stroke-[3]" />
-                </span>
-                <span>{point}</span>
-              </li>
-            ))}
-          </ul>
 
           <div className="flex flex-col sm:flex-row sm:items-center gap-5 pt-2">
             <a
